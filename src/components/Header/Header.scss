@@ -1,0 +1,68 @@
+@mixin fontStyle {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: capitalize;
+
+    color: #000000;
+  }
+  .container {
+      width: 85%;
+      margin: 0 auto;
+  }
+.MuiSvgIcon-root {
+    color: #fff;
+    z-index: 100;
+}
+.makeStyles-root-1.MuiPaper-rounded{
+    border-radius: 50px;
+}
+.phoneMenu {
+    display: flex;
+    line-height: 20px;
+}
+.accountIcon {
+    background-color: #C2C8D0;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.iconText {
+    @include fontStyle;
+    margin-left: 1rem;
+}
+.account-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    @include fontStyle;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 17px 0;
+}
+.search-form {
+    width: 40%;
+}
+.tel-number {
+    text-decoration: none;
+    @include fontStyle;
+
+    & span {
+        font-weight: 600;
+    }
+}
+.logo {
+    cursor: pointer;
+}
