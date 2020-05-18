@@ -12,6 +12,7 @@ import cartIcon from '../../svg/cartIcon';
 import logo from '../../svg/logo';
 
 import './Header.scss';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -83,6 +84,22 @@ const Header = () => {
     )
     return (
         <div className="classes.root">
+            <div className='Header__top'>
+                <Grid container>
+                    <Grid item md={8}>
+                        <span className='Header__text'>Магазин</span>
+                        <span className='Header__text'>Кредит</span>
+                        <span className='Header__text'>Доставка И Оплата</span>
+                        <span className='Header__text'>Гарантии</span>
+                        <span className='Header__text'>О Компании</span>
+                        <span className='Header__text'>Контакты</span>
+                        <span className='Header__text'>Карта сайта</span>
+                    </Grid>
+                    <Grid item md={4}>
+                        <div className='Header__text2'>Укр/<strong>Рус</strong></div>
+                    </Grid>
+                </Grid>
+            </div>
             <div className="container header" >
 
                 <NavLink exact to="/">
@@ -114,6 +131,20 @@ const Header = () => {
                         <div className="account-menu__iconText">Корзина</div>
                     </div>
                 </NavLink>
+            </div>
+            <div className='Header__bottom'>
+                <Grid container>
+                    <Grid item md={12}>
+                        <span className='Header__text3'>Цифровая Техника</span>
+                        <span className='Header__text3'>Оптика для фото</span>
+                        <span className='Header__text3'>Аксуссуары</span>
+                        <span className='Header__text3'>Чехлы</span>
+                        <span className='Header__text3'>Студийное оборудование</span>
+                        <span className='Header__text3'>Штативы</span>
+                        <span className='Header__text3'>Фотоальбомы</span>
+                        <span className='Header__text3'>Фоторамки</span>
+                    </Grid>
+                </Grid>
             </div>
         </div>
     )
