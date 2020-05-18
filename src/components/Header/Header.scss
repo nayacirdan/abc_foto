@@ -12,6 +12,44 @@
       width: 85%;
       margin: 0 auto;
   }
+
+.Header {
+    &__top {
+        width: 100%;
+        padding: 15px 0;
+        background: #F7F5F6;
+    }
+    &__text {
+        font-size: 12px;
+        font-weight: 300;
+        color: black;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    &__text2 {
+        font-size: 12px;
+        font-weight: 300;
+        color: black;
+        text-align: center;     /*ПЕРЕДЕЛАТЬ*/
+        margin-left: 150px;
+        cursor: pointer;
+        strong {
+            font-weight: bold;
+        }
+    }
+    &__bottom {
+        background: #51AD33;
+        padding: 20px 0;
+    }
+    &__text3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: white;
+        margin-right: 30px;
+        cursor: pointer;
+    }
+}
+
 .MuiSvgIcon-root {
     color: #fff;
     z-index: 100;
