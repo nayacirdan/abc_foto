@@ -23,29 +23,43 @@
     display: flex;
     line-height: 20px;
 }
-.accountIcon {
-    background-color: #C2C8D0;
-    width: 41px;
-    height: 41px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.iconText {
-    @include fontStyle;
-    margin-left: 1rem;
-}
+
 .account-menu {
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &__accountIcon {
+        background-color: #C2C8D0;
+        width: 41px;
+        height: 41px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__iconText {
+        @include fontStyle;
+        margin-left: 1rem;
+    }
 }
+
 .menu-item {
     display: flex;
     align-items: center;
     @include fontStyle;
+
+    &__tel-number {
+        text-decoration: none;
+        @include fontStyle;
+    
+        & span {
+            font-weight: 600;
+        }
+    }
 }
+
 .header {
     display: flex;
     align-items: center;
@@ -55,14 +69,9 @@
 .search-form {
     width: 40%;
 }
-.tel-number {
-    text-decoration: none;
-    @include fontStyle;
-
-    & span {
-        font-weight: 600;
-    }
-}
 .logo {
     cursor: pointer;
+}
+.cart-nav {
+    text-decoration: none;
 }

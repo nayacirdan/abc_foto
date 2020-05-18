@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -30,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
     expandMore: {
         color: "#000"
-    },
-    
+    }
 }));
 
 const Header = () => {
@@ -41,19 +41,19 @@ const Header = () => {
         <MenuListComposition
             firstItem={
                 <div className="menu-item">
-                    <div><a href="tel" className="tel-number"><span>0 (800) 21 21 50</span></a></div>
+                    <div><a href="tel" className="menu-item__tel-number"><span>0 (800) 21 21 50</span></a></div>
                     <ExpandMoreIcon className={classes.expandMore} fontSize="small" />
                 </div>
             }
             secondItem={
                 <div className="menu-item">
-                    <div><a href="tel" className="tel-number">0 (44) 377 70 11</a> &nbsp;</div>
+                    <div><a href="tel" className="menu-item__tel-number">0 (44) 377 70 11</a> &nbsp;</div>
                     <div>Киев</div>
                 </div>
             }
             thirdItem={
                 <div className="menu-item">
-                    <div><a href="tel" className="tel-number">0 (56) 370 36 53</a> &nbsp;</div>
+                    <div><a href="tel" className="menu-item__tel-number">0 (56) 370 36 53</a> &nbsp;</div>
                     <div>Днепр</div>
                 </div>
             }
@@ -63,9 +63,9 @@ const Header = () => {
     const AccountMenu = (
         <MenuListComposition
             firstItem={
-                <div className='account-menu'>
-                    <div className="accountIcon">{accountIcon}</div>
-                    <div className="iconText">Вход</div>
+                <div className="account-menu">
+                    <div className="account-menu__accountIcon">{accountIcon}</div>
+                    <div className="account-menu__iconText">Вход</div>
                 </div>
             }
             secondItem={
@@ -76,7 +76,7 @@ const Header = () => {
             thirdItem={
                 <div className="menu-item" >
                     Зарегистрироваться
-                </div>
+                    </div>
             }
         >
         </MenuListComposition>
@@ -85,7 +85,9 @@ const Header = () => {
         <div className="classes.root">
             <div className="container header" >
 
-                <div className="logo">{logo}</div>
+                <NavLink exact to="/">
+                    <div className="logo">{logo}</div>
+                </NavLink>
 
                 <div className="search-form">
                     <Paper component="form" className={classes.root}>
@@ -106,10 +108,12 @@ const Header = () => {
 
                 <div>{AccountMenu}</div>
 
-                <div className='account-menu'>
-                    <div className="accountIcon">{cartIcon}</div>
-                    <div className="iconText">Корзина</div>
-                </div>
+                <NavLink exact to="/cart" className="cart-nav">
+                    <div className="account-menu">
+                        <div className="account-menu__accountIcon">{cartIcon}</div>
+                        <div className="account-menu__iconText">Корзина</div>
+                    </div>
+                </NavLink>
             </div>
         </div>
     )
