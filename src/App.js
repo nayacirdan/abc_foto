@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import './App.scss';
+import Footer from "./components/Footer/Footer";
 
 const App = (props) => {
   return (
@@ -19,6 +20,7 @@ const App = (props) => {
           <li>Footer</li>
         </ul>
       </header>
+        <Footer />
     </div>
   );
 }
