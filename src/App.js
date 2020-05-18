@@ -1,9 +1,11 @@
 import React from 'react';
+import Header from './components/Header/Header';
 import './App.scss';
 
 const App = (props) => {
   return (
     <div className="App">
+      <Header />
       <header className="App-header">
         <p>
          Fantastic Five Project Started!!!!
