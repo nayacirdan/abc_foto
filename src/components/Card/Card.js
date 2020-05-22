@@ -136,8 +136,8 @@ const CardItem = (props) => {
         mainPhotoUrl,
         title,
         isAvailable,
-        fullPrize,
-        salePrize,
+        fullPrice,
+        salePrice,
         isHit,
         isExpected,
         description
@@ -179,21 +179,21 @@ const CardItem = (props) => {
                       direction="row"
                       justify="space-between"
                       alignItems="flex-end">
-                    {salePrize ? (
+                    {salePrice ? (
                         <Grid container direction='column' className={classes.prizeContainer}
                               justify="flex-start"
                               alignItems="flex-start">
                             <Typography component='span' className={classes.oldPrize}>
-                                {fullPrize} грн.
+                                {fullPrice} грн.
                             </Typography>
                             <Typography component='span' className={classes.salePrize}>
-                                {salePrize} грн.
+                                {salePrice} грн.
                             </Typography>
                         </Grid>
                         ) :
                         (
-                            <Typography component='span' className={classes.fullPrize}>
-                                {fullPrize} грн.
+                            <Typography component='span' className={classes.fullPrice}>
+                                {fullPrice} грн.
                             </Typography>
                         )
                     }
