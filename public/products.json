@@ -1,17 +1,11 @@
 [
     {
-        "_id": {
-            "$oid": "5ec51f3d3bc90380de9985a9"
-        },
+        "id": "5ec51f3d3bc90380de9985a9",
         "mainPhotoUrl": "images/gallery_items/canon_1/image_1.jpg",
         "producer": "Canon",
         "title": "Canon EOS 800D Body Black",
-        "fullPrice": {
-            "$numberInt": "15899"
-        },
-        "article": {
-            "$numberInt": "16875476"
-        },
+        "fullPrice": 15899,
+        "article": 16875476,
         "isAvailable": true,
         "description": "Матрица 22.3 x 14.9 мм, 24.2 Мп / поддержка карт памяти SD/SDHC/SDXC / Сенсорный ЖК-дисплей с переменным углом наклона Clear View II TFT 3\" / FullHD-видео / питание от литий-ионного аккумулятора / 131 x 76.2 x 99.9 мм, 532 г",
         "type": "зеркальные",
@@ -20,21 +14,13 @@
         "isHit": true
     },
     {
-        "_id": {
-            "$oid": "5ec523913bc90380de9985ab"
-        },
+        "id": "5ec523913bc90380de9985ab",
         "mainPhotoUrl": "images/gallery_items/canon_2/image_1.jpg",
         "producer": "Canon",
         "title": "Canon EOS 6D Mark II Body",
-        "salePrice": {
-            "$numberInt": "32999"
-        },
-        "fullPrice": {
-            "$numberInt": "34699"
-        },
-        "article": {
-            "$numberInt": "54895152"
-        },
+        "salePrice": 32999,
+        "fullPrice": 34699,
+        "article": 54895152,
         "isAvailable": true,
         "description": "Матрица CMOS 35.9x24 мм, 26.2 Мп / поддержка карт памяти SD/SDHC/SDXC / LCD-дисплей 3\" / Full HD-видео / питание от литий-ионного аккумулятора / 144 x 110.5 x 74.8 мм, 765 г (включая аккумулятор и карту памяти)",
         "type": "зеркальные",
@@ -43,21 +29,13 @@
         "isHit": true
     },
     {
-        "_id": {
-            "$oid": "5ec524c23bc90380de9985ac"
-        },
+        "id": "5ec524c23bc90380de9985ac",
         "mainPhotoUrl": "images/gallery_items/nikon_1/image_1.jpg",
         "producer": "Nikon",
         "title": "Nikon D780 Body Black",
-        "salePrice": {
-            "$numberInt": "65999"
-        },
-        "fullPrice": {
-            "$numberInt": "73199"
-        },
-        "article": {
-            "$numberInt": "187248489"
-        },
+        "salePrice": 65999,
+        "fullPrice": 73199,
+        "article": 187248489,
         "isAvailable": true,
         "description": "Матрица 35.9 x 23.9 мм, 24.5 Мп / поддержка карт памяти SD/SDHC/SDXC / ЖК-дисплей 3.2 / UltraHD-видео / Wi-Fi / Bluetooth / питание от литий-ионного аккумулятора / 143.5 x 115.5 x 76 мм, 840 г с батареей и картой памяти / черный",
         "type": "зеркальные",
@@ -66,18 +44,12 @@
         "isHit": false
     },
     {
-        "_id": {
-            "$oid": "5ec526643bc90380de9985ad"
-        },
+        "id": "5ec526643bc90380de9985ad",
         "mainPhotoUrl": "images/gallery_items/sony_1/image_1.jpg",
         "producer": "Sony",
         "title": "Sony Alpha 9 Body",
-        "fullPrice": {
-            "$numberInt": "119999"
-        },
-        "article": {
-            "$numberInt": "75692748"
-        },
+        "fullPrice": 119999,
+        "article": 75692748,
         "isAvailable": true,
         "description": "Матрица 35.6 x 23.8 мм, 24.2 Мп / поддержка карт памяти Memory Stick PRO Duo/Stick PRO-HG Duo/SDHC/SDXC / LCD-дисплей 3' / 4K-видео / питание от литий-ионного аккумулятора / 126.9 x 95.6 x 63 мм, 673 г",
         "type": "зеркальные",
@@ -86,15 +58,12 @@
         "isHit": false
     },
     {
-        "_id": {
-            "$oid": "5ec527d83bc90380de9985af"
-        },
+        "id": "5ec527d83bc90380de9985af",
         "mainPhotoUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRu3Ehdkyh5YPWMPxLba8Jh9FqGYBnWtJSRPHj4t2ad9EHMtPnzPA&usqp=CAc",
         "producer": "Sony",
         "title": "Sony Alpha a6500 Body Black",
-        "fullPrice": {
-            "$numberInt": "30999"
-        },
+        "fullPrice": 30999,
+        "article": 12423768,
         "isAvailable": false,
         "description": "Матрица 23.5 x 15.6 мм, 24.2 Мп / Зум: 8х (цифровой) / поддержка карт памяти PRO Duo/PRO-HG Duo/Micro(M2)/SD/SDHC/SDXC/microSD/microSDHC/microSDXC / наклонный LCD-дисплей 3\" / Wi-Fi / NFC / питание от литий-ионного аккумулятора / 120 x 66.9 x 53.3 мм, 453 г / черный",
         "type": "системные",
@@ -104,21 +73,13 @@
         "isExpected": true
     },
     {
-        "_id": {
-            "$oid": "5ec52d0e3bc90380de9985b2"
-        },
+        "id": "5ec52d0e3bc90380de9985b2",
         "mainPhotoUrl": "https://i1.foxtrot.com.ua/product/MediumImages/6345045_0.jpg",
         "producer": "Panasonic",
         "title": "Panasonic Lumix DMC-G80 Kit 12-60mm Black",
-        "salePrice": {
-            "$numberInt": "21999"
-        },
-        "fullPrice": {
-            "$numberInt": "24999"
-        },
-        "article": {
-            "$numberInt": "12723468"
-        },
+        "salePrice": 21999,
+        "fullPrice": 24999,
+        "article": 12723468,
         "isAvailable": true,
         "description": "Матрица 17.3 x 13 мм, 16.84 Мп / объектив Lumix G Vario 12-60 mm / Зум 5х (оптический) / поддержка карт памяти SD/SDHC/SDXC / сенсорный LCD-дисплей 3\" / 4K-видео / поддержка RAW / Wi-Fi / питание от литий-ионного аккумулятора / 128.4 x 89 x 74.3 мм, 715 г / черный",
         "equipment": "С объективом",
@@ -126,74 +87,52 @@
         "isHit": true
     },
     {
-        "_id": {
-            "$oid": "5ec52f613bc90380de9985b4"
-        },
+        "id": "5ec52f613bc90380de9985b4",
         "mainPhotoUrl": "https://img.moyo.ua/img/products/4413/32_600.jpg",
         "producer": "Fujifilm",
         "title": "Fujifilm X-A7 + XC 15-45mm F3.5-5.6 Kit Silver",
-        "fullPrice": {
-            "$numberInt": "19999"
-        },
-        "article": {
-            "$numberInt": "182669362"
-        },
+        "fullPrice": 19999,
+        "article": 182669362,
         "isAvailable": true,
-        "description": "Матрица 23.5 x 15.7 мм (APS-C) CMOS, 24.2 Мп / объектив XC 15-45mm F3.5-5.6 OIS PZ / поддержка карт памяти SD/SDHC/SDXC / ЖК-дисплей 3.5\" / Wi-Fi / Bluetooth / 4K-видео / питание от литий-ионного аккумулятора / 119 x 85.3 x 67.7 мм, 455 г (с объективом, аккумулятором и картой памяти) / серебристый",
+        "description": "Матрица 23.5 x 15.7 мм (APS-C) CMOS, 24.2 Мп / объектив XC 15-45mm F3.5-5.6 OIS PZ / поддержка карт памяти SD/SDHC/SDXC / ЖК-дисплей 3.5\" / Wi-Fi / Bluetooth / 4K-видео 119 x 85.3 x 67.7 мм, 455 г / серебристый",
         "equipment": "С объективом",
         "matrix": "CMOS",
         "isHit": true
     },
     {
-        "_id": {
-            "$oid": "5ec52ff93bc90380de9985b5"
-        },
+        "id": "5ec52ff93bc90380de9985b5",
         "mainPhotoUrl": "https://img.moyo.ua/img/products/4636/84_600.jpg",
         "producer": "Fujifilm",
         "title": "Fujifilm X-T100 + XC 15-45mm",
-        "fullPrice": {
-            "$numberInt": "14549"
-        },
-        "article": {
-            "$numberInt": "161005286"
-        },
-        "isisAvailable": false,
-        "description": "Матрица 23.5 x 15.7 мм (APS-C) CMOS, 24.2 Мп / без объектива / поддержка карт памяти SD/SDHC/SDXC / ЖК-дисплей 3\" / Wi-Fi / 4K-видео / питание от литий-ионного аккумулятора / 121 x 83 x 47.4 мм, 448 г (с аккумулятором и картой памяти) / черный",
+        "fullPrice": 14549,
+        "article": 161005286,
+        "isAvailable": false,
+        "description": "Матрица 23.5 x 15.7 мм (APS-C) CMOS, 24.2 Мп / без объектива / поддержка карт памяти SD/SDHC/SDXC / ЖК-дисплей 3\" / Wi-Fi / 4K-видео / 121 x 83 x 47.4 мм, 448 г / черный",
         "equipment": "С объективом",
         "matrix": "CMOS",
         "isHit": false
     },
     {
-        "_id": {
-            "$oid": "5ec530f63bc90380de9985b6"
-        },
+        "id": "5ec530f63bc90380de9985b6",
         "mainPhotoUrl": "images/gallery_items/olympus_1/image_1.jpg",
         "producer": "OLYMPUS",
         "title": "OLYMPUS E-M10 mark III Body silver",
-        "salePrice": {
-            "$numberInt": "18295"
-        },
-        "fullPrice": {
-            "$numberInt": "21345"
-        },
-        "article": "202390939",
-        "isisAvailable": true,
+        "salePrice": 18295,
+        "fullPrice": 21345,
+        "article": 202390939,
+        "isAvailable": true,
         "description": "4/3\" Датчик Live MOS, 20.3 Мегапікселя / 0.08x (Мікро 4/3) / 0.16x (35мм формат) / Карти пам'яті: SD (SDHC, SDXC, UHS-I/II) ",
         "equipment": "Без объектива",
         "matrix": "CMOS",
         "isHit": true
     },
     {
-        "_id": {
-            "$oid": "5ec532a03bc90380de9985b7"
-        },
+        "id": "5ec532a03bc90380de9985b7",
         "mainPhotoUrl": "https://img2.elmir.ua/img/2197354/3000/2000/tsifrovaya_fotokamera_olympus_e-m5_mark_iii_12-200_kit_silver_black_v207090se010.jpg",
         "producer": "OLYMPUS",
         "title": "Olympus E-M5 Mark II 12-40mm Pro Kit Silver",
-        "fullPrice": {
-            "$numberInt": "60152"
-        },
-        "article": "66473848",
+        "fullPrice": 60152,
+        "article": 66473848,
         "isAvailable": true,
         "description": "Full HD (1920x1080) / Работа от аккумулятора / 851 г (включаючи об'єктив, батарею і карту пам'яті) ",
         "equipment": "С объективом",
@@ -201,23 +140,15 @@
         "isHit": false
     },
     {
-        "_id": {
-            "$oid": "5ec689d6196607580178486c"
-        },
+        "id": "5ec689d6196607580178486c",
         "mainPhotoUrl": "images/gallery_items/canon_3/image_1.jpg",
         "producer": "Canon",
-        "title": "Canon EOS 5D Mark IV 24-105 L IS II USM Kit Black",
-        "currentPrice": {
-            "$numberInt": "74899"
-        },
-        "salePrice": {
-            "$numberInt": "83399"
-        },
-        "article": {
-            "$numberInt": "17682750"
-        },
+        "title": "Canon EOS 5D Mark IV 24-105 L IS II Black",
+        "fullPrice": 74899,
+        "salePrice": 83399,
+        "article": 17682750,
         "isAvailable": true,
-        "description": "Матрица 36 x 24 мм, 30.4 Мп / объектив 24-105 L IS II USM / поддержка карт памяти CompactFlash Type I, SD, SDHC, SDXC (UHS-I) / LCD-дисплей 3.2\" / 4K-видео / питание от литий-ионного аккумулятора / 150.7 x 116.4 x 193.9 мм, 1595 г (с объективом) / черный",
+        "description": "Матрица 36 x 24 мм, 30.4 Мп / объектив 24-105 L IS II USM / поддержка карт памяти CompactFlash Type I, SD, SDHC, SDXC (UHS-I) / LCD-дисплей 3.2\" / 4K-видео / 150.7 x 116.4 x 193.9 мм, 1595 г (с объективом) / черный",
         "type": "системные",
         "equipment": "С объективом",
         "matrix": "CMOS",
