@@ -74,7 +74,7 @@ const useStyles = makeStyles({
 
     },
     salePrize:{
-        fontSize: 21,
+        fontSize: 20,
         fontWeight: 'bold',
         color:'#E91E49',
         lineHeight:1,
