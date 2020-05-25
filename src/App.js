@@ -3,7 +3,8 @@ import Header from './components/Header/Header';
 import './App.scss';
 import Footer from "./components/Footer/Footer";
 import CardItem from "./components/Card/Card";
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
+import TopSlider from "./components/TopSlider/TopSlider";
 
 const simpleProduct={
     mainPhotoUrl: "images/gallery_items/canon_1/image_1.jpg",
@@ -32,6 +33,7 @@ const App = (props) => {
   return (
     <div className="App">
       <Header />
+      <TopSlider />
       {/* <header className="App-header">
         <p>
          Fantastic Five Project Started!!!!
