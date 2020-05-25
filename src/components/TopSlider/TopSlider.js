@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AutoRotatingCarousel } from 'material-auto-rotating-carousel';
 import { Slide } from 'material-auto-rotating-carousel';
 import './styles.scss';
@@ -6,6 +6,10 @@ import './styles.scss';
 const TopSlider = () => {
   const [container, setContainer] = React.useState(null);
   const handleRef = React.useCallback(instance => setContainer(instance), [setContainer]);
+
+  useEffect(() => {
+    document.body.style.overflow = '';
+  }, [container]);
 
   return (
       <div ref={handleRef} className="top-slider">
