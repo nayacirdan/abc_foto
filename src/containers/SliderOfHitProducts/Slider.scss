@@ -1,0 +1,33 @@
+.slick-prev:before, .slick-next:before {
+    background-color: var(--lightBg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 23px;
+}
+.slick-next:before {
+    content: url("../../svg/icon-next.png");
+}
+.slick-prev:before {
+    content: url("../../svg/icon-back.png");
+}
+.slider-card {
+    transform: scale(0.9);
+}
+.slider {
+    padding: 6% 0;
+    &__header {
+        font-family: "Roboto";
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 27px;
+        text-transform: uppercase;
+        color: #677283;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 1%;
+    }
+    &__main {
+        padding-top: 3% 0;
+    }
+}
