@@ -28,7 +28,11 @@ const TopSlider = () => {
               hideBackdrop: true,
               style: {
                 position: 'relative',
-              }
+              },
+              disableAutoFocus: true,
+              disableBackdropClick: true,
+              disableEnforceFocus: true,
+              disablePortal: true
             }}
         >
           <Slide
