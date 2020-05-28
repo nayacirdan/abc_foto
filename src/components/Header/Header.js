@@ -75,9 +75,12 @@ const Header = () => {
                 </div>
             }
             thirdItem={
-                <div className="menu-item" >
-                    Зарегистрироваться
+                <div>
+                    <hr className="hr" />
+                    <div className="menu-item" >
+                        Зарегистрироваться
                     </div>
+                </div>
             }
         >
         </MenuListComposition>

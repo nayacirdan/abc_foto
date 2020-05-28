@@ -124,7 +124,7 @@ const useStyles = makeStyles({
         maxHeight:0,
         overflow:'hidden',
         opacity:0,
-        transition: '500ms ease-out',
+        transition: '500ms ease-out'
     }
 });
 
