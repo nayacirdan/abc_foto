@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -13,6 +13,8 @@ import logo from '../../svg/logo';
 
 import './Header.scss';
 import Grid from "@material-ui/core/Grid";
+import SubMenu from "./Navigation/SubMenu";
+import Navigation from "./Navigation/Navigation";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
     const classes = useStyles();
+
+    const [isHovering, setIsHovering] = useState(false)
+
+    const toggleHoverState = () => {
+        setIsHovering(!isHovering)
+    }
+
 
     const phoneNumber = (
         <MenuListComposition
@@ -138,14 +147,7 @@ const Header = () => {
             <div className='Header__bottom'>
                 <Grid container>
                     <Grid item md={12}>
-                        <span className='Header__text3'>Цифровая Техника</span>
-                        <span className='Header__text3'>Оптика для фото</span>
-                        <span className='Header__text3'>Аксуссуары</span>
-                        <span className='Header__text3'>Чехлы</span>
-                        <span className='Header__text3'>Студийное оборудование</span>
-                        <span className='Header__text3'>Штативы</span>
-                        <span className='Header__text3'>Фотоальбомы</span>
-                        <span className='Header__text3'>Фоторамки</span>
+                        <Navigation />
                     </Grid>
                 </Grid>
             </div>
