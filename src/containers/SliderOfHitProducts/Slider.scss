@@ -11,6 +11,12 @@
 .slick-prev:before {
     content: url("../../svg/icon-back.png");
 }
+.slick-arrow.slick-next {
+    top: 163px;
+}
+.slick-arrow.slick-prev {
+    top: 163px;
+}
 .slider-card {
     transform: scale(0.9);
 }
