@@ -19,6 +19,9 @@
 }
 .slider-card {
     transform: scale(0.9);
+    &:focus {
+        outline: none;
+    }
 }
 .slider {
     padding: 6% 0;
@@ -36,4 +39,8 @@
     &__main {
         padding-top: 3% 0;
     }
+}
+
+.slick-list {
+    overflow: visible !important;
 }
