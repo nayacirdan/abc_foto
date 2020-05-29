@@ -15,19 +15,20 @@ const useStyles = makeStyles({
     root: {
         maxWidth: 280,
         borderRadius: 0,
-        boxSizing:'border-box',
+        boxSizing:'content-box',
+        position:"relative",
+        overflow:'visible',
         '&:hover': {
-            border: '1px solid rgba(81, 173, 51, 0.5)',
-            boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.25)',
-            cursor: 'pointer'
+            // border: '1px solid rgba(81, 173, 51, 0.5)',
+            boxShadow: '0px 0px 0px 1px rgba(81, 173, 51, 0.5), 0px 4px 15px rgba(0, 0, 0, 0.25)',
+            cursor: 'pointer',
+            boxSizing:'content-box'
         },
-        '&:hover $description':{
-            maxHeight:'300px',
-            opacity:1,
-            marginTop:20,
-            textOverflow:'ellipsis'
+        '&:hover $description, .slider-card:hover $description, .slick-active:hover $description':{
+            display:'block',
+            opacity: 1,
+            maxHeight:500,
         },
-        position:'relative',
     },
     media: {
         backgroundSize: 'contain',
@@ -117,14 +118,27 @@ const useStyles = makeStyles({
         zIndex:200,
     },
     description:{
-        marginTop:0,
+        /*marginTop:0,*/
         fontSize:12,
         color:'#333131',
         textAlign:'left',
-        maxHeight:0,
+        maxHeight:'0px',
         overflow:'hidden',
         opacity:0,
-        transition: '500ms ease-out'
+        transition: 'max-height 600ms ease-in-out, opacity 200ms ease-in-out',
+        border: '1px solid rgba(81, 173, 51, 0.5)',
+        boxShadow: '0px 15px 15px rgba(0, 0, 0, 0.25)',
+        cursor: 'pointer',
+        borderTop:'none',
+        zIndex:5,
+        width: 'calc(100% + 2px)',
+        left:-1,
+        position:"absolute",
+        display:'block',
+        backgroundColor:'#fff',
+        padding:'0 20px 10px',
+        wordWrap:'break-word',
+        top:'98%'
     }
 });
 
@@ -162,6 +176,7 @@ const CardItem = (props) => {
     }
     const classes = useStyles();
     return (
+        <>
         <Card className={classes.root}>
             <Grid container className={classes.mediaContainer} >
                 <CardMedia
@@ -211,18 +226,19 @@ const CardItem = (props) => {
                     {getProductAvailability()}
 
                 </Grid>
-                <Grid container className={classes.description}>
-                    <Typography component='p' >
-                        {description}
-                    </Typography>
-                </Grid>
+
             </CardContent>
             {isHit? <Grid item className={classes.hit} justify='center'>
                 Хит продаж
             </Grid> : null}
-
+            <Grid container className={classes.description}>
+                <Typography component='p' >
+                    {description}
+                </Typography>
+            </Grid>
         </Card>
 
+</>
     )
 }
 

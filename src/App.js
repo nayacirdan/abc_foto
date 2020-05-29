@@ -4,6 +4,7 @@ import TopSlider from "./components/TopSlider/TopSlider";
 import Slider from './containers/SliderOfHitProducts/Slider';
 import './App.scss';
 import Footer from "./components/Footer/Footer";
+import CardItem from "./components/Card/Card";
 
 const App = (props) => {
   return (
