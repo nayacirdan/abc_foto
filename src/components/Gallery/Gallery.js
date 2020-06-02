@@ -25,7 +25,7 @@ const Gallery = () => {
         touchRatio: 0.2,
         slideToClickedSlide: true,
         direction: "vertical",
-        slidesPerView: 3
+        slidesPerView: 4
 
     };
     useEffect(() => {
@@ -42,16 +42,16 @@ const Gallery = () => {
     return (
         <div className="swiper-container">
             <Swiper {...thumbnailSwiperParams} >
-                <div className="prod-slider"><img alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div className="prod-slider"><img alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div className="prod-slider"><img alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div className="prod-slider"><img alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
+                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
+                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
+                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
             </Swiper>
             <Swiper {...gallerySwiperParams} >
-                <div><img className="prod-slider" alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div><img className="prod-slider" alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div><img className="prod-slider" alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div><img className="prod-slider" alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
+                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
+                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
+                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
             </Swiper>
         </div>
     );
