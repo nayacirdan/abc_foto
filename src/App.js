@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import TopSlider from "./components/TopSlider/TopSlider";
-import Slider from './containers/SliderOfHitProducts/Slider';
+import Slider from './components/SliderOfHitProducts/Slider';
 import './App.scss';
 import Footer from "./components/Footer/Footer";
-import CardItem from "./components/Card/Card";
+import { Switch, Route } from 'react-router-dom';
+import ProductPage from './containers/ProductPage/ProductPage';
+
 
 const App = (props) => {
   return (
@@ -12,6 +14,9 @@ const App = (props) => {
       <Header />
       <TopSlider />
       <Slider />
+      <Switch>
+        <Route exact path="/product" component={ProductPage} />
+      </Switch>
       <Footer />
     </div>
   );

@@ -1,0 +1,16 @@
+.prod-slider {
+    transform: scale(0.5);
+}
+.swiper-wrapper {
+    background-color: violet;
+}
+.swiper-container {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.swiper-slide.prod-slider.swiper-slide-active {
+    width: 500px;
+}
+.swiper-container.swiper-container-initialized.swiper-container-vertical {
+    height: 500px;
+}
