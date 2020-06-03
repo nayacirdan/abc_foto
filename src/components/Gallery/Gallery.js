@@ -10,10 +10,10 @@ const Gallery = () => {
     const gallerySwiperParams = {
         getSwiper: getGallerySwiper,
         spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
+        // navigation: {
+        //     nextEl: '.swiper-button-next',
+        //     prevEl: '.swiper-button-prev',
+        // },
         direction: "vertical",
         slidesPerView: 1
     };

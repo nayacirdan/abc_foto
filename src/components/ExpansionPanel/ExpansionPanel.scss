@@ -1,0 +1,33 @@
+.MuiExpansionPanelSummary-content {
+    margin-left: 62% !important;
+}
+.MuiPaper-root.MuiExpansionPanel-root.MuiExpansionPanel-rounded.MuiPaper-elevation1.MuiPaper-rounded {
+    box-shadow: none;
+}
+.MuiTypography-root.makeStyles-heading-282.MuiTypography-body1 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+
+    color: #00B0FF;
+}
+.MuiExpansionPanelDetails-root {
+    border-radius: 3px;
+    border: 1px dotted #51AD33;
+}
+.delivery-icon .MuiSvgIcon-root {
+    color: #51AD33;
+}
+.delivert-item {
+
+    &_free {
+        color: #51AD33;
+    }
+}
+// .MuiCollapse-container.MuiCollapse-entered {
+//     display: flex;
+//     justify-content: flex-end;
+// }

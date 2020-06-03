@@ -1,7 +1,7 @@
 .prod-slider-left {
     transform: scale(0.6);
     margin-top: -30px;
-    margin-left: -114px;
+    margin-left: -125px;
 }
 .prod-slider-rigth {
     border: 1px solid #F2F3F3;
@@ -29,7 +29,7 @@
 }
 .swiper-container.swiper-container-initialized.swiper-container-vertical {
     height: 420px;
-    width: 546%;
+    width: 531%;
 }
 
 // arrows
@@ -41,7 +41,7 @@
 }
 .swiper-button-prev {
     margin-left: -14px;
-    
+
     &:focus {
         outline: none;
     }
