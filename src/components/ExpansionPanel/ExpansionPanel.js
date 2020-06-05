@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     heading: {
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
+        color: "#00B0FF",
+        fontFamily: "Roboto",
+        fontSize: "14px",
+        lineHeight: "160%",
+        letterSpacing: "-0.03em"
     },
 }));
 
@@ -35,23 +40,23 @@ function SimpleExpansionPanel() {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <Typography>
-                        <div>
-                            <div className="delivert-item">
-                                <IconButton className='delivery-icon' component='span'><StorefrontIcon /></IconButton>
-                                <Typography component='span'>Самовывоз с магазина</Typography>
-                                <Typography component='span' className="delivert-item_free">Бесплатно</Typography>
-                            </div>
-                            <div className="delivert-item">
-                                <IconButton className='delivery-icon' component='span'><DirectionsWalkIcon /></IconButton>
-                                <Typography component='span'>Самовывоз из Новой Почты</Typography>
-                                <Typography component='span' className="delivert-item_free">Бесплатно</Typography>
-                            </div>
-                            <div className="delivert-item">
-                                <IconButton className='delivery-icon' component='span'><CardGiftcardIcon /></IconButton>
-                                <Typography component='span'>Курьер по вашему адресу</Typography>
-                                <Typography component='span' className='delivert-item_price'>59 ₴</Typography>
-                            </div>
-                        </div>
+                        <Typography component='div' className='delivery'>
+                            <Typography component='div' className="delivery_item">
+                                <IconButton component='span' className='delivery_item-icon'><StorefrontIcon /></IconButton>
+                                <Typography component='span' className='delivery_item-text'>Самовывоз с магазина</Typography>
+                                <Typography component='span' className="delivery_item-free">Бесплатно</Typography>
+                            </Typography>
+                            <Typography component='div' className="delivery_item">
+                                <IconButton component='span' className='delivery_item-icon'><DirectionsWalkIcon /></IconButton>
+                                <Typography component='span' className='delivery_item-text'>Самовывоз из Новой Почты</Typography>
+                                <Typography component='span' className="delivery_item-free">Бесплатно</Typography>
+                            </Typography>
+                            <Typography component='div' className="delivery_item">
+                                <IconButton component='span' className='delivery_item-icon'><CardGiftcardIcon /></IconButton>
+                                <Typography component='span' className='delivery_item-text'>Курьер по вашему адресу</Typography>
+                                <Typography component='span' className='delivery_item-price'>59 ₴</Typography>
+                            </Typography>
+                        </Typography>
                     </Typography>
                 </ExpansionPanelDetails>
             </ExpansionPanel>

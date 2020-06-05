@@ -1,8 +1,37 @@
-.slider-info {
+.slider-info, .product-page-header {
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    padding-bottom: 100px;
+    margin-bottom: 1%;
 }
+
+// title, article
+
+.product-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        line-height: 26px;
+
+
+    &_title {
+        font-weight: bold;
+        font-size: 26px;
+        text-transform: uppercase;
+    }
+    &_article {
+        background-color: #F2F3F3;
+        font-weight: normal;
+        font-size: 14px;
+        text-transform: capitalize;
+
+        padding: 0.5% 2%;
+    }
+}
+
+// purchase btn
+
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
     width: 180px;
 }
@@ -13,6 +42,7 @@
     background-color: #677283;
 }
 .purchase {
+    margin-top: 5%;
     display: flex;
     justify-content: space-evenly;
 
@@ -20,21 +50,215 @@
         width: 50%;
     }
 }
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+
+    color: #FFFFFF;
+    & p {
+        padding: 2% 0;
+    }
+}
+.MuiSvgIcon-root.buy-icon {
+    padding-left: 15px;
+}
 .btn-buy {
+    padding: 2% 0;
     display: flex;
 }
 .delivery, .guarantee {
+    margin-top: 5%;
     padding-left: 25%;
     text-align: start;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+    color: #000000;
 
     & p{
-
-        font-family: "Roboto";
-        font-style: normal;
         font-weight: normal;
         font-size: 14px;
-        line-height: 160%;
-    
-        letter-spacing: -0.03em;
+    }
+    & h4 {
+        font-weight: bold;
+        font-size: 16px;
     }
 }
+
+// availability
+
+.availability {
+    text-align: start;
+    padding-left: 10%;
+}
+.availText {
+    text-transform: lowercase;
+    color: #51AD33;
+    font-size: 14;
+}
+.expectText {
+    text-transform: lowercase;
+    color: #E91E49;
+    font-size: 14;
+}
+.notAvailText {
+    text-transform: lowercase;
+    color: #C2CDDD;
+    font-size: 14;
+}
+
+// price 
+
+.priceContainer {
+    display: flex;
+    padding-left: 10%;
+
+    & div {
+        & span {
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 36px;
+            line-height: 49px;
+            text-transform: uppercase;
+        }
+    }
+}
+.fullPrice {
+    display: flex;
+    align-items: baseline;
+    padding-left: 10%;
+    & span {
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        text-transform: uppercase;
+        padding-right: 1%;
+    }
+}
+.oldPrice {
+    color: #A0A0A0;
+    & span {
+        text-decoration: line-through;
+    }
+    
+}
+.salePrice {
+    color: #E91E49;
+    padding-right: 3%;
+}
+
+// product tabs 
+
+.makeStyles-root-309 {
+    width: 100% !important;
+    margin-top: 2%;
+}
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorDefault.MuiPaper-elevation4 {
+    outline: none;
+}
+.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.MuiTab-fullWidth {
+    background-color: #EEEEEE;
+}
+.MuiTab-textColorPrimary.Mui-selected {
+    color: none;
+}
+.MuiTab-textColorPrimary {
+    font-family: 'Roboto', sans-serif;
+    color: #000000 !important;
+}
+
+//description
+
+.description {
+    &_block {
+        font-family: "Roboto";
+        font-style: normal;
+        color: #000000;
+        text-align: start;
+        padding: 5% 0;
+        display: grid;
+        grid-template-columns: repeat(2, 47%); 
+        grid-gap: 6%; 
+
+        &-left {
+            // font-family: "Roboto";
+            // font-style: normal;
+            // color: #000000;
+            // text-align: start;
+
+            & h3 {
+                font-weight: bold;
+                font-size: 26px;
+                line-height: 160%;
+                text-transform: uppercase;
+
+            }
+            & p {
+                margin-top: 3%;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 200%;
+                width: 500px;
+            }
+        }
+        &-right {
+            & img {
+                width: 100%;
+            }
+        }
+    }
+    &_wide-block {
+        padding: 5% 0;
+        &-top {
+            width: 53%;
+            margin: 0 auto;
+            & h3 {
+                font-weight: bold;
+                font-size: 26px;
+                line-height: 160%;
+                letter-spacing: -0.03em;
+            }
+            & p {
+                margin-top: 3%;
+                text-align: start;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 190%;
+            }
+        }
+        &-bottom {
+            & img {
+                margin-top: 4%;
+                width: 100%;
+            }
+        }
+    }
+}
+.designer-bg {
+    background-color: #F7F5F6;
+}
+.article {
+    display: grid;
+    grid-template-columns: repeat(2, 42%); 
+    grid-gap: 19%; 
+}
+.imgs-center {
+    display: grid;
+    grid-template-columns: repeat(2, 49.9%); 
+    grid-gap: 0.2%;
+    & img {
+        height: 401px;
+    }
+}
+.flicker-block {
+    background-color: #F7F5F6;
+}
+
+
