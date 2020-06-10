@@ -30,7 +30,7 @@ function SamplePrevArrow(props) {
 }
 
 const Responsive = (props) => {
-    const { products, getProducts } = props;
+    const { products, getProducts, sliderTitle } = props;
     useEffect(() => {
         getProducts()
     }, [getProducts]);
@@ -71,16 +71,21 @@ const Responsive = (props) => {
         ]
     };
 
-
     const filtedProducts = products.filter((key) => (key.isAvailable === true || key.isExpected === true));
     const sliderProducts = filtedProducts.map(product => (
         <div key={product.id} className="slider-card">
             <Card key={product.id} product={product} />
         </div>)
     );
+    // const sliderProducts = products.map(product => (
+    //         <div key={product.id} className="slider-card">
+    //             <Card key={product.id} product={product} />
+    //         </div>));
+    console.log("Products", products);
+    console.log("filtered prod", filtedProducts);
     return (
         <div className="container slider">
-            <h2 className="slider__header">Популярные модели</h2>
+            <h2 className="slider__header">{sliderTitle}</h2>
             <Slider {...settings} className="slider__main">
                 {sliderProducts}
             </Slider>

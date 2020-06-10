@@ -13,7 +13,7 @@ const App = (props) => {
     <div className="App">
       <Header />
       <TopSlider />
-      <Slider />
+      <Slider sliderTitle="Популярные модели" />
       <Switch>
         <Route exact path="/product" component={ProductPage} />
       </Switch>

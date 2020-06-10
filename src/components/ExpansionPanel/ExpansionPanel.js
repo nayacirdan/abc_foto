@@ -4,12 +4,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
-
-import './ExpansionPanel.scss';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,23 +19,30 @@ const useStyles = makeStyles((theme) => ({
         lineHeight: "160%",
         letterSpacing: "-0.03em"
     },
+    ExpandMoreIcon: {
+        color: "#00B0FF"
+    },
 }));
 
-function SimpleExpansionPanel() {
+function SimpleExpansionPanel(props) {
+    const { title, main, classExpIcon, readMoreClass } = props;
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
             <ExpansionPanel>
                 <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon} className={classExpIcon}  />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
+                    className={readMoreClass}
                 >
-                    <Typography className={classes.heading}>Условия доставки и оплаты</Typography>
+                    <Typography className={classes.heading}>{title}</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                    <Typography>
-                        <Typography component='div' className='delivery'>
+                    <Typography component='div'>
+                        {main}
+                        {/* <Typography component='div' className='delivery'>
                             <Typography component='div' className="delivery_item">
                                 <IconButton component='span' className='delivery_item-icon'><StorefrontIcon /></IconButton>
                                 <Typography component='span' className='delivery_item-text'>Самовывоз с магазина</Typography>
@@ -56,7 +58,7 @@ function SimpleExpansionPanel() {
                                 <Typography component='span' className='delivery_item-text'>Курьер по вашему адресу</Typography>
                                 <Typography component='span' className='delivery_item-price'>59 ₴</Typography>
                             </Typography>
-                        </Typography>
+                        </Typography> */}
                     </Typography>
                 </ExpansionPanelDetails>
             </ExpansionPanel>
