@@ -1,0 +1,20 @@
+[
+  {
+    "mainPhotoUrl": "images/gallery_items/canon_1/image_1.jpg",
+    "title": "Canon PowerShot G9X II Silver",
+    "isAvailable": "false",
+    "fullPrize": "21473",
+    "salePrize": "null",
+    "isHit": "false",
+    "isExpected": "true"
+  },
+  {
+    "mainPhotoUrl": "images/gallery_items/sony_1/image_1.jpg",
+    "title": "Sony A6400 body (ILCE6500B.CEC)",
+    "isAvailable": "true",
+    "fullPriz": "29999",
+    "salePrize": "25999",
+    "isHit": "true",
+    "isExpected": "false"
+  }
+]
