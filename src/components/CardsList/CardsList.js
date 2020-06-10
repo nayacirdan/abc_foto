@@ -1,2 +1,0 @@
-import 'CardsList.scss'
-
