@@ -6,7 +6,7 @@ import ContainedButtons from '../../components/Button/Button';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SimpleExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel';
 import { Description } from '../../components/Tabs/Description';
-import Slider from '../../components/SliderOfHitProducts/Slider';
+import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 

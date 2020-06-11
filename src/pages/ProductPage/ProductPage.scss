@@ -1,7 +1,8 @@
 .slider-info, .product-page-header {
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    margin-bottom: 1%;
+    margin: 2% 0;
+
 }
 .credit {
     position: relative;

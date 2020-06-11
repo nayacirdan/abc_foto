@@ -7,7 +7,7 @@
   }
 
 .MuiExpansionPanelSummary-content {
-    margin-left: 62% !important;
+    margin-left: 61% !important;
 }
 .MuiPaper-root.MuiExpansionPanel-root.MuiExpansionPanel-rounded.MuiPaper-elevation1.MuiPaper-rounded {
     box-shadow: none;
@@ -22,10 +22,9 @@
 
     color: #00B0FF;
 }
-// .MuiExpansionPanelDetails-root {
-//     border-radius: 3px;
-//     border: 1px dotted #51AD33;
-// }
+.MuiExpansionPanelDetails-root {
+    padding: 0 !important;
+}
 .delivery {
     width: 120%;
 

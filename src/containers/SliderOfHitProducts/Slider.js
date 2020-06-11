@@ -77,12 +77,7 @@ const Responsive = (props) => {
             <Card key={product.id} product={product} />
         </div>)
     );
-    // const sliderProducts = products.map(product => (
-    //         <div key={product.id} className="slider-card">
-    //             <Card key={product.id} product={product} />
-    //         </div>));
-    console.log("Products", products);
-    console.log("filtered prod", filtedProducts);
+    
     return (
         <div className="container slider">
             <h2 className="slider__header">{sliderTitle}</h2>
