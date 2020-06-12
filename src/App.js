@@ -1,16 +1,18 @@
-import React from 'react';
-import Header from './components/Header/Header';
-import './App.scss';
+import React from "react";
+import Header from "./components/Header/Header";
+import "./App.scss";
 import Footer from "./components/Footer/Footer";
+import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
+import Gallery from "./components/Promotions/PromotionsAndOffers";
+import Swiper from "swiper";
+import ProgressPagination from "./components/Promotions/PromotionsAndOffers";
 
 const App = (props) => {
   return (
     <div className="App">
       <Header />
       <header className="App-header">
-        <p>
-         Fantastic Five Project Started!!!!
-        </p>
+        <p>Fantastic Five Project Started!!!!</p>
         The main stucture of any page would be:
         <ul>
           <li>Main nav</li>
@@ -20,9 +22,10 @@ const App = (props) => {
           <li>Footer</li>
         </ul>
       </header>
-        <Footer />
+      <PromotionsAndOffers/>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
