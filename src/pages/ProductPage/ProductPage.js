@@ -6,6 +6,7 @@ import ContainedButtons from '../../components/Button/Button';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SimpleExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel';
 import { Description } from '../../components/Tabs/Description';
+import { Characteristics } from '../../components/Tabs/Characteristics';
 import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
@@ -13,21 +14,27 @@ import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 const ProductPage = () => {
     const currentProduct = {
         "id": "5ec51f3d3bc90380de9985a9",
-        "collection": "Фотоаппараты",
-        "mainPhotoUrl": "images/gallery_items/canon_1/image_1.jpg",
-        "producer": "Canon",
-        "title": "Canon EOS 800D Body Black",
-        "fullPrice": 15899,
-        // "salePrice": 11999,
+        "categories": "photocameras",
+        "mainPhotoUrl": [
+            "images/gallery_items/canon_1/image_1.jpg",
+            "images/gallery_items/canon_1/image_2.jpg",
+            "images/gallery_items/canon_1/image_3.jpg",
+            "images/gallery_items/canon_1/image_4.jpg"
+    ],
+        "brand": "Canon",
+        "name": "Canon EOS 800D Body Black",
+        "currentPrice": 15899,
+        // "previousPrice": 11999,
         "article": 16875476,
         "isAvailable": true,
         "description": "Матрица 22.3 x 14.9 мм, 24.2 Мп / поддержка карт памяти SD/SDHC/SDXC / Сенсорный ЖК-дисплей с переменным углом наклона Clear View II TFT 3\" / FullHD-видео / питание от литий-ионного аккумулятора / 131 x 76.2 x 99.9 мм, 532 г",
         "type": "зеркальные",
-        "equipment": "Без объектива",
+        "withLens": false,
         "matrix": "Полноразмерная",
-        "isHit": true
+        "isHit": true,
+        "color": "черный"
     };
-    const { id, mainPhotoUrl, producer, title, fullPrice, salePrice, article, isAvailable, description, type, equipment, matrix, isHit, isExpected } = currentProduct;
+    const { id, mainPhotoUrl, brand, name, currentPrice, previousPrice, article, isAvailable, description, type, withLens, matrix, isHit, isExpected } = currentProduct;
     const getProductAvailability = () => {
         if (isAvailable) {
             return (<span className="availText">
@@ -49,10 +56,10 @@ const ProductPage = () => {
     return (
         <div>
             <div className="container">
-                {/* <Breadcrumb productTitle={title} /> */}
+                {/* <Breadcrumb productTitle={name} /> */}
                 <div className='slider-info'>
                     <div className="product-page-header">
-                        <div className="product-page-header_title">{title}</div>
+                        <div className="product-page-header_title">{name}</div>
                         <div className="product-page-header_article">Код товара: {article}</div>
                     </div>
                     <div></div>
@@ -62,19 +69,19 @@ const ProductPage = () => {
                     <div className='credit'>
                         <div className='availability'>{getProductAvailability()}</div>
                         <div>
-                            {salePrice ? (
+                            {currentPrice ? (
                                 <div className='priceContainer'>
                                     <div className='salePrice'>
-                                        <span>{salePrice}</span> грн
+                                        <span>{currentPrice}</span> грн
                                 </div>
                                     <div className='oldPrice'>
-                                        <span>{fullPrice}</span> грн
+                                        <span>{previousPrice}</span> грн
                                 </div>
                                 </div>
                             ) :
                                 (
                                     <div className='fullPrice'>
-                                        <span>{fullPrice}</span> грн
+                                        <span>{previousPrice}</span> грн
                                     </div>
                                 )
                             }
@@ -88,13 +95,13 @@ const ProductPage = () => {
                                     </div>} />
                                 <div className="delivery">
                                     <h4>ДОСТАВКА</h4>
-                                    <p>
+                                    <div>
                                         <ul>
                                             <li>Доставка по всей Украине</li>
                                             <li>Оплата товара при получении</li>
                                             <li>Возможен самовывоз</li>
                                         </ul>
-                                    </p>
+                                    </div>
                                 </div>
 
                             </div>
@@ -117,6 +124,7 @@ const ProductPage = () => {
                     </div>
                 </div>
                 <Tabs description={<Description />} />
+                <Tabs characteristics={<Characteristics />} />
             </div>
             <Slider sliderTitle="ПОХОЖИЕ модели" />
         </div>
