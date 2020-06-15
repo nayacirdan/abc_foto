@@ -78,6 +78,7 @@ const RangeFilter=()=> {
 
     const handleChange = (event) => {
         const {name, value}=event.target;
+        console.log('event.target',event.target);
         setValues({
             ...values,
             [name]: value,
@@ -94,8 +95,8 @@ const RangeFilter=()=> {
                     variant='outlined'
                     value={values.minPrice}
                     onChange={handleChange}
-                    name="price-min"
-                    id="price-min"
+                    name="minPrice"
+                    id="minPrice"
                     InputProps={{
                         inputComponent: NumberFormatCustom,
                     }}
@@ -109,8 +110,8 @@ const RangeFilter=()=> {
                     variant='outlined'
                     value={values.maxPrice}
                     onChange={handleChange}
-                    name="price-max"
-                    id="price-max"
+                    name="maxPrice"
+                    id="maxPrice"
                     InputProps={{
                         inputComponent: NumberFormatCustom,
                     }}
