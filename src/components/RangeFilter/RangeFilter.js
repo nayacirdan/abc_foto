@@ -51,32 +51,13 @@ function valuetext(value) {
     return `${value}°C`;
 }
 
-const RangeLine=()=> {
-    const [value, setValue] = React.useState([20, 37]);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    return (
-        <div>
-            <Slider
-                value={value}
-                onChange={handleChange}
-                aria-labelledby="range-slider"
-                getAriaValueText={valuetext}
-            />
-        </div>
-    );
-}
-
 const RangeFilter=()=> {
     const [values, setValues] = React.useState({
         minPrice: 5,
         maxPrice: 10
     });
 
-    const handleChange = (event) => {
+    const handleChangeInputs = (event) => {
         const {name, value}=event.target;
         console.log('event.target',event.target);
         setValues({
@@ -84,6 +65,20 @@ const RangeFilter=()=> {
             [name]: value,
         });
     };
+
+    const handleChangeSlider=(event, newValues)=>{
+        console.log('slider ev target', event.target);
+        console.log('newValues',newValues);
+
+        const newArr=newValues.sort(function compareNumbers(a, b) {
+            return a - b;
+        });
+        console.log('newArr',newArr);
+        setValues({
+            minPrice:newArr[0],
+            maxPrice: newArr[1]
+        })
+    }
 
     return (
         <div className='range-filter'>
@@ -94,7 +89,7 @@ const RangeFilter=()=> {
                     label=""
                     variant='outlined'
                     value={values.minPrice}
-                    onChange={handleChange}
+                    onChange={handleChangeInputs}
                     name="minPrice"
                     id="minPrice"
                     InputProps={{
@@ -109,7 +104,7 @@ const RangeFilter=()=> {
                     label=""
                     variant='outlined'
                     value={values.maxPrice}
-                    onChange={handleChange}
+                    onChange={handleChangeInputs}
                     name="maxPrice"
                     id="maxPrice"
                     InputProps={{
@@ -121,7 +116,14 @@ const RangeFilter=()=> {
                 </Button>
             </div>
             <div className='range-filer__range-line'>
-                <RangeLine/>
+                <div>
+                    <Slider
+                        value={[values.minPrice,values.maxPrice]}
+                        onChange={handleChangeSlider}
+                        aria-labelledby="range-slider"
+                        getAriaValueText={valuetext}
+                    />
+                </div>
             </div>
 
         </div>
