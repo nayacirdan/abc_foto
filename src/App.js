@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import { Switch, Route } from 'react-router-dom';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
+import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
 
 
 const App = (props) => {
@@ -15,6 +16,7 @@ const App = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/product" component={ProductPage} />
       </Switch>
+      <PromotionsAndOffers/>
       <Footer />
     </div>
   );
