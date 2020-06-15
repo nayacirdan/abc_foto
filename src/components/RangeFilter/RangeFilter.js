@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import './RangeFilter.scss'
 import Button from "@material-ui/core/Button";
@@ -43,10 +40,6 @@ NumberFormatCustom.propTypes = {
 
 
 
-
-
-
-
 function valuetext(value) {
     return `${value}°C`;
 }
@@ -73,7 +66,7 @@ const RangeFilter=()=> {
         const newArr=newValues.sort(function compareNumbers(a, b) {
             return a - b;
         });
-        console.log('newArr',newArr);
+        console.log('newArr',newValues);
         setValues({
             minPrice:newArr[0],
             maxPrice: newArr[1]
@@ -122,6 +115,8 @@ const RangeFilter=()=> {
                         onChange={handleChangeSlider}
                         aria-labelledby="range-slider"
                         getAriaValueText={valuetext}
+                        min={0}
+                        max={14000}
                     />
                 </div>
             </div>
