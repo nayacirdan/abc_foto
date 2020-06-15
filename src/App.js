@@ -1,27 +1,21 @@
-import React from "react";
-import Header from "./components/Header/Header";
-import "./App.scss";
+import React from 'react';
+import Header from './components/Header/Header';
+import './App.scss';
 import Footer from "./components/Footer/Footer";
+import { Switch, Route } from 'react-router-dom';
+import ProductPage from './pages/ProductPage/ProductPage';
+import Home from './pages/Home/Home';
 import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
-import Gallery from "./components/Promotions/PromotionsAndOffers";
-import Swiper from "swiper";
-import ProgressPagination from "./components/Promotions/PromotionsAndOffers";
+
 
 const App = (props) => {
   return (
     <div className="App">
       <Header />
-      <header className="App-header">
-        <p>Fantastic Five Project Started!!!!</p>
-        The main stucture of any page would be:
-        <ul>
-          <li>Main nav</li>
-          <li>Header</li>
-          <li>Products nav</li>
-          <li>Main Container</li>
-          <li>Footer</li>
-        </ul>
-      </header>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/product" component={ProductPage} />
+      </Switch>
       <PromotionsAndOffers/>
       <Footer />
     </div>

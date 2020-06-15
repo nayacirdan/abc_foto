@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
-
+import products from './products/productsReducer';
 
 const reducer=combineReducers({
- /*   first, second*/
+    products
 })
 
 export default reducer;

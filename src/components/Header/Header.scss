@@ -39,7 +39,7 @@
     }
     &__bottom {
         background: #51AD33;
-        padding: 20px 0;
+        //padding: 20px 0;
     }
     &__text3 {
         font-size: 14px;
@@ -101,7 +101,7 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 17px 0;
 }
 .search-form {
@@ -112,4 +112,12 @@
 }
 .cart-nav {
     text-decoration: none;
+}
+.hr {
+    width: 122px;
+    margin-top: -6px;
+    position: fixed;
+    height: 1px;
+    background-color: #E7E9EB;
+    border: none;
 }

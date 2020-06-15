@@ -56,17 +56,16 @@
   &__first-col-two-imgs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 20px;
   }
 
   &__first-col-two-img1 {
-    background: #8a2be2;
+    background: #050706;
     margin-right: 10px;
     display: flex;
     align-items: center;
     height: 400px;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-around !important;
 
     &_slide1 {
       height: 100%;
@@ -287,11 +286,11 @@ body {
 }
 
 .second-bg-color {
-  background: #8a2be2 !important;
+  background: #050706 !important;
 }
 
 .third-bg-color {
-  background: #51ad33 !important;
+  background: #050706 !important;
   display: flex;
   justify-content: space-around;
 }
