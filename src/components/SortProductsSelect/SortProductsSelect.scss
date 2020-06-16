@@ -1,0 +1,41 @@
+.sort-products>.form-sort.MuiFormControl-root{
+  flex-direction: row !important;
+  align-items: center;
+}
+.sort-products{
+  display: flex;
+  align-content: center;
+  min-height: 26px;
+}
+
+.form-sort>label{
+  font-size: 14px;
+  color:#000;
+  position: relative;
+  margin-right: 12px;
+}
+.form-sort .MuiSelect-select{
+  border:1px solid #E6E6E6;
+  width:150px;
+  display: flex;
+  justify-content: center;
+}
+.form-sort .MuiFormLabel-root.Mui-focused{
+  color:#000;
+}
+.form-sort .MuiMenuItem-root{
+  font-size: 14px;
+}
+
+.form-sort .MuiInput-underline:before,
+.form-sort .MuiInput-underline:after,
+.form-sort .MuiInput-underline:hover:not(.Mui-disabled):before{
+  border:none;
+}
+
+.form-sort label + .MuiInput-formControl {
+  margin: 0;
+}
+.form-sort .MuiInputLabel-shrink{
+  transform: translate(0, 1.5px);
+}
