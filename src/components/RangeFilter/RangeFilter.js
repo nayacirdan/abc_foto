@@ -55,7 +55,7 @@ const RangeFilter=()=> {
         console.log('event.target',event.target);
         setValues({
             ...values,
-            [name]: value,
+            [name]: Number(value),
         });
     };
 
