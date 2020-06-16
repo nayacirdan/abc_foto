@@ -1,0 +1,54 @@
+
+.range-filter{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  &__inputs{
+    display: flex;
+    flex-direction: row;
+  }
+  & .dash-container{
+    display: flex;
+    align-items: center;
+    padding:4px;
+  }
+  & .dash{
+    width:10px;
+    height: 1px;
+    background-color: #C4C4C4;
+  }
+  & .btn-filter{
+    background-color: #51AD33;
+    color:#fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    border:none;
+    margin-left: 10px;
+    &:hover{
+      background-color: darken(#51AD33, 10%);
+    }
+  }
+
+  & .price-input{
+    width:65px;
+
+    & input {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  }
+
+  & .MuiSlider-root{
+    color:#51AD33;
+    margin-top: 15px;
+    width:200px;
+  }
+  & .MuiSlider-thumb{
+    width:27px;
+    height: 27px;
+    margin-top: 0;
+    transform: translateY(-50%);
+  }
+}
+
