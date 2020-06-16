@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.products-quantity .MuiTablePagination-input{
+  border:1px solid #E6E6E6;
+  width:100px;
+}
+.product-list-actions>.MuiTablePagination-root{
+  padding:0;
+}
+.products-quantity .MuiTablePagination-selectIcon{
+
+}
+
+.products-quantity{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.products-quantity .MuiTablePagination-menuItem{
+  font-size: 12px;
+  color: #6F6F6F;
+}
+
+.MuiTablePagination-menuItem.MuiListItem-button,
+.MuiSelect-selectMenu.MuiInputBase-input{
+  font-size: 12px;
+  color: #6F6F6F;
+}
+.products-quantity .MuiTablePagination-actions{
+  display: none;
+}
+.products-quantity .MuiSvgIcon-root{
+  fill:#6E6E6E !important;
+}
+.MuiTablePagination-menuItem:after, .products-quantity .MuiInputBase-input:after{
+  font-size: 12px;
+  content: ' товаров';
+  white-space: pre;
+}
+
+.products-quantity .MuiToolbar-gutters{
+  padding-left: 0;
+}
+
+.products-quantity .MuiTablePagination-toolbar>.MuiTablePagination-caption{
+  font-size: 14px;
+}
+/*Pokazivat'*/
+.MuiInputBase-root.MuiTablePagination-input.MuiTablePagination-selectRoot + .MuiTypography-root.MuiTablePagination-caption.MuiTypography-body2.MuiTypography-colorInherit {
+  order:-1 !important;
+  margin-right: 25px;
+}
+
+.MuiInputBase-root.MuiTablePagination-input.MuiTablePagination-selectRoot{
+  margin:0;
+  margin-left: 5px;
+}
+.MuiSelect-root.MuiSelect-select.MuiTablePagination-select.MuiSelect-selectMenu.MuiInputBase-input{
+
+  text-align: left;
+  display: flex;
+}
+.products-quantity .MuiToolbar-regular{
+  min-height: 26px;
+}

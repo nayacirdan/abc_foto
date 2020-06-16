@@ -1,11 +1,14 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
+import {withRouter} from "react-router";
+
 
 const SubMenu = () => {
     return (
         <ul className="nav__submenu">
             <div className="vl"></div>
             <li className="nav__submenu-item ">
-                <a>Фотоапараты</a>
+                <NavLink exact to='/cameras'>Фотоапараты</NavLink>
                 <a>Кардридеры</a>
             </li>
             <li className="nav__submenu-item ">
@@ -28,4 +31,4 @@ const SubMenu = () => {
     );
 };
 
-export default SubMenu;
+export default withRouter(SubMenu);

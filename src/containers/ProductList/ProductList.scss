@@ -1,0 +1,27 @@
+.products-list-container{
+  width: 80%;
+}
+.products-list{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width:100%;
+  justify-content: space-between;
+}
+.product-list-actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.products-pagination>ul{
+  justify-content: center;
+}
+.products-list div:nth-child(3n){
+  margin-right: 0;
+}
+
+.products-list div:last-child{
+  justify-self: flex-start;
+}
