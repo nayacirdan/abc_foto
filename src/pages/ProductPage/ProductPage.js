@@ -20,11 +20,11 @@ const ProductPage = () => {
             "images/gallery_items/canon_1/image_2.jpg",
             "images/gallery_items/canon_1/image_3.jpg",
             "images/gallery_items/canon_1/image_4.jpg"
-    ],
+        ],
         "brand": "Canon",
         "name": "Canon EOS 800D Body Black",
         "currentPrice": 15899,
-        // "previousPrice": 11999,
+        "previousPrice": 11999,
         "article": 16875476,
         "isAvailable": true,
         "description": "Матрица 22.3 x 14.9 мм, 24.2 Мп / поддержка карт памяти SD/SDHC/SDXC / Сенсорный ЖК-дисплей с переменным углом наклона Clear View II TFT 3\" / FullHD-видео / питание от литий-ионного аккумулятора / 131 x 76.2 x 99.9 мм, 532 г",
@@ -69,19 +69,19 @@ const ProductPage = () => {
                     <div className='credit'>
                         <div className='availability'>{getProductAvailability()}</div>
                         <div>
-                            {currentPrice ? (
+                            {previousPrice ? (
                                 <div className='priceContainer'>
                                     <div className='salePrice'>
                                         <span>{currentPrice}</span> грн
-                                </div>
+                                    </div>
                                     <div className='oldPrice'>
                                         <span>{previousPrice}</span> грн
-                                </div>
+                                    </div>
                                 </div>
                             ) :
                                 (
                                     <div className='fullPrice'>
-                                        <span>{previousPrice}</span> грн
+                                        <span>{currentPrice}</span> грн
                                     </div>
                                 )
                             }
@@ -118,16 +118,18 @@ const ProductPage = () => {
                             </div>
                         </div>
                         <SimpleExpansionPanel title='Условия доставки и оплаты'
-                                              main={<DeliveryInfo />}
-                                              className='expansion-panel'
-                                                />
+                            main={<DeliveryInfo />}
+                            className='expansion-panel'
+                        />
                     </div>
                 </div>
-                <Tabs description={<Description />} />
-                <Tabs characteristics={<Characteristics />} />
+                <Tabs
+                    description={<Description />}
+                    characteristics={<Characteristics />}
+                    />
             </div>
             <Slider sliderTitle="ПОХОЖИЕ модели" />
-        </div>
+            </div>
     )
 };
 
