@@ -22,4 +22,28 @@
     line-height: 22px;
     margin-bottom: 22px;
   }
+  & .MuiExpansionPanelSummary-content>p{
+    margin-bottom: 0;
+  }
+  & .readMore{
+    width:300px;
+  }
+  & .MuiPaper-root{
+    background-color: transparent;
+    & .MuiExpansionPanelSummary-content{
+      flex-grow: 0;
+    }
+  }
+  & .MuiButtonBase-root.MuiExpansionPanelSummary-root.readMore{
+    position:relative;
+    top:0;
+    right:0;
+    margin:0;
+    justify-content: flex-start;
+    padding:0;
+
+    & .MuiIconButton-root{
+      padding:0;
+    }
+  }
 }
