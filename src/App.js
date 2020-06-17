@@ -10,7 +10,6 @@ import {Switch, Route} from 'react-router-dom'
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
-import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
 
 
 const App = (props) => {
@@ -22,7 +21,6 @@ const App = (props) => {
         <Route exact path="/product" component={ProductPage} />
           <Route exact path='/cameras'  component={Cameras}/>
       </Switch>
-      <PromotionsAndOffers/>
       <Footer />
     </div>
   );
