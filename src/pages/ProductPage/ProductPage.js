@@ -10,8 +10,9 @@ import { Characteristics } from '../../components/Tabs/Characteristics';
 import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
+import { connect } from 'react-redux';
 
-const ProductPage = () => {
+const ProductPage = (props) => {
     const currentProduct = {
         "id": "5ec51f3d3bc90380de9985a9",
         "categories": "photocameras",
@@ -34,7 +35,9 @@ const ProductPage = () => {
         "isHit": true,
         "color": "черный"
     };
-    const { id, mainPhotoUrl, brand, name, currentPrice, previousPrice, article, isAvailable, description, type, withLens, matrix, isHit, isExpected } = currentProduct;
+    // const { currentProduct } = props;
+    // console.log(currentProduct)
+    const { name, currentPrice, previousPrice, article, isAvailable, isExpected } = currentProduct;
     const getProductAvailability = () => {
         if (isAvailable) {
             return (<span className="availText">
@@ -133,4 +136,10 @@ const ProductPage = () => {
     )
 };
 
-export default ProductPage;
+const mapStateToProps = (store) => {
+    return {
+        currentProduct: store.currentProduct,
+    }
+}
+
+export default connect(mapStateToProps, null)(ProductPage);

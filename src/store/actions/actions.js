@@ -12,3 +12,4 @@ export const getProducts = () => (dispatch) => {
 export const setCurrentProduct = (currentProduct) => (dispatch) => {
     dispatch ({ type: Actions.SET_CURRENT_PRODUCT, payload: currentProduct })
 }
+

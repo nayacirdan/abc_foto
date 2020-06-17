@@ -1,6 +1,7 @@
 import Actions from '../../constans/constans';
 
-const saveCurrentProduct = (state = null, action) => {
+const currentProduct = (state = null, action) => {
+    console.log(action.type)
     switch (action.type) {
         case Actions.SET_CURRENT_PRODUCT:
             return action.payload;
@@ -9,4 +10,4 @@ const saveCurrentProduct = (state = null, action) => {
     }
 };
 
-export default saveCurrentProduct;
+export default currentProduct;
