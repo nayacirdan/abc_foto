@@ -25,7 +25,7 @@
 .swiper-slide.swiper-slide-active {
     display: flex;
     justify-content: center;
-    background-color: #F2F3F3;
+    // background-color: #F2F3F3;
 }
 .swiper-container.swiper-container-initialized.swiper-container-vertical {
     height: 420px;
@@ -37,7 +37,7 @@
 .swiper-button-prev, .swiper-button-next {
     transform: scale(0.5);
     
-    color: var(--lightBg) !important;
+    // color: var(--lightBg) !important;
 }
 .swiper-button-prev {
     margin-left: -14px;
@@ -48,4 +48,8 @@
 }
 .swiper-button-next {
     margin-right: -2px;
+}
+
+.swiper-slide:not(.swiper-slide-active) > img {
+  filter: opacity(50%);
 }

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Swiper from 'react-id-swiper';
+import { connect } from 'react-redux';
 import 'swiper/swiper.scss';
 import './Gallery.scss';
 
 
-const Gallery = () => {
+const Gallery = (props) => {
+    const { currentProduct } = props;
+    const { imageUrls } = currentProduct;
+
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
     const gallerySwiperParams = {
@@ -28,6 +32,13 @@ const Gallery = () => {
         slidesPerView: 4
 
     };
+
+    const slidesRight = imageUrls.map(slide => (
+        <div className="prod-slider-rigth"><img alt='.' src={slide} /></div>
+    ));
+    const slidesLeft = imageUrls.map(slide => (
+        <div><img className="prod-slider-left" alt='.' src={slide} /></div>
+    ));
     useEffect(() => {
         if (
             gallerySwiper !== null &&
@@ -39,21 +50,22 @@ const Gallery = () => {
             thumbnailSwiper.controller.control = gallerySwiper;
         }
     }, [gallerySwiper, thumbnailSwiper]);
+
     return (
         <div className="swiper-container">
             <Swiper {...thumbnailSwiperParams} >
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                {slidesRight}
             </Swiper>
             <Swiper {...gallerySwiperParams} >
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                {slidesLeft}
             </Swiper>
         </div>
     );
 };
-export default Gallery;
+
+const mapStateToProps = store => {
+    return {
+        currentProduct: store.currentProduct
+    }
+}
+export default connect(mapStateToProps, null)(Gallery);

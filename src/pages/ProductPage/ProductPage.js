@@ -6,37 +6,15 @@ import ContainedButtons from '../../components/Button/Button';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SimpleExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel';
 import { Description } from '../../components/Tabs/Description';
-import { Characteristics } from '../../components/Tabs/Characteristics';
+import Characteristics from '../../components/Tabs/Characteristics';
 import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 import { connect } from 'react-redux';
 
 const ProductPage = (props) => {
-    const currentProduct = {
-        "id": "5ec51f3d3bc90380de9985a9",
-        "categories": "photocameras",
-        "mainPhotoUrl": [
-            "images/gallery_items/canon_1/image_1.jpg",
-            "images/gallery_items/canon_1/image_2.jpg",
-            "images/gallery_items/canon_1/image_3.jpg",
-            "images/gallery_items/canon_1/image_4.jpg"
-        ],
-        "brand": "Canon",
-        "name": "Canon EOS 800D Body Black",
-        "currentPrice": 15899,
-        "previousPrice": 11999,
-        "article": 16875476,
-        "isAvailable": true,
-        "description": "Матрица 22.3 x 14.9 мм, 24.2 Мп / поддержка карт памяти SD/SDHC/SDXC / Сенсорный ЖК-дисплей с переменным углом наклона Clear View II TFT 3\" / FullHD-видео / питание от литий-ионного аккумулятора / 131 x 76.2 x 99.9 мм, 532 г",
-        "type": "зеркальные",
-        "withLens": false,
-        "matrix": "Полноразмерная",
-        "isHit": true,
-        "color": "черный"
-    };
-    // const { currentProduct } = props;
-    // console.log(currentProduct)
+
+    const { currentProduct } = props;
     const { name, currentPrice, previousPrice, article, isAvailable, isExpected } = currentProduct;
     const getProductAvailability = () => {
         if (isAvailable) {
