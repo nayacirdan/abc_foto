@@ -29,7 +29,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "swiper": "^5.4.2",
+    "swiper": "^5.4.5",
     "yup": "^0.28.5"
   },
   "scripts": {
