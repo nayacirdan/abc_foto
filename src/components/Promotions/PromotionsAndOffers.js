@@ -1,328 +1,90 @@
-import React, {useState, useEffect} from 'react';
-import Swiper from 'react-id-swiper';
+import React from "react";
 
-import "swiper/css/swiper.css";
 import './PromotionsAndOffers.scss'
 
-
-const PromotionsAndOffers = () => {
-  const [gallerySwiper, getGallerySwiper] = useState(null);
-  const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
-  const gallerySwiperParams = {
-    getSwiper: getGallerySwiper,
-    spaceBetween: 10,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
-  };
-
-  const thumbnailSwiperParams = {
-    getSwiper: thumbnailSwiper,
-    spaceBetween: 10,
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    touchRatio: 0.2,
-    slideToClickedSlide: true,
-  };
-
-  useEffect(() => {
-    if (
-      gallerySwiper !== null &&
-      gallerySwiper.controller &&
-      thumbnailSwiper !== null &&
-      thumbnailSwiper.controller
-    ) {
-      gallerySwiper.controller.control = thumbnailSwiper;
-      thumbnailSwiper.controller.control = gallerySwiper;
-    }
-  }, [gallerySwiper, thumbnailSwiper]);
+export default function PromotionsAndOffers() {
 
   return (
-    <div>
-      <div className="container">
-        <Swiper {...gallerySwiperParams}>
-          <div className="swiper-slide">
-            <div className="promotions-slides">
-              <div className="promotions-slides__first-slide-photo">
-                <img src="/images/promotions/prom1.png" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text">
-                <p className="promotions-slides__first-slide-text_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price">
-                  <span className="promotions-slides__first-slide-text_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
+    <div className="container">
+      <p className="promotions-main-text">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
+      <div className="promotions">
+        <div className="promotions__section-1 prom-container">
+          <div className="promotions__section-1__photo-logo">
+            <img src="/images/promotions/main1.png" alt="img"/>
+            <img className="promotions__section-1__logo" src="/images/promotions/Canon_logo.png" alt="img"/>
+          </div>
+          <div className="promotions__section-1__about-photo-logo">
+            <span className="promotions__section-1__about-photo-logo-bold">Canon EOS 5D Mark IV</span><br/>Kit 24-70
+            f/4L IS USM
+            <p className="promotions__section-1__about-photo-logo_text-past">118 161грн</p>
+            <p className="promotions__section-1__about-photo-logo_text-now">77 299<span
+              className="medium-text-uah">грн</span></p>
+          </div>
+        </div>
+        <div className="promotions__section-2">
+          <div className="promotions__section-2__first-item">
+            <div className="promotions__section-2__first-item__text">
+              <p className="promotions__section-2__first-item__text-percent">СКИДКА 10%</p>
+              <p className="promotions__section-2__first-item__text-price">1 120<span
+                className="small-text-uah">грн</span></p>
+              <p className="promotions__section-2__first-item__text-name">Benro-DJ-80</p>
+            </div>
+            <div className="promotions__section-2__first-item__img">
+              <img src="/images/promotions/benro-dj-80.png" alt="img"/>
             </div>
           </div>
-          <div className="swiper-slide">
-            <div className="promotions-slides">
-              <div className="promotions-slides__first-slide-photo">
-                <img src="/images/promotions/prom1.png" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text">
-                <p className="promotions-slides__first-slide-text_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price">
-                  <span className="promotions-slides__first-slide-text_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
+          <div className="promotions__section-2__second-item">
+            <div className="promotions__section-2__second-item_img">
+              <img className="promotions__section-2__second-item_img-10-percent" src="/images/promotions/benro-10.png"
+                   alt="img"/>
+            </div>
+            <div className="promotions__section-2__second-item__text">
+              <p className="promotions__section-2__second-item__text-percent">-10%</p>
+              <img src="/images/promotions/benro-10-logo.png" alt="img"/>
             </div>
           </div>
-          <div className="swiper-slide">
-            <div className="promotions-slides">
-              <div className="promotions-slides__first-slide-photo">
-                <img src="/images/promotions/prom1.png" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text">
-                <p className="promotions-slides__first-slide-text_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price">
-                  <span className="promotions-slides__first-slide-text_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
-            </div>
+        </div>
+      </div>
+      <div className="promotions__bottom-section">
+        <div className="promotions__bottom-section_first-item">
+          <div className="promotions__bottom-section_first-item_img">
+            <img src="/images/promotions/green-img.png" alt="img"/>
           </div>
-        </Swiper>
-        <Swiper {...thumbnailSwiperParams}>
-          <div className="swiper-slide">
-            <div className="promotions-slides first-minislide_width">
-              <div className="promotions-slides__first-slide-photo first-minislide_ml">
-                <img src="/images/promotions/mini-slide1.jpg" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text first-minislide_mt">
-                <p className="promotions-slides__first-slide-text_name first-minislide_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price first-minislide_mt">
-                  <span className="promotions-slides__first-slide-text_price-past first-minislide_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual first-minislide_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
-            </div>
+          <div className="promotions__bottom-section_first-item_text">
+            <p className="promotions__bottom-section_first-item_text_super-price">СУПЕРЦЕНА</p>
+            <p className="promotions__bottom-section_first-item_text_price">5 684 <span
+              className="small-text-uah">грн</span></p>
           </div>
-          <div className="swiper-slide">
-            <div className="promotions-slides first-minislide_width">
-              <div className="promotions-slides__first-slide-photo first-minislide_ml">
-                <img src="/images/promotions/mini-slide1.jpg" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text first-minislide_mt">
-                <p className="promotions-slides__first-slide-text_name first-minislide_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price first-minislide_mt">
-                  <span className="promotions-slides__first-slide-text_price-past first-minislide_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual first-minislide_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
-            </div>
+        </div>
+        <div className="promotions__bottom-section_second-item">
+          <div className="promotions__bottom-section_second-item_text">
+            <p className="promotions__bottom-section_second-item_text-objectiv">Объектив<br/>
+              <span
+                className="promotions__bottom-section_second-item_text-objectiv_bold">Nikon 50mmf<br/>1.8G AF-S </span>
+            </p>
+            <p className="promotions__bottom-section_second-item_text_past-price">4 982<span
+              className="small-text-uah">грн</span></p>
+            <p className="promotions__bottom-section_second-item_text_now-price">4 758<span
+              className="small-text-uah">грн</span></p>
           </div>
-          <div className="swiper-slide">
-            <div className="promotions-slides first-minislide_width">
-              <div className="promotions-slides__first-slide-photo first-minislide_ml">
-                <img src="/images/promotions/mini-slide1.jpg" alt="img"/>
-              </div>
-              <div className="promotions-slides__first-slide-text first-minislide_mt">
-                <p className="promotions-slides__first-slide-text_name first-minislide_name">
-                  <span className="promotions-slides__first-slide-text_name-bold">Canon EOS 5D Mark IV</span> <br/>kit 24-70 f/4L IS USM
-                </p>
-                <p className="promotions-slides__first-slide-text_price first-minislide_mt">
-                  <span className="promotions-slides__first-slide-text_price-past first-minislide_price-past">118 161<span className="promotions-slides__first-slide-text_price-uah-past">грн</span></span></p>
-                <p className="promotions-slides__first-slide-text_price-actual first-minislide_price-actual">77 299<span className="promotions-slides__first-slide-text_price-uah">грн</span></p>
-              </div>
-            </div>
+          <div className="promotions__bottom-section_second-item_img">
+            <img src="/images/promotions/50mmf-img.png" alt="img"/>
           </div>
-        </Swiper>
+        </div>
+        <div className="promotions__bottom-section_third-item">
+          <div className="promotions__bottom-section_third-item_text">
+            <p className="promotions__bottom-section_third-item_text_name-photopaper">Фотобумага<br/><span
+              className="promotions__bottom-section_third-item_text_name-photopaper_bold">Canon KP-108IN</span></p>
+            <p className="promotions__bottom-section_second-item_text_past-price">1 028<span
+              className="small-text-uah">грн</span></p>
+            <p className="promotions__bottom-section_second-item_text_now-price">908<span
+              className="small-text-uah">грн</span></p>
+          </div>
+          <div className="promotions__bottom-section_third-item_img">
+            <img src="/images/promotions/photopaper.png" alt="img"/>
+          </div>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default PromotionsAndOffers;
-
-
-// import React from "react";
-// import Swiper from "react-id-swiper";
-// import "swiper/css/swiper.css";
-// import "./PromotionsAndOffers.scss";
-//
-//
-// const PromotionsAndOffers = () => {
-//   let galleryThumbs = new Swiper('.gallery-thumbs', {
-//     spaceBetween: 4,
-//     slidesPerView: 5,
-//     freeMode: true,
-//     watchSlidesVisibility: true,
-//     watchSlidesProgress: true,
-//   });
-//   let galleryTop = new Swiper('.gallery-top', {
-//     spaceBetween: 4,
-//     navigation: {
-//       nextEl: '.swiper-button-next',
-//       prevEl: '.swiper-button-prev',
-//     },
-//     thumbs: {
-//       swiper: galleryThumbs
-//
-//     }
-//
-//   });
-//
-//   return (
-//     <>
-//       <div className="container">
-//         <div className="swiper-container gallery-top">
-//           <div className="swiper-wrapper">
-//             <div className="swiper-slide">
-//               a
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//               </div>
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//           </div>
-//
-//           <div className="swiper-button-next swiper-button-white"></div>
-//           <div className="swiper-button-prev swiper-button-white"></div>
-//         </div>
-//         <div className="swiper-container gallery-thumbs">
-//           <div className="swiper-wrapper">
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//             <div className="swiper-slide">
-//               <img
-//                 src="/images/promotions/slide_2.png" alt="img"/>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   )
-// };
-//
-// export default PromotionsAndOffers;
-
-
-//
-//
-// const PromotionsAndOffers = () => {
-//   const params = {
-//     pagination: {
-//       el: ".swiper-pagination",
-//       type: "progressbar",
-//     },
-//     navigation: {
-//       nextEl: ".swiper-button-next",
-//       prevEl: ".swiper-button-prev",
-//     },
-//   };
-//   return (
-//     <>
-//       <div className="container">
-//       <p className="main-text-prom-and-offers">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
-//         <Swiper {...params}>
-//           {/* first slide */}
-//           <div className="promotions__first-col-first-img">
-//             <div className="promotions__photo-canon">
-//               <img
-//                 className="promotions__canon-photo"
-//                 src="/images/promotions/prom1.png"
-//                 alt="img"
-//               />
-//               <img
-//                 className="promotions__canon-logo"
-//                 src="/images/promotions/Canon_logo.png"
-//                 alt="img"
-//               />
-//             </div>
-//             <div className="promotions__photo-canon-price">
-//               <p className="promotions__first-col-first-text mt100">
-//                 <span className="text-bold">Canon EOS 5D Mark IV </span>
-//                 <br />
-//                 Kit 24-70 f/4L IS USM
-//               </p>
-//               <p className="promotions__first-col-first-text mt40 d-flex">
-//                 118 161
-//                 <span className="rotate-text-1st">грн</span>
-//               </p>
-//               <p className="promotions__first-col-first-text fosi70 d-flex">
-//                 77 299
-//                 <span className="rotate-text-2st">грн</span>
-//               </p>
-//             </div>
-//           </div>
-//           {/* second slide */}
-//           <div
-//             className="promotions__first-col-two-imgs second-bg-color"
-//             id="2"
-//           >
-//             <div className="promotions__first-col-two-img1">
-//               <img
-//                 className="promotions__first-col-two-img1_slide1"
-//                 src="/images/promotions/slide_2.png"
-//                 alt="img"
-//               />
-//               <div className="promotions__first-col-two-img1_tripod">
-//               <p className="promotions__first-col-first-text mt100">
-//                 <span className="text-bold">NIKON Z7 + 24-70 F4.0  </span>
-//                 <br />
-//                 FTZ Mount Adapter
-//               </p>
-//               <p className="promotions__first-col-first-text mt40 d-flex">
-//                 108 999
-//                 <span className="rotate-text-1st">грн</span>
-//               </p>
-//               <p className="promotions__first-col-first-text fosi70 d-flex">
-//                 94 999
-//                 <span className="rotate-text-2st">грн</span>
-//                 </p>
-//               </div>
-//             </div>
-//           </div>
-//           {/* third slide */}
-//           <div className="promotions__first-col-two-img1 third-bg-color">
-//             <img
-//               className="promotions__first-col-two-img1_slide2"
-//               src="/images/promotions/slide_3.png"
-//               alt="img"
-//             />
-//             <div className="promotions__first-col-two-img1_tripod">
-//               <p className="promotions__first-col-first-text mt100">
-//                 <span className="text-bold">NIKON D6 + 155-50 H0  </span>
-//                 <br />
-//                 Photo Moment
-//               </p>
-//               <p className="promotions__first-col-first-text mt40 d-flex">
-//                 179 899
-//                 <span className="rotate-text-1st">грн</span>
-//               </p>
-//               <p className="promotions__first-col-first-text fosi70 d-flex">
-//                 149 999
-//                 <span className="rotate-text-2st">грн</span>
-//                 </p>
-//             </div>
-//           </div>
-//         </Swiper>
-//       </div>
-//     </>
-//   );
-// };
-// export default PromotionsAndOffers;
+  )
+}
