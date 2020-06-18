@@ -21,3 +21,28 @@
 .PrivateTabIndicator-root-288.PrivateTabIndicator-colorPrimary-289.MuiTabs-indicator {
     background-color: #EEEEEE;
 }
+
+// characteristics
+
+.characteristics {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 2%;
+
+    &_item {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        text-align: start;
+        padding: 1% 0;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        // &-name {
+            
+        // }
+        // &-description {
+            
+        // }
+    }   
+};

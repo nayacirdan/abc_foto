@@ -34,10 +34,10 @@ const Gallery = (props) => {
     };
 
     const slidesRight = imageUrls.map(slide => (
-        <div className="prod-slider-rigth"><img alt='.' src={slide} /></div>
+        <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
     ));
     const slidesLeft = imageUrls.map(slide => (
-        <div><img className="prod-slider-left" alt='.' src={slide} /></div>
+        <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
     ));
     useEffect(() => {
         if (
