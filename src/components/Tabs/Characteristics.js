@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 const Characteristics = (props) => {
 
     const { currentProduct } = props;
-    console.log("CURPROD", currentProduct)
     const { cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
         specialFeatures, videoRecording, lens, interfaceProp } = currentProduct;
 
@@ -71,10 +69,4 @@ const Characteristics = (props) => {
     )
 };
 
-const mapStateToProps = (store) => {
-    return {
-        currentProduct: store.currentProduct,
-    }
-}
-
-export default connect(mapStateToProps, null)(Characteristics);
+export default Characteristics;

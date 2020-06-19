@@ -9,8 +9,6 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import cartIcon from "../../svg/cartIcon";
-import { connect } from 'react-redux';
-import { setCurrentProduct } from '../../store/actions/actions';
 import { withRouter } from "react-router";
 
 
@@ -34,7 +32,7 @@ const useStyles = makeStyles({
             display: 'block',
             opacity: 1,
             maxHeight: 500,
-        },
+        }
     },
     media: {
         backgroundSize: 'contain',
@@ -151,7 +149,7 @@ const useStyles = makeStyles({
 
 
 const CardItem = (props) => {
-    const { product, history, setCurrentProduct } = props;
+    const { product, history } = props;
 
     const {
         imageUrls,
@@ -161,12 +159,12 @@ const CardItem = (props) => {
         previousPrice,
         isHit,
         isExpected,
-        description
+        description,
+        itemNo
     } = product;
 
-    const redirectToProductPage = (product) => {
-        setCurrentProduct(product);
-        history.push('/product')
+    const redirectToProductPage = () => {
+        history.push(`/products/${itemNo}`)
     }
 
     const getProductAvailability = () => {
@@ -257,10 +255,4 @@ const CardItem = (props) => {
     )
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
-    }
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(CardItem));
+export default withRouter(CardItem);

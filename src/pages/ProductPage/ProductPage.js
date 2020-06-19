@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Gallery from '../../components/Gallery/Gallery';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
@@ -10,19 +10,36 @@ import Characteristics from '../../components/Tabs/Characteristics';
 import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
-import { connect } from 'react-redux';
+import axios from 'axios';
+import { withRouter } from "react-router";
 
 const ProductPage = (props) => {
+    const [product, setProduct] = useState(null);
+    useEffect(() => {
+        currentProduct().then(result => setProduct(result))
+    }, [setProduct])
 
-    const { currentProduct } = props;
-    const { name, currentPrice, previousPrice, article, isAvailable, isExpected } = currentProduct;
+    const { match } = props;
+    function currentProduct() {
+        const result = axios.get(`/products/${match.params.itemNo}`)
+            .then(res => res.data)
+            .catch(err => {
+                console.log(err.message)
+            });
+        return result;
+    };
+    // const qwe = async() => {
+    //     const result = await currentProduct();
+    //     setProduct(result);
+    // }
+
     const getProductAvailability = () => {
-        if (isAvailable) {
+        if (product.isAvailable) {
             return (<span className="availText">
                 В наличии
             </span>)
         } else {
-            if (isExpected) {
+            if (product.isExpected) {
                 return (<span className="expectText">
                     Ожидается
                 </span>)
@@ -35,34 +52,35 @@ const ProductPage = (props) => {
     }
 
     return (
+        product ?
         <div>
             <div className="container">
-                {/* <Breadcrumb productTitle={name} /> */}
+                {/* <Breadcrumb productTitle={product.name} /> */}
                 <div className='slider-info'>
                     <div className="product-page-header">
-                        <div className="product-page-header_title">{name}</div>
-                        <div className="product-page-header_article">Код товара: {article}</div>
+                        <div className="product-page-header_title">{product.name}</div>
+                        <div className="product-page-header_article">Код товара: {product.article}</div>
                     </div>
                     <div></div>
                 </div>
                 <div className="slider-info">
-                    <Gallery />
+                    <Gallery product={product} />
                     <div className='credit'>
                         <div className='availability'>{getProductAvailability()}</div>
                         <div>
-                            {previousPrice ? (
+                            {product.previousPrice ? (
                                 <div className='priceContainer'>
                                     <div className='salePrice'>
-                                        <span>{currentPrice}</span> грн
+                                        <span>{product.currentPrice}</span> грн
                                     </div>
                                     <div className='oldPrice'>
-                                        <span>{previousPrice}</span> грн
+                                        <span>{product.previousPrice}</span> грн
                                     </div>
                                 </div>
                             ) :
                                 (
                                     <div className='fullPrice'>
-                                        <span>{currentPrice}</span> грн
+                                        <span>{product.currentPrice}</span> грн
                                     </div>
                                 )
                             }
@@ -106,18 +124,12 @@ const ProductPage = (props) => {
                 </div>
                 <Tabs
                     description={<Description />}
-                    characteristics={<Characteristics />}
-                    />
+                    characteristics={<Characteristics currentProduct={product} />}
+                />
             </div>
-            <Slider sliderTitle="ПОХОЖИЕ модели" />
-            </div>
+            <Slider sliderTitle="ПОХОЖИЕ модели" /> 
+        </div> : null
     )
 };
 
-const mapStateToProps = (store) => {
-    return {
-        currentProduct: store.currentProduct,
-    }
-}
-
-export default connect(mapStateToProps, null)(ProductPage);
+export default withRouter(ProductPage);
