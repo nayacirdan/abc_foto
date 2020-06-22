@@ -4,29 +4,38 @@ import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import './Pagination.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentPage} from "../../store/actions/actions";
 
 const PaginationWrapper = () => {
-    const category='cameras';
+    const category=useSelector((state)=>state.categories.currentCategory.id);
+    const pagesQuantity=useSelector((state)=>state.categoryPage.pagesQuantity);
+    const perPage=useSelector((state)=>state.categoryPage.productsPerPage);
+    const dispatch=useDispatch();
 
+    const handleChange=(event, value)=>{
+        dispatch(setCurrentPage(value))
+    }
     return (
-        <MemoryRouter initialEntries={[`/${category}`]} initialIndex={0}>
+
             <Route>
                 {({ location }) => {
                     const query = new URLSearchParams(location.search);
-                    console.log(query);
 
-                    const page = parseInt(query.get('page') || '1', 8);
-                    console.log(page);
+
+                    const page = parseInt(query.get('page') || '1', 10);
+
                     return (
                         <Pagination
                             className='products-pagination'
                             page={page}
-                            count={8}
+                            count={pagesQuantity}
                             siblingCount={3}
+                            onChange={handleChange}
                             renderItem={(item) => (
                                 <PaginationItem
                                     component={Link}
-                                    to={`/${category}${item.page === 1 ? '' : `?page=${item.page}`}`}
+                                    to={`/${category}/filter?perPage=${perPage}&${item.page === 1 ? '' : `startPage=${item.page}`}`}
                                     {...item}
                                 />
                             )}
@@ -34,7 +43,7 @@ const PaginationWrapper = () => {
                     );
                 }}
             </Route>
-        </MemoryRouter>
+
     );
 }
 

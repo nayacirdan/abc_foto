@@ -70,13 +70,18 @@ const Responsive = (props) => {
             }
         ]
     };
+    debugger;
+    let filtedProducts=[];
+    let sliderProducts=[];
+    if(products.length){
+        filtedProducts = products.filter((key) => (key.isAvailable === true || key.isExpected === true));
+        sliderProducts = filtedProducts.map(product => (
+            <div key={product.id} className="slider-card">
+                <Card key={product.id} product={product} />
+            </div>)
+        );
+    }
 
-    const filtedProducts = products.filter((key) => (key.isAvailable === true || key.isExpected === true));
-    const sliderProducts = filtedProducts.map(product => (
-        <div key={product.id} className="slider-card">
-            <Card key={product.id} product={product} />
-        </div>)
-    );
     
     return (
         <div className="container slider">
