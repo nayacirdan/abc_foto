@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
+import Cart from "./pages/Cart/Cart";
+
 
 const App = (props) => {
   return (
@@ -20,6 +22,7 @@ const App = (props) => {
           <Route exact path="/" component={Home} />
           <Route exact path="/products/:itemNo" component={ProductPage} />
           <Route exact path='/cameras' component={Cameras} />
+            <Route exact path='/cart'  component={Cart}/>
         </Switch>
         <Footer />
       </div>
