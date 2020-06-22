@@ -20,7 +20,7 @@ export const Description = () => {
                                 </p>
                     </div>
                     <div className="description_block-right">
-                        <img alt="desc-1" src='images/description/description-1.png' />
+                        <img alt="desc-1" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-1_lpdoud.png' />
                     </div>
                 </div>
                 <ExpansionPanel title='Читать полностью' 

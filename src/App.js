@@ -11,7 +11,6 @@ import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
 
-
 const App = (props) => {
   return (
     <Router>
