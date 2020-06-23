@@ -1,26 +1,36 @@
 .gray-bg {
+  display: block;
   width: 100%;
   height: 100%;
-  // top: 0;
-  // left: 0;
-  // overflow: auto;
-  // background: rgba(133, 133, 133, 0.5);
-  // z-index: 1500;
-  // position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background: rgba(133, 133, 133, 0.5);
+  z-index: 1500;
+  position: fixed;
+}
+
+.errors-text {
+  font-size: 12px;
+  position: absolute;
+  font-weight: bold;
+  color: red;
 }
 
 .modal-signin {
-  // position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  // z-index: 1500;
-  width: 30%;
-  height: 80%;
+  z-index: 1500;
+  width: 33%;
+  height: 100%;
   background: #f9f9fb;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  margin: 120px auto;
+  margin: 50px auto;
 
   &__sign-reg-btn {
     display: flex;
@@ -36,19 +46,114 @@
   }
 }
 
+//Custom styles for mat-ui-form
 
-.form {
-  display: flex;
-  flex-direction: column;
-
-  &_label {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-
-    &_text {
-      display: flex;
-      justify-content: start;
-    }
+.gray-bg {
+  & .MuiAppBar-colorPrimary {
+    background-color: #F9F9FB;
+    color: black;
   }
+
+  & .MuiTab-root {
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: none;
+  }
+
+  & .PrivateTabIndicator-colorSecondary-273 {
+    background-color: #51AD33;
+  }
+
+  & .PrivateTabIndicator-root-271 {
+    height: 5px;
+  }
+
+  & .Mui-selected {
+    color: #51AD33;
+  }
+
+  & .MuiPaper-elevation4 {
+    box-shadow: none;
+  }
+
+  & .MuiTab-textColorInherit {
+    opacity: unset;
+  }
+
+  & .MuiFormControl-fullWidth {
+    margin-top: 30px;
+  }
+
+  & .makeStyles-root-205 {
+    background-color: #F9F9FB;
+  }
+
+  & .MuiTabs-flexContainer {
+    border-bottom: 1px solid #51AD33;
+    width: fit-content;
+  }
+
+  & .MuiButton-outlinedPrimary {
+    width: 70%;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #51AD33;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  & .MuiButtonBase-root {
+    margin-top: 30px;
+  }
+
+  & .MuiButton-root:hover {
+    background-color: green;
+  }
+
+  & .MuiSvgIcon-root {
+    color: black;
+  }
+}
+
+.sign-reg-name {
+  margin-top: 30px;
+}
+
+.hr-line-below-form {
+  width: 100%;
+  color: #D3D4D7;
+  margin: 20px 0 20px 0;
+}
+
+.reg-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-facebook-button-class {
+  width: 115px;
+  height: 50px;
+  border-radius: 30px;
+  border: 0;
+  background-color: #4c69ba;
+  cursor: pointer;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+}
+
+.signin-height {
+  height: 70%;
+}
+
+.close-modal {
+  position: absolute;
+  right: -35px;
+  top: -25px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
