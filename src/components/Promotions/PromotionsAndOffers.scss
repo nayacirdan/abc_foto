@@ -1,0 +1,205 @@
+.promotions-main-text {
+  font-size: 26px;
+  color: #677283;
+  font-weight: bold;
+  text-align-last: start;
+}
+
+.prom-container {
+  padding: 15px 40px;
+}
+
+.medium-text-uah {
+  font-size: 27px;
+}
+
+.small-text-uah {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.promotions {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+
+  &__section-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #050706;
+    height: 90%;
+    width: 92%;
+
+    &__logo {
+      padding-left: 20px;
+      margin-top: 25px;
+    }
+
+    &__about-photo-logo {
+      color: white;
+      font-size: 23px;
+      margin-top: 100px;
+      text-align-last: end;
+
+      &_text-past {
+        font-size: 29px;
+        text-decoration: line-through;
+        letter-spacing: 0.05rem;
+        color: #A0A0A0;
+        margin-top: 40px;
+      }
+
+      &_text-now {
+        font-weight: bold;
+        font-size: 60px;
+      }
+    }
+
+    &__photo-logo {
+      display: grid;
+    }
+
+    &__about-photo-logo-bold {
+      font-weight: bold;
+    }
+  }
+
+  &__section-2 {
+    margin-left: 20px;
+
+    &__first-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #3A3A3A;
+      padding: 20px 10px 0 10px;
+
+      &__text {
+        color: white;
+      }
+
+      &__text-percent {
+        font-size: 28px;
+        font-weight: bold;
+        background-color: #51AD33;
+        height: 35px;
+        border-radius: 5px;
+        width: 195px;
+      }
+
+      &__text-price {
+        font-weight: bold;
+        font-size: 35px;
+        margin-top: 40px;
+      }
+
+      &__text-name {
+        font-size: 19px;
+      }
+    }
+
+    &__second-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 20px;
+
+      &_img-10-percent {
+        position: relative;
+        bottom: -2px;
+      }
+
+      &__text-percent {
+        font-size: 80px;
+        color: #005BAA;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__bottom-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &_first-item {
+      background-color: #3A961C;
+      margin-right: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 90%;
+
+      &_text {
+        margin-right: 15px;
+      }
+
+      &_text_super-price {
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        margin-top: 60px;
+      }
+
+      &_text_price {
+        font-size: 36px;
+        font-weight: bold;
+        color: white;
+        text-align-last: right;
+      }
+    }
+
+    &_second-item {
+      background-color: #1E2936;
+      margin-right: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 90%;
+
+      &_text {
+        color: white;
+        font-size: 20px;
+        padding-left: 20px;
+
+        &_past-price {
+          text-decoration: line-through;
+          color: #C4C4C4;
+          text-align-last: start;
+        }
+
+        &_now-price {
+          font-size: 36px;
+          font-weight: bold;
+          text-align-last: start;
+        }
+      }
+
+      &_text-objectiv {
+        margin-top: 15px;
+        margin-bottom: 35px;
+        text-align-last: start;
+
+        &_bold {
+          font-weight: bold;
+        }
+      }
+    }
+
+    &_third-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background-color: #DF2725;
+      color: white;
+      padding-left: 20px;
+      height: 90%;
+
+      &_text_name-photopaper {
+        margin-top: 35px;
+        font-size: 20px;
+        margin-bottom: 35px;
+        text-align-last: start;
+
+        &_bold {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

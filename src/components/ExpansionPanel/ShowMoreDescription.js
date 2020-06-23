@@ -6,7 +6,7 @@ export const ShowMoreDescription = () => {
             <div className="show-more">
                 <div className="description_block designer-bg">
                     <div className="description_block-right">
-                        <img alt="desc-2" src='images/description/description-2.png' />
+                        <img alt="desc-2" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-2_qpipfl.png' />
                     </div>
                     <div className="description_block-left">
                         <h3>
@@ -27,7 +27,7 @@ export const ShowMoreDescription = () => {
                                 </p>
                     </div>
                     <div className="description_wide-block-bottom">
-                        <img alt="desc-3" src='images/description/description-3.png' />
+                        <img alt="desc-3" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832903/description-productPage/description-3_hjdbik.png' />
                     </div>
                 </div>
                 <div className="description_block article">
@@ -58,8 +58,8 @@ export const ShowMoreDescription = () => {
                                 </p>
                     </div>
                     <div className="description_wide-block-bottom imgs-center">
-                        <img alt="desc-4" src='images/description/description-4.png' />
-                        <img alt="desc-5" src='images/description/description-5.png' />
+                        <img alt="desc-4" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-4_a0efo1.png' />
+                        <img alt="desc-5" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-5_asq7pe.png' />
                     </div>
                 </div>
             </div>

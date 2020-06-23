@@ -1,0 +1,21 @@
+.products-pagination {
+  margin:70px;
+  & .MuiSvgIcon-root{
+  fill:#000;
+}
+  & .MuiPaginationItem-page.Mui-selected{
+    background-color: transparent;
+    color: #000;
+  }
+  & .MuiPaginationItem-root{
+    font-size: 20px;
+    color: #677283;
+  }
+  & .MuiPagination-ul:first-child>.MuiButtonBase-root,
+  & .MuiPagination-ul:last-child>.MuiButtonBase-root{
+    margin:0 50px;
+  }
+  & .MuiPaginationItem-icon{
+    font-size:34px;
+  }
+}
