@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import { Switch, Route } from 'react-router-dom';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
-
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 
 const App = (props) => {
   return (
@@ -14,6 +14,7 @@ const App = (props) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/product" component={ProductPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
       </Switch>
       <Footer />
     </div>
