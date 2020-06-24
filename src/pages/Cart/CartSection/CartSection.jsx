@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import { Link } from 'react-router-dom';
 import './CartSection.scss'
 import CartItem from "../CartItem/CartItem";
 import Button from "@material-ui/core/Button";
@@ -43,7 +43,9 @@ const CartSection = () => {
                             </span>
                         </div>
                         <div className='CartSection__btn-checkout'>
-                            <Button variant='outlined'>Оформить</Button>
+                          <Link to='/checkout'>
+                              <Button variant='outlined'>Оформить</Button>
+                          </Link>
                         </div>
                     </div>
                 </div>

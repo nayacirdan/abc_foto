@@ -1,0 +1,138 @@
+.head-title {
+  font-size: 26px;
+  text-transform: uppercase;
+  display: flex;
+  margin-top: 35px;
+}
+.order-wrapper {
+  padding-top: 35px;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.order-container {
+  width: 490px;
+}
+
+.block-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+
+  .small-text {
+    font-weight: 200;
+    font-size: 12px;
+    display: flex;
+    margin-bottom: 25px;
+    margin-top: 35px;
+  }
+}
+
+.big-text {
+  font-size: 20px;
+  display: flex;
+  margin-bottom: 25px;
+  margin-top: 35px;
+}
+
+.order-delivery {
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiSvgIcon-root {
+  color: #51AD33;
+}
+
+.radio-group label .MuiTypography-body1 {
+  font-size: 14px ;
+}
+
+.MuiTypography-body1 {
+  font-size: 0.88rem;
+}
+
+.comments {
+  width: 468px;
+  border: 1px solid #D3D7DA;
+  border-radius: 3px;
+  padding: 10px 10px 100px 10px;
+  margin: 30px 0;
+}
+
+.checkout-container {
+  right: 10%;
+  background: #F9F9FB;
+  padding: 50px 70px;
+
+  .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+    width: 300px;
+    background: #51AD33;
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    margin-top: 30px;
+    padding: 10px 0;
+  }
+}
+
+.checkout-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.checkout-title {
+  width: 370px;
+  margin: 0;
+  padding: 10px 60px;
+  background-color: #98A1AF;
+  color: white;
+}
+
+.MuiSelect-outlined.MuiSelect-outlined{
+  display: flex;
+}
+
+.checkout-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  &-image {
+    border-style: none;
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    background: #F7F5F6;
+  }
+
+  &-price {
+    font-size: 16px;
+  }
+
+  .item-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-title {
+      font-size: 13px;
+    }
+
+    &-code {
+      font-size: 11px;
+    }
+  }
+}
+
+.order-sum {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 100px;
+  display: flex;
+}
