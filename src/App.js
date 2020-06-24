@@ -9,6 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
+
 import CategoryRoutes from "./HOCs/CategoryRoutes/CategoryRoutes";
 
 import Cart from "./pages/Cart/Cart";
@@ -21,11 +22,11 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/products/:itemNo" component={ProductPage} />
+{/*          <Route exact path="/products/:itemNo" component={ProductPage} />*/}
           <Route exact path='/cameras' component={Cameras} />
           <Route exact path='/cart'  component={Cart}/>
           <Route exact path="/checkout" component={CheckoutPage} />
-          <Route path='/products/filter' component={CategoryRoutes}/>
+          <Route  path='/products/filter' component={CategoryRoutes}/>
         </Switch>
         <Footer />
       </div>
