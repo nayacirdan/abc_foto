@@ -8,12 +8,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentPage} from "../../store/actions/actions";
 
 const PaginationWrapper = () => {
-    const category=useSelector((state)=>state.categories.currentCategory.id);
+    const category=useSelector((state)=>state.categories.currentCategory.name);
+    console.log('category from pagination', category);
     const pagesQuantity=useSelector((state)=>state.categoryPage.pagesQuantity);
     const perPage=useSelector((state)=>state.categoryPage.productsPerPage);
     const dispatch=useDispatch();
 
     const handleChange=(event, value)=>{
+        console.log('pagination change', value);
         dispatch(setCurrentPage(value))
     }
     return (
@@ -23,7 +25,7 @@ const PaginationWrapper = () => {
                     const query = new URLSearchParams(location.search);
 
 
-                    const page = parseInt(query.get('page') || '1', 10);
+                    const page = parseInt(query.get('startPage') || '1', 10);
 
                     return (
                         <Pagination
@@ -35,7 +37,7 @@ const PaginationWrapper = () => {
                             renderItem={(item) => (
                                 <PaginationItem
                                     component={Link}
-                                    to={`/${category}/filter?perPage=${perPage}&${item.page === 1 ? '' : `startPage=${item.page}`}`}
+                                    to={`filter?categories=${category}&perPage=${perPage}&${item.page === 1 ? '' : `startPage=${item.page}`}`}
                                     {...item}
                                 />
                             )}

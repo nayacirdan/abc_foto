@@ -1,16 +1,13 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import PageCategory from "../PagesMain/PageCategory";
+import PageCategory from "../PageCategory/PageCategory";
 
-const CategoryRoutes = ({match, location}) => {
-    const searchParams= new URLSearchParams(location.search);
-    console.log('searchParams', searchParams.toString());
-    console.log('location', location);
-    console.log('location.search', location.search);
+const CategoryRoutes = ({match}) => {
+
     return (
         <div>
             <Route  path={`${match.path}`}
-                   render={({match})=>(<PageCategory match={match} searchParams={searchParams}/>)}
+                   component={PageCategory}
             />
         </div>
     );

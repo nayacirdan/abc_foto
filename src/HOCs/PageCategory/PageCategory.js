@@ -4,8 +4,8 @@ import BreadcrumbsWrapper from "../../components/Breadcrumbs/Breadcrumbs";
 import FilterContainer from "../../containers/Filters/Filters";
 import ProductList from "../../containers/ProductList/ProductList";
 import {useDispatch} from "react-redux";
-import {getCategory} from "../../store/actions/actions";
-
+import {getCategory, setCurrentPage, setPerPage, setSortProducts} from "../../store/actions/actions";
+import {useLocation } from 'react-router'
 
 
 /*Пока все грузится делаем прелоадер.
@@ -15,14 +15,16 @@ import {getCategory} from "../../store/actions/actions";
     Выделяем какие у нас есть фильтры
 * */
 const PageCategory = (props) => {
-    const {match, searchParams}=props;
-    console.log('match',match);
+    const location=useLocation();
+    const searchParams= new URLSearchParams(location.search)
     const categoryName=searchParams.get('categories');
-    console.log('searchParams categoryname',searchParams.get('categories'));
     const dispatch=useDispatch();
+
     useEffect(()=>{
-        dispatch(getCategory(categoryName))
-    },[categoryName])
+        dispatch(getCategory(categoryName));
+         },[categoryName])
+
+
     return (
         <div className='category'>
             <div className='container'>
@@ -30,7 +32,7 @@ const PageCategory = (props) => {
     {/*            <h1>{match.params.categoryName}</h1>*/}
                 <div className='category-main'>
                     <FilterContainer filters={null}/>
-                    <ProductList category={categoryName}/>
+                    <ProductList/>
                 </div>
             </div>
             <CategoryDescription/>

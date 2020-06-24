@@ -1,0 +1,11 @@
+.navLinks-NAYA{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &>a{
+    color:#fff;
+    text-decoration: none;
+  }
+}

@@ -70,7 +70,7 @@ const Responsive = (props) => {
             }
         ]
     };
-    debugger;
+
     let filtedProducts=[];
     let sliderProducts=[];
     if(products.length){

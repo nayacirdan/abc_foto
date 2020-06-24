@@ -8,6 +8,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
 import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
 import CategoryRoutes from "./HOCs/CategoryRoutes/CategoryRoutes";
+import CatalogLinks from "./HOCs/CatalogLinks/CatalogLinks";
 
 /*Мы заходим в приложуху, у нас загружается сразу домашняя страница
 Вместе с ней грузится слайдер. Идет асинхронный запрос и получает список товаров
@@ -20,7 +21,9 @@ const App = (props) => {
     return (
         <div className="App">
             <Header/>
-            <NavLink to='/products/filter?categories=photocameras'>LINK</NavLink>
+{/*            <NavLink to='/products/filter?categories=photocameras'>LINK</NavLink>
+            <NavLink to='/products/filter?categories=notphotocameras'>LINK 2</NavLink>*/}
+
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/product" component={ProductPage}/>

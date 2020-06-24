@@ -17,6 +17,7 @@ export const getCategory = (categoryName) => (dispatch) => {
 };
 
 export const filterProducts = (filterParams) => (dispatch) => {
+    console.log('filterParams',filterParams);
     axios.get(`/products/filter?${filterParams}`)
         .then(res => {
             dispatch({ type: Actions.FILTER_PRODUCTS, payload: res.data});
@@ -30,5 +31,22 @@ export const setPerPage=(quantity)=>(dispatch)=>{
 
 export const setCurrentPage=(page)=>(dispatch)=>{
     dispatch({type:Actions.SET_CURRENT_PAGE, payload:page});
+}
+
+export const setSearchFilters=(filterString)=>(dispatch)=>{
+    console.log('setSearchFilters');
+    dispatch({type:Actions.SET_SEARCH_FILTERS, payload:filterString})
+}
+
+export const setSortProducts=(value)=>(dispatch)=>{
+    debugger;
+    dispatch({type:Actions.SET_SORT_PRODUCTS, payload:value})
+}
+
+export const getAllCatalog=()=>(dispatch)=>{
+    axios.get('/catalog')
+        .then(res => {
+            dispatch({ type: Actions.GET_ALL_CATALOG, payload: res.data})
+        })
 }
 /*http://localhost:3000/products/filter?categories=notphotocameras*/

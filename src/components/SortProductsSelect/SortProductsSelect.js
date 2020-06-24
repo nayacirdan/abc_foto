@@ -5,28 +5,32 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss'
 import {useHistory, useRouteMatch, useLocation} from 'react-router';
+import {connect, useDispatch} from "react-redux";
+import {setCurrentPage, setSortProducts} from "../../store/actions/actions";
 
 
 
 
 
-const SortProductSelect = () => {
-    const [sortProducts, setSortProducts] = React.useState(null);
+const SortProductSelect = ({sortProducts}) => {
+
     let history=useHistory();
     let location=useLocation();
+    const dispatch=useDispatch();
 
     const searchParams = new URLSearchParams(location.search);
 
 
     const handleChange = (event) => {
-
+        debugger;
         if(searchParams.has('sort')) {
             searchParams.delete('sort');
         }
         searchParams.append('sort', event.target.value);
 
         console.log('searchParams',searchParams.toString());
-        setSortProducts(event.target.value);
+        dispatch(setSortProducts(event.target.value));
+        dispatch(setCurrentPage(1));
         history.push(`/products/filter?${searchParams}`);
     };
 
@@ -40,13 +44,19 @@ const SortProductSelect = () => {
                     value={sortProducts}
                     onChange={handleChange}
                 >
-                    <MenuItem value='currentPrice'>Снижению цены</MenuItem>
-                    <MenuItem value='-currentPrice'>Возрастанию цены</MenuItem>
+                    <MenuItem value='-currentPrice'>Снижению цены</MenuItem>
+                    <MenuItem value='currentPrice'>Возрастанию цены</MenuItem>
                 </Select>
             </FormControl>
         </div>
     );
 };
 
-export default SortProductSelect;
+const mapStoreToProps=(store)=>{
+    return {
+        sortProducts: store.categoryPage.sortBy
+    }
+}
+
+export default connect(mapStoreToProps)(SortProductSelect);
 
