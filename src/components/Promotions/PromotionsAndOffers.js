@@ -1,108 +1,90 @@
 import React from "react";
-import Swiper from "react-id-swiper";
-import "swiper/css/swiper.css";
-import "./PromotionsAndOffers.scss";
 
-const PromotionsAndOffers = () => {
-  const params = {
-    pagination: {
-      el: ".swiper-pagination",
-      type: "progressbar",
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  };
+import './PromotionsAndOffers.scss'
+
+export default function PromotionsAndOffers() {
+
   return (
-    <>
-      <div className="container">
-      <p className="main-text-prom-and-offers">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
-        <Swiper {...params}>
-          {/* first slide */}
-          <div className="promotions__first-col-first-img">
-            <div className="promotions__photo-canon">
-              <img
-                className="promotions__canon-photo"
-                src="/images/promotions/prom1.png"
-                alt="img"
-              />
-              <img
-                className="promotions__canon-logo"
-                src="/images/promotions/Canon_logo.png"
-                alt="img"
-              />
+    <div className="container">
+      <p className="promotions-main-text">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
+      <div className="promotions">
+        <div className="promotions__section-1 prom-container">
+          <div className="promotions__section-1__photo-logo">
+            <img src="/images/promotions/main1.png" alt="img"/>
+            <img className="promotions__section-1__logo" src="/images/promotions/Canon_logo.png" alt="img"/>
+          </div>
+          <div className="promotions__section-1__about-photo-logo">
+            <span className="promotions__section-1__about-photo-logo-bold">Canon EOS 5D Mark IV</span><br/>Kit 24-70
+            f/4L IS USM
+            <p className="promotions__section-1__about-photo-logo_text-past">118 161грн</p>
+            <p className="promotions__section-1__about-photo-logo_text-now">77 299<span
+              className="medium-text-uah">грн</span></p>
+          </div>
+        </div>
+        <div className="promotions__section-2">
+          <div className="promotions__section-2__first-item">
+            <div className="promotions__section-2__first-item__text">
+              <p className="promotions__section-2__first-item__text-percent">СКИДКА 10%</p>
+              <p className="promotions__section-2__first-item__text-price">1 120<span
+                className="small-text-uah">грн</span></p>
+              <p className="promotions__section-2__first-item__text-name">Benro-DJ-80</p>
             </div>
-            <div className="promotions__photo-canon-price">
-              <p className="promotions__first-col-first-text mt100">
-                <span className="text-bold">Canon EOS 5D Mark IV </span>
-                <br />
-                Kit 24-70 f/4L IS USM
-              </p>
-              <p className="promotions__first-col-first-text mt40 d-flex">
-                118 161
-                <span className="rotate-text-1st">грн</span>
-              </p>
-              <p className="promotions__first-col-first-text fosi70 d-flex">
-                77 299
-                <span className="rotate-text-2st">грн</span>
-              </p>
+            <div className="promotions__section-2__first-item__img">
+              <img src="/images/promotions/benro-dj-80.png" alt="img"/>
             </div>
           </div>
-          {/* second slide */}
-          <div
-            className="promotions__first-col-two-imgs second-bg-color"
-            id="2"
-          >
-            <div className="promotions__first-col-two-img1">
-              <img
-                className="promotions__first-col-two-img1_slide1"
-                src="/images/promotions/slide_2.png"
-                alt="img"
-              />
-              <div className="promotions__first-col-two-img1_tripod">
-              <p className="promotions__first-col-first-text mt100">
-                <span className="text-bold">NIKON Z7 + 24-70 F4.0  </span>
-                <br />
-                FTZ Mount Adapter
-              </p>
-              <p className="promotions__first-col-first-text mt40 d-flex">
-                108 999
-                <span className="rotate-text-1st">грн</span>
-              </p>
-              <p className="promotions__first-col-first-text fosi70 d-flex">
-                94 999
-                <span className="rotate-text-2st">грн</span>
-                </p>
-              </div>
+          <div className="promotions__section-2__second-item">
+            <div className="promotions__section-2__second-item_img">
+              <img className="promotions__section-2__second-item_img-10-percent" src="/images/promotions/benro-10.png"
+                   alt="img"/>
+            </div>
+            <div className="promotions__section-2__second-item__text">
+              <p className="promotions__section-2__second-item__text-percent">-10%</p>
+              <img src="/images/promotions/benro-10-logo.png" alt="img"/>
             </div>
           </div>
-          {/* third slide */}
-          <div className="promotions__first-col-two-img1 third-bg-color">
-            <img
-              className="promotions__first-col-two-img1_slide2"
-              src="/images/promotions/slide_3.png"
-              alt="img"
-            />
-            <div className="promotions__first-col-two-img1_tripod">
-              <p className="promotions__first-col-first-text mt100">
-                <span className="text-bold">NIKON D6 + 155-50 H0  </span>
-                <br />
-                Photo Moment
-              </p>
-              <p className="promotions__first-col-first-text mt40 d-flex">
-                179 899
-                <span className="rotate-text-1st">грн</span>
-              </p>
-              <p className="promotions__first-col-first-text fosi70 d-flex">
-                149 999
-                <span className="rotate-text-2st">грн</span>
-                </p>
-            </div>
-          </div>
-        </Swiper>
+        </div>
       </div>
-    </>
-  );
-};
-export default PromotionsAndOffers;
+      <div className="promotions__bottom-section">
+        <div className="promotions__bottom-section_first-item">
+          <div className="promotions__bottom-section_first-item_img">
+            <img src="/images/promotions/green-img.png" alt="img"/>
+          </div>
+          <div className="promotions__bottom-section_first-item_text">
+            <p className="promotions__bottom-section_first-item_text_super-price">СУПЕРЦЕНА</p>
+            <p className="promotions__bottom-section_first-item_text_price">5 684 <span
+              className="small-text-uah">грн</span></p>
+          </div>
+        </div>
+        <div className="promotions__bottom-section_second-item">
+          <div className="promotions__bottom-section_second-item_text">
+            <p className="promotions__bottom-section_second-item_text-objectiv">Объектив<br/>
+              <span
+                className="promotions__bottom-section_second-item_text-objectiv_bold">Nikon 50mmf<br/>1.8G AF-S </span>
+            </p>
+            <p className="promotions__bottom-section_second-item_text_past-price">4 982<span
+              className="small-text-uah">грн</span></p>
+            <p className="promotions__bottom-section_second-item_text_now-price">4 758<span
+              className="small-text-uah">грн</span></p>
+          </div>
+          <div className="promotions__bottom-section_second-item_img">
+            <img src="/images/promotions/50mmf-img.png" alt="img"/>
+          </div>
+        </div>
+        <div className="promotions__bottom-section_third-item">
+          <div className="promotions__bottom-section_third-item_text">
+            <p className="promotions__bottom-section_third-item_text_name-photopaper">Фотобумага<br/><span
+              className="promotions__bottom-section_third-item_text_name-photopaper_bold">Canon KP-108IN</span></p>
+            <p className="promotions__bottom-section_second-item_text_past-price">1 028<span
+              className="small-text-uah">грн</span></p>
+            <p className="promotions__bottom-section_second-item_text_now-price">908<span
+              className="small-text-uah">грн</span></p>
+          </div>
+          <div className="promotions__bottom-section_third-item_img">
+            <img src="/images/promotions/photopaper.png" alt="img"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

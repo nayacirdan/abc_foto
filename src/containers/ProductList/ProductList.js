@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import PaginationSelect from "../../components/QuantityOnPage/QuantityOnPage";
 import SortProductSelect from "../../components/SortProductsSelect/SortProductsSelect";
-import {filterProducts, getProducts, setSearchFilters} from '../../store/actions/actions';
+import {filterProducts, setSearchFilters} from '../../store/actions/actions';
 import {connect, useDispatch, useSelector} from "react-redux";
 import CardItem from "../../components/Card/Card";
 import PaginationWrapper from "../../components/Pagination/Pagination";
@@ -13,13 +13,6 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
     const dispatch = useDispatch();
     const location = useLocation();
     const history=useHistory();
-    /*const category=useSelector(state=>state.categories.currentCategory.id);*/
-/*    const perPage = useSelector(state => state.categoryPage.productsPerPage);*/
-    /*    const currentFiltersString=useSelector(state=>state.filters.currentFilters);*/
-
-    /* useEffect(() => {
-         dispatch(getProducts());
-     }, [getProducts]);*/
 
     const searchParams = new URLSearchParams(location.search);
    const formFilterString = () => {
@@ -43,12 +36,7 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
             searchParams.delete('sort');
             searchParams.set('sort', sortBy);
         }
-       /* if (!searchParams.has('categories')) {
-            searchParams.set('categories', currentCategory.name)
-        }*/ /*else if(searchParams.get('categories') !== currentCategory.name) {
-            searchParams.delete('categories');
-            searchParams.set('categories', currentCategory.name);
-        }*/
+
         const filterString=searchParams.toString();
         console.log('filterString', filterString);
 
@@ -56,9 +44,7 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
         return filterString;
     }
 
-/*    useEffect(() => {
-        dispatch(setSearchFilters(formFilterString()))
-    }, [setSearchFilters]);*/
+
 
     useEffect(() => {
         dispatch(setSearchFilters(formFilterString()))

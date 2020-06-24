@@ -1,41 +1,36 @@
 import React from 'react';
 import Header from './components/Header/Header';
+import TopSlider from "./components/TopSlider/TopSlider";
+import Slider from './containers/SliderOfHitProducts/Slider';
 import './App.scss';
 import Footer from "./components/Footer/Footer";
 import {Switch, Route, Link, NavLink} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
-import PromotionsAndOffers from "./components/Promotions/PromotionsAndOffers";
 import CategoryRoutes from "./HOCs/CategoryRoutes/CategoryRoutes";
-import CatalogLinks from "./HOCs/CatalogLinks/CatalogLinks";
 
-/*Мы заходим в приложуху, у нас загружается сразу домашняя страница
-Вместе с ней грузится слайдер. Идет асинхронный запрос и получает список товаров
+import Cart from "./pages/Cart/Cart";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 
-Вообще в идеале всю инфу не мешало бы загружать заранее, но хрен с ним.
-Идет запрос на сервер и в бд, в руты загрыжаются все пасы и компоненты, в зависимости от списка категорий.
-Мы переходим на страницу товаров определенной категории. Рут загружает нужный нам мейн по свитчу, рендерит правильную страницу.
-* */
 const App = (props) => {
-    return (
-        <div className="App">
-            <Header/>
-{/*            <NavLink to='/products/filter?categories=photocameras'>LINK</NavLink>
-            <NavLink to='/products/filter?categories=notphotocameras'>LINK 2</NavLink>*/}
-
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/product" component={ProductPage}/>
-                <Route exact path='/cameras' component={Cameras}/>
-                {/*Custom ID*/}
-                <Route path='/products/filter' component={CategoryRoutes}/>
-                {/*<Route exact path={`/catalog/${category.id}`} render={(props)=>(<PageCategory {...props} category={category}/>)}/>*/}
-            </Switch>
-            <PromotionsAndOffers/>
-            <Footer/>
-        </div>
-    );
+  return (
+    <Router>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/products/:itemNo" component={ProductPage} />
+          <Route exact path='/cameras' component={Cameras} />
+          <Route exact path='/cart'  component={Cart}/>
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route path='/products/filter' component={CategoryRoutes}/>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
+  );
 };
 
 export default App;

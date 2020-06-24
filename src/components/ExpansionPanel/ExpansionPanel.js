@@ -42,23 +42,6 @@ function SimpleExpansionPanel(props) {
                 <ExpansionPanelDetails>
                     <Typography component='div'>
                         {main}
-                        {/* <Typography component='div' className='delivery'>
-                            <Typography component='div' className="delivery_item">
-                                <IconButton component='span' className='delivery_item-icon'><StorefrontIcon /></IconButton>
-                                <Typography component='span' className='delivery_item-text'>Самовывоз с магазина</Typography>
-                                <Typography component='span' className="delivery_item-free">Бесплатно</Typography>
-                            </Typography>
-                            <Typography component='div' className="delivery_item">
-                                <IconButton component='span' className='delivery_item-icon'><DirectionsWalkIcon /></IconButton>
-                                <Typography component='span' className='delivery_item-text'>Самовывоз из Новой Почты</Typography>
-                                <Typography component='span' className="delivery_item-free">Бесплатно</Typography>
-                            </Typography>
-                            <Typography component='div' className="delivery_item">
-                                <IconButton component='span' className='delivery_item-icon'><CardGiftcardIcon /></IconButton>
-                                <Typography component='span' className='delivery_item-text'>Курьер по вашему адресу</Typography>
-                                <Typography component='span' className='delivery_item-price'>59 ₴</Typography>
-                            </Typography>
-                        </Typography> */}
                     </Typography>
                 </ExpansionPanelDetails>
             </ExpansionPanel>

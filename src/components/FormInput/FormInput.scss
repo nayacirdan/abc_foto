@@ -1,0 +1,17 @@
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 14px;
+
+  .label {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .input {
+    padding: 15px;
+    border: 1px solid #D3D7DA;
+    border-radius: 5px;
+  }
+}
