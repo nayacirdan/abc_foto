@@ -95,7 +95,7 @@ Responsive.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        products: store.products
+        products: store.products.products
     }
 };
 

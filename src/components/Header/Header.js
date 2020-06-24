@@ -13,8 +13,10 @@ import logo from '../../svg/logo';
 
 import './Header.scss';
 import Grid from "@material-ui/core/Grid";
-import SubMenu from "./Navigation/SubMenu";
 import Navigation from "./Navigation/Navigation";
+
+import { searchChange, getFilteredProducts, getProducts } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,14 +39,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = () => {
+const Header = (props) => {
+    const { searchChange, product, getFilteredProducts, products } = props;
     const classes = useStyles();
-
-    const [isHovering, setIsHovering] = useState(false)
-
-    const toggleHoverState = () => {
-        setIsHovering(!isHovering)
-    }
 
 
     const phoneNumber = (
@@ -114,7 +111,7 @@ const Header = () => {
             </div>
             <div className="container header" >
 
-                <NavLink exact to="/">
+                <NavLink exact to="/cameras">
                     <div className="logo">{logo}</div>
                 </NavLink>
 
@@ -124,6 +121,10 @@ const Header = () => {
                             className={classes.input}
                             placeholder="Поиск товаров"
                             inputProps={{ 'aria-label': 'search google maps' }}
+                            onChange={ e => 
+                                {searchChange(e.target.value)
+                                getFilteredProducts ({"query": e.target.value.trim()})
+                            }}
                         />
                         <IconButton type="submit" className={classes.iconButton} aria-label="search">
                             <SearchIcon />
@@ -155,4 +156,18 @@ const Header = () => {
     )
 };
 
-export default Header;
+const mapStateToProps = store => {
+    return {
+        product: store.products.product,
+        products: store.products.products
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        searchChange: (text) => dispatch(searchChange(text)),
+        getFilteredProducts: (text) => dispatch(getFilteredProducts(text))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

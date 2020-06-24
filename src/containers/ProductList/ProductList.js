@@ -15,7 +15,7 @@ const ProductList = () => {
         dispatch(getProducts());
     }, [getProducts]);
 
-    const products = useSelector(state => state.products);
+    const products = useSelector(state => state.products.products);
     console.log(products);
 
     let productsList = 'No items are available'
