@@ -12,6 +12,7 @@ const ProductList = ({category}) => {
     const dispatch = useDispatch();
     /*const category=useSelector(state=>state.categories.currentCategory.id);*/
     const perPage=useSelector(state=>state.categoryPage.productsPerPage);
+/*    const currentFiltersString=useSelector(state=>state.filters.currentFilters);*/
 
    /* useEffect(() => {
         dispatch(getProducts());

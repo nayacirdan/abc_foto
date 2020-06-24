@@ -15,12 +15,14 @@ import {getCategory} from "../../store/actions/actions";
     Выделяем какие у нас есть фильтры
 * */
 const PageCategory = (props) => {
-    const {match}=props;
+    const {match, searchParams}=props;
     console.log('match',match);
+    const categoryName=searchParams.get('categories');
+    console.log('searchParams categoryname',searchParams.get('categories'));
     const dispatch=useDispatch();
     useEffect(()=>{
-        dispatch(getCategory(match.params.categoryName))
-    },[match.params.categoryName])
+        dispatch(getCategory(categoryName))
+    },[categoryName])
     return (
         <div className='category'>
             <div className='container'>
@@ -28,7 +30,7 @@ const PageCategory = (props) => {
     {/*            <h1>{match.params.categoryName}</h1>*/}
                 <div className='category-main'>
                     <FilterContainer filters={null}/>
-                    <ProductList category={match.params.categoryName}/>
+                    <ProductList category={categoryName}/>
                 </div>
             </div>
             <CategoryDescription/>
