@@ -164,7 +164,7 @@ const CardItem = (props) => {
     } = product;
 
     const redirectToProductPage = () => {
-        history.push(`/products/${itemNo}`)
+        history.push(`/products/filter/${itemNo}`)
     }
 
     const getProductAvailability = () => {

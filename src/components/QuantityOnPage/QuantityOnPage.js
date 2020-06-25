@@ -1,30 +1,61 @@
 import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import './QuantityOnPage.scss'
+import {connect, useDispatch, useSelector} from "react-redux";
+import {filterProducts, setCurrentPage, setPerPage, setSortProducts} from "../../store/actions/actions";
+import {useHistory, useLocation} from 'react-router';
 
-const PaginationSelect=()=> {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(9);
 
+const PaginationSelect=({currentCategory, perPage, currentPage, productsQuantity})=> {
+
+    const page=currentPage-1;
+    const rowsPerPage=perPage;
+
+    const dispatch=useDispatch();
+    let history=useHistory();
+    let location=useLocation();
+
+
+    const searchParams = new URLSearchParams(location.search);
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
+        const perPageValue=parseInt(event.target.value, 10)
+        dispatch(setPerPage(perPageValue));
+        console.log('event.target.value', event.target.value);
+
+        if(searchParams.has('perPage')) {
+            searchParams.delete('perPage');
+        }
+        searchParams.append('perPage', event.target.value);
+
+        console.log('searchParams in quantity',searchParams.toString());
+        dispatch(setPerPage(event.target.value));
+        dispatch(setCurrentPage(1));
+        history.push(`/products/filter?${searchParams}`);
     };
+
 
     return (
         <TablePagination
             className='products-quantity'
             labelRowsPerPage='Показывать'
             component="div"
-            count={100}
+            count={productsQuantity}
             page={page}
-            //onChangePage={handleChangePage}
+
             rowsPerPage={rowsPerPage}
             onChangeRowsPerPage={handleChangeRowsPerPage}
-            rowsPerPageOptions={[9, 18, 36, 72]}
+            rowsPerPageOptions={[3, 6, 9, 12]}
         />
     );
 }
 
-export default PaginationSelect;
+const mapStoreToProps=(store)=>{
+ return {
+     currentCategory: store.categories.currentCategory.id,
+     perPage: store.categoryPage.productsPerPage,
+     currentPage: store.categoryPage.currentPage,
+     productsQuantity: store.products.productsQuantity
+}
+}
+export default connect(mapStoreToProps)(PaginationSelect);

@@ -2,9 +2,10 @@ import React from 'react';
 import RangeFilter from "../../components/RangeFilter/RangeFilter";
 import './Filters.scss'
 import RegularFilter from "../../components/RegularFilter/RegularFilter";
+import {useSelector} from "react-redux";
 
 const FilterContainer = () => {
-    const categoryTitle='Фотоаппараты';
+    const categoryTitle=useSelector((state)=>state.categories.currentCategory.title);
     return (
         <div className='filters-container'>
             <h2 className='category-title'>{categoryTitle}</h2>
