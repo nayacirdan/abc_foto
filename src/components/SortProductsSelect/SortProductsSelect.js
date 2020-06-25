@@ -22,7 +22,7 @@ const SortProductSelect = ({sortProducts}) => {
 
 
     const handleChange = (event) => {
-        debugger;
+        // debugger;
         if(searchParams.has('sort')) {
             searchParams.delete('sort');
         }

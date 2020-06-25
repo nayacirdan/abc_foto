@@ -16,7 +16,7 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
 
     const searchParams = new URLSearchParams(location.search);
    const formFilterString = () => {
-        debugger;
+        // debugger;
        if (currentCategory.name) {
            searchParams.delete('categories');
            searchParams.set('categories', currentCategory.name);

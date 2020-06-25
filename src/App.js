@@ -22,7 +22,7 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-{/*          <Route exact path="/products/:itemNo" component={ProductPage} />*/}
+         <Route exact path="/products/filter/:itemNo" component={ProductPage} />
           <Route exact path='/cameras' component={Cameras} />
           <Route exact path='/cart'  component={Cart}/>
           <Route exact path="/checkout" component={CheckoutPage} />

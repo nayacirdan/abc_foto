@@ -56,7 +56,7 @@ export const setSearchFilters=(filterString)=>(dispatch)=>{
 }
 
 export const setSortProducts=(value)=>(dispatch)=>{
-    debugger;
+    // debugger;
     dispatch({type:Actions.SET_SORT_PRODUCTS, payload:value})
 }
 
