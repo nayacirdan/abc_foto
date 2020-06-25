@@ -32,13 +32,17 @@ const Gallery = (props) => {
         slidesPerView: 4
 
     };
+    let slidesRight=[];
+    let slidesLeft=[]
+    if (imageUrls&& imageUrls.length) {
+         slidesRight = imageUrls.map(slide => (
+            <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
+        ));
+         slidesLeft = imageUrls.map(slide => (
+            <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
+        ));
+    }
 
-    const slidesRight = imageUrls.map(slide => (
-        <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
-    ));
-    const slidesLeft = imageUrls.map(slide => (
-        <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
-    ));
     useEffect(() => {
         if (
             gallerySwiper !== null &&
