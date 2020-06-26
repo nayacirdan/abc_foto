@@ -48,6 +48,9 @@
         margin-right: 30px;
         cursor: pointer;
     }
+    & .MuiPaper-elevation1{
+        z-index: 1000;
+    }
 }
 
 .MuiSvgIcon-root {

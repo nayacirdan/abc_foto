@@ -16,6 +16,8 @@ import Grid from "@material-ui/core/Grid";
 import SubMenu from "./Navigation/SubMenu";
 import Navigation from "./Navigation/Navigation";
 import InputForm from "../Modals/ValidationForm";
+import {openModal, setModalType} from "../../store/actions/actions";
+import {useDispatch} from "react-redux";
 
 
 
@@ -48,7 +50,20 @@ const Header = () => {
   const toggleHoverState = () => {
     setIsHovering(!isHovering)
   };
+  const dispatch=useDispatch();
 
+  const openSignUpModal=()=>{
+    debugger;
+    dispatch (setModalType('signUp'))
+    dispatch (openModal());
+
+  }
+  const openSignInModal=()=>{
+    debugger;
+    dispatch (setModalType('signIn'))
+    dispatch (openModal());
+
+  }
 
   const phoneNumber = (
     <MenuListComposition
@@ -73,6 +88,9 @@ const Header = () => {
     >
     </MenuListComposition>
   );
+
+
+
   const AccountMenu = (
     <MenuListComposition
       firstItem={
@@ -83,13 +101,13 @@ const Header = () => {
       }
       secondItem={
         <div className="menu-item">
-          <div>Войти</div>
+          <div onClick={openSignInModal}>Войти</div>
         </div>
       }
       thirdItem={
         <div>
           <hr className="hr"/>
-          <div className="menu-item">
+          <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')}>
             Зарегистрироваться
           </div>
         </div>
@@ -147,13 +165,13 @@ const Header = () => {
           </div>
         </NavLink>
       </div>
-      <div className='Header__bottom'>
+     {/* <div className='Header__bottom'>
         <Grid container>
           <Grid item md={12}>
             <Navigation/>
           </Grid>
         </Grid>
-      </div>
+      </div>*/}
     </div>
   )
 };
