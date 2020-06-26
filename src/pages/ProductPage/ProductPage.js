@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Gallery from '../../components/Gallery/Gallery';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
@@ -12,13 +12,15 @@ import './ProductPage.scss';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 import axios from 'axios';
 import { withRouter } from "react-router";
+import { setCurrentProduct } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
 const ProductPage = (props) => {
+    const { setCurrentProduct, product } = props;
 
-    const [product, setProduct] = useState(null);
     useEffect(() => {
-        currentProduct().then(result => setProduct(result))
-    }, [setProduct])
+        currentProduct().then(result => setCurrentProduct(result))
+    }, [setCurrentProduct])
 
     const { match } = props;
     function currentProduct() {
@@ -128,9 +130,21 @@ const ProductPage = (props) => {
                         characteristics={<Characteristics currentProduct={product} />}
                     />
                 </div>
-                <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
+                {/* <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" /> */}
             </div> : null
     )
 };
 
-export default withRouter(ProductPage);
+const mapStateToProps = store => {
+    return {
+        product: store.products.currentProduct
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductPage));

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -15,8 +15,13 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getFilteredProducts, getProducts } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch } from '../../store/actions/actions';
 import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+
+import { setCurrentProduct } from '../../store/actions/actions';
+
+import { withRouter } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
+        position: 'relative'
     },
     iconButton: {
         padding: 10,
@@ -36,12 +42,64 @@ const useStyles = makeStyles((theme) => ({
     },
     expandMore: {
         color: "#000"
+    },
+    customInput: {
+        width: "500px",
+        height: "50px",
+        boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.01)",
+        borderRadius: "20px",
+        paddingLeft: '2%',
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: '10px'
+    },
+    customDiv: {
+        zIndex: "2",
+        width: "500px",
+        height: "200px",
+        display: 'inline-block',
+        marginBottom: '-29.5%'
+
+    },
+    productsListBySearch: {
+        position: "absolute",
+    },
+    imgMini: {
+        width: '20px',
+        height: '20px'
     }
 }));
 
 const Header = (props) => {
-    const { searchChange, product, getFilteredProducts, products } = props;
+    const { searchChange, getProductsBySearch, productsBySearch, history, product, setCurrentProduct } = props;
     const classes = useStyles();
+    const [value, setValue] = useState('');
+
+    useEffect(() => {
+        getProductsBySearch({ query: product })
+        setCurrentProduct(product)
+        // }, [getProductsBySearch])
+    }, [setCurrentProduct, getProductsBySearch])
+
+
+    // const handleChange = (e) => {
+    //     setValue({ name: e.target.value})
+    // }
+
+    const productsListBySearch = productsBySearch.map((prodBySearch, index) =>
+        (<Typography key={index} component="div" className={classes.customDiv}>
+            <Typography component='div' className={classes.customInput} onClick={() => {
+                setValue('')
+                searchChange('')
+                getProductsBySearch({ query: '' })
+                setCurrentProduct(prodBySearch)
+                history.push(`/products/filter/${prodBySearch.itemNo}`)
+            }}>
+                <Typography component='div'><Typography component='img' className={classes.imgMini} alt='photo' src={prodBySearch.imageUrls[0]} /></Typography>
+                <Typography component='div'>{prodBySearch.name}</Typography>
+            </Typography>
+        </Typography>));
+    productsBySearch.length = 5;
 
 
     const phoneNumber = (
@@ -121,15 +179,21 @@ const Header = (props) => {
                             className={classes.input}
                             placeholder="Поиск товаров"
                             inputProps={{ 'aria-label': 'search google maps' }}
-                            onChange={ e => 
-                                {searchChange(e.target.value)
-                                getFilteredProducts ({"query": e.target.value.trim()})
+                            value={value}
+                            autoFocus
+                            onChange={e => {
+                                setValue(e.target.value)
+                                searchChange(e.target.value)
+                                getProductsBySearch({ "query": e.target.value.trim() })
                             }}
                         />
                         <IconButton type="submit" className={classes.iconButton} aria-label="search">
                             <SearchIcon />
                         </IconButton>
                     </Paper>
+                    <Typography component='div' className={classes.productsListBySearch}>
+                        {productsListBySearch}
+                    </Typography>
                 </div>
 
                 <div className="menu-item">
@@ -158,16 +222,16 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
     return {
-        product: store.products.product,
-        products: store.products.products
+        productsBySearch: store.products.productsBySearch
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         searchChange: (text) => dispatch(searchChange(text)),
-        getFilteredProducts: (text) => dispatch(getFilteredProducts(text))
+        getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
+        setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

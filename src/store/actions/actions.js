@@ -8,37 +8,20 @@ export const getProducts = () => (dispatch) => {
         })
 };
 
-export const getFilteredProducts = (text) => (dispatch) => {
-    if(text.query) {
+export const getProductsBySearch = (text) => (dispatch) => {
+    if(text.query!=='') {
         axios.post('/products/search', text)
         .then(res => {
             // const filtered = res.data.filter(item => {
             //     return res.data.name.toLowerCase().includes(text.toLowerCase())
             // })
-            dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data })
+            dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: res.data })
         })
         .catch(error => {
             dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
         })
     } else {
-        dispatch(getProducts());
-    }
-};
-
-export const getFilteredProducts = (text) => (dispatch) => {
-    if(text.query) {
-        axios.post('/products/search', text)
-        .then(res => {
-            // const filtered = res.data.filter(item => {
-            //     return res.data.name.toLowerCase().includes(text.toLowerCase())
-            // })
-            dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data })
-        })
-        .catch(error => {
-            dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
-        })
-    } else {
-        dispatch(getProducts());
+        dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: [] });
     }
 };
 
@@ -86,4 +69,8 @@ export const getAllCatalog=()=>(dispatch)=>{
 
 export const searchChange = (text) => (dispatch) => {
     dispatch ({ type: Actions.SEARCH_CHANGE, payload: text })
+}
+
+export const setCurrentProduct = (product) => (dispatch) => {
+    dispatch ({ type: Actions.SET_CURRENT_PRODUCT, payload: product})
 }

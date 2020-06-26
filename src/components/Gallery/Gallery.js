@@ -7,7 +7,6 @@ import './Gallery.scss';
 const Gallery = (props) => {
     const { product } = props;
     const { imageUrls } = product;
-    console.log("Gallery.js", product.imageUrls)
 
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
