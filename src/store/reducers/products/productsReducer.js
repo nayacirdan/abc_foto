@@ -9,8 +9,6 @@ const initialState= {
  }
 
 const products = (state = initialState, action) => {
-    console.log("PRODUCTS BY SEARCH", state.productsBySearch)
-    console.log("PRODUCTS BY FETCH", state.products)
     switch (action.type) {
         case Actions.FETCH_PRODUCTS:
             return { ...state, products: action.payload, productsBySearch: []  };

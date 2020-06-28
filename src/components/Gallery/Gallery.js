@@ -8,8 +8,12 @@ import { setCurrentProduct } from '../../store/actions/actions';
 
 
 const Gallery = (props) => {
-    const { product, setCurrentProduct } = props;
+    const { product, setCurrentProduct, currentProduct } = props;
     const { imageUrls } = product;
+
+    useEffect(() => {
+        setCurrentProduct(currentProduct)
+    }, [setCurrentProduct])
 
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
@@ -22,7 +26,7 @@ const Gallery = (props) => {
         // },
         direction: "vertical",
         slidesPerView: 1,
-        // rebuildOnUpdate: true
+        shouldSwiperUpdate: true
     };
     const thumbnailSwiperParams = {
         getSwiper: getThumbnailSwiper,
@@ -32,7 +36,8 @@ const Gallery = (props) => {
         touchRatio: 0.2,
         slideToClickedSlide: true,
         direction: "vertical",
-        slidesPerView: 4
+        slidesPerView: 4,
+        shouldSwiperUpdate: true
 
     };
     let slidesRight=[];
@@ -70,10 +75,16 @@ const Gallery = (props) => {
     );
 };
 
+const mapStateToProps = store => {
+     return {
+        currentProduct: store.products.currentProduct
+     }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setCurrentProduct: (prod) => dispatch(setCurrentProduct(prod))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Gallery);
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
