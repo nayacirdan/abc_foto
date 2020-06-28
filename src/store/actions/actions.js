@@ -2,6 +2,7 @@ import Actions from '../constans/constans';
 import axios from 'axios';
 
 export const getProducts = () => (dispatch) => {
+    dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: []})
     axios.get('/products')
         .then(res => {
             dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data })
@@ -17,9 +18,9 @@ export const getProductsBySearch = (text) => (dispatch) => {
             // })
             dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: res.data })
         })
-        .catch(error => {
-            dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
-        })
+        // .catch(error => {
+        //     dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
+        // })
     } else {
         dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: [] });
     }

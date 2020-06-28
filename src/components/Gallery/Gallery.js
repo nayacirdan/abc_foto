@@ -3,9 +3,12 @@ import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';
 import './Gallery.scss';
 
+import { connect } from 'react-redux';
+import { setCurrentProduct } from '../../store/actions/actions';
+
 
 const Gallery = (props) => {
-    const { product } = props;
+    const { product, setCurrentProduct } = props;
     const { imageUrls } = product;
 
     const [gallerySwiper, getGallerySwiper] = useState(null);
@@ -18,7 +21,8 @@ const Gallery = (props) => {
         //     prevEl: '.swiper-button-prev',
         // },
         direction: "vertical",
-        slidesPerView: 1
+        slidesPerView: 1,
+        // rebuildOnUpdate: true
     };
     const thumbnailSwiperParams = {
         getSwiper: getThumbnailSwiper,
@@ -66,4 +70,10 @@ const Gallery = (props) => {
     );
 };
 
-export default Gallery;
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentProduct: (prod) => dispatch(setCurrentProduct(prod))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Gallery);

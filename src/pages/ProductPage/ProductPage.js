@@ -130,7 +130,7 @@ const ProductPage = (props) => {
                         characteristics={<Characteristics currentProduct={product} />}
                     />
                 </div>
-                {/* <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" /> */}
+                <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
             </div> : null
     )
 };

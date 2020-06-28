@@ -75,11 +75,11 @@ const Header = (props) => {
     const classes = useStyles();
     const [value, setValue] = useState('');
 
-    useEffect(() => {
-        getProductsBySearch({ query: product })
-        setCurrentProduct(product)
-        // }, [getProductsBySearch])
-    }, [setCurrentProduct, getProductsBySearch])
+    // useEffect(() => {
+    //     getProductsBySearch({ query: product })
+    //     setCurrentProduct(product)
+    //     // }, [getProductsBySearch])
+    // }, [setCurrentProduct, getProductsBySearch])
 
 
     // const handleChange = (e) => {
@@ -180,7 +180,7 @@ const Header = (props) => {
                             placeholder="Поиск товаров"
                             inputProps={{ 'aria-label': 'search google maps' }}
                             value={value}
-                            autoFocus
+                            // autoFocus
                             onChange={e => {
                                 setValue(e.target.value)
                                 searchChange(e.target.value)
