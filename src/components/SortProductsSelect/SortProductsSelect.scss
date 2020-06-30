@@ -36,6 +36,10 @@
 .form-sort label + .MuiInput-formControl {
   margin: 0;
 }
+
+.form-sort .MuiInputLabel-formControl{
+  transform: none;
+}
 .form-sort .MuiInputLabel-shrink{
   transform: translate(0, 1.5px);
 }

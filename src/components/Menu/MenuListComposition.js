@@ -12,6 +12,9 @@ import './MenuListComposition.scss';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+    },
+    zIndex: {
+        zIndex: "1000",
     }
 }));
 
@@ -52,7 +55,7 @@ export default function MenuListComposition({ firstItem, secondItem, thirdItem }
 
     return (
         <div className={classes.root}>
-            <div>
+            <div className={classes.zIndex}>
                 <Button
                     ref={anchorRef}
                     aria-controls={open ? 'menu-list-grow' : undefined}

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import Card from '../../components/Card/Card';
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 import { getProducts } from '../../store/actions/actions';
 
@@ -71,10 +72,10 @@ const Responsive = (props) => {
         ]
     };
 
-    const filtedProducts = products.filter((key) => (key.isAvailable === true || key.isExpected === true));
+    const filtedProducts = (products || []).filter((key) => (key.isAvailable === true || key.isExpected === true));
     const sliderProducts = filtedProducts.map(product => (
-        <div key={product.id} className="slider-card">
-            <Card key={product.id} product={product} />
+        <div key={product.itemNo} className="slider-card">
+            <Card key={product.itemNo} product={product} />
         </div>)
     );
     
@@ -88,9 +89,13 @@ const Responsive = (props) => {
     );
 }
 
+Responsive.propTypes = {
+    products: PropTypes.array.isRequired
+}
+
 const mapStateToProps = (store) => {
     return {
-        products: store.products
+        products: store.products.products
     }
 };
 

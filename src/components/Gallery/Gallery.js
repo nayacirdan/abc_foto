@@ -4,7 +4,11 @@ import 'swiper/swiper.scss';
 import './Gallery.scss';
 
 
-const Gallery = () => {
+const Gallery = (props) => {
+    const { product } = props;
+    const { imageUrls } = product;
+    console.log("Gallery.js", product.imageUrls)
+
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
     const gallerySwiperParams = {
@@ -28,6 +32,17 @@ const Gallery = () => {
         slidesPerView: 4
 
     };
+    let slidesRight=[];
+    let slidesLeft=[]
+    if (imageUrls&& imageUrls.length) {
+         slidesRight = imageUrls.map(slide => (
+            <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
+        ));
+         slidesLeft = imageUrls.map(slide => (
+            <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
+        ));
+    }
+
     useEffect(() => {
         if (
             gallerySwiper !== null &&
@@ -39,21 +54,17 @@ const Gallery = () => {
             thumbnailSwiper.controller.control = gallerySwiper;
         }
     }, [gallerySwiper, thumbnailSwiper]);
+
     return (
         <div className="swiper-container">
             <Swiper {...thumbnailSwiperParams} >
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div className="prod-slider-rigth"><img alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                {slidesRight}
             </Swiper>
             <Swiper {...gallerySwiperParams} >
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_1.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_2.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_3.jpg' /></div>
-                <div><img className="prod-slider-left" alt='.' src='images/gallery_items/canon_1/image_4.jpg' /></div>
+                {slidesLeft}
             </Swiper>
         </div>
     );
 };
+
 export default Gallery;

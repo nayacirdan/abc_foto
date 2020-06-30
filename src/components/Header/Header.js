@@ -13,13 +13,15 @@ import logo from '../../svg/logo';
 
 import './Header.scss';
 import Grid from "@material-ui/core/Grid";
-import SubMenu from "./Navigation/SubMenu";
 import Navigation from "./Navigation/Navigation";
 import InputForm from "../Modals/ValidationForm";
 import {openModal, setModalType} from "../../store/actions/actions";
 import {useDispatch} from "react-redux";
 
 
+
+import { searchChange, getFilteredProducts, getProducts } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,6 +79,120 @@ const Header = () => {
         <div className="menu-item">
           <div><a href="tel" className="menu-item__tel-number">0 (44) 377 70 11</a> &nbsp;</div>
           <div>Киев</div>
+        
+const Header = (props) => {
+    const { searchChange, product, getFilteredProducts, products } = props;
+    const classes = useStyles();
+
+
+    const phoneNumber = (
+        <MenuListComposition
+            firstItem={
+                <div className="menu-item">
+                    <div><a href="tel" className="menu-item__tel-number"><span>0 (800) 21 21 50</span></a></div>
+                    <ExpandMoreIcon className={classes.expandMore} fontSize="small" />
+                </div>
+            }
+            secondItem={
+                <div className="menu-item">
+                    <div><a href="tel" className="menu-item__tel-number">0 (44) 377 70 11</a> &nbsp;</div>
+                    <div>Киев</div>
+                </div>
+            }
+            thirdItem={
+                <div className="menu-item">
+                    <div><a href="tel" className="menu-item__tel-number">0 (56) 370 36 53</a> &nbsp;</div>
+                    <div>Днепр</div>
+                </div>
+            }
+        >
+        </MenuListComposition>
+    );
+    const AccountMenu = (
+        <MenuListComposition
+            firstItem={
+                <div className="account-menu">
+                    <div className="account-menu__accountIcon">{accountIcon}</div>
+                    <div className="account-menu__iconText">Вход</div>
+                </div>
+            }
+            secondItem={
+                <div className="menu-item">
+                    <div>Войти</div>
+                </div>
+            }
+            thirdItem={
+                <div>
+                    <hr className="hr" />
+                    <div className="menu-item" >
+                        Зарегистрироваться
+                    </div>
+                </div>
+            }
+        >
+        </MenuListComposition>
+    )
+    return (
+        <div className="classes.root">
+            <div className='Header__top'>
+                <Grid container>
+                    <Grid item md={8}>
+                        <span className='Header__text'>Магазин</span>
+                        <span className='Header__text'>Кредит</span>
+                        <span className='Header__text'>Доставка И Оплата</span>
+                        <span className='Header__text'>Гарантии</span>
+                        <span className='Header__text'>О Компании</span>
+                        <span className='Header__text'>Контакты</span>
+                        <span className='Header__text'>Карта сайта</span>
+                    </Grid>
+                    <Grid item md={4}>
+                        <div className='Header__text2'>Укр/<strong>Рус</strong></div>
+                    </Grid>
+                </Grid>
+            </div>
+            <div className="container header" >
+
+                <NavLink exact to="/cameras">
+                    <div className="logo">{logo}</div>
+                </NavLink>
+
+                <div className="search-form">
+                    <Paper component="form" className={classes.root}>
+                        <InputBase
+                            className={classes.input}
+                            placeholder="Поиск товаров"
+                            inputProps={{ 'aria-label': 'search google maps' }}
+                            onChange={ e => 
+                                {searchChange(e.target.value)
+                                getFilteredProducts ({"query": e.target.value.trim()})
+                            }}
+                        />
+                        <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                            <SearchIcon />
+                        </IconButton>
+                    </Paper>
+                </div>
+
+                <div className="menu-item">
+                    {phoneNumber}
+                </div>
+
+                <div>{AccountMenu}</div>
+
+                <NavLink exact to="/cart" className="cart-nav">
+                    <div className="account-menu">
+                        <div className="account-menu__accountIcon">{cartIcon}</div>
+                        <div className="account-menu__iconText">Корзина</div>
+                    </div>
+                </NavLink>
+            </div>
+            <div className='Header__bottom'>
+                <Grid container>
+                    <Grid item md={12}>
+                        <Navigation />
+                    </Grid>
+                </Grid>
+            </div>
         </div>
       }
       thirdItem={
@@ -176,4 +292,18 @@ const Header = () => {
   )
 };
 
-export default Header;
+const mapStateToProps = store => {
+    return {
+        product: store.products.product,
+        products: store.products.products
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        searchChange: (text) => dispatch(searchChange(text)),
+        getFilteredProducts: (text) => dispatch(getFilteredProducts(text))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

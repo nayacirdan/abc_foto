@@ -1,6 +1,14 @@
 .products-list-container{
   width: 80%;
 }
+.empty-product-list{
+  height: 15vh;
+  background-color: #eeeded;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .products-list{
   display:flex;
   flex-direction: row;

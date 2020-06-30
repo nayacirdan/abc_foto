@@ -4,31 +4,59 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss'
+import {useHistory, useRouteMatch, useLocation} from 'react-router';
+import {connect, useDispatch} from "react-redux";
+import {setCurrentPage, setSortProducts} from "../../store/actions/actions";
 
 
-const SortProductSelect = () => {
-    const [sortProducts, setSortProducts] = React.useState('lowFirst');
+
+
+
+const SortProductSelect = ({sortProducts}) => {
+
+    let history=useHistory();
+    let location=useLocation();
+    const dispatch=useDispatch();
+
+    const searchParams = new URLSearchParams(location.search);
+
+
     const handleChange = (event) => {
-        setSortProducts(event.target.value);
+        // debugger;
+        if(searchParams.has('sort')) {
+            searchParams.delete('sort');
+        }
+        searchParams.append('sort', event.target.value);
+
+        console.log('searchParams',searchParams.toString());
+        dispatch(setSortProducts(event.target.value));
+        dispatch(setCurrentPage(1));
+        history.push(`/products/filter?${searchParams}`);
     };
 
     return (
         <div className='sort-products'>
             <FormControl className='form-sort'>
-                <InputLabel className='form-sort__label' id="demo-customized-select-label">Сортировать по</InputLabel>
+                <InputLabel className='form-sort__label' id="customized-select-label">Сортировать по</InputLabel>
                 <Select
-                    labelId="demo-customized-select-label"
-                    id="demo-customized-select"
+                    labelId="customized-select-label"
+                    id="customized-select"
                     value={sortProducts}
                     onChange={handleChange}
                 >
-                    <MenuItem value='lowFirst'>Снижению цены</MenuItem>
-                    <MenuItem value='highFirst'>Возрастанию цены</MenuItem>
+                    <MenuItem value='-currentPrice'>Снижению цены</MenuItem>
+                    <MenuItem value='currentPrice'>Возрастанию цены</MenuItem>
                 </Select>
             </FormControl>
         </div>
     );
 };
 
-export default SortProductSelect;
+const mapStoreToProps=(store)=>{
+    return {
+        sortProducts: store.categoryPage.sortBy
+    }
+}
+
+export default connect(mapStoreToProps)(SortProductSelect);
 

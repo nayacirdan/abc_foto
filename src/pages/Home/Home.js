@@ -3,6 +3,7 @@ import TopSlider from "../../components/TopSlider/TopSlider";
 import Slider from "../../containers/SliderOfHitProducts/Slider";
 import PromotionsAndOffers from "../../components/Promotions/PromotionsAndOffers";
 import {SignAndRegForm} from "../../components/Modals/SignAndRegForm";
+import Slider from '../../containers/SliderOfHitProducts/Slider';
 
 const Home = (props) => {
 
@@ -11,7 +12,6 @@ const Home = (props) => {
       <TopSlider />
       <Slider sliderTitle="Популярные модели" />
       <PromotionsAndOffers />
-
     </div>
   );
 };
