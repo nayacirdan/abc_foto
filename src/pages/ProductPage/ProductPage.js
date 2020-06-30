@@ -93,7 +93,7 @@ const ProductPage = (props) => {
                                     <ContainedButtons className="green-btn"
                                         text={<div className="btn btn-buy">
                                             <p>Купить</p>
-                                            <ShoppingCartOutlinedIcon className='buy-icon' />
+                                            <ShoppingCartOutlinedIcon className='buy-icon lightColorIcon'/>
                                         </div>} />
                                     <div className="delivery">
                                         <h4>ДОСТАВКА</h4>

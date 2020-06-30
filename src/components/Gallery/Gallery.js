@@ -3,17 +3,10 @@ import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';
 import './Gallery.scss';
 
-import { connect } from 'react-redux';
-import { setCurrentProduct } from '../../store/actions/actions';
-
 
 const Gallery = (props) => {
-    const { product, setCurrentProduct, currentProduct } = props;
+    const { product } = props;
     const { imageUrls } = product;
-
-    useEffect(() => {
-        setCurrentProduct(currentProduct)
-    }, [setCurrentProduct])
 
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
@@ -75,16 +68,4 @@ const Gallery = (props) => {
     );
 };
 
-const mapStateToProps = store => {
-     return {
-        currentProduct: store.products.currentProduct
-     }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentProduct: (prod) => dispatch(setCurrentProduct(prod))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+export default Gallery;

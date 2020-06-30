@@ -6,7 +6,7 @@ import CatalogLinks from "../../../HOCs/CatalogLinks/CatalogLinks";
 const Navigation = () => {
     return (
         <nav className="nav">
-            <ul className="nav__menu">
+            {/* <ul className="nav__menu">
                 <li className="nav__menu-item">
                     <a>Цифровая техника</a>
                     <SubMenu/>
@@ -33,7 +33,7 @@ const Navigation = () => {
                     <a>Фоторамки</a>
                 </li>
 
-            </ul>
+            </ul> */}
             <CatalogLinks/>
         </nav>
     );

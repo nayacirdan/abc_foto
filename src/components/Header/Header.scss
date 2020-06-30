@@ -106,6 +106,7 @@
 }
 .search-form {
     width: 40%;
+    position: relative;
 }
 .logo {
     cursor: pointer;
@@ -120,4 +121,7 @@
     height: 1px;
     background-color: #E7E9EB;
     border: none;
+}
+.MuiIconButton-root.Mui-disabled {
+    background-color: #C2C8D0 !important;
 }

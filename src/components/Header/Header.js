@@ -31,10 +31,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         margin: "0 auto",
     },
+    lightColorIcons: {
+        color: '#fff'
+    },
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
-        position: 'relative'
+        position: 'relative',
     },
     iconButton: {
         padding: 10,
@@ -44,25 +47,25 @@ const useStyles = makeStyles((theme) => ({
         color: "#000"
     },
     customInput: {
-        width: "500px",
+        width: "100%",
         height: "50px",
         boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.01)",
         borderRadius: "20px",
         paddingLeft: '2%',
-        display: 'flex',
+        display: 'grid',
+        gridTemplateColumns: '10% 1fr',
+        justifyItems: 'start',
         alignItems: 'center',
-        flexWrap: '10px'
+        backgroundColor: 'rgba(255, 255, 255, 0.95)'
     },
     customDiv: {
         zIndex: "2",
         width: "500px",
         height: "200px",
-        display: 'inline-block',
-        marginBottom: '-29.5%'
-
+        marginBottom: '-30%'
     },
     productsListBySearch: {
-        position: "absolute",
+        position: 'absolute !important',
     },
     imgMini: {
         width: '20px',
@@ -71,20 +74,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, productsBySearch, history, product, setCurrentProduct } = props;
+    const { searchChange, getProductsBySearch, productsBySearch, history, setCurrentProduct } = props;
     const classes = useStyles();
     const [value, setValue] = useState('');
-
-    // useEffect(() => {
-    //     getProductsBySearch({ query: product })
-    //     setCurrentProduct(product)
-    //     // }, [getProductsBySearch])
-    // }, [setCurrentProduct, getProductsBySearch])
-
-
-    // const handleChange = (e) => {
-    //     setValue({ name: e.target.value})
-    // }
 
     const productsListBySearch = productsBySearch.map((prodBySearch, index) =>
         (<Typography key={index} component="div" className={classes.customDiv}>
@@ -187,8 +179,8 @@ const Header = (props) => {
                                 getProductsBySearch({ "query": e.target.value.trim() })
                             }}
                         />
-                        <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                            <SearchIcon />
+                        <IconButton type="submit" className={classes.iconButton } aria-label="search" disabled >
+                            <SearchIcon className={classes.lightColorIcons} />
                         </IconButton>
                     </Paper>
                     <Typography component='div' className={classes.productsListBySearch}>

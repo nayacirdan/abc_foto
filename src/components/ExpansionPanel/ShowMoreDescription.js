@@ -6,7 +6,7 @@ export const ShowMoreDescription = () => {
             <div className="show-more">
                 <div className="description_block designer-bg">
                     <div className="description_block-right">
-                        <img alt="desc-2" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-2_qpipfl.png' />
+                        <img className='show-more-icon' alt="desc-2" src='https://res.cloudinary.com/miratsiupiak/image/upload/v1592832902/description-productPage/description-2_qpipfl.png' />
                     </div>
                     <div className="description_block-left">
                         <h3>
