@@ -12,7 +12,7 @@ const products = (state = initialState, action) => {
     switch (action.type) {
         case Actions.FETCH_PRODUCTS:
             return { ...state, products: action.payload, productsBySearch: []  };
-        case Actions.FETCH_PRODUCTS_2:
+        case Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING:
             return { ...state, productsBySearch: action.payload  };
         case Actions.SEARCH_CHANGE:
             return { ...state, product: action.payload };

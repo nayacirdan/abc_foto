@@ -11,6 +11,9 @@ import Grid from "@material-ui/core/Grid";
 import cartIcon from "../../svg/cartIcon";
 import { withRouter } from "react-router";
 
+import { setCurrentProduct } from '../../store/actions/actions';
+import { connect } from 'react-redux';
+
 
 
 const useStyles = makeStyles({
@@ -149,7 +152,7 @@ const useStyles = makeStyles({
 
 
 const CardItem = (props) => {
-    const { product, history } = props;
+    const { product, history, setCurrentProduct } = props;
 
     const {
         imageUrls,
@@ -163,8 +166,9 @@ const CardItem = (props) => {
         itemNo
     } = product;
 
-    const redirectToProductPage = () => {
+    const redirectToProductPage = (product) => {
         history.push(`/products/filter/${itemNo}`)
+        setCurrentProduct(product)
     }
 
     const getProductAvailability = () => {
@@ -255,4 +259,10 @@ const CardItem = (props) => {
     )
 };
 
-export default withRouter(CardItem);
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)) 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(CardItem));

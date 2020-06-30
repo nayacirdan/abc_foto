@@ -26,8 +26,9 @@
     width: 120%;
 
     &_item {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 10% auto 20%;
+        grid-gap: 3%;
         @include delivery-font-style;
     
         &-free {
@@ -38,7 +39,6 @@
         }
         &-text.MuiTypography-root.MuiTypography-body1, &-free.MuiTypography-root.MuiTypography-body1, &-price.MuiTypography-root.MuiTypography-body1 {
             line-height: 3;
-            
         }
     }
     

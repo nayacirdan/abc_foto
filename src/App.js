@@ -4,7 +4,7 @@ import TopSlider from "./components/TopSlider/TopSlider";
 import Slider from './containers/SliderOfHitProducts/Slider';
 import './App.scss';
 import Footer from "./components/Footer/Footer";
-import {Switch, Route, Link, NavLink} from 'react-router-dom'
+import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
@@ -22,11 +22,11 @@ const App = (props) => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-         <Route exact path="/products/filter/:itemNo" component={ProductPage} />
+          <Route exact path="/products/filter/:itemNo" component={ProductPage} />
           <Route exact path='/cameras' component={Cameras} />
-          <Route exact path='/cart'  component={Cart}/>
+          <Route exact path='/cart' component={Cart} />
           <Route exact path="/checkout" component={CheckoutPage} />
-          <Route  path='/products/filter' component={CategoryRoutes}/>
+          <Route path='/products/filter' component={CategoryRoutes} />
         </Switch>
         <Footer />
       </div>

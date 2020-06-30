@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
 import { getProducts } from '../../store/actions/actions';
+import { Link } from 'react-scroll';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -31,7 +32,7 @@ function SamplePrevArrow(props) {
 }
 
 const Responsive = (props) => {
-    const { products, getProducts, sliderTitle } = props;
+    const { products, getProducts, sliderTitle, product } = props;
     useEffect(() => {
         getProducts()
     }, [getProducts]);
@@ -75,10 +76,18 @@ const Responsive = (props) => {
     const filtedProducts = (products || []).filter((key) => (key.isAvailable === true || key.isExpected === true));
     const sliderProducts = filtedProducts.map(product => (
         <div key={product.itemNo} className="slider-card">
-            <Card key={product.itemNo} product={product} />
+            <Link
+                activeClass='active'
+                spy={true}
+                smooth={true}
+                to='productPage'
+                duration={500}
+            >
+                <Card key={product.itemNo} product={product} />
+            </Link>
         </div>)
     );
-    
+
     return (
         <div className="container slider">
             <h2 className="slider__header">{sliderTitle}</h2>

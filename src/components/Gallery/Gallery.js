@@ -33,14 +33,14 @@ const Gallery = (props) => {
         shouldSwiperUpdate: true
 
     };
-    let slidesRight=[];
-    let slidesLeft=[]
-    if (imageUrls&& imageUrls.length) {
-         slidesRight = imageUrls.map(slide => (
+    let slidesRight = [];
+    let slidesLeft = []
+    if (imageUrls && imageUrls.length) {
+        slidesRight = imageUrls.map(slide => (
             <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
         ));
-         slidesLeft = imageUrls.map(slide => (
-            <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
+        slidesLeft = imageUrls.map(slide => (
+            <div key={slide} className="prod-slider-left"><img alt='.' src={slide} /></div>
         ));
     }
 

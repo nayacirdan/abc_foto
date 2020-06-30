@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import Gallery from '../../components/Gallery/Gallery';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
-import ContainedButtons from '../../components/Button/Button';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import SimpleExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel';
 import { Description } from '../../components/Tabs/Description';
 import Characteristics from '../../components/Tabs/Characteristics';
+import ProductPageInfo from './ProductPageInfo';
 import Slider from '../../containers/SliderOfHitProducts/Slider';
 import './ProductPage.scss';
-import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
+
 import axios from 'axios';
+
 import { withRouter } from "react-router";
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
@@ -20,7 +18,7 @@ const ProductPage = (props) => {
 
     useEffect(() => {
         currentProduct().then(result => setCurrentProduct(result))
-    }, [setCurrentProduct])
+    }, [setCurrentProduct]);
 
     const { match } = props;
     function currentProduct() {
@@ -36,27 +34,9 @@ const ProductPage = (props) => {
     //     setProduct(result);
     // }
 
-    const getProductAvailability = () => {
-        if (product.isAvailable) {
-            return (<span className="availText">
-                В наличии
-            </span>)
-        } else {
-            if (product.isExpected) {
-                return (<span className="expectText">
-                    Ожидается
-                </span>)
-            } else {
-                return (<span className="notAvailText">
-                    Нет в наличии
-                </span>)
-            }
-        }
-    }
-
     return (
         product ?
-            <div>
+            <div id='productPage'>
                 <div className="container">
                     {/* <Breadcrumb productTitle={product.name} /> */}
                     <div className='slider-info'>
@@ -66,65 +46,7 @@ const ProductPage = (props) => {
                         </div>
                         <div></div>
                     </div>
-                    <div className="slider-info">
-                        <Gallery product={product} />
-                        <div className='credit'>
-                            <div className='availability'>{getProductAvailability()}</div>
-                            <div>
-                                {product.previousPrice ? (
-                                    <div className='priceContainer'>
-                                        <div className='salePrice'>
-                                            <span>{product.currentPrice}</span> грн
-                                    </div>
-                                        <div className='oldPrice'>
-                                            <span>{product.previousPrice}</span> грн
-                                    </div>
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='fullPrice'>
-                                            <span>{product.currentPrice}</span> грн
-                                        </div>
-                                    )
-                                }
-                            </div>
-                            <div className='purchase'>
-                                <div className='purchase_block'>
-                                    <ContainedButtons className="green-btn"
-                                        text={<div className="btn btn-buy">
-                                            <p>Купить</p>
-                                            <ShoppingCartOutlinedIcon className='buy-icon lightColorIcon'/>
-                                        </div>} />
-                                    <div className="delivery">
-                                        <h4>ДОСТАВКА</h4>
-                                        <div>
-                                            <ul>
-                                                <li>Доставка по всей Украине</li>
-                                                <li>Оплата товара при получении</li>
-                                                <li>Возможен самовывоз</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className='purchase_block'>
-                                    <ContainedButtons className="grey-btn"
-                                        text={<div className="btn">
-                                            <p>Купить в кредит</p>
-                                        </div>} />
-
-                                    <div className="guarantee">
-                                        <h4>ГАРАНТИЯ</h4>
-                                        <p>Официальная 24 месяца от производителя</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <SimpleExpansionPanel title='Условия доставки и оплаты'
-                                main={<DeliveryInfo />}
-                                className='expansion-panel'
-                            />
-                        </div>
-                    </div>
+                    <ProductPageInfo />
                     <Tabs
                         description={<Description />}
                         characteristics={<Characteristics currentProduct={product} />}

@@ -2,7 +2,7 @@ import Actions from '../constans/constans';
 import axios from 'axios';
 
 export const getProducts = () => (dispatch) => {
-    dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: []})
+    dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: []})
     axios.get('/products')
         .then(res => {
             dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data })
@@ -16,13 +16,13 @@ export const getProductsBySearch = (text) => (dispatch) => {
             // const filtered = res.data.filter(item => {
             //     return res.data.name.toLowerCase().includes(text.toLowerCase())
             // })
-            dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: res.data })
+            dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: res.data })
         })
         // .catch(error => {
         //     dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
         // })
     } else {
-        dispatch({ type: Actions.FETCH_PRODUCTS_2, payload: [] });
+        dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: [] });
     }
 };
 

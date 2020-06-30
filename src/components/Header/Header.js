@@ -145,7 +145,7 @@ const Header = (props) => {
         <div className="classes.root">
             <div className='Header__top'>
                 <Grid container>
-                    <Grid item md={8}>
+                    <Grid item md={12}>
                         <span className='Header__text'>Магазин</span>
                         <span className='Header__text'>Кредит</span>
                         <span className='Header__text'>Доставка И Оплата</span>
@@ -154,14 +154,11 @@ const Header = (props) => {
                         <span className='Header__text'>Контакты</span>
                         <span className='Header__text'>Карта сайта</span>
                     </Grid>
-                    <Grid item md={4}>
-                        <div className='Header__text2'>Укр/<strong>Рус</strong></div>
-                    </Grid>
                 </Grid>
             </div>
             <div className="container header" >
 
-                <NavLink exact to="/cameras">
+                <NavLink exact to="/">
                     <div className="logo">{logo}</div>
                 </NavLink>
 
