@@ -9,6 +9,20 @@ export const getProducts = () => (dispatch) => {
         })
 };
 
+export const openModal=()=>(dispatch)=>{
+    debugger;
+    dispatch({type: Actions.OPEN_MODAL})
+}
+
+export const closeModal=()=>(dispatch)=>{
+    debugger;
+    dispatch({type: Actions.CLOSE_MODAL})
+}
+
+export const setModalType=(modalType)=>(dispatch)=>{
+    debugger;
+    dispatch({type: Actions.SET_MODAL_TYPE, payload:modalType})
+
 export const getFilteredProducts = (text) => (dispatch) => {
     if(text.query) {
         axios.post('/products/search', text)
@@ -70,4 +84,5 @@ export const getAllCatalog=()=>(dispatch)=>{
 
 export const searchChange = (text) => (dispatch) => {
     dispatch ({ type: Actions.SEARCH_CHANGE, payload: text })
+  
 }

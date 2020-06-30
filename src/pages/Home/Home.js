@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 import TopSlider from "../../components/TopSlider/TopSlider";
-import Slider from '../../containers/SliderOfHitProducts/Slider';
+import Slider from "../../containers/SliderOfHitProducts/Slider";
 import PromotionsAndOffers from "../../components/Promotions/PromotionsAndOffers";
-
+import {SignAndRegForm} from "../../components/Modals/SignAndRegForm";
+import Slider from '../../containers/SliderOfHitProducts/Slider';
 
 const Home = (props) => {
+
   return (
     <div>
       <TopSlider />
       <Slider sliderTitle="Популярные модели" />
-      <PromotionsAndOffers/>
+      <PromotionsAndOffers />
     </div>
   );
 };
