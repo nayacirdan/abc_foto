@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom';
+import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,7 +13,11 @@ import logo from '../../svg/logo';
 
 import './Header.scss';
 import Grid from "@material-ui/core/Grid";
+import SubMenu from "./Navigation/SubMenu";
 import Navigation from "./Navigation/Navigation";
+import InputForm from "../Modals/ValidationForm";
+import {openModal, setModalType} from "../../store/actions/actions";
+import {useDispatch} from "react-redux";
 
 import { searchChange, getProductsBySearch } from '../../store/actions/actions';
 import { connect } from 'react-redux';
@@ -22,6 +26,7 @@ import Typography from '@material-ui/core/Typography';
 import { setCurrentProduct } from '../../store/actions/actions';
 
 import { withRouter } from "react-router";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -106,6 +111,25 @@ const Header = (props) => {
         getProductsBySearch({ "query": e.target.value.trim() })
     }
 
+  const [isHovering, setIsHovering] = useState(false);
+
+  const toggleHoverState = () => {
+    setIsHovering(!isHovering)
+  };
+  const dispatch=useDispatch();
+
+  const openSignUpModal=()=>{
+    debugger;
+    dispatch (setModalType('signUp'))
+    dispatch (openModal());
+
+  }
+  const openSignInModal=()=>{
+    debugger;
+    dispatch (setModalType('signIn'))
+    dispatch (openModal());
+
+  }
 
     const phoneNumber = (
         <MenuListComposition
@@ -171,9 +195,9 @@ const Header = (props) => {
             </div>
             <div className="container header" >
 
-                <NavLink exact to="/">
-                    <div className="logo">{logo}</div>
-                </NavLink>
+        <NavLink exact to="/">
+          <div className="logo">{logo}</div>
+        </NavLink>
 
                 <div className="search-form">
                     <Paper component="form" className={classes.root}>
@@ -195,28 +219,28 @@ const Header = (props) => {
                     </Typography>
                 </div>
 
-                <div className="menu-item">
-                    {phoneNumber}
-                </div>
-
-                <div>{AccountMenu}</div>
-
-                <NavLink exact to="/cart" className="cart-nav">
-                    <div className="account-menu">
-                        <div className="account-menu__accountIcon">{cartIcon}</div>
-                        <div className="account-menu__iconText">Корзина</div>
-                    </div>
-                </NavLink>
-            </div>
-            <div className='Header__bottom'>
-                <Grid container>
-                    <Grid item md={12}>
-                        <Navigation />
-                    </Grid>
-                </Grid>
-            </div>
+        <div className="menu-item">
+          {phoneNumber}
         </div>
-    )
+
+        <div>{AccountMenu}</div>
+
+        <NavLink exact to="/cart" className="cart-nav">
+          <div className="account-menu">
+            <div className="account-menu__accountIcon">{cartIcon}</div>
+            <div className="account-menu__iconText">Корзина</div>
+          </div>
+        </NavLink>
+      </div>
+      <div className='Header__bottom'>
+        <Grid container>
+          <Grid item md={12}>
+            <Navigation/>
+          </Grid>
+        </Grid>
+      </div>
+    </div>
+  )
 };
 
 const mapStateToProps = store => {
