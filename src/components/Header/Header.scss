@@ -7,11 +7,11 @@
     text-transform: capitalize;
 
     color: #000000;
-  }
-  .container {
-      width: 85%;
-      margin: 0 auto;
-  }
+}
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
 
 .Header {
     &__top {
@@ -94,7 +94,7 @@
     &__tel-number {
         text-decoration: none;
         @include fontStyle;
-    
+
         & span {
             font-weight: 600;
         }
