@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
         gridTemplateColumns: '10% 1fr',
         justifyItems: 'start',
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)'
+        backgroundColor: 'rgba(255, 255, 255, 1)'
     },
     customDiv: {
         zIndex: "2",
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     },
     productsListBySearch: {
         position: 'absolute !important',
+        zIndex: '5'
     },
     imgMini: {
         width: '20px',
@@ -92,6 +93,18 @@ const Header = (props) => {
             </Typography>
         </Typography>));
     productsBySearch.length = 5;
+
+    // const resetValue = () => {
+    //     setValue('')
+    //     searchChange('')
+    //     getProductsBySearch({ "query": '' })
+    // }
+
+    const onChangeHandler = (e) => {
+        setValue(e.target.value)
+        searchChange(e.target.value)
+        getProductsBySearch({ "query": e.target.value.trim() })
+    }
 
 
     const phoneNumber = (
@@ -169,14 +182,11 @@ const Header = (props) => {
                             placeholder="Поиск товаров"
                             inputProps={{ 'aria-label': 'search google maps' }}
                             value={value}
-                            // autoFocus
-                            onChange={e => {
-                                setValue(e.target.value)
-                                searchChange(e.target.value)
-                                getProductsBySearch({ "query": e.target.value.trim() })
-                            }}
+                            autoFocus
+                            onChange={onChangeHandler}
+                            // onBlur={resetValue}
                         />
-                        <IconButton type="submit" className={classes.iconButton } aria-label="search" disabled >
+                        <IconButton type="submit" className={classes.iconButton} aria-label="search" disabled >
                             <SearchIcon className={classes.lightColorIcons} />
                         </IconButton>
                     </Paper>
