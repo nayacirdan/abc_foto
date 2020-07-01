@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "3%",
     boxShadow: "none"
   },
+
 }));
 
 export default function FullWidthTabs(props) {
@@ -77,7 +78,7 @@ export default function FullWidthTabs(props) {
         >
           <Tab label="ОПИСАНИЕ" {...a11yProps(0)} />
           <Tab label="ХАРАКТЕРИСТИКИ" {...a11yProps(1)} />
-          <Tab label="АКСЕССУАРЫ" {...a11yProps(2)} />
+          {/* <Tab label="АКСЕССУАРЫ" {...a11yProps(2)} /> */}
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -91,9 +92,9 @@ export default function FullWidthTabs(props) {
         <Typography component="div" value={value} index={1} dir={theme.direction}>
           {characteristics}
         </Typography>
-        <Typography component="div" value={value} index={2} dir={theme.direction}>
+        {/* <Typography component="div" value={value} index={2} dir={theme.direction}>
           {accessories}
-        </Typography>
+        </Typography> */}
       </SwipeableViews>
     </div>
   );

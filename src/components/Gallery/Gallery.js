@@ -7,7 +7,6 @@ import './Gallery.scss';
 const Gallery = (props) => {
     const { product } = props;
     const { imageUrls } = product;
-    console.log("Gallery.js", product.imageUrls)
 
     const [gallerySwiper, getGallerySwiper] = useState(null);
     const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
@@ -19,7 +18,8 @@ const Gallery = (props) => {
         //     prevEl: '.swiper-button-prev',
         // },
         direction: "vertical",
-        slidesPerView: 1
+        slidesPerView: 1,
+        shouldSwiperUpdate: true
     };
     const thumbnailSwiperParams = {
         getSwiper: getThumbnailSwiper,
@@ -29,17 +29,18 @@ const Gallery = (props) => {
         touchRatio: 0.2,
         slideToClickedSlide: true,
         direction: "vertical",
-        slidesPerView: 4
+        slidesPerView: 4,
+        shouldSwiperUpdate: true
 
     };
-    let slidesRight=[];
-    let slidesLeft=[]
-    if (imageUrls&& imageUrls.length) {
-         slidesRight = imageUrls.map(slide => (
+    let slidesRight = [];
+    let slidesLeft = []
+    if (imageUrls && imageUrls.length) {
+        slidesRight = imageUrls.map(slide => (
             <div key={slide} className="prod-slider-rigth"><img alt='.' src={slide} /></div>
         ));
-         slidesLeft = imageUrls.map(slide => (
-            <div key={slide}><img className="prod-slider-left" alt='.' src={slide} /></div>
+        slidesLeft = imageUrls.map(slide => (
+            <div key={slide} className="prod-slider-left"><img alt='.' src={slide} /></div>
         ));
     }
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: "-0.03em"
     },
     ExpandMoreIcon: {
-        color: "#00B0FF"
+        color: '#00B0FF !important'
     },
 }));
 
@@ -32,7 +32,7 @@ function SimpleExpansionPanel(props) {
         <div className={classes.root}>
             <ExpansionPanel>
                 <ExpansionPanelSummary
-                    expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon} className={classExpIcon}  />}
+                    expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon} />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                     className={readMoreClass}

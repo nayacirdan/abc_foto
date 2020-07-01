@@ -10,7 +10,7 @@ export const DeliveryInfo = () => {
         <div className='delivery'>
             <div className="delivery_item">
                 <span className='delivery_item-icon'><StorefrontIcon /></span>
-                <span className='delivery_item-text'>Самовывоз с магазина</span>
+                <span className='delivery_item-text'>Cамовывоз с магазина</span>
                 <span component='span' className="delivery_item-free">Бесплатно</span>
             </div>
             <div className="delivery_item">

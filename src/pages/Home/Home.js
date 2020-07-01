@@ -3,7 +3,8 @@ import TopSlider from "../../components/TopSlider/TopSlider";
 import Slider from "../../containers/SliderOfHitProducts/Slider";
 import PromotionsAndOffers from "../../components/Promotions/PromotionsAndOffers";
 
-const Home = (props) => {
+
+const Home = () => {
 
   return (
     <div>

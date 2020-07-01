@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -18,11 +18,11 @@ import LockIcon from "@material-ui/icons/Lock";
 import PhoneIcon from "@material-ui/icons/Phone";
 
 import "./SignInModal.scss";
-import {closeModal, setModalType} from "../../store/actions/actions";
-import {useDispatch, useSelector} from "react-redux";
+import { closeModal, setModalType } from "../../store/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function TabPanel(props) {
-  const {children, value, index, ...other} = props;
+  const { children, value, index, ...other } = props;
 
   return (
     <div
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignAndRegForm = (props) => {
   const {
-    values: {name, email, phone, password, confirmPassword},
+    values: { name, email, phone, password, confirmPassword },
     errors,
     touched,
     handleSubmit,
@@ -74,21 +74,19 @@ export const SignAndRegForm = (props) => {
 
   console.table(props);
 
-  const chooseTabValue=(modalType)=>{
-    debugger;
-    if (modalType==='signIn') {
+  const chooseTabValue = (modalType) => {
+    if (modalType === 'signIn') {
       return 0;
-    } else if(modalType==='signUp'){
+    } else if (modalType === 'signUp') {
       return 1;
     } else {
       console.log('strange things happened')
     }
   }
 
-  const modalType=useSelector(store=>store.modals.modalType);
-  debugger;
-  const value=chooseTabValue(modalType);
-  console.log('TABS', 'value=', value, '  modalType=',modalType);
+  const modalType = useSelector(store => store.modals.modalType);
+  const value = chooseTabValue(modalType);
+  console.log('TABS', 'value=', value, '  modalType=', modalType);
   const dispatch = useDispatch();
 
 
@@ -103,7 +101,7 @@ export const SignAndRegForm = (props) => {
 
   const changeReg = (event, newValue) => {
     dispatch(setModalType(event.currentTarget.name));
-    console.log('changeReg', 'value=', value, '  modalType=',modalType);
+    console.log('changeReg', 'value=', value, '  modalType=', modalType);
   };
 
   const responseGoogle = (response) => {
@@ -128,7 +126,7 @@ export const SignAndRegForm = (props) => {
         <div className="gray-bg">
           <div className="modal-signin">
             <span className="close-modal" onClick={closeModalHandler}>
-              <img src="/images/promotions/close-modal.png" alt="img"/>
+              <img src="/images/promotions/close-modal.png" alt="img" />
             </span>
             <div className="container">
               <div className="sign-reg-header">
@@ -138,8 +136,8 @@ export const SignAndRegForm = (props) => {
                     onChange={changeReg}
                     aria-label="simple tabs example"
                   >
-                    <Tab label="Войти" {...a11yProps(0)} name='signIn'/>
-                    <Tab label="Зарегистрироваться" {...a11yProps(1)} name='signUp'/>
+                    <Tab label="Войти" {...a11yProps(0)} name='signIn' />
+                    <Tab label="Зарегистрироваться" {...a11yProps(1)} name='signUp' />
                   </Tabs>
                 </AppBar>
               </div>
@@ -158,7 +156,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <NameIcon/>
+                        <NameIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -179,7 +177,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <EmailIcon/>
+                        <EmailIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -200,7 +198,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <PhoneIcon/>
+                        <PhoneIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -220,7 +218,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <LockIcon/>
+                        <LockIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -242,7 +240,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <LockIcon/>
+                        <LockIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -256,7 +254,7 @@ export const SignAndRegForm = (props) => {
                 >
                   Зарегистрироваться
                 </Button>
-                <hr className="hr-line-below-form"/>
+                <hr className="hr-line-below-form" />
                 <div className="reg-links">
                   <div className="logo">
                     <GoogleLogin
@@ -298,7 +296,7 @@ export const SignAndRegForm = (props) => {
         <div className="gray-bg">
           <div className="modal-signin signin-height">
             <span className="close-modal" onClick={closeModalHandler}>
-              <img src="/images/promotions/close-modal.png" alt="img"/>
+              <img src="/images/promotions/close-modal.png" alt="img" />
             </span>
             <div className="container">
               <AppBar position="static">
@@ -307,8 +305,8 @@ export const SignAndRegForm = (props) => {
                   onChange={changeReg}
                   aria-label="simple tabs example"
                 >
-                  <Tab label="Войти" {...a11yProps(0)} name='signIn'/>
-                  <Tab label="Зарегистрироваться" {...a11yProps(1)} name='signUp'/>
+                  <Tab label="Войти" {...a11yProps(0)} name='signIn' />
+                  <Tab label="Зарегистрироваться" {...a11yProps(1)} name='signUp' />
                 </Tabs>
               </AppBar>
               <form onSubmit={handleSubmit}>
@@ -325,7 +323,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <EmailIcon/>
+                        <EmailIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -347,7 +345,7 @@ export const SignAndRegForm = (props) => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <LockIcon/>
+                        <LockIcon />
                       </InputAdornment>
                     ),
                   }}
@@ -356,7 +354,7 @@ export const SignAndRegForm = (props) => {
                 <Button type="submit" color="primary" variant="outlined">
                   Войти
                 </Button>
-                <hr className="hr-line-below-form"/>
+                <hr className="hr-line-below-form" />
                 <div className="reg-links">
                   <div className="logo">
                     <GoogleLogin

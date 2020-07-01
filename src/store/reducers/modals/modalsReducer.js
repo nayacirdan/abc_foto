@@ -8,7 +8,6 @@ const initialState = {
 const modals = (state = initialState, action) => {
     switch (action.type) {
         case Actions.OPEN_MODAL:
-            debugger;
             return {...state, modalIsOpen: true}
 
         case Actions.CLOSE_MODAL:
