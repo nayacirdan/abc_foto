@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -6,18 +6,14 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MenuListComposition from '../Menu/MenuListComposition';
+import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
 import cartIcon from '../../svg/cartIcon';
 import logo from '../../svg/logo';
 
 import './Header.scss';
 import Grid from "@material-ui/core/Grid";
-import SubMenu from "./Navigation/SubMenu";
 import Navigation from "./Navigation/Navigation";
-import InputForm from "../Modals/ValidationForm";
-import { openModal, setModalType } from "../../store/actions/actions";
-import { useDispatch } from "react-redux";
 
 import { searchChange, getProductsBySearch } from '../../store/actions/actions';
 import { connect } from 'react-redux';
@@ -26,7 +22,6 @@ import Typography from '@material-ui/core/Typography';
 import { setCurrentProduct } from '../../store/actions/actions';
 
 import { withRouter } from "react-router";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -71,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     },
     productsListBySearch: {
         position: 'absolute !important',
-        zIndex: '5 !important'
+        zIndex: '5'
     },
     imgMini: {
         width: '20px',
@@ -111,23 +106,6 @@ const Header = (props) => {
         getProductsBySearch({ "query": e.target.value.trim() })
     }
 
-    const [isHovering, setIsHovering] = useState(false);
-
-    const toggleHoverState = () => {
-        setIsHovering(!isHovering)
-    };
-    const dispatch = useDispatch();
-
-    const openSignUpModal = () => {
-        dispatch(setModalType('signUp'))
-        dispatch(openModal());
-
-    }
-    const openSignInModal = () => {
-        dispatch(setModalType('signIn'))
-        dispatch(openModal());
-
-    }
 
     const phoneNumber = (
         <MenuListComposition
@@ -162,13 +140,13 @@ const Header = (props) => {
             }
             secondItem={
                 <div className="menu-item">
-                    <div onClick={openSignInModal}>Войти</div>
+                    <div>Войти</div>
                 </div>
             }
             thirdItem={
                 <div>
                     <hr className="hr" />
-                    <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')} >
+                    <div className="menu-item" >
                         Зарегистрироваться
                     </div>
                 </div>
@@ -206,7 +184,7 @@ const Header = (props) => {
                             value={value}
                             autoFocus
                             onChange={onChangeHandler}
-                        // onBlur={resetValue}
+                            // onBlur={resetValue}
                         />
                         <IconButton type="submit" className={classes.iconButton} aria-label="search" disabled >
                             <SearchIcon className={classes.lightColorIcons} />

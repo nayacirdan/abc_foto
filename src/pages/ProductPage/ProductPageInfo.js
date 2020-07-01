@@ -44,6 +44,9 @@ const ProductPageInfo = (props) => {
             </div>
         )
     );
+    const redirectHandler = () => {
+        window.location.assign('https://rozetka.com.ua/credit/')
+    }
 
     return (
         <>
@@ -75,6 +78,7 @@ const ProductPageInfo = (props) => {
                         </div>
                         <div className='purchase_block'>
                             <ContainedButtons className="grey-btn"
+                                onClick={redirectHandler}
                                 text={<div className="btn">
                                     <p>Купить в кредит</p>
                                 </div>} />
