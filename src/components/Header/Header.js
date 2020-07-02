@@ -26,6 +26,7 @@ import Typography from '@material-ui/core/Typography';
 import { setCurrentProduct } from '../../store/actions/actions';
 
 import { withRouter } from "react-router";
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -179,15 +180,14 @@ const Header = (props) => {
     return (
         <div className="classes.root">
             <div className='Header__top'>
-                <Grid container>
-                    <Grid item md={12}>
-                        <span className='Header__text'>Магазин</span>
-                        <span className='Header__text'>Кредит</span>
-                        <span className='Header__text'>Доставка И Оплата</span>
-                        <span className='Header__text'>Гарантии</span>
-                        <span className='Header__text'>О Компании</span>
-                        <span className='Header__text'>Контакты</span>
-                        <span className='Header__text'>Карта сайта</span>
+                <Grid container justify='space-between'>
+                    <Grid item md={12} justify="space-around">
+                        <Link to='/shop' className='Header__text'>Магазин</Link>
+                        <Link to='/credit' className='Header__text'>Кредит</Link>
+                        <Link to='/delivery' className='Header__text'>Доставка И Оплата</Link>
+                        <Link to='/guarantee' className='Header__text'>Гарантии</Link>
+                        <Link to='/bout' className='Header__text'>О Компании</Link>
+                        <Link to='/contacts' className='Header__text'>Контакты</Link>
                     </Grid>
                 </Grid>
             </div>

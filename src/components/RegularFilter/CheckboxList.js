@@ -37,7 +37,7 @@ const CheckboxList = (props) => {
                                     checked={checked.indexOf(title) !== -1}
                                     tabIndex={-1}
                                     disableRipple
-                                    inputProps={{'aria-labelledby': labelId}}
+                                    inputProps={{'aria-labelledby': labelId, 'name':title}}
                                 />
                             </ListItemIcon>
                             <ListItemText id={labelId} primary={title}/>

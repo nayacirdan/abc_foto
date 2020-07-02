@@ -25,6 +25,9 @@
         color: black;
         margin-right: 20px;
         cursor: pointer;
+        & .MuiTypography-colorPrimary, &:visited, &:hover, &:active{
+            color:#000000;
+        }
     }
     &__text2 {
         font-size: 12px;
