@@ -1,12 +1,10 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import TopSlider from "./components/TopSlider/TopSlider";
-import Slider from './containers/SliderOfHitProducts/Slider';
+import Header from "./containers/Header/Header";
 import './App.scss';
 import Footer from "./components/Footer/Footer";
 import {connect} from "react-redux";
 import ValidationForm from "./components/Modals/ValidationForm";
-import {Switch, Route, Link, NavLink} from 'react-router-dom';
+import {Switch, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Cameras from "./pages/Cameras/Cameras";
 import ProductPage from './pages/ProductPage/ProductPage';
