@@ -9,23 +9,23 @@ const SubMenu = () => {
             <div className="vl"></div>
             <li className="nav__submenu-item ">
                 <NavLink exact to='/cameras'>Фотоапараты</NavLink>
-                <a>Кардридеры</a>
+                <a href='#'>Кардридеры</a>
             </li>
             <li className="nav__submenu-item ">
-                <a>Видеокамеры</a>
-                <a>USB флэш накопители</a>
+                <a href='#'>Видеокамеры</a>
+                <a href='#'>USB флэш накопители</a>
             </li>
             <li className="nav__submenu-item ">
-                <a>Вспышки</a>
-                <a>Внешние жесткие диски</a>
+                <a href='#'>Вспышки</a>
+                <a href='#'>Внешние жесткие диски</a>
             </li>
             <li className="nav__submenu-item ">
-                <a>Экшн камеры</a>
-                <a>Фотопринтеры</a>
+                <a href='#'>Экшн камеры</a>
+                <a href='#'>Фотопринтеры</a>
             </li>
             <li className="nav__submenu-item ">
-                <a>Карты памяти</a>
-                <a>Фотобумага для фотопринтера</a>
+                <a href='#'>Карты памяти</a>
+                <a href='#'>Фотобумага для фотопринтера</a>
             </li>
         </ul>
     );

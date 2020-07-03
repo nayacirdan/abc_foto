@@ -128,3 +128,9 @@
 .MuiIconButton-root.Mui-disabled {
     background-color: #C2C8D0 !important;
 }
+.MuiFormLabel-root.Mui-focused {
+    color: #51AD33 !important;
+}
+.MuiAutocomplete-root.Mui-focused.MuiAutocomplete-hasClearIcon.MuiAutocomplete-hasPopupIcon {
+    outline-color: #51AD33 !important;
+}

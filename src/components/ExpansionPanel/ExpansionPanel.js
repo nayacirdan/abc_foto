@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: theme.typography.fontWeightRegular,
         color: "#00B0FF",
         fontFamily: "Roboto",
-        fontSize: "14px",
+        // fontSize: "14px",
         lineHeight: "160%",
         letterSpacing: "-0.03em"
     },
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimpleExpansionPanel(props) {
-    const { title, main, classExpIcon, readMoreClass } = props;
+    const { title, main, readMoreClass } = props;
     const classes = useStyles();
 
     return (

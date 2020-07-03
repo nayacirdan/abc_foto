@@ -15,9 +15,11 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getProductsBySearch } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch, getProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { setCurrentProduct } from '../../store/actions/actions';
 
@@ -76,9 +78,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, productsBySearch, history, setCurrentProduct } = props;
+    const { searchChange, getProductsBySearch, productsBySearch, history, setCurrentProduct, getProducts, products } = props;
     const classes = useStyles();
     const [value, setValue] = useState('');
+
+    useEffect(() => {
+        searchChange()
+    }, [searchChange])
 
     const productsListBySearch = productsBySearch.map((prodBySearch, index) =>
         (<Typography key={index} component="div" className={classes.customDiv}>
@@ -102,7 +108,7 @@ const Header = (props) => {
     // }
 
     const onChangeHandler = (e) => {
-        setValue(e.target.value)
+        // setValue(e.target.value)
         searchChange(e.target.value)
         getProductsBySearch({ "query": e.target.value.trim() })
     }
@@ -178,7 +184,7 @@ const Header = (props) => {
                 </NavLink>
 
                 <div className="search-form">
-                    <Paper component="form" className={classes.root}>
+                    {/* <Paper component="form" className={classes.root}>
                         <InputBase
                             className={classes.input}
                             placeholder="Поиск товаров"
@@ -194,7 +200,35 @@ const Header = (props) => {
                     </Paper>
                     <Typography component='div' className={classes.productsListBySearch}>
                         {productsListBySearch}
-                    </Typography>
+                    </Typography> */}
+                    <Autocomplete
+                        id="combo-box-demo"
+                        options={products}
+                        // getOptionSelected={() => {
+                        // setValue('')
+                        // searchChange('')
+                        // getProductsBySearch({ query: '' })
+                        // setCurrentProduct(prodBySearch)
+                        // history.push(`/products/filter/${prodBySearch.itemNo}`)
+                        // }}
+                        getOptionLabel={(option) => option.name}
+                        getOptionSelected={(product) => {
+                            console.log("Option ", product)
+
+                            // setCurrentProduct(product)
+                            // history.push(`/products/filter/${product.itemNo}`)
+                        }}
+
+                        style={{ width: 500 }}
+                        renderInput={(params) => <TextField
+                            {...params}
+                            label="Поиск товара"
+                            variant="outlined"
+                            onChange={onChangeHandler}
+                            onFocus={getProducts}
+                        //   onClick={() => console.log("GET Selected")} 
+                        />}
+                    />
                 </div>
 
                 <div className="menu-item">
@@ -223,12 +257,14 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
     return {
+        products: store.products.products,
         productsBySearch: store.products.productsBySearch
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getProducts: () => dispatch(getProducts()),
         searchChange: (text) => dispatch(searchChange(text)),
         getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
         setCurrentProduct: (product) => dispatch(setCurrentProduct(product))

@@ -25,7 +25,7 @@ const Gallery = (props) => {
         getSwiper: getThumbnailSwiper,
         spaceBetween: 10,
         centeredSlides: true,
-        slidesPerView: 'auto',
+        // slidesPerView: 'auto',
         touchRatio: 0.2,
         slideToClickedSlide: true,
         direction: "vertical",

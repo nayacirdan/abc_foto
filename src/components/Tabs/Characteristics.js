@@ -64,6 +64,7 @@ const Characteristics = (props) => {
                     <div className='characteristics_item-name'>Цвет</div>
                     <div className='characteristics_item-description'>{color}</div>
                 </div>}
+
             </div>
         </div>
     )
