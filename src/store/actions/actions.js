@@ -100,9 +100,5 @@ export const searchChange = (text) => (dispatch) => {
 }
 
 export const setCurrentProduct = (product) => (dispatch) => {
-  if (product !== null) {
-    dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product })
-  } else {
-    dispatch({ type: Actions.SET_CURRENT_PRODUCT })
-  }
+  dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product })
 }

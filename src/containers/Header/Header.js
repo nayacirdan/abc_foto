@@ -15,13 +15,10 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getProductsBySearch, getProducts } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
-import { setCurrentProduct } from '../../store/actions/actions';
 
 import { withRouter } from "react-router";
 import Link from "@material-ui/core/Link";
@@ -78,41 +75,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, productsBySearch, history, setCurrentProduct, getProducts, products } = props;
+    const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products } = props;
     const classes = useStyles();
-    const [value, setValue] = useState('');
 
     useEffect(() => {
         searchChange()
     }, [searchChange])
 
-    const productsListBySearch = productsBySearch.map((prodBySearch, index) =>
-        (<Typography key={index} component="div" className={classes.customDiv}>
-            <Typography component='div' className={classes.customInput} onClick={() => {
-                setValue('')
-                searchChange('')
-                getProductsBySearch({ query: '' })
-                setCurrentProduct(prodBySearch)
-                history.push(`/products/filter/${prodBySearch.itemNo}`)
-            }}>
-                <Typography component='div'><Typography component='img' className={classes.imgMini} alt='photo' src={prodBySearch.imageUrls[0]} /></Typography>
-                <Typography component='div'>{prodBySearch.name}</Typography>
-            </Typography>
-        </Typography>));
-    productsBySearch.length = 5;
-
-    // const resetValue = () => {
-    //     setValue('')
-    //     searchChange('')
-    //     getProductsBySearch({ "query": '' })
-    // }
-
     const onChangeHandler = (e) => {
-        // setValue(e.target.value)
         searchChange(e.target.value)
         getProductsBySearch({ "query": e.target.value.trim() })
     }
-
+    const filterProductsHandler = (e, value) => {
+        if (value !== null) {
+            setCurrentProduct(value)
+            history.push(`/products/filter/${value.itemNo}`)
+        }
+    }
 
     const phoneNumber = (
         <MenuListComposition
@@ -184,53 +163,12 @@ const Header = (props) => {
                 </NavLink>
 
                 <div className="search-form">
-                    {/* <Paper component="form" className={classes.root}>
-                        <InputBase
-                            className={classes.input}
-                            placeholder="Поиск товаров"
-                            inputProps={{ 'aria-label': 'search google maps' }}
-                            value={value}
-                            autoFocus
-                            onChange={onChangeHandler}
-                            // onBlur={resetValue}
-                        />
-                        <IconButton type="submit" className={classes.iconButton} aria-label="search" disabled >
-                            <SearchIcon className={classes.lightColorIcons} />
-                        </IconButton>
-                    </Paper>
-                    <Typography component='div' className={classes.productsListBySearch}>
-                        {productsListBySearch}
-                    </Typography> */}
                     <Autocomplete
+                        className={classes.autocomplete}
                         id="combo-box-demo"
-                        value={value}
                         options={products}
-                        // getOptionSelected={() => {
-                        // setValue('')
-                        // searchChange('')
-                        // getProductsBySearch({ query: '' })
-                        // setCurrentProduct(prodBySearch)
-                        // history.push(`/products/filter/${prodBySearch.itemNo}`)
-                        // }}
                         getOptionLabel={(option) => option.name}
-                        // getOptionSelected={(product) => {
-                        //     const q = productsBySearch.filter(el => el.article === product.article);
-                        //     console.log("Option ", q)
-
-                            // setCurrentProduct(product)
-                            // history.push(`/products/filter/${product.itemNo}`)
-                        // }}
-                        onChange={(e, value) => {
-                            console.log("<<<<", value)
-                            setCurrentProduct(value)
-                            history.push(`/products/filter/${value.itemNo}`)
-                        }}
-                        clearText={(e, value) => {
-                            // setCurrentProduct(value)
-                            history.push(`/products/filter/${value.itemNo}`)
-                            // searchChange('')
-                            getProductsBySearch()
-                        }}
+                        onChange={filterProductsHandler}
 
                         style={{ width: 500 }}
                         renderInput={(params) => <TextField
@@ -239,7 +177,6 @@ const Header = (props) => {
                             variant="outlined"
                             onChange={onChangeHandler}
                             onFocus={getProducts}
-                        //   onClick={() => console.log("GET Selected")} 
                         />}
                     />
                 </div>
@@ -270,8 +207,7 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
     return {
-        products: store.products.products,
-        productsBySearch: store.products.productsBySearch
+        products: store.products.products
     }
 };
 
