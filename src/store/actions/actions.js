@@ -38,7 +38,7 @@ export const setModalType = (modalType) => (dispatch) => {
 }
 
 export const getFilteredProducts = (text) => (dispatch) => {
-  if (text.query!=='') {
+  if (text.query !== '') {
     axios.post('/products/search', text)
       .then(res => {
         // const filtered = res.data.filter(item => {
@@ -46,9 +46,9 @@ export const getFilteredProducts = (text) => (dispatch) => {
         // })
         dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data })
       })
-      // .catch(error => {
-      //   dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
-      // })
+    // .catch(error => {
+    //   dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
+    // })
   } else {
     dispatch(getProducts());
   }
@@ -100,5 +100,9 @@ export const searchChange = (text) => (dispatch) => {
 }
 
 export const setCurrentProduct = (product) => (dispatch) => {
-  dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product })
+  if (product !== null) {
+    dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product })
+  } else {
+    dispatch({ type: Actions.SET_CURRENT_PRODUCT })
+  }
 }

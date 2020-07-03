@@ -203,6 +203,7 @@ const Header = (props) => {
                     </Typography> */}
                     <Autocomplete
                         id="combo-box-demo"
+                        value={value}
                         options={products}
                         // getOptionSelected={() => {
                         // setValue('')
@@ -212,11 +213,23 @@ const Header = (props) => {
                         // history.push(`/products/filter/${prodBySearch.itemNo}`)
                         // }}
                         getOptionLabel={(option) => option.name}
-                        getOptionSelected={(product) => {
-                            console.log("Option ", product)
+                        // getOptionSelected={(product) => {
+                        //     const q = productsBySearch.filter(el => el.article === product.article);
+                        //     console.log("Option ", q)
 
                             // setCurrentProduct(product)
                             // history.push(`/products/filter/${product.itemNo}`)
+                        // }}
+                        onChange={(e, value) => {
+                            console.log("<<<<", value)
+                            setCurrentProduct(value)
+                            history.push(`/products/filter/${value.itemNo}`)
+                        }}
+                        clearText={(e, value) => {
+                            // setCurrentProduct(value)
+                            history.push(`/products/filter/${value.itemNo}`)
+                            // searchChange('')
+                            getProductsBySearch()
                         }}
 
                         style={{ width: 500 }}
