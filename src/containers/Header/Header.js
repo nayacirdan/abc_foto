@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
@@ -15,13 +11,14 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct } from '../../store/actions/actions';
-import { connect } from 'react-redux';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
+import { connect, useDispatch  } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { withRouter } from "react-router";
 import Link from "@material-ui/core/Link";
+
+import SearchBar from './Autocomplete/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -91,6 +88,24 @@ const Header = (props) => {
             setCurrentProduct(value)
             history.push(`/products/filter/${value.itemNo}`)
         }
+    };
+
+    const [isHovering, setIsHovering] = useState(false);
+
+    const toggleHoverState = () => {
+        setIsHovering(!isHovering)
+    };
+    const dispatch = useDispatch();
+
+    const openSignUpModal = () => {
+        dispatch(setModalType('signUp'))
+        dispatch(openModal());
+
+    }
+    const openSignInModal = () => {
+        dispatch(setModalType('signIn'))
+        dispatch(openModal());
+
     }
 
     const phoneNumber = (
@@ -126,13 +141,13 @@ const Header = (props) => {
             }
             secondItem={
                 <div className="menu-item">
-                    <div>Войти</div>
+                    <div onClick={openSignInModal}>Войти</div>
                 </div>
             }
             thirdItem={
                 <div>
                     <hr className="hr" />
-                    <div className="menu-item" >
+                    <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')} >
                         Зарегистрироваться
                     </div>
                 </div>
@@ -163,19 +178,17 @@ const Header = (props) => {
                 </NavLink>
 
                 <div className="search-form">
-                    <Autocomplete
+                    <SearchBar
                         className={classes.autocomplete}
                         id="combo-box-demo"
                         options={products}
                         getOptionLabel={(option) => option.name}
-                        onChange={filterProductsHandler}
+                        onChangeAutocomplete={filterProductsHandler}
 
                         style={{ width: 500 }}
                         renderInput={(params) => <TextField
                             {...params}
-                            label="Поиск товара"
-                            variant="outlined"
-                            onChange={onChangeHandler}
+                            onChangeTextField={onChangeHandler}
                             onFocus={getProducts}
                         />}
                     />
