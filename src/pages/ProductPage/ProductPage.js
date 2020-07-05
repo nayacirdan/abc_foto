@@ -14,11 +14,11 @@ import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
 const ProductPage = (props) => {
-    const { setCurrentProduct, product } = props;
+    const { setCurrentProduct, product, history } = props;
 
     useEffect(() => {
         currentProduct().then(result => setCurrentProduct(result))
-    }, [setCurrentProduct]);
+    }, [setCurrentProduct, history.location]);
 
     const { match } = props;
     function currentProduct() {
