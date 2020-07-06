@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -93,11 +93,11 @@ export const SignAndRegForm = (props) => {
   const classes = useStyles();
 
 
-  const change = (name, e) => {
-    e.persist();
-    handleChange(e);
-    setFieldTouched(name, true, false);
-  };
+  // const change = (name, e) => {
+  //   e.persist();
+  //   handleChange(e);
+  //   setFieldTouched(name, true, false);
+  // };
 
   const changeReg = (event, newValue) => {
     dispatch(setModalType(event.currentTarget.name));

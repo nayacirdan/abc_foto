@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import './Breadcrumbs.scss'
 import {useSelector} from "react-redux";
-import axios from "axios";
-import Actions from "../../store/constans/constans";
 
 const BreadcrumbsWrapper = () => {
     const category=useSelector((state)=>state.categories.currentCategory.title);

@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FullWidthTabs(props) {
-  const { description, characteristics, accessories } = props;
+  const { description, characteristics } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);

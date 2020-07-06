@@ -32,7 +32,7 @@ function SamplePrevArrow(props) {
 }
 
 const Responsive = (props) => {
-    const { products, getProducts, sliderTitle, product } = props;
+    const { products, getProducts, sliderTitle } = props;
     useEffect(() => {
         getProducts()
     }, [getProducts]);

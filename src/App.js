@@ -13,7 +13,7 @@ import Home from './pages/Home/Home';
 import CategoryRoutes from "./HOCs/CategoryRoutes/CategoryRoutes";
 import Cart from "./pages/Cart/Cart";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
-import SubMenu from "./components/Header/Navigation/SubMenu";
+import SubMenu from "./containers/Header/Navigation/SubMenu";
 
 
 const App = (props) => {

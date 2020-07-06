@@ -10,7 +10,7 @@ const CatalogLinks = ({categories}) => {
 
     useEffect(()=>{
         dispatch(getAllCatalog())
-    },[])
+    },[dispatch])
 
     if(categories && categories.length){
         navlinks=categories.filter(el=>el.parentId !== 'null').map((cat)=>(<Link className='nav__menu-item' to={`/products/filter?categories=${cat.name}`}>{cat.title}</Link>));

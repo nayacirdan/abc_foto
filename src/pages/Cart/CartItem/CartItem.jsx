@@ -6,11 +6,11 @@ import './CartItem.scss'
 
 const CartItem = ({setTotalPrice, totalPrice}) => {
     const [quantity, setQuantity] = useState(1)
-    const [price, setPrice] = useState(9132)
+    const [price] = useState(9132)
 
     useEffect(()=>{
         setTotalPrice((prevState)=> prevState + price)
-    }, [])
+    }, [setTotalPrice, price])
 
     return (
         <div className='CartItem'>

@@ -24,7 +24,7 @@ const Characteristics = (props) => {
                     </div>}
                 {classPro &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Запись видео</div>
+                        <div className='characteristics_item-name'>Класс</div>
                         <div className='characteristics_item-description'>{classPro}</div>
                     </div>}
                 {photosensitivity &&
@@ -64,6 +64,7 @@ const Characteristics = (props) => {
                     <div className='characteristics_item-name'>Цвет</div>
                     <div className='characteristics_item-description'>{color}</div>
                 </div>}
+
             </div>
         </div>
     )

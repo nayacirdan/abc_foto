@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
@@ -15,14 +11,14 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getProductsBySearch } from '../../store/actions/actions';
-import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
-
-import { setCurrentProduct } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
+import { connect, useDispatch  } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 
 import { withRouter } from "react-router";
 import Link from "@material-ui/core/Link";
+
+import SearchBar from './Autocomplete/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -76,37 +72,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, productsBySearch, history, setCurrentProduct } = props;
+    const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products } = props;
     const classes = useStyles();
-    const [value, setValue] = useState('');
 
-    const productsListBySearch = productsBySearch.map((prodBySearch, index) =>
-        (<Typography key={index} component="div" className={classes.customDiv}>
-            <Typography component='div' className={classes.customInput} onClick={() => {
-                setValue('')
-                searchChange('')
-                getProductsBySearch({ query: '' })
-                setCurrentProduct(prodBySearch)
-                history.push(`/products/filter/${prodBySearch.itemNo}`)
-            }}>
-                <Typography component='div'><Typography component='img' className={classes.imgMini} alt='photo' src={prodBySearch.imageUrls[0]} /></Typography>
-                <Typography component='div'>{prodBySearch.name}</Typography>
-            </Typography>
-        </Typography>));
-    productsBySearch.length = 5;
-
-    // const resetValue = () => {
-    //     setValue('')
-    //     searchChange('')
-    //     getProductsBySearch({ "query": '' })
-    // }
+    useEffect(() => {
+        searchChange()
+    }, [searchChange])
 
     const onChangeHandler = (e) => {
-        setValue(e.target.value)
         searchChange(e.target.value)
         getProductsBySearch({ "query": e.target.value.trim() })
     }
+    const filterProductsHandler = (e, value) => {
+        if (value !== null) {
+            setCurrentProduct(value)
+            history.push(`/products/filter/${value.itemNo}`)
+        }
+    };
 
+    const [isHovering, setIsHovering] = useState(false);
+
+    const toggleHoverState = () => {
+        setIsHovering(!isHovering)
+    };
+    const dispatch = useDispatch();
+
+    const openSignUpModal = () => {
+        dispatch(setModalType('signUp'))
+        dispatch(openModal());
+
+    }
+    const openSignInModal = () => {
+        dispatch(setModalType('signIn'))
+        dispatch(openModal());
+
+    }
 
     const phoneNumber = (
         <MenuListComposition
@@ -141,13 +141,13 @@ const Header = (props) => {
             }
             secondItem={
                 <div className="menu-item">
-                    <div>Войти</div>
+                    <div onClick={openSignInModal}>Войти</div>
                 </div>
             }
             thirdItem={
                 <div>
                     <hr className="hr" />
-                    <div className="menu-item" >
+                    <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')} >
                         Зарегистрироваться
                     </div>
                 </div>
@@ -178,23 +178,20 @@ const Header = (props) => {
                 </NavLink>
 
                 <div className="search-form">
-                    <Paper component="form" className={classes.root}>
-                        <InputBase
-                            className={classes.input}
-                            placeholder="Поиск товаров"
-                            inputProps={{ 'aria-label': 'search google maps' }}
-                            value={value}
-                            autoFocus
-                            onChange={onChangeHandler}
-                            // onBlur={resetValue}
-                        />
-                        <IconButton type="submit" className={classes.iconButton} aria-label="search" disabled >
-                            <SearchIcon className={classes.lightColorIcons} />
-                        </IconButton>
-                    </Paper>
-                    <Typography component='div' className={classes.productsListBySearch}>
-                        {productsListBySearch}
-                    </Typography>
+                    <SearchBar
+                        className={classes.autocomplete}
+                        id="combo-box-demo"
+                        options={products}
+                        getOptionLabel={(option) => option.name}
+                        onChangeAutocomplete={filterProductsHandler}
+
+                        style={{ width: 500 }}
+                        renderInput={(params) => <TextField
+                            {...params}
+                            onChangeTextField={onChangeHandler}
+                            onFocus={getProducts}
+                        />}
+                    />
                 </div>
 
                 <div className="menu-item">
@@ -223,12 +220,13 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
     return {
-        productsBySearch: store.products.productsBySearch
+        products: store.products.products
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        getProducts: () => dispatch(getProducts()),
         searchChange: (text) => dispatch(searchChange(text)),
         getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
         setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
