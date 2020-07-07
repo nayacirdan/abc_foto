@@ -102,3 +102,7 @@ export const searchChange = (text) => (dispatch) => {
 export const setCurrentProduct = (product) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product })
 }
+
+export const setRecentlyViewedProducts = (product) => (dispatch) => {
+  dispatch({ type: Actions.SET_RECENTLY_VIEWED_PRODUCTS, payload: product })
+} 

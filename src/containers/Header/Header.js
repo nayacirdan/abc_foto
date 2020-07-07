@@ -147,7 +147,7 @@ const Header = (props) => {
             thirdItem={
                 <div>
                     <hr className="hr" />
-                    <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')} >
+                    <div className="menu-item" onClick={openSignUpModal} >
                         Зарегистрироваться
                     </div>
                 </div>

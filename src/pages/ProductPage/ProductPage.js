@@ -13,6 +13,9 @@ import { withRouter } from "react-router";
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
+import { Link } from 'react-scroll';
+import Card from '../../components/Card/Card';
+
 const ProductPage = (props) => {
     const { setCurrentProduct, product, history } = props;
 
@@ -33,6 +36,21 @@ const ProductPage = (props) => {
     //     const result = await currentProduct();
     //     setProduct(result);
     // }
+    const recentlyViewed = localStorage.getItem('recentlyViewed');
+    const recentlyViewedArray  = JSON.parse(recentlyViewed );
+    const sliderProducts = (recentlyViewedArray || []).map(product => (
+        <div key={product.itemNo} className="slider-card">
+            <Link
+                activeClass='active'
+                spy={true}
+                smooth={true}
+                to='productPage'
+                duration={500}
+            >
+                <Card key={product.itemNo} product={product} />
+            </Link>
+        </div>)
+    );
 
     return (
         product ?
@@ -52,7 +70,8 @@ const ProductPage = (props) => {
                         characteristics={<Characteristics currentProduct={product} />}
                     />
                 </div>
-                <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
+                {/* <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} /> */}
+                {(sliderProducts.length > 2) ? <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} /> : null }
             </div> : null
     )
 };

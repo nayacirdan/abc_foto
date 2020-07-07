@@ -11,8 +11,9 @@ import Grid from "@material-ui/core/Grid";
 import cartIcon from "../../svg/cartIcon";
 import { withRouter } from "react-router";
 
-import { setCurrentProduct } from '../../store/actions/actions';
+import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
+import products from "../../store/reducers/products/productsReducer";
 
 
 /*
@@ -263,7 +264,7 @@ const CardItem = (props) => {
 
 
 const CardItem = (props) => {
-    const { product, history, setCurrentProduct } = props;
+    const { product, history, setCurrentProduct, setRecentlyViewedProducts, recentlyViewedProducts } = props;
 
     const {
         imageUrls,
@@ -280,6 +281,12 @@ const CardItem = (props) => {
     const redirectToProductPage = (product) => {
         history.push(`/products/filter/${itemNo}`)
         setCurrentProduct(product)
+    }
+    const recentlyViewed = (product) => {
+        const recentlyViewedArray = [ ...recentlyViewedProducts, product];
+        setRecentlyViewedProducts(product);
+        console.log("Error", product)
+        localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
     }
 
     const getProductAvailability = () => {
@@ -305,6 +312,7 @@ const CardItem = (props) => {
             <Card className='card' onClick={(e) => {
                 e.preventDefault()
                 redirectToProductPage(product)
+                recentlyViewed(product)
             }}>
                 <Grid container className='card__media-container' >
                     <CardMedia
@@ -369,10 +377,17 @@ const CardItem = (props) => {
         </>
     )
 };
+
+const mapStateToProps = store => {
+    return {
+        recentlyViewedProducts: store.products.recentlyViewedProducts
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)) 
+        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+        setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(CardItem));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CardItem));
