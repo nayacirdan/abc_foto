@@ -22,6 +22,7 @@ const ProductPage = (props) => {
     useEffect(() => {
         currentProduct().then(result => setCurrentProduct(result))
     }, [setCurrentProduct, history.location]);
+    
 
     const { match } = props;
     function currentProduct() {
@@ -36,8 +37,15 @@ const ProductPage = (props) => {
     //     const result = await currentProduct();
     //     setProduct(result);
     // }
+    // const indexOfProduct = recentlyViewedArray.indexOf(product);
+    // if(indexOfProduct === -1) {
+    //     return recentlyViewedArray.unshift(product)
+    // } else {
+    //     return recentlyViewedArray
+    // }
+
     const recentlyViewed = localStorage.getItem('recentlyViewed');
-    const recentlyViewedArray  = JSON.parse(recentlyViewed );
+    const recentlyViewedArray = JSON.parse(recentlyViewed);
     const sliderProducts = (recentlyViewedArray || []).map(product => (
         <div key={product.itemNo} className="slider-card">
             <Link
@@ -51,6 +59,13 @@ const ProductPage = (props) => {
             </Link>
         </div>)
     );
+    const recentlyViewedProducts = () => {
+        if (sliderProducts.length > 3 || sliderProducts.length === 0) {
+            return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />)
+        } else {
+            return null
+        }
+    }
 
     return (
         product ?
@@ -70,8 +85,7 @@ const ProductPage = (props) => {
                         characteristics={<Characteristics currentProduct={product} />}
                     />
                 </div>
-                {/* <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} /> */}
-                {(sliderProducts.length > 2) ? <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} /> : null }
+                {recentlyViewedProducts()}
             </div> : null
     )
 };

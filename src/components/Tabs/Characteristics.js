@@ -4,7 +4,7 @@ const Characteristics = (props) => {
 
     const { currentProduct } = props;
     const { cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
-        specialFeatures, videoRecording, lens, interfaceProp } = currentProduct;
+        specialFeatures, videoRecording, lens, interfaceProp, pictureSize } = currentProduct;
 
     const arrayMap = (array) => array.map((item, i) => (
         <div key={i}>{item}</div>
@@ -59,6 +59,10 @@ const Characteristics = (props) => {
                 {weight && <div className='characteristics_item'>
                     <div className='characteristics_item-name'>Вес (грамм)</div>
                     <div className='characteristics_item-description'>{weight}</div>
+                </div>}
+                {pictureSize && <div className='characteristics_item'>
+                    <div className='characteristics_item-name'>Размер фотокарточки</div>
+                    <div className='characteristics_item-description'>{pictureSize}</div>
                 </div>}
                 {color && <div className='characteristics_item'>
                     <div className='characteristics_item-name'>Цвет</div>

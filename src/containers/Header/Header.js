@@ -11,8 +11,8 @@ import './Header.scss';
 import Grid from "@material-ui/core/Grid";
 import Navigation from "./Navigation/Navigation";
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
-import { connect, useDispatch  } from 'react-redux';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType, setRecentlyViewedProducts } from '../../store/actions/actions';
+import { connect, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
 import { withRouter } from "react-router";
@@ -72,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products } = props;
+    const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products,
+        recentlyViewedProducts } = props;
     const classes = useStyles();
 
     useEffect(() => {
@@ -85,6 +86,19 @@ const Header = (props) => {
     }
     const filterProductsHandler = (e, value) => {
         if (value !== null) {
+            let recentlyViewedArray = [...recentlyViewedProducts];
+            if (recentlyViewedArray.find(el => el.article === value.article)) {
+                recentlyViewedArray = [...recentlyViewedProducts]
+            } else {
+                if (recentlyViewedArray.length === 4) {
+                    recentlyViewedArray.push(value);
+                    recentlyViewedArray.shift()
+                } else {
+                    recentlyViewedArray = [...recentlyViewedProducts, value]
+                }
+            };
+            localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+            setRecentlyViewedProducts(recentlyViewedArray);
             setCurrentProduct(value)
             history.push(`/products/filter/${value.itemNo}`)
         }
@@ -220,7 +234,8 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
     return {
-        products: store.products.products
+        products: store.products.products,
+        recentlyViewedProducts: store.products.recentlyViewedProducts
     }
 };
 
@@ -229,7 +244,8 @@ const mapDispatchToProps = dispatch => {
         getProducts: () => dispatch(getProducts()),
         searchChange: (text) => dispatch(searchChange(text)),
         getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+        setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
     }
 }
 

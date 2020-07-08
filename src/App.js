@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from "./containers/Header/Header";
 import './App.scss';
 import Footer from "./components/Footer/Footer";
@@ -15,9 +15,15 @@ import Cart from "./pages/Cart/Cart";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import SubMenu from "./containers/Header/Navigation/SubMenu";
 
+import { getProducts } from './store/actions/actions';
+
 
 const App = (props) => {
-  const {modalIsOpen} = props;
+  const {modalIsOpen, getProducts} = props;
+
+  useEffect(() => {
+    getProducts()
+  }, [])
 
 
   const values = {
@@ -62,5 +68,10 @@ const App = (props) => {
 const mapStoreToProps = (store) => {
   return {modalIsOpen: store.modals.modalIsOpen}
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProducts: () => dispatch(getProducts())
+  }
+}
 
-export default connect(mapStoreToProps)(App);
+export default connect(mapStoreToProps, mapDispatchToProps)(App);

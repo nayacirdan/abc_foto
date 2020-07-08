@@ -13,7 +13,6 @@ import { withRouter } from "react-router";
 
 import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
-import products from "../../store/reducers/products/productsReducer";
 
 
 /*
@@ -278,15 +277,23 @@ const CardItem = (props) => {
         itemNo
     } = product;
 
+
     const redirectToProductPage = (product) => {
-        history.push(`/products/filter/${itemNo}`)
         setCurrentProduct(product)
-    }
-    const recentlyViewed = (product) => {
-        const recentlyViewedArray = [ ...recentlyViewedProducts, product];
-        setRecentlyViewedProducts(product);
-        console.log("Error", product)
+        let recentlyViewedArray = [...recentlyViewedProducts];
+        if (recentlyViewedArray.find(el => el.article === product.article)) {
+            recentlyViewedArray = [...recentlyViewedProducts]
+        } else {
+            if (recentlyViewedArray.length === 4) {
+                recentlyViewedArray.push(product);
+                recentlyViewedArray.shift()
+            } else {
+                recentlyViewedArray = [...recentlyViewedProducts, product]
+            }
+        };
         localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+        setRecentlyViewedProducts(recentlyViewedArray);
+        history.push(`/products/filter/${itemNo}`)
     }
 
     const getProductAvailability = () => {
@@ -309,12 +316,13 @@ const CardItem = (props) => {
 
     return (
         <>
-            <Card className='card' onClick={(e) => {
-                e.preventDefault()
-                redirectToProductPage(product)
-                recentlyViewed(product)
-            }}>
-                <Grid container className='card__media-container' >
+            <Card className='card' >
+                <Grid container className='card__media-container'
+                    onClick={(e) => {
+                        e.preventDefault()
+                        redirectToProductPage(product)
+                    }}
+                >
                     <CardMedia
                         className='card__media'
                         image={imageUrls[0]}
@@ -327,21 +335,21 @@ const CardItem = (props) => {
                         {name}
                     </Typography>
                     <Grid container
-                          direction="row"
-                          justify="space-between"
-                          alignItems="center">
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center">
                         {previousPrice ? (
-                                <Grid container direction='column' className='card__price-container'
-                                      justify="flex-start"
-                                      alignItems="flex-start">
-                                    <Typography component='span' className='card__old-price'>
-                                        {previousPrice} грн.
+                            <Grid container direction='column' className='card__price-container'
+                                justify="flex-start"
+                                alignItems="flex-start">
+                                <Typography component='span' className='card__old-price'>
+                                    {previousPrice} грн.
                                     </Typography>
-                                    <Typography component='span' className='card__sale-price'>
-                                        {currentPrice} грн.
+                                <Typography component='span' className='card__sale-price'>
+                                    {currentPrice} грн.
                                     </Typography>
-                                </Grid>
-                            ) :
+                            </Grid>
+                        ) :
                             (
                                 <Typography component='span' className='card__full-price'>
                                     {currentPrice} грн.
@@ -350,14 +358,14 @@ const CardItem = (props) => {
                         }
 
                         <IconButton color="#51AD33" aria-label="upload picture" component="span"
-                                    className='card__cart-btn' disabled={!isAvailable}>
+                            className='card__cart-btn' disabled={!isAvailable} >
                             <ShoppingCartOutlinedIcon className='card__cart-icon' />
                         </IconButton>
                     </Grid>
                     <Grid container
-                          direction="row"
-                          justify="flex-start"
-                          alignItems="center">
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="center">
 
                         {getProductAvailability()}
 
