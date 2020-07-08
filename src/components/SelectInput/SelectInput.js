@@ -6,26 +6,26 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import disabled from "proptypes/disabled";
+import disabled from 'proptypes/disabled';
 
-function SelectInput({ disabled }) {
+function SelectInput ({ disabled }) {
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: 0,
       minWidth: 120,
       '& .MuiOutlinedInput-root': {
-        width: 490,
+        width: 490
       },
       '& .MuiOutlinedInput-root ': {
-        borderColor: '#51AD33',
+        borderColor: '#51AD33'
       },
       '& .MuiFormControl-root': {
         margin: 0
       }
     },
     selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
+      marginTop: theme.spacing(2)
+    }
   }));
 
   const classes = useStyles();
@@ -39,11 +39,11 @@ function SelectInput({ disabled }) {
     <div>
       <FormControl variant="outlined" className={classes.formControl}>
         <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={address}
-            onChange={handleChange}
-            disabled={disabled}
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={address}
+          onChange={handleChange}
+          disabled={disabled}
         >
           <MenuItem value="address1">Киев, Подольский, ул. Андреевская, 9а</MenuItem>
           <MenuItem value="address2">Киев, Печерский, Зверинецкая, 72</MenuItem>

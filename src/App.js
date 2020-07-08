@@ -1,24 +1,22 @@
 import React from 'react';
-import Header from "./containers/Header/Header";
+import Header from './containers/Header/Header';
 import './App.scss';
-import Footer from "./components/Footer/Footer";
-import {connect} from "react-redux";
-import ValidationForm from "./components/Modals/ValidationForm";
-import {Switch, Route } from 'react-router-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Cameras from "./pages/Cameras/Cameras";
+import Footer from './components/Footer/Footer';
+import {connect} from 'react-redux';
+import ValidationForm from './components/Modals/ValidationForm';
+import {Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Cameras from './pages/Cameras/Cameras';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
 
-import CategoryRoutes from "./HOCs/CategoryRoutes/CategoryRoutes";
-import Cart from "./pages/Cart/Cart";
-import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
-import SubMenu from "./containers/Header/Navigation/SubMenu";
-
+import CategoryRoutes from './HOCs/CategoryRoutes/CategoryRoutes';
+import Cart from './pages/Cart/Cart';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+import SubMenu from './containers/Header/Navigation/SubMenu';
 
 const App = (props) => {
   const {modalIsOpen} = props;
-
 
   const values = {
     name: 'Pasha',
@@ -27,18 +25,18 @@ const App = (props) => {
     password: '123qweasd',
     confirmPassword: '123qweasd'
   };
-  const errors = 'noerr',
-    touched = false,
-    handleSubmit = () => {
-    },
-    isValid = false,
-    setFieldTouched = null;
+  const errors = 'noerr';
+  const touched = false;
+  const handleSubmit = () => {
+  };
+  const isValid = false;
+  const setFieldTouched = null;
 
   return (
     <div className="App">
       <Router>
-      <Header/>
-      <SubMenu/>
+        <Header/>
+        <SubMenu/>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/products/filter/:itemNo" component={ProductPage} />
@@ -50,17 +48,17 @@ const App = (props) => {
         <Footer/>
       </Router>
       {modalIsOpen && <ValidationForm values={values}
-                                      errors={errors}
-                                      touched={touched}
-                                      handleSubmit={handleSubmit}
-                                      isValid={isValid}
-                                      setFieldTouched={setFieldTouched}
+        errors={errors}
+        touched={touched}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        setFieldTouched={setFieldTouched}
       />}
     </div>
   );
 };
 const mapStoreToProps = (store) => {
-  return {modalIsOpen: store.modals.modalIsOpen}
+  return {modalIsOpen: store.modals.modalIsOpen};
 };
 
 export default connect(mapStoreToProps)(App);

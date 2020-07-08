@@ -9,25 +9,25 @@ import { MemoryRouter } from 'react-router';
 
 let container = null;
 beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
+  container = document.createElement('div');
+  document.body.appendChild(container);
 });
 afterEach(() => {
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 });
 
 describe('Testing ProductPage.js', () => {
-    it('valid path should not redirect to 404', () => {
-        // const wrapper = mount(
-        //     <MemoryRouter initialEntries={[ '/product' ]}>
-        //         <App />
-        //     </MemoryRouter>
-        // );
-        // expect(wrapper.find(LandingPage).toHaveLength(1))
-        // act(() => {
-        //     render(<ProductPage />, container);
-        // })
-    })
+  it('valid path should not redirect to 404', () => {
+    // const wrapper = mount(
+    //     <MemoryRouter initialEntries={[ '/product' ]}>
+    //         <App />
+    //     </MemoryRouter>
+    // );
+    // expect(wrapper.find(LandingPage).toHaveLength(1))
+    // act(() => {
+    //     render(<ProductPage />, container);
+    // })
+  });
 });

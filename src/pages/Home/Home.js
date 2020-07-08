@@ -1,11 +1,9 @@
-import React from "react";
-import TopSlider from "../../components/TopSlider/TopSlider";
-import Slider from "../../containers/SliderOfHitProducts/Slider";
-import PromotionsAndOffers from "../../components/Promotions/PromotionsAndOffers";
-
+import React from 'react';
+import TopSlider from '../../components/TopSlider/TopSlider';
+import Slider from '../../containers/SliderOfHitProducts/Slider';
+import PromotionsAndOffers from '../../components/Promotions/PromotionsAndOffers';
 
 const Home = () => {
-
   return (
     <div>
       <TopSlider />

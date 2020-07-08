@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
+      margin: theme.spacing(1)
+    }
+  }
 }));
 
-export default function ContainedButtons(props) {
+export default function ContainedButtons (props) {
   const classes = useStyles();
   const { className, btnType, onClick, text, isDisabled } = props;
 
@@ -28,6 +28,4 @@ ContainedButtons.propTypes = {
   text: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   className: PropTypes.string.isRequired
-}
-
-
+};

@@ -6,29 +6,31 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import './Autocomplete.scss';
 
 const SearchBar = (props) => {
-    const { className, options, id, getOptionLabel, onChangeAutocomplete, style,
-        onChangeTextField, onFocus } = props
-    return (
-        <div>
-            <Autocomplete
-                disableCloseOnSelect
-                className={className}
-                id={id}
-                options={options}
-                getOptionLabel={getOptionLabel}
-                onChange={onChangeAutocomplete}
+  const {
+    className, options, id, getOptionLabel, onChangeAutocomplete, style,
+    onChangeTextField, onFocus
+  } = props;
+  return (
+    <div>
+      <Autocomplete
+        disableCloseOnSelect
+        className={className}
+        id={id}
+        options={options}
+        getOptionLabel={getOptionLabel}
+        onChange={onChangeAutocomplete}
 
-                style={style}
-                renderInput={(params) => <TextField
-                    {...params}
-                    label="Поиск товаров"
-                    variant="outlined"
-                    onChange={onChangeTextField}
-                    onFocus={onFocus}
-                />}
-            />
-        </div>
-    )
+        style={style}
+        renderInput={(params) => <TextField
+          {...params}
+          label="Поиск товаров"
+          variant="outlined"
+          onChange={onChangeTextField}
+          onFocus={onFocus}
+        />}
+      />
+    </div>
+  );
 };
 
 export default SearchBar;
