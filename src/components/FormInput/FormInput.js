@@ -1,12 +1,13 @@
 import React from 'react';
+import {Field} from 'formik';
 import './FormInput.scss';
 
-function FormInput ({ label, type, placeholder }) {
+function FormInput({label, type, placeholder, name}) {
   return (
-    <div className="form-control">
-      <label className="label">{label}</label>
-      <input className="input" type={type} placeholder={placeholder} />
-    </div>
+      <div className="form-control">
+        <label className="label">{label}</label>
+        <Field className="input" type={type} placeholder={placeholder} name={name}/>
+      </div>
   );
 }
 
