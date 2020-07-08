@@ -1,2 +1,1 @@
-import 'CardsList.scss'
-
+import 'CardsList.scss';

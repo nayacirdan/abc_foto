@@ -9,64 +9,64 @@ import './ProductPage.scss';
 
 import axios from 'axios';
 
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
 const ProductPage = (props) => {
-    const { setCurrentProduct, product, history } = props;
+  const { setCurrentProduct, product, history } = props;
 
-    useEffect(() => {
-        currentProduct().then(result => setCurrentProduct(result))
-    }, [setCurrentProduct, history.location]);
+  useEffect(() => {
+    currentProduct().then(result => setCurrentProduct(result));
+  }, [setCurrentProduct, history.location, currentProduct]);
 
-    const { match } = props;
-    function currentProduct() {
-        const result = axios.get(`/products/${match.params.itemNo}`)
-            .then(res => res.data)
-            .catch(err => {
-                console.log(err.message)
-            });
-        return result;
-    };
-    // const qwe = async() => {
-    //     const result = await currentProduct();
-    //     setProduct(result);
-    // }
+  const { match } = props;
+  function currentProduct () {
+    const result = axios.get(`/products/${match.params.itemNo}`)
+      .then(res => res.data)
+      .catch(err => {
+        console.log(err.message);
+      });
+    return result;
+  };
+  // const qwe = async() => {
+  //     const result = await currentProduct();
+  //     setProduct(result);
+  // }
 
-    return (
-        product ?
-            <div id='productPage'>
-                <div className="container">
-                    {/* <Breadcrumb productTitle={product.name} /> */}
-                    <div className='slider-info'>
-                        <div className="product-page-header">
-                            <div className="product-page-header_title">{product.name}</div>
-                            <div className="product-page-header_article">Код товара: {product.article}</div>
-                        </div>
-                        <div></div>
-                    </div>
-                    <ProductPageInfo />
-                    <Tabs
-                        description={<Description />}
-                        characteristics={<Characteristics currentProduct={product} />}
-                    />
-                </div>
-                <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
-            </div> : null
-    )
+  return (
+    product
+      ? <div id='productPage'>
+        <div className="container">
+          {/* <Breadcrumb productTitle={product.name} /> */}
+          <div className='slider-info'>
+            <div className="product-page-header">
+              <div className="product-page-header_title">{product.name}</div>
+              <div className="product-page-header_article">Код товара: {product.article}</div>
+            </div>
+            <div></div>
+          </div>
+          <ProductPageInfo />
+          <Tabs
+            description={<Description />}
+            characteristics={<Characteristics currentProduct={product} />}
+          />
+        </div>
+        <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
+      </div> : null
+  );
 };
 
 const mapStateToProps = store => {
-    return {
-        product: store.products.currentProduct
-    }
+  return {
+    product: store.products.currentProduct
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
-    }
-}
+  return {
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductPage));

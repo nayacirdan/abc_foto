@@ -1,27 +1,27 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import GoogleLogin from "react-google-login";
-import FacebookLogin from "react-facebook-login";
-import TwitterLogin from "react-twitter-login";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import NameIcon from "@material-ui/icons/SupervisorAccount";
-import EmailIcon from "@material-ui/icons/Email";
-import LockIcon from "@material-ui/icons/Lock";
-import PhoneIcon from "@material-ui/icons/Phone";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
+import TwitterLogin from 'react-twitter-login';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import NameIcon from '@material-ui/icons/SupervisorAccount';
+import EmailIcon from '@material-ui/icons/Email';
+import LockIcon from '@material-ui/icons/Lock';
+import PhoneIcon from '@material-ui/icons/Phone';
 
-import "./SignInModal.scss";
-import { closeModal, setModalType } from "../../store/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
+import './SignInModal.scss';
+import { closeModal, setModalType } from '../../store/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
-function TabPanel(props) {
+function TabPanel (props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -44,21 +44,21 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
 };
 
-function a11yProps(index) {
+function a11yProps (index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
+    backgroundColor: theme.palette.background.paper
+  }
 }));
 
 export const SignAndRegForm = (props) => {
@@ -69,7 +69,7 @@ export const SignAndRegForm = (props) => {
     handleSubmit,
     handleChange,
     isValid,
-    setFieldTouched,
+    setFieldTouched
   } = props;
 
   console.table(props);
@@ -80,18 +80,16 @@ export const SignAndRegForm = (props) => {
     } else if (modalType === 'signUp') {
       return 1;
     } else {
-      console.log('strange things happened')
+      console.log('strange things happened');
     }
-  }
+  };
 
   const modalType = useSelector(store => store.modals.modalType);
   const value = chooseTabValue(modalType);
   console.log('TABS', 'value=', value, '  modalType=', modalType);
   const dispatch = useDispatch();
 
-
   const classes = useStyles();
-
 
   // const change = (name, e) => {
   //   e.persist();
@@ -117,8 +115,7 @@ export const SignAndRegForm = (props) => {
   };
   const closeModalHandler = () => {
     dispatch(closeModal());
-  }
-
+  };
 
   return (
     <div className={classes.root}>
@@ -146,7 +143,7 @@ export const SignAndRegForm = (props) => {
                   name="name"
                   className="sign-reg-name"
                   id="name"
-                  helperText={touched.name ? errors.name : ""}
+                  helperText={touched.name ? errors.name : ''}
                   error={Boolean(errors.name)}
                   onChange={handleChange}
                   value={name}
@@ -158,17 +155,17 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <NameIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">
-                  {Boolean(errors.name) ? errors.name : ""}
+                  {errors.name ? errors.name : ''}
                 </div>
                 <TextField
                   id="email"
                   name="email"
                   label="E-mail"
-                  helperText={touched.email ? errors.email : ""}
+                  helperText={touched.email ? errors.email : ''}
                   error={Boolean(errors.email)}
                   value={email}
                   onChange={handleChange}
@@ -179,16 +176,16 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <EmailIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">
-                  {Boolean(errors.email) ? errors.email : ""}
+                  {errors.email ? errors.email : ''}
                 </div>
                 <TextField
                   id="tel"
                   name="phone"
-                  helperText={touched.phone ? errors.phone : ""}
+                  helperText={touched.phone ? errors.phone : ''}
                   error={Boolean(errors.phone)}
                   value={phone}
                   onChange={handleChange}
@@ -200,7 +197,7 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <PhoneIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">{errors.phone}</div>
@@ -208,7 +205,7 @@ export const SignAndRegForm = (props) => {
                   id="password"
                   name="password"
                   label="Ваш пароль"
-                  helperText={touched.password ? errors.password : ""}
+                  helperText={touched.password ? errors.password : ''}
                   error={Boolean(errors.password)}
                   value={password}
                   onChange={handleChange}
@@ -220,7 +217,7 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <LockIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">{errors.password}</div>
@@ -231,7 +228,7 @@ export const SignAndRegForm = (props) => {
                   fullWidth
                   type="password"
                   helperText={
-                    touched.confirmPassword ? errors.confirmPassword : ""
+                    touched.confirmPassword ? errors.confirmPassword : ''
                   }
                   error={Boolean(errors.confirmPassword)}
                   value={confirmPassword}
@@ -242,7 +239,7 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <LockIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">{errors.confirmPassword}</div>
@@ -261,7 +258,7 @@ export const SignAndRegForm = (props) => {
                       clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}
-                      cookiePolicy={"single_host_origin"}
+                      cookiePolicy={'single_host_origin'}
                       buttonText="Login"
                     />
                   </div>
@@ -314,7 +311,7 @@ export const SignAndRegForm = (props) => {
                   id="email"
                   name="email"
                   label="E-mail"
-                  helperText={touched.email ? errors.email : ""}
+                  helperText={touched.email ? errors.email : ''}
                   error={Boolean(errors.email)}
                   value={email}
                   onChange={handleChange}
@@ -325,17 +322,17 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <EmailIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">
-                  {Boolean(errors.email) ? errors.email : ""}
+                  {errors.email ? errors.email : ''}
                 </div>
                 <TextField
                   id="password"
                   name="password"
                   label="Ваш пароль"
-                  helperText={touched.password ? errors.password : ""}
+                  helperText={touched.password ? errors.password : ''}
                   error={Boolean(errors.password)}
                   value={password}
                   onChange={handleChange}
@@ -347,7 +344,7 @@ export const SignAndRegForm = (props) => {
                       <InputAdornment position="start">
                         <LockIcon />
                       </InputAdornment>
-                    ),
+                    )
                   }}
                 />
                 <div className="errors-text">{errors.password}</div>
@@ -361,7 +358,7 @@ export const SignAndRegForm = (props) => {
                       clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
                       onSuccess={responseGoogle}
                       onFailure={responseGoogle}
-                      cookiePolicy={"single_host_origin"}
+                      cookiePolicy={'single_host_origin'}
                       buttonText="Login"
                     />
                   </div>
