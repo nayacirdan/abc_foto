@@ -28,6 +28,7 @@ const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuanti
     console.log('searchParams in quantity', searchParams.toString());
     dispatch(setPerPage(event.target.value));
     dispatch(setCurrentPage(1));
+    debugger;
     history.push(`/products/filter?${searchParams}`);
   };
 

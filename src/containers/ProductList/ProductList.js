@@ -8,45 +8,48 @@ import PaginationWrapper from '../../components/Pagination/Pagination';
 import './ProductList.scss';
 import {useLocation, useHistory} from 'react-router';
 
-const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortBy}) => {
+const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortBy, allState}) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
+  console.log(allState);
   const searchParams = new URLSearchParams(location.search);
-  const formFilterString = () => {
-    if (currentCategory.name) {
-      searchParams.delete('categories');
-      searchParams.set('categories', currentCategory.name);
-    }
-    if (!searchParams.has('perPage')) {
-      searchParams.set('perPage', perPage);
-    }
-    if (!searchParams.has('startPage')) {
-      searchParams.set('startPage', currentPage);
-    }
-    if (searchParams.has('startPage') && searchParams.get('startPage') !== currentPage) {
-      searchParams.delete('startPage');
-      searchParams.set('startPage', currentPage);
-    }
-
-    if (sortBy !== '') {
-      searchParams.delete('sort');
-      searchParams.set('sort', sortBy);
-    }
-
-    const filterString = searchParams.toString();
-    console.log('filterString', filterString);
-
-    history.push(`/products/filter?${searchParams}`);
-    return filterString;
-  };
 
   useEffect(() => {
+    const formFilterString = () => {
+      debugger;
+      if (currentCategory.name) {
+        searchParams.delete('categories');
+        searchParams.set('categories', currentCategory.name);
+      }
+      if (!searchParams.has('perPage') && perPage !== 3) {
+        searchParams.set('perPage', perPage);
+      }
+      if (!searchParams.has('startPage') && currentPage !== 1) {
+        searchParams.set('startPage', currentPage);
+      }
+      if (searchParams.has('startPage') && searchParams.get('startPage') !== currentPage) {
+        searchParams.delete('startPage');
+        searchParams.set('startPage', currentPage);
+      }
+
+      if (sortBy !== '') {
+        searchParams.delete('sort');
+        searchParams.set('sort', sortBy);
+      }
+      debugger;
+      const filterString = searchParams.toString();
+      console.log('filterString', filterString);
+      debugger;
+      history.push(`/products/filter?${searchParams}`);
+      return filterString;
+    };
+    debugger;
     dispatch(setSearchFilters(formFilterString()));
     console.log('filterParams in seEffect', filterParams);
     dispatch(filterProducts(formFilterString()));
-  }, [currentCategory, sortBy, currentPage, perPage, dispatch, formFilterString, filterParams]);
+  }, [currentCategory, sortBy, currentPage, perPage, dispatch, filterParams]);
 
   const products = useSelector(state => state.products.products);
   console.log('products', products);
@@ -79,7 +82,8 @@ const mapStoreToProps = (state) => {
     currentPage: state.categoryPage.currentPage,
     sortBy: state.categoryPage.sortBy,
     currentCategory: state.categories.currentCategory,
-    filterParams: state.filters.searchFilters
+    filterParams: state.filters.searchFilters,
+    allState: state
   };
 };
 
