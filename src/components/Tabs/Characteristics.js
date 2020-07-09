@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Characteristics = (props) => {
-
-    const { currentProduct } = props;
-    const { cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
-        specialFeatures, videoRecording, lens, interfaceProp, pictureSize } = currentProduct;
+  const { currentProduct } = props;
+  const {
+    cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
+    specialFeatures, videoRecording, lens, interfaceProp, pictureSize
+  } = currentProduct;
 
   const arrayMap = (array) => array.map((item, i) => (
     <div key={i}>{item}</div>
@@ -52,22 +53,22 @@ const Characteristics = (props) => {
                       <div className='characteristics_item-name'>Специальные функции</div>
                       <div className='characteristics_item-description'>{arrayMap(interfaceProp)}</div>
                     </div>}
-                {guarantee && <div className='characteristics_item'>
-                    <div className='characteristics_item-name'>Гарантия</div>
-                    <div className='characteristics_item-description'>{guarantee}</div>
-                </div>}
-                {weight && <div className='characteristics_item'>
-                    <div className='characteristics_item-name'>Вес (грамм)</div>
-                    <div className='characteristics_item-description'>{weight}</div>
-                </div>}
-                {pictureSize && <div className='characteristics_item'>
-                    <div className='characteristics_item-name'>Размер фотокарточки</div>
-                    <div className='characteristics_item-description'>{pictureSize}</div>
-                </div>}
-                {color && <div className='characteristics_item'>
-                    <div className='characteristics_item-name'>Цвет</div>
-                    <div className='characteristics_item-description'>{color}</div>
-                </div>}
+        {guarantee && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Гарантия</div>
+          <div className='characteristics_item-description'>{guarantee}</div>
+        </div>}
+        {weight && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Вес (грамм)</div>
+          <div className='characteristics_item-description'>{weight}</div>
+        </div>}
+        {pictureSize && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Размер фотокарточки</div>
+          <div className='characteristics_item-description'>{pictureSize}</div>
+        </div>}
+        {color && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Цвет</div>
+          <div className='characteristics_item-description'>{color}</div>
+        </div>}
 
       </div>
     </div>

@@ -72,44 +72,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-    const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products,
-        recentlyViewedProducts } = props;
-    const classes = useStyles();
+  const {
+    searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products,
+    recentlyViewedProducts
+  } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     searchChange();
   }, [searchChange]);
 
-    const onChangeHandler = (e) => {
-        searchChange(e.target.value)
-        getProductsBySearch({ "query": e.target.value.trim() })
-    }
-    const filterProductsHandler = (e, value) => {
-        if (value !== null) {
-            let recentlyViewedArray = [...recentlyViewedProducts];
-            if (recentlyViewedArray.find(el => el.article === value.article)) {
-                recentlyViewedArray = [...recentlyViewedProducts]
-            } else {
-                if (recentlyViewedArray.length === 4) {
-                    recentlyViewedArray.splice(3, 1)
-                    recentlyViewedArray.unshift(value);
-
-                } else {
-                    recentlyViewedArray = [...recentlyViewedProducts, value]
-                }
-            };
-            localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-            setRecentlyViewedProducts(recentlyViewedArray);
-            setCurrentProduct(value)
-            history.push(`/products/filter/${value.itemNo}`)
-        }
-    };
-
-  const [isHovering, setIsHovering] = useState(false);
-
-  const toggleHoverState = () => {
-    setIsHovering(!isHovering);
+  const onChangeHandler = (e) => {
+    searchChange(e.target.value);
+    getProductsBySearch({ query: e.target.value.trim() });
   };
+  const filterProductsHandler = (e, value) => {
+    if (value !== null) {
+      let recentlyViewedArray = [...recentlyViewedProducts];
+      if (recentlyViewedArray.find(el => el.article === value.article)) {
+        recentlyViewedArray = [...recentlyViewedProducts];
+      } else {
+        if (recentlyViewedArray.length === 4) {
+          recentlyViewedArray.splice(3, 1);
+          recentlyViewedArray.unshift(value);
+        } else {
+          recentlyViewedArray = [...recentlyViewedProducts, value];
+        }
+      };
+      localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+      setRecentlyViewedProducts(recentlyViewedArray);
+      setCurrentProduct(value);
+      history.push(`/products/filter/${value.itemNo}`);
+    }
+  };
+
+  // const [isHovering, setIsHovering] = useState(false);
+
+  // const toggleHoverState = () => {
+  //   setIsHovering(!isHovering);
+  // };
   const dispatch = useDispatch();
 
   const openSignUpModal = () => {
@@ -121,46 +122,46 @@ const Header = (props) => {
     dispatch(openModal());
   };
 
-    const phoneNumber = (
-        <MenuListComposition
-            firstItem={
-                <div className="menu-item">
-                    <div><a href="tel:0800212150" className="menu-item__tel-number"><span>0 (800) 21 21 50</span></a></div>
-                    <ExpandMoreIcon className={classes.expandMore} fontSize="small" />
-                </div>
-            }
-            secondItem={
-                <div className="menu-item">
-                    <div><a href="tel:+380443777011" className="menu-item__tel-number">0 (44) 377 70 11</a> &nbsp;</div>
-                    <div>Киев</div>
-                </div>
-            }
-            thirdItem={
-                <div className="menu-item">
-                    <div><a href="tel:0563703653" className="menu-item__tel-number">0 (56) 370 36 53</a> &nbsp;</div>
-                    <div>Днепр</div>
-                </div>
-            }
-        >
-        </MenuListComposition>
-    );
-    const AccountMenu = (
-        <MenuListComposition
-            firstItem={
-                <div className="account-menu">
-                    <div className="account-menu__accountIcon">{accountIcon}</div>
-                    <div className="account-menu__iconText">Вход</div>
-                </div>
-            }
-            secondItem={
-                <div className="menu-item">
-                    <div onClick={openSignInModal}>Войти</div>
-                </div>
-            }
-            thirdItem={
-                <div>
-                    <hr className="hr" />
-                    <div className="menu-item" onClick={openSignUpModal} >
+  const phoneNumber = (
+    <MenuListComposition
+      firstItem={
+        <div className="menu-item">
+          <div><a href="tel:0800212150" className="menu-item__tel-number"><span>0 (800) 21 21 50</span></a></div>
+          <ExpandMoreIcon className={classes.expandMore} fontSize="small" />
+        </div>
+      }
+      secondItem={
+        <div className="menu-item">
+          <div><a href="tel:+380443777011" className="menu-item__tel-number">0 (44) 377 70 11</a> &nbsp;</div>
+          <div>Киев</div>
+        </div>
+      }
+      thirdItem={
+        <div className="menu-item">
+          <div><a href="tel:0563703653" className="menu-item__tel-number">0 (56) 370 36 53</a> &nbsp;</div>
+          <div>Днепр</div>
+        </div>
+      }
+    >
+    </MenuListComposition>
+  );
+  const AccountMenu = (
+    <MenuListComposition
+      firstItem={
+        <div className="account-menu">
+          <div className="account-menu__accountIcon">{accountIcon}</div>
+          <div className="account-menu__iconText">Вход</div>
+        </div>
+      }
+      secondItem={
+        <div className="menu-item">
+          <div onClick={openSignInModal}>Войти</div>
+        </div>
+      }
+      thirdItem={
+        <div>
+          <hr className="hr" />
+          <div className="menu-item" onClick={openSignUpModal} >
                         Зарегистрироваться
           </div>
         </div>
@@ -232,20 +233,20 @@ const Header = (props) => {
 };
 
 const mapStateToProps = store => {
-    return {
-        products: store.products.products,
-        recentlyViewedProducts: store.products.recentlyViewedProducts
-    }
+  return {
+    products: store.products.products,
+    recentlyViewedProducts: store.products.recentlyViewedProducts
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        getProducts: () => dispatch(getProducts()),
-        searchChange: (text) => dispatch(searchChange(text)),
-        getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
-        setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
-    }
-}
+  return {
+    getProducts: () => dispatch(getProducts()),
+    searchChange: (text) => dispatch(searchChange(text)),
+    getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+    setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

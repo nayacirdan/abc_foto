@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Header from "./containers/Header/Header";
+import Header from './containers/Header/Header';
 import './App.scss';
 import Footer from './components/Footer/Footer';
 import {connect} from 'react-redux';
@@ -15,15 +15,13 @@ import { getProducts } from './store/actions/actions';
 import CategoryRoutes from './HOCs/CategoryRoutes/CategoryRoutes';
 import Cart from './pages/Cart/Cart';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
-import SubMenu from './containers/Header/Navigation/SubMenu';
 
 const App = (props) => {
   const {modalIsOpen, getProducts} = props;
 
   useEffect(() => {
-    getProducts()
-  }, [getProducts])
-
+    getProducts();
+  }, [getProducts]);
 
   const values = {
     name: 'Pasha',
@@ -43,7 +41,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Header/>
-        <SubMenu/>
+        {/* <SubMenu/> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/products/filter/:itemNo" component={ProductPage} />
@@ -70,7 +68,7 @@ const mapStoreToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(getProducts())
-  }
-}
+  };
+};
 
 export default connect(mapStoreToProps, mapDispatchToProps)(App);

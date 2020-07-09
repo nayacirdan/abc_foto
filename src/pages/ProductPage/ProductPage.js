@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback} from 'react';
+import React, { useEffect, useCallback } from 'react';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
 import { Description } from '../../components/Tabs/Description';
@@ -17,78 +17,78 @@ import { Link } from 'react-scroll';
 import Card from '../../components/Card/Card';
 
 const ProductPage = (props) => {
-    const { setCurrentProduct, product, history, match, recentlyViewedProds } = props;
+  const { setCurrentProduct, product, history, match, recentlyViewedProds } = props;
 
-    const getItemByItemNo = useCallback(
-        async () => {
-            const result = await axios.get(`/products/${match.params.itemNo}`)
-                .then(res => res.data)
-                .catch(err => {
-                    console.log(err.message)
-                });
-            return result;
-        },
-        [match.params.itemNo],
+  const getItemByItemNo = useCallback(
+    async () => {
+      const result = await axios.get(`/products/${match.params.itemNo}`)
+        .then(res => res.data)
+        .catch(err => {
+          console.log(err.message);
+        });
+      return result;
+    },
+    [match]
+  );
+  const recentlyViewedProducts = useCallback(() => {
+    const sliderProducts = (recentlyViewedProds || []).map(product => (
+      <div key={product.itemNo} className="slider-card">
+        <Link
+          activeClass='active'
+          spy={true}
+          smooth={true}
+          to='productPage'
+          duration={500}
+        >
+          <Card key={product.itemNo} product={product} />
+        </Link>
+      </div>)
     );
-    const recentlyViewedProducts = () => {
-        const sliderProducts = (recentlyViewedProds || []).map(product => (
-            <div key={product.itemNo} className="slider-card">
-                <Link
-                    activeClass='active'
-                    spy={true}
-                    smooth={true}
-                    to='productPage'
-                    duration={500}
-                >
-                    <Card key={product.itemNo} product={product} />
-                </Link>
-            </div>)
-        );
 
-        if (sliderProducts.length > 3 || sliderProducts.length === 0) {
-            return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />)
-        } else {
-            return null
-        }
+    if (sliderProducts.length > 3 || sliderProducts.length === 0) {
+      return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />);
+    } else {
+      return null;
     }
-    useEffect(() => {
-        getItemByItemNo().then(result => setCurrentProduct(result))
-        recentlyViewedProducts()
-    }, [setCurrentProduct, history.location, getItemByItemNo]);
+  });
+  useEffect(() => {
+    getItemByItemNo().then(result => setCurrentProduct(result));
+    recentlyViewedProducts();
+  }, [setCurrentProduct, history.location, getItemByItemNo, recentlyViewedProducts]);
 
-    // const qwe = async() => {
-    //     const result = await currentProduct();
-    //     setProduct(result);
-    // }
+  // const qwe = async() => {
+  //     const result = await currentProduct();
+  //     setProduct(result);
+  // }
 
-    return (
-        product ?
-            <div id='productPage'>
-                <div className="container">
-                    {/* <Breadcrumb productTitle={product.name} /> */}
-                    <div className='slider-info'>
-                        <div className="product-page-header">
-                            <div className="product-page-header_title">{product.name}</div>
-                            <div className="product-page-header_article">Код товара: {product.article}</div>
-                        </div>
-                        <div></div>
-                    </div>
-                    <ProductPageInfo />
-                    <Tabs
-                        description={<Description />}
-                        characteristics={<Characteristics currentProduct={product} />}
-                    />
-                </div>
-                {recentlyViewedProducts()}
-            </div> : null
-    )
+  return (
+    product
+      ? <div id='productPage'>
+        <div className="container">
+          {/* <Breadcrumb productTitle={product.name} /> */}
+          <div className='slider-info'>
+            <div className="product-page-header">
+              <div className="product-page-header_title">{product.name}</div>
+              <div className="product-page-header_article">Код товара: {product.article}</div>
+            </div>
+            <div></div>
+          </div>
+          <ProductPageInfo />
+          <Tabs
+            description={<Description />}
+            characteristics={<Characteristics currentProduct={product} />}
+          />
+        </div>
+        {recentlyViewedProducts()}
+      </div> : null
+  );
 };
 
 const mapStateToProps = store => {
-    return {
-        product: store.products.currentProduct,
-        recentlyViewedProds: store.products.recentlyViewedProducts
-    }
+  return {
+    product: store.products.currentProduct,
+    recentlyViewedProds: store.products.recentlyViewedProducts
+  };
 };
 
 const mapDispatchToProps = dispatch => {

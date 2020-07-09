@@ -1,6 +1,6 @@
 import React from 'react';
-import './Navigation.scss'
-import CatalogLinks from "../../../HOCs/CatalogLinks/CatalogLinks";
+import './Navigation.scss';
+import CatalogLinks from '../../../HOCs/CatalogLinks/CatalogLinks';
 
 const Navigation = () => {
   return (

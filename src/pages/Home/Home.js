@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
-import TopSlider from "../../components/TopSlider/TopSlider";
-import Slider from "../../containers/SliderOfHitProducts/Slider";
-import PromotionsAndOffers from "../../components/Promotions/PromotionsAndOffers";
+import React, { useEffect } from 'react';
+import TopSlider from '../../components/TopSlider/TopSlider';
+import Slider from '../../containers/SliderOfHitProducts/Slider';
+import PromotionsAndOffers from '../../components/Promotions/PromotionsAndOffers';
 
 import { connect } from 'react-redux';
 import { getProducts } from '../../store/actions/actions';
 import { Link } from 'react-scroll';
 import Card from '../../components/Card/Card';
 
-
 const Home = (props) => {
   const { products, getProducts } = props;
   useEffect(() => {
-    getProducts()
+    getProducts();
   }, [getProducts]);
-
 
   const filtedProducts = (products || []).filter((key) => (key.isAvailable === true || key.isExpected === true));
   const sliderProducts = filtedProducts.map(product => (
@@ -44,13 +42,13 @@ const Home = (props) => {
 const mapStateToProps = (store) => {
   return {
     products: store.products.products
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getProducts: () => dispatch(getProducts())
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

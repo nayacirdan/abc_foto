@@ -150,7 +150,6 @@ const useStyles = makeStyles({
 
 /*
 
-
 const CardItem = (props) => {
     const { product, history, setCurrentProduct } = props;
 
@@ -260,7 +259,7 @@ const CardItem = (props) => {
 */
 
 const CardItem = (props) => {
-    const { product, history, setCurrentProduct, setRecentlyViewedProducts, recentlyViewedProducts } = props;
+  const { product, history, setCurrentProduct, setRecentlyViewedProducts, recentlyViewedProducts } = props;
 
   const {
     imageUrls,
@@ -274,24 +273,23 @@ const CardItem = (props) => {
     itemNo
   } = product;
 
-
-    const redirectToProductPage = (product) => {
-        setCurrentProduct(product)
-        let recentlyViewedArray = [...recentlyViewedProducts];
-        if (recentlyViewedArray.find(el => el.article === product.article)) {
-            recentlyViewedArray = [...recentlyViewedProducts]
-        } else {
-            if (recentlyViewedArray.length === 4) {
-                recentlyViewedArray.push(product);
-                recentlyViewedArray.shift()
-            } else {
-                recentlyViewedArray = [...recentlyViewedProducts, product]
-            }
-        };
-        localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-        setRecentlyViewedProducts(recentlyViewedArray);
-        history.push(`/products/filter/${itemNo}`)
-    }
+  const redirectToProductPage = (product) => {
+    setCurrentProduct(product);
+    let recentlyViewedArray = [...recentlyViewedProducts];
+    if (recentlyViewedArray.find(el => el.article === product.article)) {
+      recentlyViewedArray = [...recentlyViewedProducts];
+    } else {
+      if (recentlyViewedArray.length === 4) {
+        recentlyViewedArray.push(product);
+        recentlyViewedArray.shift();
+      } else {
+        recentlyViewedArray = [...recentlyViewedProducts, product];
+      }
+    };
+    localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+    setRecentlyViewedProducts(recentlyViewedArray);
+    history.push(`/products/filter/${itemNo}`);
+  };
 
   const getProductAvailability = () => {
     if (isAvailable) {
@@ -311,63 +309,62 @@ const CardItem = (props) => {
     }
   };
 
-    return (
-        <>
-            <Card className='card' >
-                <Grid container className='card__media-container'
-                    onClick={(e) => {
-                        e.preventDefault()
-                        redirectToProductPage(product)
-                    }}
-                >
-                    <CardMedia
-                        className='card__media'
-                        image={imageUrls[0]}
-                    />
-                </Grid>
+  return (
+    <>
+      <Card className='card' >
+        <Grid container className='card__media-container'
+          onClick={(e) => {
+            e.preventDefault();
+            redirectToProductPage(product);
+          }}
+        >
+          <CardMedia
+            className='card__media'
+            image={imageUrls[0]}
+          />
+        </Grid>
 
+        <CardContent className='card__content'>
+          <Typography component="h2" className='card__title'
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToProductPage(product);
+            }}
+          >
+            {name}
+          </Typography>
+          <Grid container
+            direction="row"
+            justify="space-between"
+            alignItems="center">
+            {previousPrice ? (
+              <Grid container direction='column' className='card__price-container'
+                justify="flex-start"
+                alignItems="flex-start">
+                <Typography component='span' className='card__old-price'>
+                  {previousPrice} грн.
+                </Typography>
+                <Typography component='span' className='card__sale-price'>
+                  {currentPrice} грн.
+                </Typography>
+              </Grid>
+            )
+              : (
+                <Typography component='span' className='card__full-price'>
+                  {currentPrice} грн.
+                </Typography>
+              )
+            }
 
-                <CardContent className='card__content'>
-                    <Typography component="h2" className='card__title'
-                        onClick={(e) => {
-                            e.preventDefault()
-                            redirectToProductPage(product)
-                        }}
-                    >
-                        {name}
-                    </Typography>
-                    <Grid container
-                        direction="row"
-                        justify="space-between"
-                        alignItems="center">
-                        {previousPrice ? (
-                            <Grid container direction='column' className='card__price-container'
-                                justify="flex-start"
-                                alignItems="flex-start">
-                                <Typography component='span' className='card__old-price'>
-                                    {previousPrice} грн.
-                                    </Typography>
-                                <Typography component='span' className='card__sale-price'>
-                                    {currentPrice} грн.
-                                    </Typography>
-                            </Grid>
-                        ) :
-                            (
-                                <Typography component='span' className='card__full-price'>
-                                    {currentPrice} грн.
-                                </Typography>
-                            )
-                        }
-
-                        <IconButton color="#51AD33" aria-label="upload picture" component="span"
-                            className='card__cart-btn' disabled={!isAvailable} >
-                            <ShoppingCartOutlinedIcon className='card__cart-icon' />
-                        </IconButton>
-                    </Grid>
-                    <Grid container
-                        direction="row"
-                        justify="flex-start"
-                        alignItems="center">
+            <IconButton color="#51AD33" aria-label="upload picture" component="span"
+              className='card__cart-btn' disabled={!isAvailable} >
+              <ShoppingCartOutlinedIcon className='card__cart-icon' />
+            </IconButton>
+          </Grid>
+          <Grid container
+            direction="row"
+            justify="flex-start"
+            alignItems="center">
 
             {getProductAvailability()}
 
@@ -389,15 +386,15 @@ const CardItem = (props) => {
 };
 
 const mapStateToProps = store => {
-    return {
-        recentlyViewedProducts: store.products.recentlyViewedProducts
-    }
-}
+  return {
+    recentlyViewedProducts: store.products.recentlyViewedProducts
+  };
+};
 const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
-        setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
-    }
-}
+  return {
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+    setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CardItem));
