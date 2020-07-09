@@ -1,20 +1,18 @@
-import React from "react";
+import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import './Card.scss'
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import './Card.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import IconButton from "@material-ui/core/IconButton";
-import Grid from "@material-ui/core/Grid";
-import cartIcon from "../../svg/cartIcon";
-import { withRouter } from "react-router";
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+import cartIcon from '../../svg/cartIcon';
+import { withRouter } from 'react-router';
 
 import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
-
-import setRecentlyViewed from '../../utils/recentlyViewedProducts';
 
 /*
 const useStyles = makeStyles({
@@ -148,7 +146,7 @@ const useStyles = makeStyles({
         wordWrap: 'break-word',
         top: '98%'
     }
-});*/
+}); */
 
 /*
 
@@ -203,7 +201,6 @@ const CardItem = (props) => {
                         image={imageUrls[0]}
                     />
                 </Grid>
-
 
                 <CardContent className={classes.cardContent}>
                     <Typography component="h2" className={classes.title}>
@@ -262,21 +259,20 @@ const CardItem = (props) => {
 };
 */
 
-
 const CardItem = (props) => {
     const { product, history, setCurrentProduct, setRecentlyViewedProducts, recentlyViewedProducts } = props;
 
-    const {
-        imageUrls,
-        name,
-        isAvailable,
-        currentPrice,
-        previousPrice,
-        isHit,
-        isExpected,
-        description,
-        itemNo
-    } = product;
+  const {
+    imageUrls,
+    name,
+    isAvailable,
+    currentPrice,
+    previousPrice,
+    isHit,
+    isExpected,
+    description,
+    itemNo
+  } = product;
 
 
     const redirectToProductPage = (product) => {
@@ -297,23 +293,23 @@ const CardItem = (props) => {
         history.push(`/products/filter/${itemNo}`)
     }
 
-    const getProductAvailability = () => {
-        if (isAvailable) {
-            return (<Typography component='span' className='card__available'>
+  const getProductAvailability = () => {
+    if (isAvailable) {
+      return (<Typography component='span' className='card__available'>
                 В наличии
-            </Typography>)
-        } else {
-            if (isExpected) {
-                return (<Typography component='span' className='card__expect'>
+      </Typography>);
+    } else {
+      if (isExpected) {
+        return (<Typography component='span' className='card__expect'>
                     Ожидается
-                </Typography>)
-            } else {
-                return (<Typography component='span' className='card__not-available'>
+        </Typography>);
+      } else {
+        return (<Typography component='span' className='card__not-available'>
                     Нет в наличии
-                </Typography>)
-            }
-        }
+        </Typography>);
+      }
     }
+  };
 
     return (
         <>
@@ -373,23 +369,23 @@ const CardItem = (props) => {
                         justify="flex-start"
                         alignItems="center">
 
-                        {getProductAvailability()}
+            {getProductAvailability()}
 
-                    </Grid>
+          </Grid>
 
-                </CardContent>
-                {isHit ? <Grid item className='card-hit' justify='center'>
+        </CardContent>
+        {isHit ? <Grid item className='card-hit' justify='center'>
                     Хит продаж
-                </Grid> : null}
-                <Grid container className='card__description'>
-                    <Typography component='p' >
-                        {description}
-                    </Typography>
-                </Grid>
-            </Card>
+        </Grid> : null}
+        <Grid container className='card__description'>
+          <Typography component='p' >
+            {description}
+          </Typography>
+        </Grid>
+      </Card>
 
-        </>
-    )
+    </>
+  );
 };
 
 const mapStateToProps = store => {

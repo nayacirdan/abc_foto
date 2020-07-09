@@ -6,51 +6,51 @@ const Characteristics = (props) => {
     const { cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
         specialFeatures, videoRecording, lens, interfaceProp, pictureSize } = currentProduct;
 
-    const arrayMap = (array) => array.map((item, i) => (
-        <div key={i}>{item}</div>
-    ));
-    return (
-        <div>
-            <div className='characteristics'>
-                {cameraMatrix &&
+  const arrayMap = (array) => array.map((item, i) => (
+    <div key={i}>{item}</div>
+  ));
+  return (
+    <div>
+      <div className='characteristics'>
+        {cameraMatrix &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Матрица фотоаппарата</div>
-                        <div className='characteristics_item-description'>{arrayMap(cameraMatrix)}</div>
+                      <div className='characteristics_item-name'>Матрица фотоаппарата</div>
+                      <div className='characteristics_item-description'>{arrayMap(cameraMatrix)}</div>
                     </div>}
-                {videoRecording &&
+        {videoRecording &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Запись видео</div>
-                        <div className='characteristics_item-description'>{videoRecording}</div>
+                      <div className='characteristics_item-name'>Запись видео</div>
+                      <div className='characteristics_item-description'>{videoRecording}</div>
                     </div>}
-                {classPro &&
+        {classPro &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Класс</div>
-                        <div className='characteristics_item-description'>{classPro}</div>
+                      <div className='characteristics_item-name'>Класс</div>
+                      <div className='characteristics_item-description'>{classPro}</div>
                     </div>}
-                {photosensitivity &&
+        {photosensitivity &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Светочувствительность</div>
-                        <div className='characteristics_item-description'>{arrayMap(photosensitivity)}</div>
+                      <div className='characteristics_item-name'>Светочувствительность</div>
+                      <div className='characteristics_item-description'>{arrayMap(photosensitivity)}</div>
                     </div>}
-                {lens &&
+        {lens &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Объектив</div>
-                        <div className='characteristics_item-description'>{arrayMap(lens)}</div>
+                      <div className='characteristics_item-name'>Объектив</div>
+                      <div className='characteristics_item-description'>{arrayMap(lens)}</div>
                     </div>}
-                {exposureMode &&
+        {exposureMode &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Режимы отработки экспозиции</div>
-                        <div className='characteristics_item-description'>{arrayMap(exposureMode)}</div>
+                      <div className='characteristics_item-name'>Режимы отработки экспозиции</div>
+                      <div className='characteristics_item-description'>{arrayMap(exposureMode)}</div>
                     </div>}
-                {specialFeatures &&
+        {specialFeatures &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Специальные функции</div>
-                        <div className='characteristics_item-description'>{arrayMap(specialFeatures)}</div>
+                      <div className='characteristics_item-name'>Специальные функции</div>
+                      <div className='characteristics_item-description'>{arrayMap(specialFeatures)}</div>
                     </div>}
-                {interfaceProp &&
+        {interfaceProp &&
                     <div className='characteristics_item'>
-                        <div className='characteristics_item-name'>Специальные функции</div>
-                        <div className='characteristics_item-description'>{arrayMap(interfaceProp)}</div>
+                      <div className='characteristics_item-name'>Специальные функции</div>
+                      <div className='characteristics_item-description'>{arrayMap(interfaceProp)}</div>
                     </div>}
                 {guarantee && <div className='characteristics_item'>
                     <div className='characteristics_item-name'>Гарантия</div>
@@ -69,9 +69,9 @@ const Characteristics = (props) => {
                     <div className='characteristics_item-description'>{color}</div>
                 </div>}
 
-            </div>
-        </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default Characteristics;

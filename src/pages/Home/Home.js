@@ -30,7 +30,7 @@ const Home = (props) => {
       </Link>
     </div>)
   );
-  
+
   return (
     <div>
       <TopSlider />

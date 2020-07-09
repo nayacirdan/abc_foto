@@ -5,19 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
 import store from './store/store';
-import {Provider} from "react-redux";
+import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import "swiper/css/swiper.css";
+import 'swiper/css/swiper.css';
 
 ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App/>
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

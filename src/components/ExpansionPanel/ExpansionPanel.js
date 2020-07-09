@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SimpleExpansionPanel(props) {
-    const { title, main, readMoreClass } = props;
-    const classes = useStyles();
+function SimpleExpansionPanel (props) {
+  const { title, main, readMoreClass } = props;
+  const classes = useStyles();
 
     return (
         <div className={classes.root}>

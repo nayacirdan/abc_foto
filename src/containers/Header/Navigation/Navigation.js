@@ -3,9 +3,9 @@ import './Navigation.scss'
 import CatalogLinks from "../../../HOCs/CatalogLinks/CatalogLinks";
 
 const Navigation = () => {
-    return (
-        <nav className="nav">
-            {/* <ul className="nav__menu">
+  return (
+    <nav className="nav">
+      {/* <ul className="nav__menu">
                 <li className="nav__menu-item">
                     <a>Цифровая техника</a>
                     <SubMenu/>
@@ -33,9 +33,9 @@ const Navigation = () => {
                 </li>
 
             </ul> */}
-            <CatalogLinks/>
-        </nav>
-    );
+      <CatalogLinks/>
+    </nav>
+  );
 };
 
 export default Navigation;

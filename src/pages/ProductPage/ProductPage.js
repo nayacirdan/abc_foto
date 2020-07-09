@@ -9,7 +9,7 @@ import './ProductPage.scss';
 
 import axios from 'axios';
 
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router';
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
@@ -92,9 +92,9 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
-    }
-}
+  return {
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductPage));

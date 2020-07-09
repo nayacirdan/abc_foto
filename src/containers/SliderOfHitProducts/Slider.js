@@ -1,29 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import PropTypes from 'prop-types';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./Slider.scss";
+import { getProducts } from '../../store/actions/actions';
+import { Link } from 'react-scroll';
 
-function SampleNextArrow(props) {
-    const { className, onClick } = props;
-    return (
-        <div
-            className={className}
-            onClick={onClick}
-        />
-    );
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './Slider.scss';
+
+function SampleNextArrow (props) {
+  const { className, onClick } = props;
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+    />
+  );
 }
 
-function SamplePrevArrow(props) {
-    const { className, onClick } = props;
-    return (
-        <div
-            className={className}
-            onClick={onClick}
-        />
-    );
+function SamplePrevArrow (props) {
+  const { className, onClick } = props;
+  return (
+    <div
+      className={className}
+      onClick={onClick}
+    />
+  );
 }
 
 const Responsive = (props) => {
