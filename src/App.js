@@ -23,7 +23,7 @@ const App = (props) => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [getProducts])
 
 
   const values = {

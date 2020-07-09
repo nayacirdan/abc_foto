@@ -91,8 +91,9 @@ const Header = (props) => {
                 recentlyViewedArray = [...recentlyViewedProducts]
             } else {
                 if (recentlyViewedArray.length === 4) {
-                    recentlyViewedArray.push(value);
-                    recentlyViewedArray.shift()
+                    recentlyViewedArray.splice(3, 1)
+                    recentlyViewedArray.unshift(value);
+                    
                 } else {
                     recentlyViewedArray = [...recentlyViewedProducts, value]
                 }

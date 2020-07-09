@@ -14,6 +14,7 @@ import { withRouter } from "react-router";
 import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
+import setRecentlyViewed from '../../utils/recentlyViewedProducts';
 
 /*
 const useStyles = makeStyles({
@@ -331,7 +332,12 @@ const CardItem = (props) => {
 
 
                 <CardContent className='card__content'>
-                    <Typography component="h2" className='card__title'>
+                    <Typography component="h2" className='card__title'
+                        onClick={(e) => {
+                            e.preventDefault()
+                            redirectToProductPage(product)
+                        }}
+                    >
                         {name}
                     </Typography>
                     <Grid container

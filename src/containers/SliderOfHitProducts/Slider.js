@@ -32,6 +32,7 @@ const Responsive = (props) => {
     var settings = {
         infinite: true,
         lazyLoad: true,
+        centerPadding: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,

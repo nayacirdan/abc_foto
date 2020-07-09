@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback} from 'react';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
 import { Description } from '../../components/Tabs/Description';
@@ -17,55 +17,49 @@ import { Link } from 'react-scroll';
 import Card from '../../components/Card/Card';
 
 const ProductPage = (props) => {
-    const { setCurrentProduct, product, history } = props;
+    const { setCurrentProduct, product, history, match, recentlyViewedProds } = props;
 
-    useEffect(() => {
-        currentProduct().then(result => setCurrentProduct(result))
-    }, [setCurrentProduct, history.location]);
-    
-
-    const { match } = props;
-    function currentProduct() {
-        const result = axios.get(`/products/${match.params.itemNo}`)
-            .then(res => res.data)
-            .catch(err => {
-                console.log(err.message)
-            });
-        return result;
-    };
-    // const qwe = async() => {
-    //     const result = await currentProduct();
-    //     setProduct(result);
-    // }
-    // const indexOfProduct = recentlyViewedArray.indexOf(product);
-    // if(indexOfProduct === -1) {
-    //     return recentlyViewedArray.unshift(product)
-    // } else {
-    //     return recentlyViewedArray
-    // }
-
-    const recentlyViewed = localStorage.getItem('recentlyViewed');
-    const recentlyViewedArray = JSON.parse(recentlyViewed);
-    const sliderProducts = (recentlyViewedArray || []).map(product => (
-        <div key={product.itemNo} className="slider-card">
-            <Link
-                activeClass='active'
-                spy={true}
-                smooth={true}
-                to='productPage'
-                duration={500}
-            >
-                <Card key={product.itemNo} product={product} />
-            </Link>
-        </div>)
+    const getItemByItemNo = useCallback(
+        async () => {
+            const result = await axios.get(`/products/${match.params.itemNo}`)
+                .then(res => res.data)
+                .catch(err => {
+                    console.log(err.message)
+                });
+            return result;
+        },
+        [match.params.itemNo],
     );
     const recentlyViewedProducts = () => {
+        const sliderProducts = (recentlyViewedProds || []).map(product => (
+            <div key={product.itemNo} className="slider-card">
+                <Link
+                    activeClass='active'
+                    spy={true}
+                    smooth={true}
+                    to='productPage'
+                    duration={500}
+                >
+                    <Card key={product.itemNo} product={product} />
+                </Link>
+            </div>)
+        );
+
         if (sliderProducts.length > 3 || sliderProducts.length === 0) {
             return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />)
         } else {
             return null
         }
     }
+    useEffect(() => {
+        getItemByItemNo().then(result => setCurrentProduct(result))
+        recentlyViewedProducts()
+    }, [setCurrentProduct, history.location, getItemByItemNo]);
+
+    // const qwe = async() => {
+    //     const result = await currentProduct();
+    //     setProduct(result);
+    // }
 
     return (
         product ?
@@ -92,7 +86,8 @@ const ProductPage = (props) => {
 
 const mapStateToProps = store => {
     return {
-        product: store.products.currentProduct
+        product: store.products.currentProduct,
+        recentlyViewedProds: store.products.recentlyViewedProducts
     }
 };
 
