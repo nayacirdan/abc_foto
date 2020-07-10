@@ -14,6 +14,8 @@ import { withRouter } from 'react-router';
 import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
+import localStorage from '../../utils/localStorage';
+
 /*
 const useStyles = makeStyles({
     root: {
@@ -275,19 +277,20 @@ const CardItem = (props) => {
 
   const redirectToProductPage = (product) => {
     setCurrentProduct(product);
-    let recentlyViewedArray = [...recentlyViewedProducts];
-    if (recentlyViewedArray.find(el => el.article === product.article)) {
-      recentlyViewedArray = [...recentlyViewedProducts];
-    } else {
-      if (recentlyViewedArray.length === 4) {
-        recentlyViewedArray.push(product);
-        recentlyViewedArray.shift();
-      } else {
-        recentlyViewedArray = [...recentlyViewedProducts, product];
-      }
-    };
-    localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-    setRecentlyViewedProducts(recentlyViewedArray);
+    // let recentlyViewedArray = [...recentlyViewedProducts];
+    // if (recentlyViewedArray.find(el => el.article === product.article)) {
+    //   recentlyViewedArray = [...recentlyViewedProducts];
+    // } else {
+    //   if (recentlyViewedArray.length === 4) {
+    //     recentlyViewedArray.push(product);
+    //     recentlyViewedArray.shift();
+    //   } else {
+    //     recentlyViewedArray = [...recentlyViewedProducts, product];
+    //   }
+    // };
+    // localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+    // setRecentlyViewedProducts(recentlyViewedArray);
+    localStorage(product);
     history.push(`/products/filter/${itemNo}`);
   };
 

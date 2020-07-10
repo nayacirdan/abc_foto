@@ -30,8 +30,9 @@ const ProductPage = (props) => {
     },
     [match]
   );
+  const recentlyViewedPro = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
   const recentlyViewedProducts = useCallback(() => {
-    const sliderProducts = (recentlyViewedProds || []).map(product => (
+    const sliderProducts = (recentlyViewedPro || []).map(product => (
       <div key={product.itemNo} className="slider-card">
         <Link
           activeClass='active'
@@ -50,7 +51,7 @@ const ProductPage = (props) => {
     } else {
       return null;
     }
-  });
+  }, [recentlyViewedPro]);
   useEffect(() => {
     getItemByItemNo().then(result => setCurrentProduct(result));
     recentlyViewedProducts();

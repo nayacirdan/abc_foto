@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -19,6 +19,7 @@ import { withRouter } from 'react-router';
 import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
+import setToLocalStorage from '../../utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,21 +87,24 @@ const Header = (props) => {
     searchChange(e.target.value);
     getProductsBySearch({ query: e.target.value.trim() });
   };
+
   const filterProductsHandler = (e, value) => {
     if (value !== null) {
-      let recentlyViewedArray = [...recentlyViewedProducts];
-      if (recentlyViewedArray.find(el => el.article === value.article)) {
-        recentlyViewedArray = [...recentlyViewedProducts];
-      } else {
-        if (recentlyViewedArray.length === 4) {
-          recentlyViewedArray.splice(3, 1);
-          recentlyViewedArray.unshift(value);
-        } else {
-          recentlyViewedArray = [...recentlyViewedProducts, value];
-        }
-      };
-      localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-      setRecentlyViewedProducts(recentlyViewedArray);
+      console.log('value', value);
+      // let recentlyViewedArray = [...recentlyViewedProducts];
+      // if (recentlyViewedArray.find(el => el.article === value.article)) {
+      //   recentlyViewedArray = [...recentlyViewedProducts];
+      // } else {
+      //   if (recentlyViewedArray.length === 4) {
+      //     recentlyViewedArray.splice(3, 1);
+      //     recentlyViewedArray.unshift(value);
+      //   } else {
+      //     recentlyViewedArray = [...recentlyViewedProducts, value];
+      //   }
+      // };
+      // localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
+      // setRecentlyViewedProducts(recentlyViewedArray);
+      setToLocalStorage(value);
       setCurrentProduct(value);
       history.push(`/products/filter/${value.itemNo}`);
     }
