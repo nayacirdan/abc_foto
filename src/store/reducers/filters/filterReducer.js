@@ -1,13 +1,13 @@
 import Actions from '../../constans/constans';
 
 const initialState = {
-  searchFilters: ''
+  locationFilters: ''
 };
 
 const filters = (state = initialState, action) => {
   switch (action.type) {
     case Actions.SET_SEARCH_FILTERS: {
-      return {...state, searchFilters: action.payload};
+      return {...state, locationFilters: action.payload};
     }
     default: {
       return state;

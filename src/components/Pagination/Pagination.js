@@ -9,7 +9,7 @@ import {setCurrentPage} from '../../store/actions/actions';
 
 const PaginationWrapper = () => {
   const category = useSelector((state) => state.categories.currentCategory.name);
-  console.log('category from pagination', category);
+
   const pagesQuantity = useSelector((state) => state.categoryPage.pagesQuantity);
   const perPage = useSelector((state) => state.categoryPage.productsPerPage);
   const dispatch = useDispatch();

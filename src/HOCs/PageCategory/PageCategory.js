@@ -18,10 +18,10 @@ const PageCategory = (props) => {
   const searchParams = new URLSearchParams(location.search);
   const categoryName = searchParams.get('categories');
   const dispatch = useDispatch();
-
+  debugger;
   useEffect(() => {
     dispatch(getCategory(categoryName));
-  }, [categoryName, dispatch]);
+  }, []);
 
   return (
     <div className='category'>

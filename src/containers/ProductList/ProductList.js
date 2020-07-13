@@ -13,46 +13,50 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
   const location = useLocation();
   const history = useHistory();
 
-  console.log(allState);
+  function useQuery () {
+    return new URLSearchParams(useLocation().search);
+  }
+
+  const query = useQuery();
   const searchParams = new URLSearchParams(location.search);
-
+  /* useEffect(() => {
+      const formFilterString = () => {
+        /!*      if (currentCategory.name) {
+          searchParams.delete('categories');
+          searchParams.set('categories', currentCategory.name);
+        }
+        if ((!searchParams.has('perPage')) && perPage !== 3) {
+          searchParams.set('perPage', perPage);
+        }
+        if (!searchParams.has('startPage') && currentPage !== 1) {
+          searchParams.set('startPage', currentPage);
+        }
+        if (searchParams.has('startPage') && (searchParams.get('startPage') !== currentPage)) {
+          searchParams.delete('startPage');
+          searchParams.set('startPage', currentPage);
+        }
+  
+        if (sortBy !== '') {
+          searchParams.delete('sort');
+          searchParams.set('sort', sortBy);
+        } *!/
+        const filterString = searchParams.toString();
+        /!*      history.push(`?${searchParams}`); *!/
+        return filterString;
+      };
+      debugger;
+      dispatch(setSearchFilters(query.toString()));
+      // New searchParams after history push
+    }, [query]);
+  
+    const locationFilters = useSelector(state => state.filters.locationFilters);
+  */
+  const queryString = query.toString();
   useEffect(() => {
-    const formFilterString = () => {
-      debugger;
-      if (currentCategory.name) {
-        searchParams.delete('categories');
-        searchParams.set('categories', currentCategory.name);
-      }
-      if (!searchParams.has('perPage') && perPage !== 3) {
-        searchParams.set('perPage', perPage);
-      }
-      if (!searchParams.has('startPage') && currentPage !== 1) {
-        searchParams.set('startPage', currentPage);
-      }
-      if (searchParams.has('startPage') && searchParams.get('startPage') !== currentPage) {
-        searchParams.delete('startPage');
-        searchParams.set('startPage', currentPage);
-      }
-
-      if (sortBy !== '') {
-        searchParams.delete('sort');
-        searchParams.set('sort', sortBy);
-      }
-      debugger;
-      const filterString = searchParams.toString();
-      console.log('filterString', filterString);
-      debugger;
-      history.push(`/products/filter?${searchParams}`);
-      return filterString;
-    };
-    debugger;
-    dispatch(setSearchFilters(formFilterString()));
-    console.log('filterParams in seEffect', filterParams);
-    dispatch(filterProducts(formFilterString()));
-  }, [currentCategory, sortBy, currentPage, perPage, dispatch, filterParams]);
+    dispatch(filterProducts(queryString));
+  }, [dispatch, queryString]);
 
   const products = useSelector(state => state.products.products);
-  console.log('products', products);
   let productsList = (<div className='empty-product-list'>No items are available</div>);
   if (products && products.length) {
     productsList = products.map((product) => {

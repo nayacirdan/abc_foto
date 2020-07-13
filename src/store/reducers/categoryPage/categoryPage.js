@@ -3,7 +3,7 @@ import Actions from '../../constans/constans';
 const initialState = {
   productsPerPage: 3,
   currentPage: 1,
-  sortBy: '',
+  sortBy: 'currentPrice',
   pagesQuantity: 0
 };
 

@@ -18,17 +18,14 @@ const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuanti
   const handleChangeRowsPerPage = (event) => {
     const perPageValue = parseInt(event.target.value, 10);
     dispatch(setPerPage(perPageValue));
-    console.log('event.target.value', event.target.value);
 
     if (searchParams.has('perPage')) {
       searchParams.delete('perPage');
     }
     searchParams.append('perPage', event.target.value);
-
-    console.log('searchParams in quantity', searchParams.toString());
+    
     dispatch(setPerPage(event.target.value));
     dispatch(setCurrentPage(1));
-    debugger;
     history.push(`/products/filter?${searchParams}`);
   };
 

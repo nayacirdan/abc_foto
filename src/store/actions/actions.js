@@ -62,8 +62,6 @@ export const getCategory = (categoryName) => (dispatch) => {
 };
 
 export const filterProducts = (filterParams) => (dispatch) => {
-  console.log('filterParams', filterParams);
-  debugger;
   axios.get(`/products/filter?${filterParams}`)
     .then(res => {
       dispatch({ type: Actions.FILTER_PRODUCTS, payload: res.data });
@@ -75,13 +73,15 @@ export const setPerPage = (quantity) => (dispatch) => {
   dispatch({ type: Actions.SET_PERPAGE, payload: quantity });
 };
 
+export const setCurrentCategory = (category) => (dispatch) => {
+  dispatch({ type: Actions.SET_CURRENT_CATEGORY, payload: category });
+};
+
 export const setCurrentPage = (page) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PAGE, payload: page });
 };
 
 export const setSearchFilters = (filterString) => (dispatch) => {
-  console.log('setSearchFilters');
-  debugger;
   dispatch({ type: Actions.SET_SEARCH_FILTERS, payload: filterString });
 };
 
