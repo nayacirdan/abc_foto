@@ -35,12 +35,9 @@ const FilterContainer = () => {
       <RegularFilter title='По производителю' checkboxesTitles={['Canon', 'Fujifilm', 'Nikon', 'Olympus', 'Panasonic', 'Pentax', 'Sony']}/>
       <RegularFilter title='Комплектация' checkboxesTitles={['Без объектива', 'С объективом']}/>
       <RegularFilter title='Матрица' checkboxesTitles={['CMOS', 'Кропнутая', 'Полноразмерная']}/> */}
-      <form>
-        <RegularFilterList/>
-        <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}><Button>Location</Button></Link>
-        <Link to={`/products/filter?${filterString}`}><Button>Filter Submit</Button></Link>
-      </form>
-      
+      <RegularFilterList/>
+      <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}><Button>Location</Button></Link>
+      <Link to={`/products/filter?${filterString}`}><Button>Filter Submit</Button></Link>
     </div>
   );
 };
