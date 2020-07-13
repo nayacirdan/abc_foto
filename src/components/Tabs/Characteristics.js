@@ -4,7 +4,9 @@ const Characteristics = (props) => {
   const { currentProduct } = props;
   const {
     cameraMatrix, weight, color, exposureMode, classPro, guarantee, photosensitivity,
-    specialFeatures, videoRecording, lens, interfaceProp, pictureSize
+    specialFeatures, videoRecording, lens, interfaceProp, pictureSize, focusing, ISOsensitivity,
+    maxResolution, megapixels, video, lightExposureCorrection, fps, flash, battery, display,
+    displayResolution
   } = currentProduct;
 
   const arrayMap = (array) => array.map((item, i) => (
@@ -61,9 +63,53 @@ const Characteristics = (props) => {
           <div className='characteristics_item-name'>Вес (грамм)</div>
           <div className='characteristics_item-description'>{weight}</div>
         </div>}
+        {video && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Видео</div>
+          <div className='characteristics_item-description'>{video}</div>
+        </div>}
+        {lightExposureCorrection && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Экспокоррекция, EV</div>
+          <div className='characteristics_item-description'>{lightExposureCorrection}</div>
+        </div>}
+        {fps && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Макс. размер кадра; кадров/сек. (fps)</div>
+          <div className='characteristics_item-description'>{fps}</div>
+        </div>}
         {pictureSize && <div className='characteristics_item'>
           <div className='characteristics_item-name'>Размер фотокарточки</div>
           <div className='characteristics_item-description'>{pictureSize}</div>
+        </div>}
+        {ISOsensitivity && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Фокусировка</div>
+          <div className='characteristics_item-description'>{arrayMap(ISOsensitivity)}</div>
+        </div>}
+        {focusing && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Фокусировка</div>
+          <div className='characteristics_item-description'>{arrayMap(focusing)}</div>
+        </div>}
+        {battery && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Зарядное устройство</div>
+          <div className='characteristics_item-description'>{battery}</div>
+        </div>}
+        {flash && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Гнездо для внешней вспышки</div>
+          <div className='characteristics_item-description'>{flash}</div>
+        </div>}
+        {display && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Дисплей</div>
+          <div className='characteristics_item-description'>{display}</div>
+        </div>}
+        {displayResolution && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>LCD-экран (диагональ в дюймах; кол-во пикселов)</div>
+          <div className='characteristics_item-description'>{displayResolution}</div>
+        </div>}
+        {maxResolution && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Максимальный размер кадра</div>
+          <div className='characteristics_item-description'>{maxResolution}</div>
+        </div>}
+        {megapixels && <div className='characteristics_item'>
+          <div className='characteristics_item-name'>Количество мегапикселей</div>
+          <div className='characteristics_item-description'>{megapixels}</div>
         </div>}
         {color && <div className='characteristics_item'>
           <div className='characteristics_item-name'>Цвет</div>

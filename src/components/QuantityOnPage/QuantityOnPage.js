@@ -1,8 +1,8 @@
 import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import './QuantityOnPage.scss';
-import {connect, useDispatch, useSelector} from 'react-redux';
-import {filterProducts, setCurrentPage, setPerPage, setSortProducts} from '../../store/actions/actions';
+import {connect, useDispatch} from 'react-redux';
+import {setCurrentPage, setPerPage} from '../../store/actions/actions';
 import {useHistory, useLocation} from 'react-router';
 
 const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuantity}) => {

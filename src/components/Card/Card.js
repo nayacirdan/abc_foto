@@ -4,17 +4,17 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Card.scss';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import cartIcon from '../../svg/cartIcon';
+// import cartIcon from '../../svg/cartIcon';
 import { withRouter } from 'react-router';
 
-import { setCurrentProduct, setRecentlyViewedProducts } from '../../store/actions/actions';
+import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
-import localStorage from '../../utils/localStorage';
+import setToLocalStorage from '../../utils/localStorage';
 
 /*
 const useStyles = makeStyles({
@@ -261,7 +261,7 @@ const CardItem = (props) => {
 */
 
 const CardItem = (props) => {
-  const { product, history, setCurrentProduct, setRecentlyViewedProducts, recentlyViewedProducts } = props;
+  const { product, history, setCurrentProduct } = props;
 
   const {
     imageUrls,
@@ -277,20 +277,7 @@ const CardItem = (props) => {
 
   const redirectToProductPage = (product) => {
     setCurrentProduct(product);
-    // let recentlyViewedArray = [...recentlyViewedProducts];
-    // if (recentlyViewedArray.find(el => el.article === product.article)) {
-    //   recentlyViewedArray = [...recentlyViewedProducts];
-    // } else {
-    //   if (recentlyViewedArray.length === 4) {
-    //     recentlyViewedArray.push(product);
-    //     recentlyViewedArray.shift();
-    //   } else {
-    //     recentlyViewedArray = [...recentlyViewedProducts, product];
-    //   }
-    // };
-    // localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-    // setRecentlyViewedProducts(recentlyViewedArray);
-    localStorage(product);
+    setToLocalStorage(product);
     history.push(`/products/filter/${itemNo}`);
   };
 
@@ -388,16 +375,10 @@ const CardItem = (props) => {
   );
 };
 
-const mapStateToProps = store => {
-  return {
-    recentlyViewedProducts: store.products.recentlyViewedProducts
-  };
-};
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
-    setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CardItem));
+export default connect(null, mapDispatchToProps)(withRouter(CardItem));

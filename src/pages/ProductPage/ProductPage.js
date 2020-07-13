@@ -17,7 +17,7 @@ import { Link } from 'react-scroll';
 import Card from '../../components/Card/Card';
 
 const ProductPage = (props) => {
-  const { setCurrentProduct, product, history, match, recentlyViewedProds } = props;
+  const { setCurrentProduct, product, history, match } = props;
 
   const getItemByItemNo = useCallback(
     async () => {
@@ -30,9 +30,14 @@ const ProductPage = (props) => {
     },
     [match]
   );
-  const recentlyViewedPro = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
-  const recentlyViewedProducts = useCallback(() => {
-    const sliderProducts = (recentlyViewedPro || []).map(product => (
+  window.onload = function () {
+    console.log('1', JSON.parse(localStorage.getItem('recentlyViewedProducts')));
+  };
+  
+  const recentlyViewedProducts = () => {
+    const recentlyViewedProds = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
+    console.log('WHERE ARE YOUE', recentlyViewedProds);
+    const sliderProducts = (recentlyViewedProds || []).map(product => (
       <div key={product.itemNo} className="slider-card">
         <Link
           activeClass='active'
@@ -46,16 +51,15 @@ const ProductPage = (props) => {
       </div>)
     );
 
-    if (sliderProducts.length > 3 || sliderProducts.length === 0) {
+    if (sliderProducts.length > 3) {
       return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />);
     } else {
       return null;
     }
-  }, [recentlyViewedPro]);
+  };
   useEffect(() => {
     getItemByItemNo().then(result => setCurrentProduct(result));
-    recentlyViewedProducts();
-  }, [setCurrentProduct, history.location, getItemByItemNo, recentlyViewedProducts]);
+  }, [setCurrentProduct, history.location, getItemByItemNo]);
 
   // const qwe = async() => {
   //     const result = await currentProduct();
@@ -87,8 +91,7 @@ const ProductPage = (props) => {
 
 const mapStateToProps = store => {
   return {
-    product: store.products.currentProduct,
-    recentlyViewedProds: store.products.recentlyViewedProducts
+    product: store.products.currentProduct
   };
 };
 

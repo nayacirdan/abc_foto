@@ -11,7 +11,7 @@ import './Header.scss';
 import Grid from '@material-ui/core/Grid';
 import Navigation from './Navigation/Navigation';
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType, setRecentlyViewedProducts } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
 import { connect, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
@@ -73,10 +73,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-  const {
-    searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products,
-    recentlyViewedProducts
-  } = props;
+  const {searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products} = props;
   const classes = useStyles();
 
   useEffect(() => {
@@ -90,20 +87,6 @@ const Header = (props) => {
 
   const filterProductsHandler = (e, value) => {
     if (value !== null) {
-      console.log('value', value);
-      // let recentlyViewedArray = [...recentlyViewedProducts];
-      // if (recentlyViewedArray.find(el => el.article === value.article)) {
-      //   recentlyViewedArray = [...recentlyViewedProducts];
-      // } else {
-      //   if (recentlyViewedArray.length === 4) {
-      //     recentlyViewedArray.splice(3, 1);
-      //     recentlyViewedArray.unshift(value);
-      //   } else {
-      //     recentlyViewedArray = [...recentlyViewedProducts, value];
-      //   }
-      // };
-      // localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedArray));
-      // setRecentlyViewedProducts(recentlyViewedArray);
       setToLocalStorage(value);
       setCurrentProduct(value);
       history.push(`/products/filter/${value.itemNo}`);
@@ -177,7 +160,7 @@ const Header = (props) => {
     <div className="classes.root">
       <div className='Header__top'>
         <div className='container'>
-          <Grid container md={12} justify='flex-start' className='header-links-container'>
+          <Grid container md={12} justify='space-between' color={'secondary'} className='header-links-container'>
             <Link to='/shops' className='Header__text'>Магазины</Link>
             <Link to='/credit' className='Header__text'>Кредит</Link>
             <Link to='/delivery' className='Header__text'>Доставка и оплата</Link>
@@ -238,8 +221,7 @@ const Header = (props) => {
 
 const mapStateToProps = store => {
   return {
-    products: store.products.products,
-    recentlyViewedProducts: store.products.recentlyViewedProducts
+    products: store.products.products
   };
 };
 
@@ -248,8 +230,7 @@ const mapDispatchToProps = dispatch => {
     getProducts: () => dispatch(getProducts()),
     searchChange: (text) => dispatch(searchChange(text)),
     getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
-    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
-    setRecentlyViewedProducts: (product) => dispatch(setRecentlyViewedProducts(product))
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
   };
 };
 
