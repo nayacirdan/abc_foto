@@ -80,7 +80,7 @@ function CheckoutPage (props) {
     if (!values.phone) {
       errors.phone = 'Required';
     } else if (
-        !/^\d{10}$/i.test(values.phone)
+      !/^\d{10}$/i.test(values.phone)
     ) {
       errors.phone = 'Invalid phone number';
     }
