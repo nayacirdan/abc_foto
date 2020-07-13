@@ -30,14 +30,11 @@ const ProductPage = (props) => {
     },
     [match]
   );
-  window.onload = function () {
-    console.log('1', JSON.parse(localStorage.getItem('recentlyViewedProducts')));
-  };
   
   const recentlyViewedProducts = () => {
     const recentlyViewedProds = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
     console.log('WHERE ARE YOUE', recentlyViewedProds);
-    const sliderProducts = (recentlyViewedProds || []).map(product => (
+    const sliderProducts = recentlyViewedProds.map(product => (
       <div key={product.itemNo} className="slider-card">
         <Link
           activeClass='active'

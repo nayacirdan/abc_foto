@@ -4,7 +4,7 @@ const setToLocalStorage = (product) => {
     const localArray = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
 
     if (localArray.find(el => el.article === product.article)) {
-      return localArray;
+      return;
     } else {
       localArray.push(product);
       if (localArray.length === 5) {
