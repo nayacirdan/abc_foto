@@ -158,13 +158,12 @@ const Header = (props) => {
       <div className='Header__top'>
         <div className='container'>
           <Grid container md={12} justify='flex-start' className='header-links-container'>
-            <Link to='/shops' className='Header__text'>Магазины</Link>
-            <Link to='/credit' className='Header__text'>Кредит</Link>
-            <Link to='/delivery' className='Header__text'>Доставка и оплата</Link>
-            <Link to='/guarantee' className='Header__text'>Гарантии</Link>
-            <Link to='/bout' className='Header__text'>О компании</Link>
-            <Link to='/contacts' className='Header__text'>Контакты</Link>
-            {/*   <Link to '/' className='Header__text'>Карта сайта</Link> */}
+            <div className='Header__text'>Магазины</div>
+            <div className='Header__text'>Кредит</div>
+            <div className='Header__text'>Доставка и оплата</div>
+            <div className='Header__text'>Гарантии</div>
+            <div className='Header__text'>О компании</div>
+            <div className='Header__text'>Контакты</div>
           </Grid>
         </div>
 
