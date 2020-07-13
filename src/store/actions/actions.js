@@ -104,3 +104,18 @@ export const searchChange = (text) => (dispatch) => {
 export const setCurrentProduct = (product) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product });
 };
+
+export const getFiltersByCategory = (category) => (dispatch) => {
+  axios.get(`/filters/filter?categories=${category}`)
+    .then(res => {
+      dispatch({type: Actions.SET_FILTERS_BY_CATEGORY, payload: res.data});
+    });
+};
+
+export const getAllProductsByCategory = (category) => (dispatch) => {
+  debugger;
+  axios.get(`/products/filter?categories=${category}`)
+    .then(res => {
+      dispatch({type: Actions.GET_ALL_PRODUCT_BY_CATEGORY, payload: res.data});
+    });
+};

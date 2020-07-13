@@ -1,7 +1,8 @@
 import Actions from '../../constans/constans';
 
 const initialState = {
-  locationFilters: ''
+  locationFilters: '',
+  categoryFilters: []
 };
 
 const filters = (state = initialState, action) => {
@@ -9,6 +10,10 @@ const filters = (state = initialState, action) => {
     case Actions.SET_SEARCH_FILTERS: {
       return {...state, locationFilters: action.payload};
     }
+    case Actions.SET_FILTERS_BY_CATEGORY: {
+      return {...state, categoryFilters: action.payload};
+    }
+
     default: {
       return state;
     }

@@ -5,7 +5,8 @@ const initialState = {
   productsBySearch: [],
   productsQuantity: null,
   product: '',
-  currentProduct: null
+  currentProduct: null,
+  productsByCategory: []
 };
 
 const products = (state = initialState, action) => {
@@ -20,6 +21,8 @@ const products = (state = initialState, action) => {
       return {...state, productsQuantity: action.payload.productsQuantity, products: action.payload.products};
     case Actions.SET_CURRENT_PRODUCT:
       return { ...state, currentProduct: action.payload };
+    case Actions.GET_ALL_PRODUCT_BY_CATEGORY:
+      return {...state, productsByCategory: action.payload};
     default:
       return state;
   }

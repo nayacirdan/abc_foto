@@ -7,6 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 const CheckboxList = (props) => {
   const {titles} = props;
+  debugger;
   const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (title) => () => {
