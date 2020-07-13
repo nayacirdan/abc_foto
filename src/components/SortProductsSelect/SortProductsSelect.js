@@ -5,29 +5,36 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss';
 import {useHistory, useRouteMatch, useLocation} from 'react-router';
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {setCurrentPage, setSortProducts} from '../../store/actions/actions';
+import {Link} from 'react-router-dom';
 
 const SortProductSelect = ({sortProducts}) => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const sortBy = useSelector(state => state.categoryPage.sortBy);
 
   const searchParams = new URLSearchParams(location.search);
 
-  const handleChange = (event) => {
+  /*  const handleChange = (event) => {
     // debugger;
-    if (searchParams.has('sort')) {
+    /!*    if (searchParams.has('sort')) {
       searchParams.delete('sort');
     }
     searchParams.append('sort', event.target.value);
 
-    console.log('searchParams', searchParams.toString());
-    dispatch(setSortProducts(event.target.value));
-    dispatch(setCurrentPage(1));
-    history.push(`/products/filter?${searchParams}`);
-  };
+    console.log('searchParams', searchParams.toString()); *!/
+   
+    /!*   history.push(`/products/filter?${searchParams}`); *!/
+/!*    dispatch(setSortProducts(event.target.value));
+    dispatch(setCurrentPage(1));*!/
+  }; */
 
+  const handleChange = (value) => {
+    dispatch(setSortProducts(value));
+    dispatch(setCurrentPage(1));
+  };
   return (
     <div className='sort-products'>
       <FormControl className='form-sort'>
@@ -35,11 +42,24 @@ const SortProductSelect = ({sortProducts}) => {
         <Select
           labelId="customized-select-label"
           id="customized-select"
-          value={sortProducts}
-          onChange={handleChange}
+          value={sortBy}
+          /*        onChange={handleChange} */
         >
-          <MenuItem value='-currentPrice'>Снижению цены</MenuItem>
-          <MenuItem value='currentPrice'>Возрастанию цены</MenuItem>
+
+          <MenuItem value='currentPrice'>
+            <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
+              onClick={() => handleChange('currentPrice')}>
+            Снижению цены
+            </Link>
+          </MenuItem>
+
+          <MenuItem value='-currentPrice'>
+            <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
+              onClick={() => handleChange('-currentPrice')}>
+              Возрастанию цены
+            </Link>
+          </MenuItem>
+
         </Select>
       </FormControl>
     </div>

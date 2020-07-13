@@ -11,6 +11,10 @@ import PageCategory from '../../HOCs/PageCategory/PageCategory';
 const FilterContainer = () => {
   const history = useHistory();
 
+  const perPage = useSelector(state => state.categoryPage.productsPerPage);
+  const currentPage = useSelector(state => state.categoryPage.currentPage);
+  const sortBy = useSelector(state => state.categoryPage.sortBy);
+
   const categoryTitle = useSelector((state) => state.categories.currentCategory.title);
   return (
     <div className='filters-container'>
@@ -21,7 +25,7 @@ const FilterContainer = () => {
       <RegularFilter title='Комплектация' checkboxesTitles={['Без объектива', 'С объективом']}/>
       <RegularFilter title='Матрица' checkboxesTitles={['CMOS', 'Кропнутая', 'Полноразмерная']}/>
 
-      <Link to={'/products/filter?categories=dslr_cameras&sort=currentPrice'}><Button>Location</Button></Link>
+      <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}><Button>Location</Button></Link>
 
     </div>
   );

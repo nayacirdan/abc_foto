@@ -4,7 +4,7 @@ import BreadcrumbsWrapper from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterContainer from '../../containers/Filters/Filters';
 import ProductList from '../../containers/ProductList/ProductList';
 import {useDispatch} from 'react-redux';
-import {getCategory, setCurrentPage, setPerPage, setSortProducts} from '../../store/actions/actions';
+import {getCategory, setCurrentPage, setPerPage, setSearchFilters, setSortProducts} from '../../store/actions/actions';
 import {useLocation } from 'react-router';
 
 /* Пока все грузится делаем прелоадер.
@@ -19,9 +19,16 @@ const PageCategory = (props) => {
   const categoryName = searchParams.get('categories');
   const dispatch = useDispatch();
   debugger;
+
+  function useQuery () {
+    return new URLSearchParams(useLocation().search);
+  }
+  const query = useQuery();
+  const queryString = query.toString();
   useEffect(() => {
     dispatch(getCategory(categoryName));
-  }, []);
+    dispatch(setSearchFilters(queryString));
+  }, [queryString, dispatch, categoryName]);
 
   return (
     <div className='category'>

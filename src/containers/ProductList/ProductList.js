@@ -51,10 +51,15 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
   
     const locationFilters = useSelector(state => state.filters.locationFilters);
   */
+
+  const locationFilters = useSelector(state => state.filters.locationFilters);
   const queryString = query.toString();
+
+  console.log('locationFilters', locationFilters);
+  console.log('queryString', queryString);
   useEffect(() => {
-    dispatch(filterProducts(queryString));
-  }, [dispatch, queryString]);
+    dispatch(filterProducts(locationFilters));
+  }, [dispatch, locationFilters]);
 
   const products = useSelector(state => state.products.products);
   let productsList = (<div className='empty-product-list'>No items are available</div>);
