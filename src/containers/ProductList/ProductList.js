@@ -7,6 +7,7 @@ import CardItem from '../../components/Card/Card';
 import PaginationWrapper from '../../components/Pagination/Pagination';
 import './ProductList.scss';
 import {useLocation, useHistory} from 'react-router';
+import querystring from 'query-string';
 
 const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortBy, allState}) => {
   const dispatch = useDispatch();
@@ -54,12 +55,16 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
 
   const locationFilters = useSelector(state => state.filters.locationFilters);
   const queryString = query.toString();
+  
+  const queryFilters = useSelector(state => state.filters.queriesObj);
+  const queryFiltersString = querystring.stringify(queryFilters, {arrayFormat: 'comma'});
 
   console.log('locationFilters', locationFilters);
   console.log('queryString', queryString);
   useEffect(() => {
-    dispatch(filterProducts(locationFilters));
-  }, [dispatch, locationFilters]);
+    dispatch(filterProducts(queryFiltersString));
+  /*  dispatch(filterProducts(locationFilters)); */
+  }, [dispatch, locationFilters, queryFiltersString]);
 
   const products = useSelector(state => state.products.products);
   let productsList = (<div className='empty-product-list'>No items are available</div>);

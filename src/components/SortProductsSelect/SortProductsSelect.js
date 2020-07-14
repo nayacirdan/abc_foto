@@ -46,19 +46,42 @@ const SortProductSelect = ({sortProducts}) => {
           /*        onChange={handleChange} */
         >
 
-          <MenuItem value='currentPrice'>
+          {/* <MenuItem value='currentPrice'>
             <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
               onClick={() => handleChange('currentPrice')}>
+            Снижению цены
+            </Link>
+          </MenuItem> */}
+          <MenuItem value='currentPrice'>
+            <Link to={location => {
+              const query = new URLSearchParams(location.search);
+              query.set('sort', sortBy);
+              const queryString = query.toString();
+              return {...location, search: queryString};
+            }}
+            onClick={() => handleChange('currentPrice')}>
             Снижению цены
             </Link>
           </MenuItem>
 
           <MenuItem value='-currentPrice'>
+            <Link to={location => {
+              const query = new URLSearchParams(location.search);
+              query.set('sort', sortBy);
+              const queryString = query.toString();
+              return {...location, search: queryString};
+            }}
+            onClick={() => handleChange('-currentPrice')}>
+              Возрастанию цены
+            </Link>
+          </MenuItem>
+          
+          {/* <MenuItem value='-currentPrice'>
             <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
               onClick={() => handleChange('-currentPrice')}>
               Возрастанию цены
             </Link>
-          </MenuItem>
+          </MenuItem> */}
 
         </Select>
       </FormControl>
