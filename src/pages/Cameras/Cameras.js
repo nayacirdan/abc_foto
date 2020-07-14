@@ -1,8 +1,6 @@
 import React from 'react';
 import CategoryDescription from '../../components/CategoryDescription/CategoryDescription';
 import BreadcrumbsWrapper from '../../components/Breadcrumbs/Breadcrumbs';
-import SortProductSelect from '../../components/SortProductsSelect/SortProductsSelect';
-import PaginationSelect from '../../components/QuantityOnPage/QuantityOnPage';
 import FilterContainer from '../../containers/Filters/Filters';
 import ProductList from '../../containers/ProductList/ProductList';
 import './Cameras.scss';

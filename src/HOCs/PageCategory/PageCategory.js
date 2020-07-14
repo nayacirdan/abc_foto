@@ -4,7 +4,7 @@ import BreadcrumbsWrapper from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterContainer from '../../containers/Filters/Filters';
 import ProductList from '../../containers/ProductList/ProductList';
 import {useDispatch} from 'react-redux';
-import {getCategory, setCurrentPage, setPerPage, setSortProducts} from '../../store/actions/actions';
+import {getCategory} from '../../store/actions/actions';
 import {useLocation } from 'react-router';
 
 /* Пока все грузится делаем прелоадер.

@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss';
-import {useHistory, useRouteMatch, useLocation} from 'react-router';
+import {useHistory, useLocation} from 'react-router';
 import {connect, useDispatch} from 'react-redux';
 import {setCurrentPage, setSortProducts} from '../../store/actions/actions';
 

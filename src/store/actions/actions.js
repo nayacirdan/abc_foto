@@ -79,7 +79,6 @@ export const setCurrentPage = (page) => (dispatch) => {
 };
 
 export const setSearchFilters = (filterString) => (dispatch) => {
-  console.log('setSearchFilters');
   dispatch({ type: Actions.SET_SEARCH_FILTERS, payload: filterString });
 };
 
@@ -102,3 +101,7 @@ export const searchChange = (text) => (dispatch) => {
 export const setCurrentProduct = (product) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product });
 };
+
+// export const setRecentlyViewedProducts = (array) => (dispatch) => {
+//   dispatch({ type: Actions.SET_RECENTLY_VIEWED_PRODUCTS, payload: array });
+// };

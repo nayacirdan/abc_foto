@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -16,9 +16,9 @@ import { connect, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
 import { withRouter } from 'react-router';
-import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
+import setToLocalStorage from '../../utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,16 +85,17 @@ const Header = (props) => {
   };
   const filterProductsHandler = (e, value) => {
     if (value !== null) {
+      setToLocalStorage(value);
       setCurrentProduct(value);
       history.push(`/products/filter/${value.itemNo}`);
     }
   };
 
-  const [isHovering, setIsHovering] = useState(false);
+  // const [isHovering, setIsHovering] = useState(false);
 
-  const toggleHoverState = () => {
-    setIsHovering(!isHovering);
-  };
+  // const toggleHoverState = () => {
+  //   setIsHovering(!isHovering);
+  // };
   const dispatch = useDispatch();
 
   const openSignUpModal = () => {
@@ -145,7 +146,7 @@ const Header = (props) => {
       thirdItem={
         <div>
           <hr className="hr" />
-          <div className="menu-item" onClick={openSignUpModal} onFocus={console.log('focused')} >
+          <div className="menu-item" onClick={openSignUpModal} >
                         Зарегистрироваться
           </div>
         </div>
