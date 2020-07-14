@@ -16,7 +16,6 @@ import { connect, useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 
 import { withRouter } from 'react-router';
-import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
