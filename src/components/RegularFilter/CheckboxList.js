@@ -4,13 +4,20 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToFilterString} from '../../store/actions/actions';
 
 const CheckboxList = (props) => {
-  const {titles} = props;
+  const dispatch = useDispatch();
+  const currentFilterString = useSelector(state => state.filters.locationFilters);
+  const {titles, filterParam} = props;
   debugger;
   const [checked, setChecked] = React.useState([]);
 
-  const handleToggle = (title) => () => {
+  const handleToggle = (title, filterParam, isChecked) => () => {
+    console.log(filterParam);
+    console.log('++++++++++++++++++', isChecked);
+    dispatch(addToFilterString(filterParam, title, currentFilterString));
     const currentIndex = checked.indexOf(title);
     const newChecked = [...checked];
 
@@ -26,18 +33,29 @@ const CheckboxList = (props) => {
   return (
     <List>
       {titles.map((title) => {
-        const labelId = `checkbox-list-label-${title}`;
-
+        debugger;
+        const techTitle = title.trim();
+        const labelId = `checkbox-list-label-${techTitle}`;
+        const isChecked = checked.indexOf(techTitle) !== -1;
         return (
           <div>
-            <ListItem key={title} role={undefined} dense button onClick={handleToggle(title)}>
-              <ListItemIcon>
+            <ListItem key={techTitle}
+              role={undefined}
+              dense
+              button
+              onClick={handleToggle(techTitle, filterParam, isChecked)}
+              filterParam={filterParam}
+              isChecked={isChecked}
+            >
+              <ListItemIcon filterParam={filterParam}>
                 <Checkbox
                   edge="start"
-                  checked={checked.indexOf(title) !== -1}
+                  checked={isChecked}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{'aria-labelledby': labelId, name: title}}
+                  inputProps={{'aria-labelledby': labelId, name: techTitle, checked: true, filterParam: filterParam}}
+                  value='checkboXXX..'
+                  filterParam={filterParam}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={title}/>

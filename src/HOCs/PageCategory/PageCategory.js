@@ -4,8 +4,16 @@ import BreadcrumbsWrapper from '../../components/Breadcrumbs/Breadcrumbs';
 import FilterContainer from '../../containers/Filters/Filters';
 import ProductList from '../../containers/ProductList/ProductList';
 import {useDispatch} from 'react-redux';
-import {getCategory, setCurrentPage, setPerPage, setSearchFilters, setSortProducts} from '../../store/actions/actions';
+import {
+  getCategory,
+  setCurrentPage,
+  setFilterQuery,
+  setPerPage,
+  setSearchFilters,
+  setSortProducts
+} from '../../store/actions/actions';
 import {useLocation } from 'react-router';
+import querystring from 'query-string';
 
 /* Пока все грузится делаем прелоадер.
 За это время загружаем:
@@ -18,6 +26,10 @@ const PageCategory = (props) => {
   const searchParams = new URLSearchParams(location.search);
   const categoryName = searchParams.get('categories');
   const dispatch = useDispatch();
+
+  const currentQueries = querystring.parse(location.search, {arrayFormat: 'comma'});
+  console.log('------------------currentQueries', currentQueries);
+  console.log('------------------currentQueriesSSSSSSS', querystring.stringify(currentQueries, {arrayFormat: 'comma'}));
   debugger;
 
   function useQuery () {
@@ -25,10 +37,12 @@ const PageCategory = (props) => {
   }
   const query = useQuery();
   const queryString = query.toString();
+  
   useEffect(() => {
+    dispatch(setFilterQuery(currentQueries));
     dispatch(getCategory(categoryName));
     dispatch(setSearchFilters(queryString));
-  }, [queryString, dispatch, categoryName]);
+  }, [queryString, dispatch, categoryName, currentQueries]);
 
   return (
     <div className='category'>

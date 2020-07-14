@@ -1,5 +1,6 @@
 import Actions from '../constans/constans';
 import axios from 'axios';
+import {formFilterStringFragment} from '../../utils/utils';
 
 export const getProducts = () => (dispatch) => {
   dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: [] });
@@ -113,9 +114,20 @@ export const getFiltersByCategory = (category) => (dispatch) => {
 };
 
 export const getAllProductsByCategory = (category) => (dispatch) => {
-  debugger;
   axios.get(`/products/filter?categories=${category}`)
     .then(res => {
       dispatch({type: Actions.GET_ALL_PRODUCT_BY_CATEGORY, payload: res.data});
     });
+};
+
+export const addFiltersOptions = (filters, products) => dispatch => {
+    
+};
+
+export const addToFilterString = (filterParam, filterValue, currentFilterString) => dispatch => {
+  dispatch({type: Actions.ADD_FILTER_STRING, payload: formFilterStringFragment(filterParam, filterValue, currentFilterString)});
+};
+
+export const setFilterQuery = (currentQueriesObj) => dispatch => {
+  dispatch({type: Actions.SET_FILTERS_QUERY, payload: currentQueriesObj});
 };

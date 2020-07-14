@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import PageCategory from '../../HOCs/PageCategory/PageCategory';
 import RegularFilterList from '../../components/RegularFilterList/RegularFilterList';
 import {getAllProductsByCategory} from '../../store/actions/actions';
+import {Formik} from 'formik';
 
 const FilterContainer = () => {
   const history = useHistory();
@@ -23,7 +24,6 @@ const FilterContainer = () => {
   const currentCategory = useSelector(state => state.categories.currentCategory.name);
 
   useEffect(() => {
-    debugger;
     dispatch(getAllProductsByCategory(currentCategory));
   }, [currentCategory, dispatch]);
 
@@ -35,9 +35,30 @@ const FilterContainer = () => {
       <RegularFilter title='По производителю' checkboxesTitles={['Canon', 'Fujifilm', 'Nikon', 'Olympus', 'Panasonic', 'Pentax', 'Sony']}/>
       <RegularFilter title='Комплектация' checkboxesTitles={['Без объектива', 'С объективом']}/>
       <RegularFilter title='Матрица' checkboxesTitles={['CMOS', 'Кропнутая', 'Полноразмерная']}/> */}
-      <RegularFilterList/>
-      <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}><Button>Location</Button></Link>
+
+      <Formik initialValues={null} onSubmit={(values) => console.log(values)}>
+        {({values, handleSubmit, setFieldValue}) => {
+          return (<form onSubmit={(ev) => {
+            ev.preventDefault();
+            console.log(ev, ev.target, ev.currentTarget);
+          }}>
+            <RegularFilterList/>
+            <Button type='submit'>History push</Button>
+          </form>);
+        }}
+
+      </Formik>
+      <Link to={location => {
+        const query = new URLSearchParams(location.search);
+        query.set('sort', '-currentPrice');
+        query.set('categories', 'instant_cameras');
+        const queryString = query.toString();
+        return {...location, search: queryString};
+      }
+      }><Button>Location</Button></Link>
       <Link to={`/products/filter?${filterString}`}><Button>Filter Submit</Button></Link>
+      <Button onClick={() => history.push('/products/filter?categories=dslr_cameras&sort=currentPrice')}>History push</Button>
+      <Link to={'/products/filter?categories=dslr_cameras&brand=Nikon,Pentax'}><Button>Brands</Button></Link>
     </div>
   );
 };

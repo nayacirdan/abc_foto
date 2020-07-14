@@ -37,3 +37,11 @@ const myFunc = (arr, param) => {
 export const findFilterOptions = (arr, param) => {
   return uniqueArray(myFunc(arr, param));
 };
+
+export const formFilterStringFragment = (filterParam, filterValue, currentFilterString) => {
+  const addedString = '';
+  /* if(currentFilterString.includes(filterParam)){
+
+  } */
+  return `${currentFilterString}&${addedString}`;
+};
