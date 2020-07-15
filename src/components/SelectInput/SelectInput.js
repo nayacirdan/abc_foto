@@ -9,10 +9,8 @@ function SelectInput ({ disabled }) {
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: 0,
-      minWidth: 120,
-      '& .MuiOutlinedInput-root': {
-        width: 490
-      },
+      minWidth: 320,
+      display: 'flex',
       '& .MuiOutlinedInput-root ': {
         borderColor: '#51AD33'
       },

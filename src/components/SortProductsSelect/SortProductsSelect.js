@@ -5,51 +5,49 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss';
 import {useHistory, useLocation} from 'react-router';
-import {connect, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setCurrentPage, setSortProducts} from '../../store/actions/actions';
+import {changeStandartQuery} from '../../utils/utils';
+import querystring from 'query-string';
 
-const SortProductSelect = ({sortProducts}) => {
+const SortProductSelect = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const sortBy = useSelector(state => state.categoryPage.sortBy);
 
-  const searchParams = new URLSearchParams(location.search);
-
-  const handleChange = (event) => {
-    // debugger;
-    if (searchParams.has('sort')) {
-      searchParams.delete('sort');
-    }
-    searchParams.append('sort', event.target.value);
-
-    console.log('searchParams', searchParams.toString());
-    dispatch(setSortProducts(event.target.value));
+  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
+  
+  const handleChange = (ev) => {
+    dispatch(setSortProducts(ev.target.value));
     dispatch(setCurrentPage(1));
-    history.push(`/products/filter?${searchParams}`);
+    const newQueryObj = changeStandartQuery(queryFiltersObj, ev.target.name, ev.target.value);
+    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    history.push(`${location.pathname}?${newQueryStr}`);
   };
-
   return (
     <div className='sort-products'>
       <FormControl className='form-sort'>
         <InputLabel className='form-sort__label' id="customized-select-label">Сортировать по</InputLabel>
         <Select
+          name='sort'
           labelId="customized-select-label"
           id="customized-select"
-          value={sortProducts}
-          onChange={handleChange}
+          value={sortBy}
+          onChange={(ev) => handleChange(ev)}
         >
-          <MenuItem value='-currentPrice'>Снижению цены</MenuItem>
-          <MenuItem value='currentPrice'>Возрастанию цены</MenuItem>
+          <MenuItem value='-currentPrice'>
+              Снижению цены
+          </MenuItem>
+
+          <MenuItem value='currentPrice'>
+              Возрастанию цены
+          </MenuItem>
+
         </Select>
       </FormControl>
     </div>
   );
 };
 
-const mapStoreToProps = (store) => {
-  return {
-    sortProducts: store.categoryPage.sortBy
-  };
-};
-
-export default connect(mapStoreToProps)(SortProductSelect);
+export default SortProductSelect;

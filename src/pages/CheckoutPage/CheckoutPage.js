@@ -6,7 +6,7 @@ import SimpleModal from '../../components/Modals/ConfirmOrderModal';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import TextField from '@material-ui/core/TextareaAutosize';
+import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Box from '@material-ui/core/Box';
 import './CheckoutPage.scss';
@@ -115,7 +115,8 @@ function CheckoutPage (props) {
                 <div className="order-delivery">
                   <h4 className="big-text">Способы доставки</h4>
                   <FormControl component="fieldset">
-                    <RadioGroup aria-label="deliveryMethod" name="deliveryMethod" value={deliveryMethod} onChange={handleChangeDeliveryMethod}>
+                    <RadioGroup aria-label="deliveryMethod" name="deliveryMethod" value={deliveryMethod}
+                      onChange={handleChangeDeliveryMethod}>
                       <FormControlLabel value="text7" control={<Radio/>} label="Самовывоз из пункта выдачи"/>
                       <SelectInput disabled={isActiveSelect}/>
                       <FormControlLabel value="text8" control={<Radio/>} label="Новая почта (в отделение)"/>
@@ -126,7 +127,8 @@ function CheckoutPage (props) {
                 <div className="order-payment">
                   <h4 className="big-text">Способы оплаты</h4>
                   <FormControl component="fieldset" className="radio-group">
-                    <RadioGroup aria-label="paymentMethod" name="paymentMethod" value={paymentMethod} onChange={handleChangePaymentMethod}>
+                    <RadioGroup aria-label="paymentMethod" name="paymentMethod" value={paymentMethod}
+                      onChange={handleChangePaymentMethod}>
                       <Box display="flex" flexDirection="row" justifyContent="space-between">
                         <Box textAlign="left">
                           <FormControlLabel value="text1" control={<Radio/>} label="Наличными при получении"/>
@@ -141,7 +143,7 @@ function CheckoutPage (props) {
                       </Box>
                     </RadioGroup>
                   </FormControl>
-                  <TextField className="comments" type="text" placeholder="Комментарии"/>
+                  <TextField className="comments" type="text" multiline rows={4} placeholder="Комментарий" variant="outlined"/>
                 </div>
               </Form>
             </div>
