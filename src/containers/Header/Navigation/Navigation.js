@@ -34,7 +34,7 @@ const Navigation = () => {
 
             </ul> */}
       {/* <CatalogLinks/> */}
-      <LinksListCatalog/>
+      <LinksListCatalog />
     </nav>
   );
 };
