@@ -19,7 +19,6 @@ const theme = createMuiTheme({
       main: '#F7F5F6'
     }
   },
-  // xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920
   breakpoints: {
     values: {
       xs: 0,
@@ -30,7 +29,6 @@ const theme = createMuiTheme({
     }
   }
 });
-console.log('theme', theme);
 
 ReactDOM.render(
   <React.StrictMode>
