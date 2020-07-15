@@ -80,7 +80,7 @@ export const SignAndRegForm = (props) => {
     } else if (modalType === 'signUp') {
       return 1;
     } else {
-      console.log('strange things happened');
+
     }
   };
 

@@ -26,7 +26,6 @@ class InputForm extends Component {
   }
 
   submit = (data) => {
-    console.log(data);
   };
 
   render () {
