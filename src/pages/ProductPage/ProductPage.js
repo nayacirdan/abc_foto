@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 // import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Tabs from '../../components/Tabs/Tabs';
 import { Description } from '../../components/Tabs/Description';
@@ -13,22 +13,51 @@ import { withRouter } from 'react-router';
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
+import { Link } from 'react-scroll';
+import Card from '../../components/Card/Card';
+
 const ProductPage = (props) => {
-  const { setCurrentProduct, product, history } = props;
+  const { setCurrentProduct, product, history, match } = props;
 
-  useEffect(() => {
-    currentProduct().then(result => setCurrentProduct(result));
-  }, [setCurrentProduct, history.location, currentProduct]);
+  const getItemByItemNo = useCallback(
+    async () => {
+      const result = await axios.get(`/products/${match.params.itemNo}`)
+        .then(res => res.data)
+        .catch(err => {
+          console.log(err.message);
+        });
+      return result;
+    },
+    [match]
+  );
+  
+  const recentlyViewedProducts = () => {
+    const recentlyViewedProds = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
+    console.log('WHERE ARE YOUE', recentlyViewedProds);
+    const sliderProducts = recentlyViewedProds.map(product => (
+      <div key={product.itemNo} className="slider-card">
+        <Link
+          activeClass='active'
+          spy={true}
+          smooth={true}
+          to='productPage'
+          duration={500}
+        >
+          <Card key={product.itemNo} product={product} />
+        </Link>
+      </div>)
+    );
 
-  const { match } = props;
-  function currentProduct () {
-    const result = axios.get(`/products/${match.params.itemNo}`)
-      .then(res => res.data)
-      .catch(err => {
-        console.log(err.message);
-      });
-    return result;
+    if (sliderProducts.length > 3) {
+      return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />);
+    } else {
+      return null;
+    }
   };
+  useEffect(() => {
+    getItemByItemNo().then(result => setCurrentProduct(result));
+  }, [setCurrentProduct, history.location, getItemByItemNo]);
+
   // const qwe = async() => {
   //     const result = await currentProduct();
   //     setProduct(result);
@@ -52,7 +81,7 @@ const ProductPage = (props) => {
             characteristics={<Characteristics currentProduct={product} />}
           />
         </div>
-        <Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" />
+        {recentlyViewedProducts()}
       </div> : null
   );
 };

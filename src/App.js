@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './containers/Header/Header';
 import './App.scss';
 import Footer from './components/Footer/Footer';
@@ -10,13 +10,18 @@ import Cameras from './pages/Cameras/Cameras';
 import ProductPage from './pages/ProductPage/ProductPage';
 import Home from './pages/Home/Home';
 
+import { getProducts } from './store/actions/actions';
+
 import CategoryRoutes from './HOCs/CategoryRoutes/CategoryRoutes';
 import Cart from './pages/Cart/Cart';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
-import SubMenu from './containers/Header/Navigation/SubMenu';
 
 const App = (props) => {
-  const {modalIsOpen} = props;
+  const {modalIsOpen, getProducts} = props;
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
 
   const values = {
     name: 'Pasha',
@@ -36,7 +41,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Header/>
-        <SubMenu/>
+        {/* <SubMenu/> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/products/filter/:itemNo" component={ProductPage} />
@@ -60,5 +65,10 @@ const App = (props) => {
 const mapStoreToProps = (store) => {
   return {modalIsOpen: store.modals.modalIsOpen};
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProducts: () => dispatch(getProducts())
+  };
+};
 
-export default connect(mapStoreToProps)(App);
+export default connect(mapStoreToProps, mapDispatchToProps)(App);

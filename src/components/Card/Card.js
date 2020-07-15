@@ -4,15 +4,17 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Card.scss';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import cartIcon from '../../svg/cartIcon';
+// import cartIcon from '../../svg/cartIcon';
 import { withRouter } from 'react-router';
 
 import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
+
+import setToLocalStorage from '../../utils/localStorage';
 
 /*
 const useStyles = makeStyles({
@@ -274,8 +276,9 @@ const CardItem = (props) => {
   } = product;
 
   const redirectToProductPage = (product) => {
-    history.push(`/products/filter/${itemNo}`);
     setCurrentProduct(product);
+    setToLocalStorage(product);
+    history.push(`/products/filter/${itemNo}`);
   };
 
   const getProductAvailability = () => {
@@ -298,11 +301,13 @@ const CardItem = (props) => {
 
   return (
     <>
-      <Card className='card' onClick={(e) => {
-        e.preventDefault();
-        redirectToProductPage(product);
-      }}>
-        <Grid container className='card__media-container' >
+      <Card className='card' >
+        <Grid container className='card__media-container'
+          onClick={(e) => {
+            e.preventDefault();
+            redirectToProductPage(product);
+          }}
+        >
           <CardMedia
             className='card__media'
             image={imageUrls[0]}
@@ -310,7 +315,12 @@ const CardItem = (props) => {
         </Grid>
 
         <CardContent className='card__content'>
-          <Typography component="h2" className='card__title'>
+          <Typography component="h2" className='card__title'
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToProductPage(product);
+            }}
+          >
             {name}
           </Typography>
           <Grid container
@@ -337,7 +347,7 @@ const CardItem = (props) => {
             }
 
             <IconButton color="#51AD33" aria-label="upload picture" component="span"
-              className='card__cart-btn' disabled={!isAvailable}>
+              className='card__cart-btn' disabled={!isAvailable} >
               <ShoppingCartOutlinedIcon className='card__cart-icon' />
             </IconButton>
           </Grid>
@@ -364,6 +374,7 @@ const CardItem = (props) => {
     </>
   );
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     setCurrentProduct: (product) => dispatch(setCurrentProduct(product))

@@ -68,8 +68,8 @@ export const SignAndRegForm = (props) => {
     touched,
     handleSubmit,
     handleChange,
-    isValid,
-    setFieldTouched
+    isValid
+    // setFieldTouched
   } = props;
 
   console.table(props);

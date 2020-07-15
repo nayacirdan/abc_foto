@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
-import Card from '../../components/Card/Card';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import { getProducts } from '../../store/actions/actions';
-import { Link } from 'react-scroll';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -32,14 +27,12 @@ function SamplePrevArrow (props) {
 }
 
 const Responsive = (props) => {
-  const { products, getProducts, sliderTitle } = props;
-  useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+  const { sliderTitle, prods } = props;
 
   var settings = {
     infinite: true,
     lazyLoad: true,
+    centerPadding: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
@@ -73,45 +66,18 @@ const Responsive = (props) => {
     ]
   };
 
-  const filtedProducts = (products || []).filter((key) => (key.isAvailable === true || key.isExpected === true));
-  const sliderProducts = filtedProducts.map(product => (
-    <div key={product.itemNo} className="slider-card">
-      <Link
-        activeClass='active'
-        spy={true}
-        smooth={true}
-        to='productPage'
-        duration={500}
-      >
-        <Card key={product.itemNo} product={product} />
-      </Link>
-    </div>)
-  );
-
   return (
     <div className="container slider">
       <h2 className="slider__header">{sliderTitle}</h2>
       <Slider {...settings} className="slider__main">
-        {sliderProducts}
+        {prods}
       </Slider>
     </div>
   );
 };
 
 Responsive.propTypes = {
-  products: PropTypes.array.isRequired
+  prods: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (store) => {
-  return {
-    products: store.products.products
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getProducts: () => dispatch(getProducts())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Responsive);
+export default Responsive;

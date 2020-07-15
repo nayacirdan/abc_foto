@@ -106,6 +106,10 @@ export const setCurrentProduct = (product) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product });
 };
 
+// export const setRecentlyViewedProducts = (array) => (dispatch) => {
+//   dispatch({ type: Actions.SET_RECENTLY_VIEWED_PRODUCTS, payload: array });
+// };
+
 export const getFiltersByCategory = (category) => (dispatch) => {
   axios.get(`/filters/filter?categories=${category}`)
     .then(res => {
