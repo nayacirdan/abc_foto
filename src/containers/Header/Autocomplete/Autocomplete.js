@@ -3,14 +3,20 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import './Autocomplete.scss';
-
 const SearchBar = (props) => {
   const {
-    className, options, id, getOptionLabel, onChangeAutocomplete, style,
-    onChangeTextField, onFocus
+    className,
+    options,
+    id,
+    getOptionLabel,
+    onChangeAutocomplete,
+    style,
+    onChangeTextField,
+    onFocus
   } = props;
+  
   return (
+
     <div>
       <Autocomplete
         disableCloseOnSelect

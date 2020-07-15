@@ -86,7 +86,7 @@ export default function FullWidthTabs (props) {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <Typography component="div" value={value} index={0} dir={theme.direction}>
+        <Typography component="div" value={value} index={0} dir={theme.direction} >
           {description}
         </Typography>
         <Typography component="div" value={value} index={1} dir={theme.direction}>

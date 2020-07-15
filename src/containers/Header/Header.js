@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
@@ -11,11 +13,13 @@ import './Header.scss';
 import Grid from '@material-ui/core/Grid';
 import Navigation from './Navigation/Navigation';
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
-import { connect, useDispatch } from 'react-redux';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
+import { loggedIn, getCustomer } from '../../store/actions/users/index';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
+import NavPanel from './NavPanel/NavPanel';
 
-import { withRouter } from 'react-router';
+import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
@@ -28,83 +32,56 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     margin: '0 auto'
   },
-  lightColorIcons: {
-    color: '#fff'
-  },
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
     position: 'relative'
   },
-  iconButton: {
-    padding: 10,
-    backgroundColor: '#C2C8D0'
-  },
   expandMore: {
     color: '#000'
-  },
-  customInput: {
-    width: '100%',
-    height: '50px',
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.01)',
-    borderRadius: '20px',
-    paddingLeft: '2%',
-    display: 'grid',
-    gridTemplateColumns: '10% 1fr',
-    justifyItems: 'start',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 1)'
-  },
-  customDiv: {
-    zIndex: '2',
-    width: '500px',
-    height: '200px',
-    marginBottom: '-30%'
-  },
-  productsListBySearch: {
-    position: 'absolute !important',
-    zIndex: '5'
-  },
-  imgMini: {
-    width: '20px',
-    height: '20px'
   }
 }));
 
 const Header = (props) => {
-  const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products } = props;
+  const {
+    searchChange,
+    getProductsBySearch,
+    history,
+    setCurrentProduct,
+    getProducts,
+    products,
+    openModal,
+    userInfo,
+    logged,
+    loggedIn,
+    getCustomer,
+    customerInfo
+  } = props;
+
   const classes = useStyles();
 
   useEffect(() => {
     searchChange();
   }, [searchChange]);
 
+  useEffect(() => {
+    if (userInfo) {
+      loggedIn();
+      getCustomer();
+    }
+  }, [getCustomer, loggedIn, userInfo]);
+
   const onChangeHandler = (e) => {
     searchChange(e.target.value);
     getProductsBySearch({ query: e.target.value.trim() });
   };
+
   const filterProductsHandler = (e, value) => {
     if (value !== null) {
       setToLocalStorage(value);
       setCurrentProduct(value);
       history.push(`/products/filter/${value.itemNo}`);
     }
-  };
-
-  // const [isHovering, setIsHovering] = useState(false);
-
-  // const toggleHoverState = () => {
-  //   setIsHovering(!isHovering);
-  // };
-  const dispatch = useDispatch();
-
-  const openSignUpModal = () => {
-    dispatch(setModalType('signUp'));
-    dispatch(openModal());
-  };
-  const openSignInModal = () => {
-    dispatch(setModalType('signIn'));
-    dispatch(openModal());
   };
 
   const phoneNumber = (
@@ -130,30 +107,21 @@ const Header = (props) => {
     >
     </MenuListComposition>
   );
+
   const AccountMenu = (
-    <MenuListComposition
-      firstItem={
-        <div className="account-menu">
-          <div className="account-menu__accountIcon">{accountIcon}</div>
-          <div className="account-menu__iconText">Вход</div>
-        </div>
-      }
-      secondItem={
-        <div className="menu-item">
-          <div onClick={openSignInModal}>Войти</div>
-        </div>
-      }
-      thirdItem={
-        <div>
-          <hr className="hr" />
-          <div className="menu-item" onClick={openSignUpModal} >
-                        Зарегистрироваться
-          </div>
-        </div>
-      }
-    >
-    </MenuListComposition>
+    <div className="account-menu" onClick={openModal}>
+      <div className="account-menu__accountIcon">{accountIcon}</div>
+      <div className="account-menu__iconText">Вход</div>
+    </div>
   );
+
+  const UserMenu = (
+    <div className="account-menu">
+      <div className="account-menu__accountIcon">{accountIcon}</div>
+      <div className="account-menu__iconText">Welcome, {customerInfo.login}</div>
+    </div>
+  );
+
   return (
     <div className="classes.root">
       <div className='Header__top'>
@@ -170,8 +138,11 @@ const Header = (props) => {
 
       </div>
       <div className="container header" >
+        <div className='navPanel'>
+          <NavPanel />
+        </div>
 
-        <NavLink exact to="/">
+        <NavLink exact to="/" className="logo-block">
           <div className="logo">{logo}</div>
         </NavLink>
 
@@ -183,7 +154,7 @@ const Header = (props) => {
             getOptionLabel={(option) => option.name}
             onChangeAutocomplete={filterProductsHandler}
 
-            style={{ width: 500 }}
+            style={{ width: '99%' }}
             renderInput={(params) => <TextField
               {...params}
               onChangeTextField={onChangeHandler}
@@ -196,7 +167,7 @@ const Header = (props) => {
           {phoneNumber}
         </div>
 
-        <div>{AccountMenu}</div>
+        <div>{logged ? UserMenu : AccountMenu}</div>
 
         <NavLink exact to="/cart" className="cart-nav">
           <div className="account-menu">
@@ -216,9 +187,12 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = ({ products, userSignin, getCustomer }) => {
   return {
-    products: store.products.products
+    products: products.products,
+    userInfo: userSignin.userInfo,
+    logged: userSignin.logged,
+    customerInfo: getCustomer.customerInfo
   };
 };
 
@@ -227,7 +201,10 @@ const mapDispatchToProps = dispatch => {
     getProducts: () => dispatch(getProducts()),
     searchChange: (text) => dispatch(searchChange(text)),
     getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
-    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+    openModal: () => dispatch(openModal()),
+    loggedIn: () => dispatch(loggedIn()),
+    getCustomer: () => dispatch(getCustomer())
   };
 };
 

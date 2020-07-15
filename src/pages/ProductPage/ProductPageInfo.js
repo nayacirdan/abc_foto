@@ -85,7 +85,7 @@ const ProductPageInfo = (props) => {
 
               <div className="guarantee">
                 <h4>ГАРАНТИЯ</h4>
-                <p>Официальная 24 месяца от производителя</p>
+                <p>{product.guarantee}</p>
               </div>
             </div>
           </div>
