@@ -1,55 +1,26 @@
 import React, {useEffect} from 'react';
 import PaginationSelect from '../../components/QuantityOnPage/QuantityOnPage';
 import SortProductSelect from '../../components/SortProductsSelect/SortProductsSelect';
-import {filterProducts, setSearchFilters} from '../../store/actions/actions';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {filterProducts} from '../../store/actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
 import CardItem from '../../components/Card/Card';
 import PaginationWrapper from '../../components/Pagination/Pagination';
 import './ProductList.scss';
-import {useLocation, useHistory} from 'react-router';
+import querystring from 'query-string';
 
-const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortBy}) => {
+const ProductList = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const history = useHistory();
-
-  const searchParams = new URLSearchParams(location.search);
-  const formFilterString = () => {
-    if (currentCategory.name) {
-      searchParams.delete('categories');
-      searchParams.set('categories', currentCategory.name);
-    }
-    if (!searchParams.has('perPage')) {
-      searchParams.set('perPage', perPage);
-    }
-    if (!searchParams.has('startPage')) {
-      searchParams.set('startPage', currentPage);
-    }
-    if (searchParams.has('startPage') && searchParams.get('startPage') !== currentPage) {
-      searchParams.delete('startPage');
-      searchParams.set('startPage', currentPage);
-    }
-
-    if (sortBy !== '') {
-      searchParams.delete('sort');
-      searchParams.set('sort', sortBy);
-    }
-
-    const filterString = searchParams.toString();
-    console.log('filterString', filterString);
-
-    history.push(`/products/filter?${searchParams}`);
-    return filterString;
-  };
+  const locationFilters = useSelector(state => state.filters.locationFilters);
+  
+  const queryFilters = useSelector(state => state.filters.queriesObj);
+  const queryFiltersString = querystring.stringify(queryFilters, {arrayFormat: 'comma'});
 
   useEffect(() => {
-    dispatch(setSearchFilters(formFilterString()));
-    console.log('filterParams in seEffect', filterParams);
-    dispatch(filterProducts(formFilterString()));
-  }, [currentCategory, sortBy, currentPage, perPage, dispatch, formFilterString, filterParams]);
+    dispatch(filterProducts(queryFiltersString));
+  /*  dispatch(filterProducts(locationFilters)); */
+  }, [dispatch, locationFilters, queryFiltersString]);
 
   const products = useSelector(state => state.products.products);
-  console.log('products', products);
   let productsList = (<div className='empty-product-list'>No items are available</div>);
   if (products && products.length) {
     productsList = products.map((product) => {
@@ -73,14 +44,4 @@ const ProductList = ({currentCategory, currentPage, perPage, filterParams, sortB
   );
 };
 
-const mapStoreToProps = (state) => {
-  return {
-    perPage: state.categoryPage.productsPerPage,
-    currentPage: state.categoryPage.currentPage,
-    sortBy: state.categoryPage.sortBy,
-    currentCategory: state.categories.currentCategory,
-    filterParams: state.filters.searchFilters
-  };
-};
-
-export default connect(mapStoreToProps)(ProductList);
+export default ProductList;

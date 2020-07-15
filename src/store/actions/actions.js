@@ -1,5 +1,6 @@
 import Actions from '../constans/constans';
 import axios from 'axios';
+import {formFilterStringFragment} from '../../utils/utils';
 
 export const getProducts = () => (dispatch) => {
   dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: [] });
@@ -62,7 +63,6 @@ export const getCategory = (categoryName) => (dispatch) => {
 };
 
 export const filterProducts = (filterParams) => (dispatch) => {
-  console.log('filterParams', filterParams);
   axios.get(`/products/filter?${filterParams}`)
     .then(res => {
       dispatch({ type: Actions.FILTER_PRODUCTS, payload: res.data });
@@ -72,6 +72,10 @@ export const filterProducts = (filterParams) => (dispatch) => {
 
 export const setPerPage = (quantity) => (dispatch) => {
   dispatch({ type: Actions.SET_PERPAGE, payload: quantity });
+};
+
+export const setCurrentCategory = (category) => (dispatch) => {
+  dispatch({ type: Actions.SET_CURRENT_CATEGORY, payload: category });
 };
 
 export const setCurrentPage = (page) => (dispatch) => {
@@ -105,3 +109,33 @@ export const setCurrentProduct = (product) => (dispatch) => {
 // export const setRecentlyViewedProducts = (array) => (dispatch) => {
 //   dispatch({ type: Actions.SET_RECENTLY_VIEWED_PRODUCTS, payload: array });
 // };
+
+export const getFiltersByCategory = (category) => (dispatch) => {
+  axios.get(`/filters/filter?categories=${category}`)
+    .then(res => {
+      dispatch({type: Actions.SET_FILTERS_BY_CATEGORY, payload: res.data});
+    });
+};
+
+export const getAllProductsByCategory = (category) => (dispatch) => {
+  axios.get(`/products/filter?categories=${category}`)
+    .then(res => {
+      dispatch({type: Actions.GET_ALL_PRODUCT_BY_CATEGORY, payload: res.data});
+    });
+};
+
+export const addToFilterString = (filterParam, filterValue, currentFilterString) => dispatch => {
+  dispatch({type: Actions.ADD_FILTER_STRING, payload: formFilterStringFragment(filterParam, filterValue, currentFilterString)});
+};
+
+export const setFilterQuery = (currentQueriesObj) => dispatch => {
+  dispatch({type: Actions.SET_FILTERS_QUERY, payload: currentQueriesObj});
+};
+
+export const setPrices = (minPrice, maxPrice) => dispatch => {
+  dispatch({type: Actions.SET_PRICES, minPrice: minPrice, maxPrice: maxPrice});
+};
+
+export const setMinMaxPrices = (minPrice, maxPrice) => dispatch => {
+  dispatch({type: Actions.SET_MIN_MAX_PRICES, minPrice: minPrice, maxPrice: maxPrice});
+};
