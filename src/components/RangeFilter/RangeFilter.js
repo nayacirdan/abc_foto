@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {Form, Formik} from 'formik';
 import {setMinMaxPrices} from '../../store/actions/actions';
-import {addFilterQuery, changeStandartQuery} from '../../utils/utils';
+import {addFilterQuery, changeStandartQuery, deleteFilterQuery} from '../../utils/utils';
 import querystring from 'query-string';
 import {useHistory, useLocation} from 'react-router';
 
@@ -53,6 +53,7 @@ const RangeFilter = () => {
   const minCategoryPrice = useSelector(state => state.categoryPage.minCategoryPrice);
   const maxCategoryPrice = useSelector(state => state.categoryPage.maxCategoryPrice);
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
+  console.log('STAAAAAAAAAAAAAAAART', queryFiltersObj.startPage);
 
   const [values, setValues] = React.useState({
     minPrice: minCategoryPrice,
@@ -91,7 +92,12 @@ const RangeFilter = () => {
     ev.preventDefault();
     console.log('values vvvvvvvvv', values.minPrice, values.maxPrice);
     dispatch(setMinMaxPrices(values.minPrice, values.maxPrice));
-    const newQueryObj = changeStandartQuery(queryFiltersObj, 'minPrice', values.minPrice);
+
+    let newQueryObj0 = queryFiltersObj;
+    if (queryFiltersObj.startPage) {
+      newQueryObj0 = deleteFilterQuery(queryFiltersObj, 'startPage', queryFiltersObj.startPage);
+    }
+    const newQueryObj = changeStandartQuery(newQueryObj0, 'minPrice', values.minPrice);
     const newQueryObj2 = changeStandartQuery(newQueryObj, 'maxPrice', values.maxPrice);
     const newQueryStr = querystring.stringify(newQueryObj2, {arrayFormat: 'comma'});
 

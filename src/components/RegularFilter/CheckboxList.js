@@ -34,6 +34,9 @@ const CheckboxList = (props) => {
       newQueryObj = deleteFilterQuery(queryFiltersObj, filterParam, title);
     }
     console.log('newQueryObj************************', newQueryObj);
+    if (queryFiltersObj.startPage) {
+      newQueryObj = deleteFilterQuery(newQueryObj, 'startPage', queryFiltersObj.startPage);
+    }
     const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
     console.log('newQueryStr************************', newQueryStr);
     /*  dispatch(addToFilterString(filterParam, title, currentFilterString)); */

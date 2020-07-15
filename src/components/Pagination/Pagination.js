@@ -24,7 +24,6 @@ const PaginationWrapper = () => {
     <Route>
       {({ location }) => {
         const query = new URLSearchParams(location.search);
-
         const page = parseInt(query.get('startPage') || '1', 10);
 
         return (
@@ -37,7 +36,12 @@ const PaginationWrapper = () => {
             renderItem={(item) => (
               <PaginationItem
                 component={Link}
-                to={`${location.pathname}?${querystring.stringify(queryFiltersObj, {arrayFormat: 'comma'})}&${item.page === 1 ? '' : `startPage=${item.page}`}`}
+                to={(location) => {
+                  const query = new URLSearchParams(location.search);
+                  query.set('startPage', String(item.page));
+                  const queryString = query.toString();
+                  return {...location, search: queryString};
+                }}
                 {...item}
               />
             )}

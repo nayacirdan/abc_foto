@@ -84,7 +84,7 @@ export const deleteFilterQuery = (
     delete queryFiltersObj[filterParam];
     return queryFiltersObj;
   }
-  return 'element is not typeof array or string';
+  return 'no IF triggered';
 };
 
 export const changeStandartQuery = (currentQueryObj, queryName, queryValue) => {
