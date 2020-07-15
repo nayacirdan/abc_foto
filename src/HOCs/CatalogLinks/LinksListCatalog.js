@@ -4,7 +4,7 @@ import {getAllCatalog} from '../../store/actions/actions';
 import {Link} from 'react-router-dom';
 import './CatalogLinks.scss';
 
-const LinksListCatalog = ({categories}) => {
+const LinksListCatalog = ({categories, perPage, sort}) => {
   let navlinks = 'Sorry no catalog found in MongoDB, I am stupid machine';
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ const LinksListCatalog = ({categories}) => {
   }, [dispatch]);
 
   if (categories && categories.length) {
-    navlinks = categories.filter(el => el.parentId !== 'null').map((cat) => (<Link className='nav__menu-item' to={`/products/filter?categories=${cat.name}&sort=currentPrice`}>{cat.title}</Link>));
+    navlinks = categories.filter(el => el.parentId !== 'null').map((cat) => (<Link className='nav__menu-item' to={`/products/filter?categories=${cat.name}&sort=${sort}&perPage=${perPage}`}>{cat.title}</Link>));
   }
 
   return (
@@ -25,7 +25,9 @@ const LinksListCatalog = ({categories}) => {
 
 const mapStoreToProps = (store) => {
   return {
-    categories: store.categories.allCategories
+    categories: store.categories.allCategories,
+    perPage: store.categoryPage.productsPerPage,
+    sort: store.categoryPage.sortBy
   };
 };
 

@@ -65,6 +65,10 @@ const PageCategory = (props) => {
     }
   }, [currentCategory, dispatch, productsByCategory]);
 
+  useEffect(() => {
+    dispatch(setPerPage(query.get('perPage')));
+  }, [currentCategory, dispatch, productsByCategory, query]);
+
   return (
     <div className='category'>
       <div className='container'>

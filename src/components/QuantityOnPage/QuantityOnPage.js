@@ -5,6 +5,8 @@ import {connect, useDispatch, useSelector} from 'react-redux';
 import {filterProducts, setCurrentPage, setPerPage, setSortProducts} from '../../store/actions/actions';
 import {useHistory, useLocation} from 'react-router';
 import {Link} from 'react-router-dom';
+import {changeStandartQuery} from '../../utils/utils';
+import querystring from 'query-string';
 
 const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuantity}) => {
   const page = currentPage - 1;
@@ -15,11 +17,14 @@ const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuanti
   const location = useLocation();
 
   const searchParams = new URLSearchParams(location.search);
+  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
   const handleChangeRowsPerPage = (event) => {
     const perPageValue = parseInt(event.target.value, 10);
     dispatch(setPerPage(perPageValue));
-
+    const newQueryObj = changeStandartQuery(queryFiltersObj, 'perPage', perPageValue);
+    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    history.push(`${location.pathname}?${newQueryStr}`);
     /*  if (searchParams.has('perPage')) {
             searchParams.delete('perPage');
           }
@@ -28,21 +33,16 @@ const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuanti
           dispatch(setPerPage(event.target.value));
           dispatch(setCurrentPage(1));
           history.push(`/products/filter?${searchParams}`); */
-
-    dispatch(setPerPage(event.target.value));
   };
 
   return (
     <TablePagination
       className='products-quantity'
       labelRowsPerPage='Показывать'
-      component={'div'
-        /* <Link to={`/products/filter?categories=dslr_cameras&perPage=${perPage}`}
-          /!*  onClick={() => handleChange('-currentPrice')} *!/>
-        </Link> */}
+      component={'div'}
       count={productsQuantity}
       page={page}
-
+      name='perPage'
       rowsPerPage={rowsPerPage}
       onChangeRowsPerPage={handleChangeRowsPerPage}
       rowsPerPageOptions={[3, 6, 9, 12]}

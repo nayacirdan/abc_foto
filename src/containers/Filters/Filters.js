@@ -43,12 +43,12 @@ const FilterContainer = () => {
             console.log(ev, ev.target, ev.currentTarget);
           }}>
             <RegularFilterList/>
-            <Button type='submit'>History push</Button>
+            {/*  <Button type='submit'>History push</Button> */}
           </form>);
         }}
 
       </Formik>
-      <Link to={location => {
+      {/* <Link to={location => {
         const query = new URLSearchParams(location.search);
         query.set('sort', '-currentPrice');
         query.set('categories', 'instant_cameras');
@@ -58,7 +58,7 @@ const FilterContainer = () => {
       }><Button>Location</Button></Link>
       <Link to={`/products/filter?${filterString}`}><Button>Filter Submit</Button></Link>
       <Button onClick={() => history.push('/products/filter?categories=dslr_cameras&sort=currentPrice')}>History push</Button>
-      <Link to={'/products/filter?categories=dslr_cameras&brand=Nikon,Pentax'}><Button>Brands</Button></Link>
+      <Link to={'/products/filter?categories=dslr_cameras&brand=Nikon,Pentax'}><Button>Brands</Button></Link> */}
     </div>
   );
 };
