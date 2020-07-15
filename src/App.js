@@ -27,7 +27,7 @@ const App = (props) => {
     <div className="App">
       <Router>
         <Route exact path="/" component={Header} />
-        <Route exact path="/" component={SubMenu} />
+        {/* <Route exact path="/" component={SubMenu} /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/products/filter/:itemNo" component={ProductPage} />
