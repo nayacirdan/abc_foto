@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
+
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
@@ -11,12 +13,13 @@ import './Header.scss';
 import Grid from '@material-ui/core/Grid';
 import Navigation from './Navigation/Navigation';
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
-import { connect, useDispatch } from 'react-redux';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
+import { loggedIn, getCustomer } from '../../store/actions/users/index';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import NavPanel from './NavPanel/NavPanel';
 
-import { withRouter } from 'react-router';
+import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
@@ -40,39 +43,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-  const { searchChange, getProductsBySearch, history, setCurrentProduct, getProducts, products } = props;
+  const {
+    searchChange,
+    getProductsBySearch,
+    history,
+    setCurrentProduct,
+    getProducts,
+    products,
+    openModal,
+    userInfo,
+    logged,
+    loggedIn,
+    getCustomer,
+    customerInfo
+  } = props;
+
   const classes = useStyles();
 
   useEffect(() => {
     searchChange();
   }, [searchChange]);
 
+  useEffect(() => {
+    if (userInfo) {
+      loggedIn();
+      getCustomer();
+    }
+  }, [getCustomer, loggedIn, userInfo]);
+
   const onChangeHandler = (e) => {
     searchChange(e.target.value);
     getProductsBySearch({ query: e.target.value.trim() });
   };
+
   const filterProductsHandler = (e, value) => {
     if (value !== null) {
       setToLocalStorage(value);
       setCurrentProduct(value);
       history.push(`/products/filter/${value.itemNo}`);
     }
-  };
-
-  // const [isHovering, setIsHovering] = useState(false);
-
-  // const toggleHoverState = () => {
-  //   setIsHovering(!isHovering);
-  // };
-  const dispatch = useDispatch();
-
-  const openSignUpModal = () => {
-    dispatch(setModalType('signUp'));
-    dispatch(openModal());
-  };
-  const openSignInModal = () => {
-    dispatch(setModalType('signIn'));
-    dispatch(openModal());
   };
 
   const phoneNumber = (
@@ -98,30 +107,21 @@ const Header = (props) => {
     >
     </MenuListComposition>
   );
+
   const AccountMenu = (
-    <MenuListComposition
-      firstItem={
-        <div className="account-menu">
-          <div className="account-menu__accountIcon">{accountIcon}</div>
-          <div className="account-menu__iconText">Вход</div>
-        </div>
-      }
-      secondItem={
-        <div className="menu-item">
-          <div onClick={openSignInModal}>Войти</div>
-        </div>
-      }
-      thirdItem={
-        <div>
-          <hr className="hr menu-item" />
-          <div className="menu-item" onClick={openSignUpModal} >
-                        Зарегистрироваться
-          </div>
-        </div>
-      }
-    >
-    </MenuListComposition>
+    <div className="account-menu" onClick={openModal}>
+      <div className="account-menu__accountIcon">{accountIcon}</div>
+      <div className="account-menu__iconText">Вход</div>
+    </div>
   );
+
+  const UserMenu = (
+    <div className="account-menu">
+      <div className="account-menu__accountIcon">{accountIcon}</div>
+      <div className="account-menu__iconText">Welcome, {customerInfo.login}</div>
+    </div>
+  );
+
   return (
     <div className="classes.root">
       <div className='Header__top'>
@@ -167,7 +167,7 @@ const Header = (props) => {
           {phoneNumber}
         </div>
 
-        <div>{AccountMenu}</div>
+        <div>{logged ? UserMenu : AccountMenu}</div>
 
         <NavLink exact to="/cart" className="cart-nav">
           <div className="account-menu">
@@ -187,9 +187,12 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = ({ products, userSignin, getCustomer }) => {
   return {
-    products: store.products.products
+    products: products.products,
+    userInfo: userSignin.userInfo,
+    logged: userSignin.logged,
+    customerInfo: getCustomer.customerInfo
   };
 };
 
@@ -198,7 +201,10 @@ const mapDispatchToProps = dispatch => {
     getProducts: () => dispatch(getProducts()),
     searchChange: (text) => dispatch(searchChange(text)),
     getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
-    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+    openModal: () => dispatch(openModal()),
+    loggedIn: () => dispatch(loggedIn()),
+    getCustomer: () => dispatch(getCustomer())
   };
 };
 
