@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: '100%',
-    marginTop: '3%',
+    margin: '4% 0',
     boxShadow: 'none'
   }
 

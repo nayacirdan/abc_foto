@@ -4,12 +4,11 @@ import React from 'react';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckboxList from './CheckboxList';
 
 const RegularFilter = (props) => {
-  const {title, checkboxesTitles} = props;
+  const {title, checkboxesTitles, filterParam} = props;
   return (
     <div className='regular-filter'>
       <ExpansionPanel>
@@ -21,7 +20,7 @@ const RegularFilter = (props) => {
           <h3 className='filter-title'>{title}</h3>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <CheckboxList titles={checkboxesTitles}/>
+          <CheckboxList titles={checkboxesTitles} filterParam={filterParam}/>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

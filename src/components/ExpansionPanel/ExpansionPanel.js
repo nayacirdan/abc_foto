@@ -1,14 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%'
+  },
+  elevation1: {
+    boxShadow: 'none'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -30,21 +33,21 @@ function SimpleExpansionPanel (props) {
 
   return (
     <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
+      <Accordion className={classes.elevation1}>
+        <AccordionSummary
           expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon} />}
           aria-controls="panel1a-content"
           id="panel1a-header"
           className={readMoreClass}
         >
           <Typography className={classes.heading}>{title}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           <Typography component='div'>
             {main}
           </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
 };

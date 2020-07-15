@@ -5,7 +5,9 @@ const initialState = {
   productsBySearch: [],
   productsQuantity: null,
   product: '',
-  currentProduct: null
+  currentProduct: null,
+  productsByCategory: []
+  // recentlyViewedProducts: JSON.parse(localStorage.getItem('recentlyViewed')) || []
 };
 
 const products = (state = initialState, action) => {
@@ -20,6 +22,10 @@ const products = (state = initialState, action) => {
       return {...state, productsQuantity: action.payload.productsQuantity, products: action.payload.products};
     case Actions.SET_CURRENT_PRODUCT:
       return { ...state, currentProduct: action.payload };
+    // case Actions.SET_RECENTLY_VIEWED_PRODUCTS:
+    //   return { ...state, recentlyViewedProducts: action.payload };
+    case Actions.GET_ALL_PRODUCT_BY_CATEGORY:
+      return {...state, productsByCategory: action.payload};
     default:
       return state;
   }

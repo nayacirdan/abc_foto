@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navigation.scss';
-import SubMenu from './SubMenu';
-import CatalogLinks from '../../../HOCs/CatalogLinks/CatalogLinks';
+import LinksListCatalog from '../../../HOCs/CatalogLinks/LinksListCatalog';
 
 const Navigation = () => {
   return (
@@ -34,7 +33,8 @@ const Navigation = () => {
                 </li>
 
             </ul> */}
-      <CatalogLinks/>
+      {/* <CatalogLinks/> */}
+      <LinksListCatalog/>
     </nav>
   );
 };
