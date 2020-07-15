@@ -8,11 +8,6 @@ import { openModal} from '../../store/actions/actions';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-// import GoogleLogin from 'react-google-login';
-// import FacebookLogin from 'react-facebook-login';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import EmailIcon from '@material-ui/icons/Email';
-// import LockIcon from '@material-ui/icons/Lock';
 
 const Registr = ({register, signIn, openModal, userRegister}) => {
   const validationSchema = Yup.object({

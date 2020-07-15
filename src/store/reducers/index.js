@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { userSignin } from './users/signin';
 import { getCustomer } from './users/getcustomer';
-import { userRegister } from './users/regisrt';
+import { userRegister } from './users/register';
 import modals from './modals/modalsReducer';
 import products from './products/productsReducer';
 import categories from './categories/categoriesReducer';

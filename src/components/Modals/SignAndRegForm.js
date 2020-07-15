@@ -12,7 +12,7 @@ import TabPanel from '../../components/TabPanel/TabPanel';
 import Box from '@material-ui/core/Box';
 
 import Sign from '../Modals/sing';
-import Registr from '../Modals/registr';
+import Registr from '../Modals/register';
 
 export const SignAndRegForm = ({openModal}) => {
   const theme = useTheme();
