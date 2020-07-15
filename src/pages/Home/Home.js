@@ -33,7 +33,7 @@ const Home = (props) => {
     <div>
       <TopSlider />
       <Slider sliderTitle="Популярные модели" prods={sliderProducts} />
-      <PromotionsAndOffers />
+      {/* <PromotionsAndOffers /> */}
 
     </div>
   );

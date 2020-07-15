@@ -8,12 +8,37 @@ import store from './store/store';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import 'swiper/css/swiper.css';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#51AD33'
+    },
+    secondary: {
+      main: '#F7F5F6'
+    }
+  },
+  // xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 320,
+      md: 640,
+      lg: 980,
+      xl: 1200
+    }
+  }
+});
+console.log('theme', theme);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App/>
+        <ThemeProvider theme={theme}>
+          <App/>
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
