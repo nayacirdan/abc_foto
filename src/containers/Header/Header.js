@@ -101,20 +101,20 @@ const Header = (props) => {
   const AccountMenu = (
     <MenuListComposition
       firstItem={
-        <div className="account-menu forLgMenu">
+        <div className="account-menu">
           <div className="account-menu__accountIcon">{accountIcon}</div>
           <div className="account-menu__iconText">Вход</div>
         </div>
       }
       secondItem={
-        <div className="menu-item forLgMenu">
+        <div className="menu-item">
           <div onClick={openSignInModal}>Войти</div>
         </div>
       }
       thirdItem={
         <div>
-          <hr className="hr" />
-          <div className="menu-item forLgMenu" onClick={openSignUpModal} >
+          <hr className="hr menu-item" />
+          <div className="menu-item" onClick={openSignUpModal} >
                         Зарегистрироваться
           </div>
         </div>

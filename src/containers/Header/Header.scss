@@ -12,7 +12,26 @@
     text-transform: capitalize;
 
     color: #000000;
-  }
+}
+.MuiSvgIcon-root {
+    color: #fff;
+    z-index: 100;
+}
+.account-menu {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__accountIcon {
+        background-color: #C2C8D0;
+        width: 41px;
+        height: 41px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
 
 
 @media (min-width: 980px) {
@@ -57,10 +76,6 @@
         }
     }
     
-    .MuiSvgIcon-root {
-        color: #fff;
-        z-index: 100;
-    }
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
@@ -70,20 +85,6 @@
     }
     
     .account-menu {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    
-        &__accountIcon {
-            background-color: #C2C8D0;
-            width: 41px;
-            height: 41px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    
         &__iconText {
             @include fontStyle;
             margin-left: 1rem;
@@ -138,37 +139,15 @@
         }
     }
     
-    .MuiSvgIcon-root {
-        color: #fff;
-        z-index: 100;
-    }
+    
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
-    }
-    .phoneMenu {
-        display: flex;
-        line-height: 20px;
     }
     .for-lg-menu {
         display: none;
     }
     
     .account-menu {
-        display: flex;
-        align-items: center;
-        margin-top: 13%;
-        cursor: pointer;
-    
-        &__accountIcon {
-            background-color: #C2C8D0;
-            width: 41px;
-            height: 41px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    
         &__iconText {
             display: none;
         }
@@ -185,12 +164,60 @@
     }
     
     .header {
-        display: grid;
-        grid-template-columns: 10% 80% 1% 19%;
+        display: flex;
+        justify-content: space-evenly;
         padding: 17px 0;
     }
     .search-form {
-        width: 80%;
+        width: 60%;
+        position: relative;
+    }
+    .logo {
+        display: none;
+    }
+    .cart-nav {
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .Header {
+        &__top {
+            display: none;
+        }
+    }
+    
+    
+    .makeStyles-root-1.MuiPaper-rounded{
+        border-radius: 50px;
+    }
+    .for-lg-menu {
+        display: none;
+    }
+    
+    .account-menu {
+        &__iconText {
+            display: none;
+        }
+    }
+    
+    .menu-item {
+        display: none;
+    }
+    .forLgMenu {
+        display: none;
+    }
+    .logo-block {
+        display: none;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 17px 0;
+    }
+    .search-form {
+        width: 60%;
         position: relative;
     }
     .logo {
