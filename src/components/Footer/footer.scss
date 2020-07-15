@@ -28,6 +28,7 @@
     position: relative;
     bottom: 15px;
     height: 35px;
+    z-index: 0;
   }
   &__icons-wrapper {
     display: flex;
@@ -45,6 +46,30 @@
     cursor: pointer;
     position: relative;
     transition: all linear .3s;
+    &:after {
+      content: '';
+      width: 0px;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      display: inline-block;
+      height: 1px;
+      transition: all linear .3s;
+    }
+    &:hover:after {
+      transition: all linear .3s;
+      width: 100%;
+      background-color: white;
+    }
+  }
+  &__link{
+    font-size: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all linear .3s;
+    color:#fff;
+    text-decoration: none;
     &:after {
       content: '';
       width: 0px;

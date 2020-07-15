@@ -2,17 +2,17 @@ import React from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-function handleClick(event) {
+function handleClick (event) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
 
-export default function ActiveLastBreadcrumb(props) {
-    const {productTitle} = props;
+export default function ActiveLastBreadcrumb (props) {
+  const {productTitle} = props;
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <Link color="textPrimary" href="/" onClick={handleClick}>
-      Главная 
+      Главная
       </Link>
       <Link color="textPrimary" href="/getting-started/installation/" onClick={handleClick}>
       Фотоаппараты

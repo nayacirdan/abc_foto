@@ -7,7 +7,7 @@
 .MuiButtonBase-root.MuiExpansionPanelSummary-root.readMore {
     position: absolute;
     top: -140px;
-    right: 79%;
+    right: 48%;
 }
 .MuiTypography-root.MuiTypography-body1 {
     position: relative;
@@ -17,6 +17,27 @@
         margin-right: 70px !important;
     }
 }
-.PrivateTabIndicator-colorPrimary-334 {
+
+.PrivateTabIndicator-colorPrimary-349 {
     background-color: #EEEEEE !important;
 }
+
+// characteristics
+
+.characteristics {
+    width: 60%;
+    height: 520px;
+    margin: 0 auto;
+    margin-top: 2%;
+
+    &_item {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        text-align: start;
+        padding: 1% 0;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+    }   
+};

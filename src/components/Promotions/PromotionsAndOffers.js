@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import './PromotionsAndOffers.scss'
+import './PromotionsAndOffers.scss';
 
-export default function PromotionsAndOffers() {
-
+export default function PromotionsAndOffers () {
   return (
     <div className="container">
       <p className="promotions-main-text">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
@@ -86,5 +85,5 @@ export default function PromotionsAndOffers() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,30 +1,59 @@
 import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
-import './QuantityOnPage.scss'
+import './QuantityOnPage.scss';
+import {connect, useDispatch, useSelector} from 'react-redux';
+import {setPerPage} from '../../store/actions/actions';
+import {useHistory, useLocation} from 'react-router';
+import {changeStandartQuery} from '../../utils/utils';
+import querystring from 'query-string';
 
-const PaginationSelect=()=> {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(9);
+const PaginationSelect = ({perPage, currentPage, productsQuantity}) => {
+  const page = currentPage - 1;
+  const rowsPerPage = perPage;
 
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
 
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
-    return (
-        <TablePagination
-            className='products-quantity'
-            labelRowsPerPage='Показывать'
-            component="div"
-            count={100}
-            page={page}
-            //onChangePage={handleChangePage}
-            rowsPerPage={rowsPerPage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-            rowsPerPageOptions={[9, 18, 36, 72]}
-        />
-    );
-}
+  const handleChangeRowsPerPage = (event) => {
+    const perPageValue = parseInt(event.target.value, 10);
+    dispatch(setPerPage(perPageValue));
+    const newQueryObj = changeStandartQuery(queryFiltersObj, 'perPage', perPageValue);
+    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    history.push(`${location.pathname}?${newQueryStr}`);
+    /*  if (searchParams.has('perPage')) {
+            searchParams.delete('perPage');
+          }
+          searchParams.append('perPage', event.target.value);
+          
+          dispatch(setPerPage(event.target.value));
+          dispatch(setCurrentPage(1));
+          history.push(`/products/filter?${searchParams}`); */
+  };
 
-export default PaginationSelect;
+  return (
+    <TablePagination
+      className='products-quantity'
+      labelRowsPerPage='Показывать'
+      component={'div'}
+      count={productsQuantity}
+      page={page}
+      name='perPage'
+      rowsPerPage={rowsPerPage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+      rowsPerPageOptions={[3, 6, 9, 12]}
+    />
+  );
+};
+
+const mapStoreToProps = (store) => {
+  return {
+    currentCategory: store.categories.currentCategory.id,
+    perPage: store.categoryPage.productsPerPage,
+    currentPage: store.categoryPage.currentPage,
+    productsQuantity: store.products.productsQuantity
+  };
+};
+export default connect(mapStoreToProps)(PaginationSelect);

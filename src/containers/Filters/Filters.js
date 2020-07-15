@@ -1,20 +1,26 @@
-import React from 'react';
-import RangeFilter from "../../components/RangeFilter/RangeFilter";
-import './Filters.scss'
-import RegularFilter from "../../components/RegularFilter/RegularFilter";
+import React, {useEffect} from 'react';
+import RangeFilter from '../../components/RangeFilter/RangeFilter';
+import './Filters.scss';
+import {useDispatch, useSelector} from 'react-redux';
+import RegularFilterList from '../../components/RegularFilterList/RegularFilterList';
+import {getAllProductsByCategory} from '../../store/actions/actions';
 
 const FilterContainer = () => {
-    const categoryTitle='Фотоаппараты';
-    return (
-        <div className='filters-container'>
-            <h2 className='category-title'>{categoryTitle}</h2>
-            <RangeFilter/>
-            <RegularFilter title='По типу' checkboxesTitles={['зеркальные', 'компактные', 'системные']}/>
-            <RegularFilter title='По производителю' checkboxesTitles={['Canon', 'Fujifilm', 'Nikon', 'Olympus', 'Panasonic', 'Pentax', 'Sony']}/>
-            <RegularFilter title='Комплектация' checkboxesTitles={['Без объектива', 'С объективом']}/>
-            <RegularFilter title='Матрица' checkboxesTitles={['CMOS', 'Кропнутая', 'Полноразмерная']}/>
-        </div>
-    );
+  const dispatch = useDispatch();
+  const categoryTitle = useSelector((state) => state.categories.currentCategory.title);
+  const currentCategory = useSelector(state => state.categories.currentCategory.name);
+
+  useEffect(() => {
+    dispatch(getAllProductsByCategory(currentCategory));
+  }, [currentCategory, dispatch]);
+
+  return (
+    <div className='filters-container'>
+      <h2 className='category-title'>{categoryTitle}</h2>
+      <RangeFilter/>
+      <RegularFilterList/>
+    </div>
+  );
 };
 
 export default FilterContainer;

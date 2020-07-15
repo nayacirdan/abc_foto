@@ -24,7 +24,7 @@
     }
 }
 .slider {
-    padding: 6% 0;
+    padding: 0 0 6% 0;
     &__header {
         font-family: "Roboto";
         font-weight: bold;
@@ -34,10 +34,10 @@
         color: #677283;
         display: flex;
         justify-content: flex-start;
-        margin-left: 1%;
+        margin: 6% 0 0 1%;
     }
 }
 
 .slick-list {
-    overflow: hidden;
+    overflow-x: hidden;
 }

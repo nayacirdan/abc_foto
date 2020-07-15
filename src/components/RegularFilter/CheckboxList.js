@@ -4,49 +4,80 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import {useSelector} from 'react-redux';
+import {addFilterQuery, deleteFilterQuery} from '../../utils/utils';
+import querystring from 'query-string';
+import {useLocation, useHistory} from 'react-router';
 
 const CheckboxList = (props) => {
-    const {titles}=props;
-    const [checked, setChecked] = React.useState([]);
+  const location = useLocation();
+  const history = useHistory();
 
-    const handleToggle = (title) => () => {
-        const currentIndex = checked.indexOf(title);
-        const newChecked = [...checked];
+  const {titles, filterParam} = props;
+  const [checked, setChecked] = React.useState([]);
 
-        if (currentIndex === -1) {
-            newChecked.push(title);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
+  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
-        setChecked(newChecked);
-    };
+  const handleToggle = (title, filterParam, isChecked) => () => {
+    let newQueryObj = null;
+    if (!isChecked) {
+      newQueryObj = addFilterQuery(queryFiltersObj, filterParam, title);
+    } else {
+      newQueryObj = deleteFilterQuery(queryFiltersObj, filterParam, title);
+    }
 
-    return (
-        <List>
-            {titles.map((title) => {
-                const labelId = `checkbox-list-label-${title}`;
+    if (queryFiltersObj.startPage) {
+      newQueryObj = deleteFilterQuery(newQueryObj, 'startPage', queryFiltersObj.startPage);
+    }
+    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
 
-                return (
-                    <div>
-                        <ListItem key={title} role={undefined} dense button onClick={handleToggle(title)}>
-                            <ListItemIcon>
-                                <Checkbox
-                                    edge="start"
-                                    checked={checked.indexOf(title) !== -1}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{'aria-labelledby': labelId}}
-                                />
-                            </ListItemIcon>
-                            <ListItemText id={labelId} primary={title}/>
+    const currentIndex = checked.indexOf(title);
+    const newChecked = [...checked];
 
-                        </ListItem>
-                    </div>
-                );
-            })}
-        </List>
-    );
-}
+    if (currentIndex === -1) {
+      newChecked.push(title);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    setChecked(newChecked);
+
+    history.push(`${location.pathname}?${newQueryStr}`);
+  };
+
+  return (
+    <List>
+      {titles.map((title) => {
+        const techTitle = title.trim();
+        const labelId = `checkbox-list-label-${techTitle}`;
+        const isChecked = checked.indexOf(techTitle) !== -1;
+        return (
+          <div>
+            <ListItem key={techTitle}
+              role={undefined}
+              dense
+              button
+              onClick={handleToggle(techTitle, filterParam, isChecked)}
+              filterParam={filterParam}
+              isChecked={isChecked}
+            >
+              <ListItemIcon filterParam={filterParam}>
+                <Checkbox
+                  edge="start"
+                  checked={isChecked}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{'aria-labelledby': labelId, name: techTitle, checked: true, filterParam: filterParam}}
+                  value='checkboXXX..'
+                  filterParam={filterParam}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={title}/>
+
+            </ListItem>
+          </div>
+        );
+      })}
+    </List>
+  );
+};
 export default CheckboxList;

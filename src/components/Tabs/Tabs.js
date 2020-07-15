@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function TabPanel(props) {
+function TabPanel (props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -31,27 +31,28 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
 };
 
-function a11yProps(index) {
+function a11yProps (index) {
   return {
     id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: "100%",
-    marginTop: "3%",
-    boxShadow: "none"
-  },
+    width: '100%',
+    margin: '4% 0',
+    boxShadow: 'none'
+  }
+
 }));
 
-export default function FullWidthTabs(props) {
-  const { description, characteristics, accessories } = props;
+export default function FullWidthTabs (props) {
+  const { description, characteristics } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -77,7 +78,7 @@ export default function FullWidthTabs(props) {
         >
           <Tab label="ОПИСАНИЕ" {...a11yProps(0)} />
           <Tab label="ХАРАКТЕРИСТИКИ" {...a11yProps(1)} />
-          <Tab label="АКСЕССУАРЫ" {...a11yProps(2)} />
+          {/* <Tab label="АКСЕССУАРЫ" {...a11yProps(2)} /> */}
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -91,9 +92,9 @@ export default function FullWidthTabs(props) {
         <Typography component="div" value={value} index={1} dir={theme.direction}>
           {characteristics}
         </Typography>
-        <Typography component="div" value={value} index={2} dir={theme.direction}>
+        {/* <Typography component="div" value={value} index={2} dir={theme.direction}>
           {accessories}
-        </Typography>
+        </Typography> */}
       </SwipeableViews>
     </div>
   );

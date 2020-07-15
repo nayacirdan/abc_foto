@@ -1,46 +1,51 @@
-import React from "react";
+import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import './Card.scss'
-import {makeStyles} from '@material-ui/core/styles';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import './Card.scss';
+// import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import IconButton from "@material-ui/core/IconButton";
-import Grid from "@material-ui/core/Grid";
-import cartIcon from "../../svg/cartIcon";
+import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+// import cartIcon from '../../svg/cartIcon';
+import { withRouter } from 'react-router';
 
+import { setCurrentProduct } from '../../store/actions/actions';
+import { connect } from 'react-redux';
 
+import setToLocalStorage from '../../utils/localStorage';
 
+/*
 const useStyles = makeStyles({
     root: {
         width: 280,
         borderRadius: 0,
-        boxSizing:'content-box',
-        position:"relative",
-        overflow:'visible',
-        marginBottom:20,
-        marginRight:20,
+        boxSizing: 'content-box',
+        position: "relative",
+        overflow: 'visible',
+        marginBottom: 20,
+        marginRight: 20,
         '&:hover': {
             // border: '1px solid rgba(81, 173, 51, 0.5)',
             boxShadow: '0px 0px 0px 1px rgba(81, 173, 51, 0.5), 0px 4px 15px rgba(0, 0, 0, 0.25)',
             cursor: 'pointer',
-            boxSizing:'content-box'
+            boxSizing: 'content-box'
         },
-        '&:hover $description, .slider-card:hover $description, .slick-active:hover $description':{
-            display:'block',
+        '&:hover $description, .slider-card:hover $description, .slick-active:hover $description': {
+            display: 'block',
             opacity: 1,
-            maxHeight:500,
-        },
+            maxHeight: 500,
+        }
     },
     media: {
         backgroundSize: 'contain',
-        width:'100%'
+        width: '100%'
     },
-    mediaContainer:{
+    mediaContainer: {
         height: 277,
         backgroundColor: '#F7F5F6',
-        padding:20
+        padding: 20
     },
     cartBtn: {
         borderRadius: 3,
@@ -71,17 +76,17 @@ const useStyles = makeStyles({
         fontSize: 21,
         fontWeight: 'bold',
     },
-    oldPrize:{
-        textDecoration:'line-through',
-        fontSie:14,
-        color:'#A0A0A0',
+    oldPrize: {
+        textDecoration: 'line-through',
+        fontSie: 14,
+        color: '#A0A0A0',
 
     },
-    salePrize:{
+    salePrize: {
         fontSize: 20,
         fontWeight: 'bold',
-        color:'#E91E49',
-        lineHeight:1,
+        color: '#E91E49',
+        lineHeight: 1,
     },
     title: {
         fontSize: 16,
@@ -94,63 +99,61 @@ const useStyles = makeStyles({
         color: '#51AD33',
         fontSize: 14,
     },
-    expectText:{
+    expectText: {
         textTransform: 'lowercase',
         color: '#E91E49',
         fontSize: 14,
     },
-    notAvailText:{
+    notAvailText: {
         textTransform: 'lowercase',
         color: '#C2CDDD',
         fontSize: 14,
     },
-    prizeContainer:{
-        width:'50%'
+    prizeContainer: {
+        width: '50%'
     },
-    hit:{
-        width:'50%',
-        backgroundColor:'#51AD33',
-        color:'#FFF',
-        textTransform:'uppercase',
-        fontWeight:500,
-        fontSize:14,
-        padding:5,
-        position:"absolute",
-        top:11,
-        left:0,
-        zIndex:4,
+    hit: {
+        width: '50%',
+        backgroundColor: '#51AD33',
+        color: '#FFF',
+        textTransform: 'uppercase',
+        fontWeight: 500,
+        fontSize: 14,
+        padding: 5,
+        position: "absolute",
+        top: 11,
+        left: 0,
+        zIndex: 4,
     },
-    description:{
-        /*marginTop:0,*/
-        fontSize:12,
-        color:'#333131',
-        textAlign:'left',
-        maxHeight:'0px',
-        overflow:'hidden',
-        opacity:0,
+    description: {
+        /!*marginTop:0,*!/
+        fontSize: 12,
+        color: '#333131',
+        textAlign: 'left',
+        maxHeight: '0px',
+        overflow: 'hidden',
+        opacity: 0,
         transition: 'max-height 600ms ease-in-out, opacity 200ms ease-in-out',
         border: '1px solid rgba(81, 173, 51, 0.5)',
         boxShadow: '0px 15px 15px rgba(0, 0, 0, 0.25)',
         cursor: 'pointer',
-        borderTop:'none',
-        zIndex:5,
+        borderTop: 'none',
+        zIndex: 5,
         width: 'calc(100% + 2px)',
-        left:-1,
-        position:"absolute",
-        display:'block',
-        backgroundColor:'#fff',
-        padding:'0 20px 10px',
-        wordWrap:'break-word',
-        top:'98%'
+        left: -1,
+        position: "absolute",
+        display: 'block',
+        backgroundColor: '#fff',
+        padding: '0 20px 10px',
+        wordWrap: 'break-word',
+        top: '98%'
     }
-});
+}); */
 
-
+/*
 
 const CardItem = (props) => {
-    const {product} = props;
-
-
+    const { product, history, setCurrentProduct } = props;
 
     const {
         imageUrls,
@@ -160,16 +163,22 @@ const CardItem = (props) => {
         previousPrice,
         isHit,
         isExpected,
-        description
+        description,
+        itemNo
     } = product;
 
-    const getProductAvailability=()=>{
-        if(isAvailable) {
+    const redirectToProductPage = (product) => {
+        history.push(`/products/filter/${itemNo}`)
+        setCurrentProduct(product)
+    }
+
+    const getProductAvailability = () => {
+        if (isAvailable) {
             return (<Typography component='span' className={classes.availText}>
                 В наличии
             </Typography>)
         } else {
-            if(isExpected) {
+            if (isExpected) {
                 return (<Typography component='span' className={classes.expectText}>
                     Ожидается
                 </Typography>)
@@ -183,35 +192,37 @@ const CardItem = (props) => {
     const classes = useStyles();
     return (
         <>
-            <Card className={classes.root}>
+            <Card className={classes.root} onClick={(e) => {
+                e.preventDefault()
+                redirectToProductPage(product)
+            }}>
                 <Grid container className={classes.mediaContainer} >
                     <CardMedia
                         className={classes.media}
                         image={imageUrls[0]}
-                        />
+                    />
                 </Grid>
-
 
                 <CardContent className={classes.cardContent}>
                     <Typography component="h2" className={classes.title}>
                         {name}
                     </Typography>
                     <Grid container
-                          direction="row"
-                          justify="space-between"
-                          alignItems="center">
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center">
                         {previousPrice ? (
-                                <Grid container direction='column' className={classes.prizeContainer}
-                                      justify="flex-start"
-                                      alignItems="flex-start">
-                                    <Typography component='span' className={classes.oldPrize}>
-                                        {previousPrice} грн.
+                            <Grid container direction='column' className={classes.prizeContainer}
+                                justify="flex-start"
+                                alignItems="flex-start">
+                                <Typography component='span' className={classes.oldPrize}>
+                                    {previousPrice} грн.
                                     </Typography>
-                                    <Typography component='span' className={classes.salePrize}>
-                                        {currentPrice} грн.
+                                <Typography component='span' className={classes.salePrize}>
+                                    {currentPrice} грн.
                                     </Typography>
-                                </Grid>
-                            ) :
+                            </Grid>
+                        ) :
                             (
                                 <Typography component='span' className={classes.fullPrice}>
                                     {currentPrice} грн.
@@ -220,21 +231,21 @@ const CardItem = (props) => {
                         }
 
                         <IconButton color="#51AD33" aria-label="upload picture" component="span"
-                                    className={classes.cartBtn}  disabled={!isAvailable}>
-                            <ShoppingCartOutlinedIcon className={classes.cartIcon}/>
+                            className={classes.cartBtn} disabled={!isAvailable}>
+                            <ShoppingCartOutlinedIcon className={classes.cartIcon} />
                         </IconButton>
                     </Grid>
                     <Grid container
-                          direction="row"
-                          justify="flex-start"
-                          alignItems="center">
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="center">
 
                         {getProductAvailability()}
 
                     </Grid>
 
                 </CardContent>
-                {isHit? <Grid item className={classes.hit} justify='center'>
+                {isHit ? <Grid item className={classes.hit} justify='center'>
                     Хит продаж
                 </Grid> : null}
                 <Grid container className={classes.description}>
@@ -246,6 +257,128 @@ const CardItem = (props) => {
 
         </>
     )
-}
+};
+*/
 
-export default CardItem;
+const CardItem = (props) => {
+  const { product, history, setCurrentProduct } = props;
+
+  const {
+    imageUrls,
+    name,
+    isAvailable,
+    currentPrice,
+    previousPrice,
+    isHit,
+    isExpected,
+    description,
+    itemNo
+  } = product;
+
+  const redirectToProductPage = (product) => {
+    setCurrentProduct(product);
+    setToLocalStorage(product);
+    history.push(`/products/filter/${itemNo}`);
+  };
+
+  const getProductAvailability = () => {
+    if (isAvailable) {
+      return (<Typography component='span' className='card__available'>
+                В наличии
+      </Typography>);
+    } else {
+      if (isExpected) {
+        return (<Typography component='span' className='card__expect'>
+                    Ожидается
+        </Typography>);
+      } else {
+        return (<Typography component='span' className='card__not-available'>
+                    Нет в наличии
+        </Typography>);
+      }
+    }
+  };
+
+  return (
+    <>
+      <Card className='card' >
+        <Grid container className='card__media-container'
+          onClick={(e) => {
+            e.preventDefault();
+            redirectToProductPage(product);
+          }}
+        >
+          <CardMedia
+            className='card__media'
+            image={imageUrls[0]}
+          />
+        </Grid>
+
+        <CardContent className='card__content'>
+          <Typography component="h2" className='card__title'
+            onClick={(e) => {
+              e.preventDefault();
+              redirectToProductPage(product);
+            }}
+          >
+            {name}
+          </Typography>
+          <Grid container
+            direction="row"
+            justify="space-between"
+            alignItems="center">
+            {previousPrice ? (
+              <Grid container direction='column' className='card__price-container'
+                justify="flex-start"
+                alignItems="flex-start">
+                <Typography component='span' className='card__old-price'>
+                  {previousPrice} грн.
+                </Typography>
+                <Typography component='span' className='card__sale-price'>
+                  {currentPrice} грн.
+                </Typography>
+              </Grid>
+            )
+              : (
+                <Typography component='span' className='card__full-price'>
+                  {currentPrice} грн.
+                </Typography>
+              )
+            }
+
+            <IconButton color="#51AD33" aria-label="upload picture" component="span"
+              className='card__cart-btn' disabled={!isAvailable} >
+              <ShoppingCartOutlinedIcon className='card__cart-icon' />
+            </IconButton>
+          </Grid>
+          <Grid container
+            direction="row"
+            justify="flex-start"
+            alignItems="center">
+
+            {getProductAvailability()}
+
+          </Grid>
+
+        </CardContent>
+        {isHit ? <Grid item className='card-hit' justify='center'>
+                    Хит продаж
+        </Grid> : null}
+        <Grid container className='card__description'>
+          <Typography component='p' >
+            {description}
+          </Typography>
+        </Grid>
+      </Card>
+
+    </>
+  );
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(CardItem));
