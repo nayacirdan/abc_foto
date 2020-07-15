@@ -4,34 +4,18 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './SortProductsSelect.scss';
-import {useHistory, useRouteMatch, useLocation} from 'react-router';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useHistory, useLocation} from 'react-router';
+import {useDispatch, useSelector} from 'react-redux';
 import {setCurrentPage, setSortProducts} from '../../store/actions/actions';
-import {Link} from 'react-router-dom';
 import {changeStandartQuery} from '../../utils/utils';
 import querystring from 'query-string';
 
-const SortProductSelect = ({sortProducts}) => {
+const SortProductSelect = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
   const sortBy = useSelector(state => state.categoryPage.sortBy);
 
-  const searchParams = new URLSearchParams(location.search);
-
-  /*  const handleChange = (event) => {
-    // debugger;
-    /!*    if (searchParams.has('sort')) {
-      searchParams.delete('sort');
-    }
-    searchParams.append('sort', event.target.value);
-
-    console.log('searchParams', searchParams.toString()); *!/
-   
-    /!*   history.push(`/products/filter?${searchParams}`); *!/
-/!*    dispatch(setSortProducts(event.target.value));
-    dispatch(setCurrentPage(1));*!/
-  }; */
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
   
   const handleChange = (ev) => {
@@ -52,44 +36,6 @@ const SortProductSelect = ({sortProducts}) => {
           value={sortBy}
           onChange={(ev) => handleChange(ev)}
         >
-
-          {/* <MenuItem value='currentPrice'>
-            <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
-              onClick={() => handleChange('currentPrice')}>
-            Снижению цены
-            </Link>
-          </MenuItem> */}
-          {/*  <MenuItem value='currentPrice'>
-            <Link to={location => {
-              const query = new URLSearchParams(location.search);
-              query.set('sort', sortBy);
-              const queryString = query.toString();
-              return {...location, search: queryString};
-            }}
-            onClick={() => handleChange('currentPrice')}>
-            Снижению цены
-            </Link>
-          </MenuItem>
-
-          <MenuItem value='-currentPrice'>
-            <Link to={location => {
-              const query = new URLSearchParams(location.search);
-              query.set('sort', sortBy);
-              const queryString = query.toString();
-              return {...location, search: queryString};
-            }}
-            onClick={() => handleChange('-currentPrice')}>
-              Возрастанию цены
-            </Link>
-          </MenuItem>
-          */}
-          {/* <MenuItem value='-currentPrice'>
-            <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
-              onClick={() => handleChange('-currentPrice')}>
-              Возрастанию цены
-            </Link>
-          </MenuItem> */}
-
           <MenuItem value='-currentPrice'>
               Снижению цены
           </MenuItem>
@@ -104,10 +50,4 @@ const SortProductSelect = ({sortProducts}) => {
   );
 };
 
-const mapStoreToProps = (store) => {
-  return {
-    sortProducts: store.categoryPage.sortBy
-  };
-};
-
-export default connect(mapStoreToProps)(SortProductSelect);
+export default SortProductSelect;

@@ -2,13 +2,12 @@ import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import './QuantityOnPage.scss';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import {setCurrentPage, setPerPage} from '../../store/actions/actions';
+import {setPerPage} from '../../store/actions/actions';
 import {useHistory, useLocation} from 'react-router';
-import {Link} from 'react-router-dom';
 import {changeStandartQuery} from '../../utils/utils';
 import querystring from 'query-string';
 
-const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuantity}) => {
+const PaginationSelect = ({perPage, currentPage, productsQuantity}) => {
   const page = currentPage - 1;
   const rowsPerPage = perPage;
 
@@ -16,7 +15,6 @@ const PaginationSelect = ({currentCategory, perPage, currentPage, productsQuanti
   const history = useHistory();
   const location = useLocation();
 
-  const searchParams = new URLSearchParams(location.search);
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
   const handleChangeRowsPerPage = (event) => {

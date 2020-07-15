@@ -1,23 +1,3 @@
-const filterObj = {
-  filterParam: 'type',
-  hhh: 'osdkfosd'
-};
-
-const products = [
-  {
-    type: 'dsl',
-    ammount: 2
-  },
-  {
-    type: 'dsl',
-    ammount: 4
-  },
-  {
-    type: 'inst',
-    ammount: 0
-  }
-];
-
 const uniqueArray = (arr) => {
   return Array.from(new Set(arr));
 };
@@ -47,8 +27,6 @@ export const formFilterStringFragment = (filterParam, filterValue, currentFilter
 };
 
 export const addFilterQuery = (queryFiltersObj, filterParam, filterValue) => {
-  const newQueriesObj = {};
-
   if (Object.prototype.hasOwnProperty.call(queryFiltersObj, filterParam)) {
     if (queryFiltersObj[filterParam].constructor === Array) {
       queryFiltersObj[filterParam].push(filterValue);
@@ -72,7 +50,6 @@ export const deleteFilterQuery = (
   filterParam,
   filterValue
 ) => {
-  debugger;
   if (queryFiltersObj[filterParam].constructor === Array) {
     const index = queryFiltersObj[filterParam].indexOf(filterValue);
     queryFiltersObj[filterParam].splice(index, 1);

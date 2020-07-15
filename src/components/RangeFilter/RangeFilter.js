@@ -6,9 +6,8 @@ import Slider from '@material-ui/core/Slider';
 import './RangeFilter.scss';
 import Button from '@material-ui/core/Button';
 import {useDispatch, useSelector} from 'react-redux';
-import {Form, Formik} from 'formik';
 import {setMinMaxPrices} from '../../store/actions/actions';
-import {addFilterQuery, changeStandartQuery, deleteFilterQuery} from '../../utils/utils';
+import {changeStandartQuery, deleteFilterQuery} from '../../utils/utils';
 import querystring from 'query-string';
 import {useHistory, useLocation} from 'react-router';
 
@@ -53,7 +52,6 @@ const RangeFilter = () => {
   const minCategoryPrice = useSelector(state => state.categoryPage.minCategoryPrice);
   const maxCategoryPrice = useSelector(state => state.categoryPage.maxCategoryPrice);
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
-  console.log('STAAAAAAAAAAAAAAAART', queryFiltersObj.startPage);
 
   const [values, setValues] = React.useState({
     minPrice: minCategoryPrice,
@@ -68,7 +66,6 @@ const RangeFilter = () => {
   }, [minCategoryPrice, maxCategoryPrice]);
   const handleChangeInputs = (event) => {
     const {name, value} = event.target;
-    console.log('event.target', event.target);
     setValues({
       ...values,
       [name]: Number(value)
@@ -76,13 +73,10 @@ const RangeFilter = () => {
   };
 
   const handleChangeSlider = (event, newValues) => {
-    console.log('slider ev target', event.target);
-    console.log('newValues', newValues);
-
     const newArr = newValues.sort(function compareNumbers (a, b) {
       return a - b;
     });
-    console.log('newArr', newValues);
+
     setValues({
       minPrice: newArr[0],
       maxPrice: newArr[1]
@@ -90,7 +84,6 @@ const RangeFilter = () => {
   };
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    console.log('values vvvvvvvvv', values.minPrice, values.maxPrice);
     dispatch(setMinMaxPrices(values.minPrice, values.maxPrice));
 
     let newQueryObj0 = queryFiltersObj;

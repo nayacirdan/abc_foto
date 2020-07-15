@@ -6,10 +6,8 @@ import ProductList from '../../containers/ProductList/ProductList';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   getCategory, getFiltersByCategory,
-  setCurrentPage,
   setFilterQuery,
   setPerPage, setPrices,
-  setSearchFilters,
   setSortProducts
 } from '../../store/actions/actions';
 import {useLocation } from 'react-router';
@@ -32,14 +30,11 @@ const PageCategory = (props) => {
   const productsByCategory = useSelector(state => state.products.productsByCategory);
 
   const currentQueries = querystring.parse(location.search, {arrayFormat: 'comma'});
-  console.log('------------------currentQueries', currentQueries);
-  console.log('------------------currentQueriesSSSSSSS', querystring.stringify(currentQueries, {arrayFormat: 'comma'}));
 
   function useQuery () {
     return new URLSearchParams(useLocation().search);
   }
   const query = useQuery();
-  const queryString = query.toString();
   
   useEffect(() => {
     dispatch(setFilterQuery(currentQueries));

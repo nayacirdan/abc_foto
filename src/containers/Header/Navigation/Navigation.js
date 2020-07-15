@@ -1,6 +1,5 @@
 import React from 'react';
 import './Navigation.scss';
-import CatalogLinks from '../../../HOCs/CatalogLinks/CatalogLinks';
 import LinksListCatalog from '../../../HOCs/CatalogLinks/LinksListCatalog';
 
 const Navigation = () => {

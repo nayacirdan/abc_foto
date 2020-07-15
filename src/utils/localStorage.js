@@ -1,5 +1,4 @@
 const setToLocalStorage = (product) => {
-  console.log('Product', product);
   if (localStorage.getItem('recentlyViewedProducts') !== null) {
     const localArray = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
 

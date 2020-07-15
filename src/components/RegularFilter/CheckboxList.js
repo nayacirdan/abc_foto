@@ -4,42 +4,33 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import {useDispatch, useSelector} from 'react-redux';
-import {addToFilterString} from '../../store/actions/actions';
+import {useSelector} from 'react-redux';
 import {addFilterQuery, deleteFilterQuery} from '../../utils/utils';
 import querystring from 'query-string';
 import {useLocation, useHistory} from 'react-router';
 
 const CheckboxList = (props) => {
-  const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
-  const currentFilterString = useSelector(state => state.filters.locationFilters);
   const {titles, filterParam} = props;
-  debugger;
   const [checked, setChecked] = React.useState([]);
 
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
   const handleToggle = (title, filterParam, isChecked) => () => {
-    console.log(filterParam);
-    console.log('++++++++++++++++++', isChecked);
-    
     let newQueryObj = null;
     if (!isChecked) {
       newQueryObj = addFilterQuery(queryFiltersObj, filterParam, title);
     } else {
-      debugger;
       newQueryObj = deleteFilterQuery(queryFiltersObj, filterParam, title);
     }
-    console.log('newQueryObj************************', newQueryObj);
+
     if (queryFiltersObj.startPage) {
       newQueryObj = deleteFilterQuery(newQueryObj, 'startPage', queryFiltersObj.startPage);
     }
     const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
-    console.log('newQueryStr************************', newQueryStr);
-    /*  dispatch(addToFilterString(filterParam, title, currentFilterString)); */
+
     const currentIndex = checked.indexOf(title);
     const newChecked = [...checked];
 
@@ -56,7 +47,6 @@ const CheckboxList = (props) => {
   return (
     <List>
       {titles.map((title) => {
-        debugger;
         const techTitle = title.trim();
         const labelId = `checkbox-list-label-${techTitle}`;
         const isChecked = checked.indexOf(techTitle) !== -1;

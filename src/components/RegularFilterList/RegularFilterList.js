@@ -1,15 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import RegularFilter from '../RegularFilter/RegularFilter';
-import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-import {getFiltersByCategory} from '../../store/actions/actions';
+import {useSelector} from 'react-redux';
 import {findFilterOptions} from '../../utils/utils';
 
 const RegularFilterList = () => {
-  const dispatch = useDispatch();
-  const currentCategory = useSelector(state => state.categories.currentCategory.name);
   const productsByCategory = useSelector(state => state.products.productsByCategory);
-  
   const allFilters = useSelector(state => state.filters.categoryFilters);
   
   /*  useEffect(() => {
@@ -27,8 +22,6 @@ const RegularFilterList = () => {
   
   return (
     <div>
-      {/*      <RegularFilter title='По типу' checkboxesTitles={['зеркальные', 'компактные', 'системные']}/>
-      <RegularFilter title='По производителю' checkboxesTitles={['Canon', 'Fujifilm', 'Nikon', 'Olympus', 'Panasonic', 'Pentax', 'Sony']}/> */}
       {filters}
     </div>
   );

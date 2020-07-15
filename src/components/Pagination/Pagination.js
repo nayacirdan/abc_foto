@@ -6,17 +6,11 @@ import PaginationItem from '@material-ui/lab/PaginationItem';
 import './Pagination.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCurrentPage} from '../../store/actions/actions';
-import querystring from 'query-string';
 
 const PaginationWrapper = () => {
-  const category = useSelector((state) => state.categories.currentCategory.name);
-
   const pagesQuantity = useSelector((state) => state.categoryPage.pagesQuantity);
-  const perPage = useSelector((state) => state.categoryPage.productsPerPage);
   const dispatch = useDispatch();
-  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
   const handleChange = (event, value) => {
-    console.log('pagination change', value);
     dispatch(setCurrentPage(value));
   };
   return (
