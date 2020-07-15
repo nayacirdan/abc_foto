@@ -53,11 +53,11 @@ const App = (props) => {
         <Footer/>
       </Router>
       {modalIsOpen && <ValidationForm values={values}
-                                      errors={errors}
-                                      touched={touched}
-                                      handleSubmit={handleSubmit}
-                                      isValid={isValid}
-                                      setFieldTouched={setFieldTouched}
+        errors={errors}
+        touched={touched}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        setFieldTouched={setFieldTouched}
       />}
     </div>
   );
