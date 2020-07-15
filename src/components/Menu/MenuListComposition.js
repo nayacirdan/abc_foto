@@ -11,7 +11,13 @@ import './MenuListComposition.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    '@media (min-width: 640px) and (max-width: 980px)': {
+      display: 'none'
+    },
+    '@media (max-width: 640px)': {
+      display: 'none'
+    }
   },
   zIndex: {
     zIndex: '1000'
