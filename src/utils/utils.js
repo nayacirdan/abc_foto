@@ -86,3 +86,13 @@ export const deleteFilterQuery = (
   }
   return 'element is not typeof array or string';
 };
+
+export const changeStandartQuery = (currentQueryObj, queryName, queryValue) => {
+  currentQueryObj[queryName] = queryValue;
+  return currentQueryObj;
+};
+
+export const findPrices = (productsArr) => {
+  productsArr.sort((a, b) => a.currentPrice - b.currentPrice);
+  return [productsArr[0].currentPrice, productsArr[productsArr.length - 1].currentPrice];
+};

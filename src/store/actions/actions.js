@@ -120,14 +120,18 @@ export const getAllProductsByCategory = (category) => (dispatch) => {
     });
 };
 
-export const addFiltersOptions = (filters, products) => dispatch => {
-    
-};
-
 export const addToFilterString = (filterParam, filterValue, currentFilterString) => dispatch => {
   dispatch({type: Actions.ADD_FILTER_STRING, payload: formFilterStringFragment(filterParam, filterValue, currentFilterString)});
 };
 
 export const setFilterQuery = (currentQueriesObj) => dispatch => {
   dispatch({type: Actions.SET_FILTERS_QUERY, payload: currentQueriesObj});
+};
+
+export const setPrices = (minPrice, maxPrice) => dispatch => {
+  dispatch({type: Actions.SET_PRICES, minPrice: minPrice, maxPrice: maxPrice});
+};
+
+export const setMinMaxPrices = (minPrice, maxPrice) => dispatch => {
+  dispatch({type: Actions.SET_MIN_MAX_PRICES, minPrice: minPrice, maxPrice: maxPrice});
 };

@@ -8,6 +8,8 @@ import {useHistory, useRouteMatch, useLocation} from 'react-router';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {setCurrentPage, setSortProducts} from '../../store/actions/actions';
 import {Link} from 'react-router-dom';
+import {changeStandartQuery} from '../../utils/utils';
+import querystring from 'query-string';
 
 const SortProductSelect = ({sortProducts}) => {
   const history = useHistory();
@@ -30,20 +32,25 @@ const SortProductSelect = ({sortProducts}) => {
 /!*    dispatch(setSortProducts(event.target.value));
     dispatch(setCurrentPage(1));*!/
   }; */
-
-  const handleChange = (value) => {
-    dispatch(setSortProducts(value));
+  const queryFiltersObj = useSelector(state => state.filters.queriesObj);
+  
+  const handleChange = (ev) => {
+    dispatch(setSortProducts(ev.target.value));
     dispatch(setCurrentPage(1));
+    const newQueryObj = changeStandartQuery(queryFiltersObj, ev.target.name, ev.target.value);
+    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    history.push(`${location.pathname}?${newQueryStr}`);
   };
   return (
     <div className='sort-products'>
       <FormControl className='form-sort'>
         <InputLabel className='form-sort__label' id="customized-select-label">Сортировать по</InputLabel>
         <Select
+          name='sort'
           labelId="customized-select-label"
           id="customized-select"
           value={sortBy}
-          /*        onChange={handleChange} */
+          onChange={(ev) => handleChange(ev)}
         >
 
           {/* <MenuItem value='currentPrice'>
@@ -52,7 +59,7 @@ const SortProductSelect = ({sortProducts}) => {
             Снижению цены
             </Link>
           </MenuItem> */}
-          <MenuItem value='currentPrice'>
+          {/*  <MenuItem value='currentPrice'>
             <Link to={location => {
               const query = new URLSearchParams(location.search);
               query.set('sort', sortBy);
@@ -75,13 +82,21 @@ const SortProductSelect = ({sortProducts}) => {
               Возрастанию цены
             </Link>
           </MenuItem>
-          
+          */}
           {/* <MenuItem value='-currentPrice'>
             <Link to={`/products/filter?categories=dslr_cameras&sort=${sortBy}`}
               onClick={() => handleChange('-currentPrice')}>
               Возрастанию цены
             </Link>
           </MenuItem> */}
+
+          <MenuItem value='-currentPrice'>
+              Снижению цены
+          </MenuItem>
+
+          <MenuItem value='currentPrice'>
+              Возрастанию цены
+          </MenuItem>
 
         </Select>
       </FormControl>
