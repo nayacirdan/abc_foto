@@ -12,7 +12,7 @@ import './MenuListComposition.scss';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '@media (min-width: 640px) and (max-width: 980px)': {
+    '@media (min-width: 640px) and (max-width: 979px)': {
       display: 'none'
     },
     '@media (max-width: 640px)': {

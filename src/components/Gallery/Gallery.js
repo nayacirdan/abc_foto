@@ -16,7 +16,9 @@ const Gallery = (props) => {
     //     nextEl: '.swiper-button-next',
     //     prevEl: '.swiper-button-prev',
     // },
-    direction: 'vertical',
+    '@media (min-width: 1200px)': {
+      direction: 'vertical'
+    },
     slidesPerView: 1,
     shouldSwiperUpdate: true
   };

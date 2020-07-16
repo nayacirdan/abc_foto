@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid, TextField } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
@@ -8,12 +8,10 @@ import cartIcon from '../../svg/cartIcon';
 import logo from '../../svg/logo';
 
 import './Header.scss';
-import Grid from '@material-ui/core/Grid';
 import Navigation from './Navigation/Navigation';
 
 import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
 import { connect, useDispatch } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
 import NavPanel from './NavPanel/NavPanel';
 
 import { withRouter } from 'react-router';
@@ -141,7 +139,7 @@ const Header = (props) => {
         <div className='navPanel'>
           <NavPanel />
         </div>
-
+        
         <NavLink exact to="/" className="logo-block">
           <div className="logo">{logo}</div>
         </NavLink>

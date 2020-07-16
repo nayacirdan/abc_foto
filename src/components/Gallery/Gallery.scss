@@ -1,3 +1,27 @@
+@media (min-width: 980px) and (max-width: 1200) {
+
+}.prod-slider-rigth {
+    border: 1px solid #F2F3F3;
+    
+    & img {
+        transform: scale(0.7);
+        
+        width: 50px;
+        height: 50px;
+        
+    }
+    .prod-slider-left {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    
+        & img {
+            max-width: 400px;
+            max-height: 320px;
+        }
+    }
+}
+
 .prod-slider-left {
     display: flex;
     justify-content: center;
