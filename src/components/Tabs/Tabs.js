@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     margin: '4% 0',
     boxShadow: 'none'
   }
-
 }));
 
 export default function FullWidthTabs (props) {

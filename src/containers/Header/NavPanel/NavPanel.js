@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText, MenuList, MenuItem } from '@material-ui/core';
+import { makeStyles, Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
       color: '#51AD33'
     }
   }
+  // catTitle: {
+  //   color: 'red'
+  // }
 }));
 
 function TemporaryDrawer ({history, categories}) {
@@ -49,6 +52,13 @@ function TemporaryDrawer ({history, categories}) {
 
     setState({ ...state, [anchor]: open });
   };
+  const array = ['Магазины', 'Кредит', 'Доставка и оплата', 'Гарантии', 'О компании', 'Контакты'];
+  const navArray = array.map((item, key) => (
+    <ListItem button key={key}>
+      <ListItemText primary={item} />
+    </ListItem>
+  ));
+
   const cats = categories.map((category, id) => (
     <ListItem button
       key={id} component={Link}
@@ -64,8 +74,8 @@ function TemporaryDrawer ({history, categories}) {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom'
       })}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className={classes.logoBlock} >
         <ListItem button onClick={() => history.push('/')}>
@@ -80,7 +90,7 @@ function TemporaryDrawer ({history, categories}) {
             <MenuList>
               <MenuItem>
                 <ListItemIcon><StoreIcon /></ListItemIcon>
-                <ListItemText primary={'Каталог товаров'} />
+                <ListItemText primary={'Каталог товаров'} className={classes.catTitle} />
               </MenuItem>
             </MenuList>
           }
@@ -96,9 +106,11 @@ function TemporaryDrawer ({history, categories}) {
           </List>}
         />
       </List> */}
+
       <List>
         <ListItem button onClick={(e) => {
           toggle(toggled => !toggled);
+          e.stopPropagation();
         }}>
           <ListItemIcon><StoreIcon /></ListItemIcon>
           <ListItemText primary={'Каталог товаров'} />
@@ -116,24 +128,7 @@ function TemporaryDrawer ({history, categories}) {
       </List>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemText primary={'Магазины'} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={'Кредит'} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={'Доставка и оплата'} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={'Гарантии'} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={'О компании'} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={'Контакты'} />
-        </ListItem>
+        {navArray}
       </List>
     </div>
   );

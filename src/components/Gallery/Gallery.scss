@@ -41,7 +41,10 @@
 .swiper-button-prev, .swiper-button-next {
     transform: scale(0.5);
     
-    // color: var(--lightBg) !important;
+    color: var(--lightBg) !important;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+    background-color: #51AD33;
 }
 .swiper-button-prev {
     margin-left: -14px;
@@ -130,5 +133,13 @@
         & img {
             transform: scale(0.59);
         }
+    }
+}
+@media (max-width: 979px) {
+    .swiper-container.swiper-container-initialized.swiper-container-vertical.swiper-container-android {
+        display: none;
+    }
+    .swiper-wrapper {
+        width: 20% !important;
     }
 }

@@ -34,22 +34,29 @@ const Responsive = (props) => {
     lazyLoad: true,
     centerPadding: true,
     speed: 500,
-    slidesToShow: 4,
+    // '@media (min-width: 1200px)': {
+    //   slidesToShow: 4
+    // },
+    // '@media (min-width: 980px) and (max-winth: 1199px)': {
+    //   slidesToShow: 3,
+
+    // },
     slidesToScroll: 4,
-    initialSlide: 4,
+    slidesToShow: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
+          initialSlide: 1,
           slidesToScroll: 3,
           infinite: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 980,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -57,7 +64,7 @@ const Responsive = (props) => {
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 320,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1

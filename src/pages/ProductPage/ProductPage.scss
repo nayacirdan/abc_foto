@@ -2,10 +2,18 @@
     display: grid;
     grid-template-columns: repeat(2, 50%);
     margin: 2% 0;
-
 }
 .credit {
     position: relative;
+}
+.simple-slider {
+    display: none;
+}
+.description-info {
+    display: none;
+}
+.vertical-tabs {
+    display: none;
 }
 
 // title, article
@@ -195,11 +203,6 @@
         grid-gap: 5.9%; 
 
         &-left {
-            // font-family: "Roboto";
-            // font-style: normal;
-            // color: #000000;
-            // text-align: start;
-
             & h3 {
                 font-weight: bold;
                 font-size: 26px;
@@ -266,6 +269,105 @@
 }
 .flicker-block {
     background-color: #F7F5F6;
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+    .product-page-header {
+        &_title {
+            font-size: 24px;
+        }
+        &_article {
+            font-size: 12px;
+        }
+    }
+    .btn {
+        font-size: 14px;
+    }
+    .purchase .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+        width: 170px;
+    }
+    .delivery, .guarantee {
+        & div, p {
+            font-size: 12px;
+        }
+        & h4 {
+            font-size: 15px;
+        }
+    }
+    .description {
+        &_block {
+            display: flex;
+            justify-content: space-evenly;
+    
+                & h3 {
+                    font-size: 22px;
+                }
+                & p {
+                    font-size: 12px;
+                }
+            }
+        }
+        &_wide-block-top {
+            & h3 {
+                font-size: 22px;
+            }
+            & p {
+                font-size: 12px;
+            }
+        }
+    .characteristics {
+        &_item-name, &_item-description{
+            font-size: 16px;
+        }
+    }
+    .slider {
+        &__header {
+            font-size: 23px;
+        }
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+    .slider-card {
+        transform: scale(0.8);
+    }
+}
+@media (min-width: 640px) and (max-width: 979px) {
+    .slider-info, .product-page-header {
+        display: flex;
+        flex-direction: column;
+        margin: 2% 0;
+    }
+    .product-page-header {
+        display: flex;
+        flex-direction: row;
+    }
+    .simple-slider {
+        display: block;
+    }
+    .credit {
+        & .makeStyles-root-15 {
+            display: none;
+        }
+    }
+    .container {
+        .makeStyles-root-19 {
+            display: none;
+        }
+    }
+    .description-info {
+        display: flex;
+        margin-top: 5%;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        text-align: start;
+    }
+    .vertical-tabs {
+        display: flex;
+        margin-top: 5%;
+    }
 }
 
 
