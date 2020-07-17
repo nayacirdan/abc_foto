@@ -6,6 +6,7 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import { DeliveryInfo } from '../../../components/ExpansionPanel/DeliveryInfo';
 import Characteristics from '../../../components/Tabs/Characteristics';
+import './Accordion.scss';
 
 import { connect } from 'react-redux';
 
@@ -74,12 +75,12 @@ function CustomizedAccordions ({product}) {
           <Typography component={'span'}>Характеристики</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography component={'span'}>
+          <Typography component={'span'} className='accordionChars' >
             <Characteristics currentProduct={product} />
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+      {/* <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography>Collapsible Group Item #3</Typography>
         </AccordionSummary>
@@ -90,7 +91,7 @@ function CustomizedAccordions ({product}) {
             elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
+import './SliderPagination.scss';
 
 const FlipEffect = (props) => {
   const { product } = props;
@@ -22,7 +23,7 @@ const FlipEffect = (props) => {
   let slides = [];
   if (imageUrls && imageUrls.length) {
     slides = imageUrls.map(slide => (
-      <div key={slide}><img alt='.' src={slide} style={{width: '400px', height: '400px', marginBottom: '7%'}} /></div>
+      <div key={slide}><img alt='.' src={slide} className='lil-slider-img' /></div>
     ));
   }
   return (

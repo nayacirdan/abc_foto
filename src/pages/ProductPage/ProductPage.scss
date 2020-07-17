@@ -333,6 +333,9 @@
     }
 }
 @media (min-width: 640px) and (max-width: 979px) {
+    .tabs {
+        display: none;
+    }
     .slider-info, .product-page-header {
         display: flex;
         flex-direction: column;
@@ -367,6 +370,86 @@
     .vertical-tabs {
         display: flex;
         margin-top: 5%;
+        
+        &>div {
+            width: 100%;
+        }
+    }
+}
+
+
+@media (max-width: 639px) {
+    .tabs {
+        display: none;
+    }
+    .slider-info, .product-page-header {
+        display: flex;
+        flex-direction: column;
+        margin: 2% 0;
+    }
+    .product-page-header {
+        display: flex;
+        flex-direction: row;
+        &_title {
+            font-size: 16px;
+        }
+        &_article {
+            font-size: 12px;
+    
+            padding: 0.5% 2%;
+        }
+        
+    }
+    .simple-slider {
+        display: block;
+    }
+    .credit {
+        & .makeStyles-root-15 {
+            display: none;
+        }
+    }
+    .container {
+        .makeStyles-root-19 {
+            display: none;
+        }
+    }
+    .description-info {
+        display: flex;
+        margin-top: 5%;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        text-align: start;
+    }
+    .vertical-tabs {
+        display: flex;
+        margin-top: 5%;
+        
+        &>div {
+            width: 100%;
+        }
+    }
+    .availText, .expectText, .notAvailText {
+        font-size: 12px;
+    }
+    .salePrice {
+        font-size: 14px;
+        & span {
+            font-size: 20px;
+        }
+    }
+    .oldPrice {
+        font-size: 14px;
+        & span {
+            font-size: 20px;
+        }
+    }
+    .fullPrice {
+        font-size: 14px;
+        & span {
+            font-size: 20px;
+        }
     }
 }
 
