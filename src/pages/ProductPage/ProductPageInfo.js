@@ -88,7 +88,7 @@ const ProductPageInfo = (props) => {
             <div className='purchase_block'>
               <ContainedButtons className="grey-btn"
                 onClick={redirectHandler}
-                text={<div className="btn">
+                text={<div className="btn buy-credit">
                   <p>Купить в кредит</p>
                 </div>} />
 

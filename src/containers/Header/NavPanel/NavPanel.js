@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import logo from '../../../svg/logo';
 import { withRouter } from 'react-router';
-import SimpleExpansionPanel from '../../../components/ExpansionPanel/ExpansionPanel';
+// import SimpleExpansionPanel from '../../../components/ExpansionPanel/ExpansionPanel';
 
 const useStyles = makeStyles((theme) => ({
   list: {

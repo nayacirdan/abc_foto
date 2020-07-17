@@ -22,8 +22,8 @@ const FlipEffect = (props) => {
 
   let slides = [];
   if (imageUrls && imageUrls.length) {
-    slides = imageUrls.map(slide => (
-      <div key={slide}><img alt='.' src={slide} className='lil-slider-img' /></div>
+    slides = imageUrls.map((slide, id) => (
+      <div key={id}><img alt='.' src={slide} className='lil-slider-img' /></div>
     ));
   }
   return (

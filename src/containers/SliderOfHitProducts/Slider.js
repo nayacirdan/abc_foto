@@ -56,7 +56,7 @@ const Responsive = (props) => {
         }
       },
       {
-        breakpoint: 980,
+        breakpoint: 979,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -64,7 +64,7 @@ const Responsive = (props) => {
         }
       },
       {
-        breakpoint: 640,
+        breakpoint: 639,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1

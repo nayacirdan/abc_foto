@@ -361,9 +361,6 @@
     .description-info {
         display: flex;
         margin-top: 5%;
-        font-family: "Roboto", sans-serif;
-        font-style: normal;
-        font-weight: 300;
         font-size: 18px;
         text-align: start;
     }
@@ -442,13 +439,31 @@
     .oldPrice {
         font-size: 14px;
         & span {
-            font-size: 20px;
+            font-size: 20px !important;
         }
     }
     .fullPrice {
         font-size: 14px;
         & span {
-            font-size: 20px;
+            font-size: 20px !important;
+        }
+    }
+    .purchase .MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+        width: 97%;
+    }
+    .btn {
+        font-size: 11px;
+    }
+    .buy-credit {
+        padding: 3% 0;
+    }
+    .delivery, .guarantee {
+        padding-left: 15%;
+        & div, p {
+            font-size: 10px;
+        }
+        & h4 {
+            font-size: 14px;
         }
     }
 }
