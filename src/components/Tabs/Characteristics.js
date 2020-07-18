@@ -32,7 +32,7 @@ const Characteristics = (props) => {
                     </div>}
         {photosensitivity &&
                     <div className='characteristics_item'>
-                      <div className='characteristics_item-name'>Светочувствительность</div>
+                      <div className='characteristics_item-name'>Свето-чувствительность</div>
                       <div className='characteristics_item-description'>{arrayMap(photosensitivity)}</div>
                     </div>}
         {lens &&

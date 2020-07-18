@@ -9,6 +9,7 @@ export const getProducts = () => (dispatch) => {
       dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data });
     });
 };
+// export import { getProducts } from './products/getProducts';
 
 export const getProductsBySearch = (text) => (dispatch) => {
   if (text.query !== '') {
