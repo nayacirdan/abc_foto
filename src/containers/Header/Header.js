@@ -107,7 +107,7 @@ const Header = (props) => {
   );
 
   const AccountMenu = (
-    <div className="account-menu" onClick={openModal}>
+    <div className="account-menu user" onClick={openModal}>
       <div className="account-menu__accountIcon">{accountIcon}</div>
       <div className="account-menu__iconText">Вход</div>
     </div>
