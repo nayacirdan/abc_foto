@@ -38,21 +38,21 @@
         display: flex;
         align-items: center;
         font-size: 13px;
-    
+
         &__tel-number {
             text-decoration: none;
             font-size: 15px;
             color: black;
-        
+
             & span {
                 font-weight: 600;
             }
         }
-    }  
+    }
     .navPanel {
         display: none;
     }
-    
+
     .Header {
         &__top {
             width: 100%;
@@ -89,7 +89,7 @@
             cursor: pointer;
         }
     }
-    
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
@@ -97,7 +97,7 @@
         display: flex;
         line-height: 20px;
     }
-    
+
     .account-menu {
         &__iconText {
             @include fontStyle;
@@ -105,7 +105,7 @@
             margin-left: 1rem;
         }
     }
-    
+
     .header {
         display: flex;
         align-items: center;
@@ -136,7 +136,7 @@
     .navPanel {
         display: none;
     }
-    
+
     .Header {
         &__top {
             width: 100%;
@@ -173,7 +173,7 @@
             cursor: pointer;
         }
     }
-    
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
@@ -181,29 +181,29 @@
         display: flex;
         line-height: 20px;
     }
-    
+
     .account-menu {
         &__iconText {
             @include fontStyle;
             margin-left: 1rem;
         }
     }
-    
+
     .menu-item {
         display: flex;
         align-items: center;
         @include fontStyle;
-    
+
         &__tel-number {
             text-decoration: none;
             @include fontStyle;
-        
+
             & span {
                 font-weight: 600;
             }
         }
     }
-    
+
     .header {
         display: flex;
         align-items: center;
@@ -230,27 +230,27 @@
     }
 }
 @media (min-width: 640px) and (max-width: 979px) {
-    
+
     .Header {
         &__top {
             display: none;
         }
     }
-    
-    
+
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
     .for-lg-menu {
         display: none;
     }
-    
+
     .account-menu {
         &__iconText {
             display: none;
         }
     }
-    
+
     .menu-item {
         display: none;
     }
@@ -260,7 +260,7 @@
     .logo-block {
         display: none;
     }
-    
+
     .header {
         display: flex;
         justify-content: space-evenly;
@@ -284,21 +284,21 @@
             display: none;
         }
     }
-    
-    
+
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
     .for-lg-menu {
         display: none;
     }
-    
+
     .account-menu {
         &__iconText {
             display: none;
         }
     }
-    
+
     .menu-item {
         display: none;
     }
@@ -308,7 +308,7 @@
     .logo-block {
         display: none;
     }
-    
+
     .header {
         display: flex;
         justify-content: space-evenly;

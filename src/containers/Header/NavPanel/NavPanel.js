@@ -81,7 +81,7 @@ function TemporaryDrawer ({history, categories}) {
       </List>
       <Divider />
       {/* <List>
-       
+
         <SimpleExpansionPanel
           title={
             <MenuList>

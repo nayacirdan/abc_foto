@@ -23,14 +23,14 @@ const mockCart = [
     id: '5ef33291f908ec14d96d8cbc',
     name: 'Nikon d780 body black',
     price: 15999,
-    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831004/products/canon_1/image_1_kw8g3l.jpg',
+    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831610/products/image_1_gppzkr.jpg',
     article: 21098736
   },
   {
     id: '5ef3331cf908ec14d96d8cbd',
     name: 'Sony Alpha 9 Body',
     price: 14399,
-    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831004/products/canon_1/image_1_kw8g3l.jpg',
+    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831783/products/sony_1/image_1_rg3aj8.jpg',
     article: 54637287
   }
 ];
@@ -161,7 +161,7 @@ function CheckoutPage (props) {
                     <div className="checkout-item-price">{product.price}</div>
                   </div>
                 ))}
-                <div className="order-sum">Сумма заказа:</div>
+                <div className="order-sum">Сумма заказа: 41 397 грн </div>
                 <SimpleModal/>
               </div>
             </div>
