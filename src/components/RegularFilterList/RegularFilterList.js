@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {findFilterOptions} from '../../utils/utils';
 
 const RegularFilterList = () => {
-  const productsByCategory = useSelector(state => state.products.productsByCategory);
+  const productsByCategory = useSelector(state => state.products.productsByCategoryAll);
   const allFilters = useSelector(state => state.filters.categoryFilters);
 
   let filters = 'no filters';

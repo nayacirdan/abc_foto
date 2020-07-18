@@ -28,6 +28,7 @@ const PageCategory = (props) => {
 
   const currentCategory = useSelector(state => state.categories.currentCategory.name);
   const productsByCategory = useSelector(state => state.products.productsByCategory);
+  const productsByCategoryAll = useSelector(state => state.products.productsByCategoryAll);
 
   const currentQueries = querystring.parse(location.search, {arrayFormat: 'comma'});
 
@@ -54,11 +55,11 @@ const PageCategory = (props) => {
   }, [currentCategory, dispatch, productsByCategory]);
 
   useEffect(() => {
-    if (productsByCategory.productsQuantity) {
-      const prices = findPrices(productsByCategory.products);
+    if (productsByCategoryAll.productsQuantity) {
+      const prices = findPrices(productsByCategoryAll.products);
       dispatch(setPrices(prices[0], prices[1]));
     }
-  }, [currentCategory, dispatch, productsByCategory]);
+  }, [currentCategory, dispatch, productsByCategoryAll]);
 
   useEffect(() => {
     dispatch(setPerPage(query.get('perPage')));

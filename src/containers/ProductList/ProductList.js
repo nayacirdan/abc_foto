@@ -10,7 +10,7 @@ import querystring from 'query-string';
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const locationFilters = useSelector(state => state.filters.locationFilters);
+  /*  const locationFilters = useSelector(state => state.filters.locationFilters); */
   
   const queryFilters = useSelector(state => state.filters.queriesObj);
   debugger;
@@ -18,11 +18,14 @@ const ProductList = () => {
 
   useEffect(() => {
     debugger;
-    dispatch(filterProducts(queryFiltersString));
-  /*  dispatch(filterProducts(locationFilters)); */
-  }, [dispatch, locationFilters, queryFiltersString]);
+    if (queryFiltersString.length) {
+      dispatch(filterProducts(queryFiltersString));
+    }
 
-  const products = useSelector(state => state.products.products);
+  /*  dispatch(filterProducts(locationFilters)); */
+  }, [dispatch, queryFiltersString]);
+
+  const products = useSelector(state => state.products.productsByCategory);
   let productsList = (<div className='empty-product-list'>No items are available</div>);
   if (products && products.length) {
     productsList = products.map((product) => {
