@@ -26,7 +26,7 @@ const App = (props) => {
   return (
     <div className="App">
       <Router>
-        <Route exact path="/" component={Header} />
+        <Route path="/" component={Header} />
         {/* <Route exact path="/" component={SubMenu} /> */}
         <Switch>
           <Route exact path="/" component={Home} />

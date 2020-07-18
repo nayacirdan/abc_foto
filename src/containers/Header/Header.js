@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles, Grid, TextField } from '@material-ui/core';
 import { withRouter } from 'react-router';
 
-import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
@@ -14,11 +13,11 @@ import './Header.scss';
 import Navigation from './Navigation/Navigation';
 
 import { loggedIn, getCustomer } from '../../store/actions/users/index';
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal, setModalType } from '../../store/actions/actions';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import NavPanel from './NavPanel/NavPanel';
 
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
