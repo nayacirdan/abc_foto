@@ -6,16 +6,11 @@ import {findFilterOptions} from '../../utils/utils';
 const RegularFilterList = () => {
   const productsByCategory = useSelector(state => state.products.productsByCategory);
   const allFilters = useSelector(state => state.filters.categoryFilters);
-  
-  /*  useEffect(() => {
-    if (allFilters.length && productsByCategory.productsQuantity) {
-      dispatch(addFiltersOptions(allFilters, productsByCategory));
-    }
-  }, [allFilters, dispatch, productsByCategory]); */
 
   let filters = 'no filters';
   if (productsByCategory.productsQuantity) {
     filters = allFilters.map(el => {
+      debugger;
       return (<RegularFilter name={el.filterParam} title={el.title} filterParam={el.filterParam} checkboxesTitles={findFilterOptions(productsByCategory.products, el.filterParam)}/>);
     });
   }

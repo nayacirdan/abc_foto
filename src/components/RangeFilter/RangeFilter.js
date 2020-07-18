@@ -64,6 +64,7 @@ const RangeFilter = () => {
       maxPrice: maxCategoryPrice
     });
   }, [minCategoryPrice, maxCategoryPrice]);
+
   const handleChangeInputs = (event) => {
     const {name, value} = event.target;
     setValues({
