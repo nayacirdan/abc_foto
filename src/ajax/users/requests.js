@@ -12,7 +12,7 @@ const getCustomerRequest = (token) => {
   });
 };
 
-const registerRequest = async (firstName, lastName, login, email, password, telephone) => {
+const registerRequest = (firstName, lastName, email, login, password, telephone) => {
   const headers = {'Content-Type': 'application/json; charset=utf-8'};
   const newCustomer = {
     firstName: firstName,
@@ -23,7 +23,7 @@ const registerRequest = async (firstName, lastName, login, email, password, tele
     telephone: telephone
   };
 
-  return await Axios.post(configRequests.register, newCustomer, headers);
+  return Axios.post(configRequests.register, newCustomer, headers);
 };
 
 export {

@@ -1,11 +1,11 @@
 import { signInRequest, getCustomerRequest, registerRequest } from '../../../ajax/users/requests';
 import constants from '../../constans/constans';
 import Cookie from 'js-cookie';
-import Axios from 'axios';
 
 const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: constants.USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
+    debugger;
     const { data } = await signInRequest(email, password);
     dispatch({type: constants.USER_SIGNIN_SUCCESS, payload: data});
     dispatch({type: constants.USER_SIGNIN_LOGGED});
@@ -15,13 +15,15 @@ const signIn = (email, password) => async (dispatch) => {
   }
 };
 
-const register = (firstName, lastName, login, email, password, telephone) => async (dispatch) => {
+const register = (firstName, lastName, email, login, password, telephone) => async (dispatch) => {
   try {
     debugger;
-    const { data } = await registerRequest(firstName, lastName, login, email, password, telephone);
-    dispatch({type: constants.USER_REGISRT_SUCCESS, payload: data.registrationSuccess});
+    await registerRequest(firstName, lastName, email, login, password, telephone);
+    dispatch({type: constants.USER_REGISTER_SUCCESS, payload: true});
+
+    localStorage.setItem('registerAuth', JSON.stringify({email, password}));
   } catch (error) {
-    dispatch({type: constants.USER_REGISRT_FAIL, payload: error.message});
+    dispatch({type: constants.USER_REGISTER_FAIL, payload: error.message});
   }
 };
 
