@@ -33,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
       color: '#51AD33'
     }
   }
-  // catTitle: {
-  //   color: 'red'
-  // }
 }));
 
 function TemporaryDrawer ({history, categories}) {

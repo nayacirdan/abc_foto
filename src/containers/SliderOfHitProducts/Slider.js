@@ -34,13 +34,6 @@ const Responsive = (props) => {
     lazyLoad: true,
     centerPadding: true,
     speed: 500,
-    // '@media (min-width: 1200px)': {
-    //   slidesToShow: 4
-    // },
-    // '@media (min-width: 980px) and (max-winth: 1199px)': {
-    //   slidesToShow: 3,
-
-    // },
     slidesToScroll: 4,
     slidesToShow: 4,
     nextArrow: <SampleNextArrow />,
