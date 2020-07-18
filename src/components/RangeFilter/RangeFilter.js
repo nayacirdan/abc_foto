@@ -54,16 +54,16 @@ const RangeFilter = () => {
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 
   const [values, setValues] = React.useState({
-    minPrice: minCategoryPrice,
-    maxPrice: maxCategoryPrice
+    minPrice: queryFiltersObj.minPrice || minCategoryPrice,
+    maxPrice: queryFiltersObj.maxPrice || maxCategoryPrice
   });
   
   useEffect(() => {
     setValues({
-      minPrice: minCategoryPrice,
-      maxPrice: maxCategoryPrice
+      minPrice: queryFiltersObj.minPrice || minCategoryPrice,
+      maxPrice: queryFiltersObj.maxPrice || maxCategoryPrice
     });
-  }, [minCategoryPrice, maxCategoryPrice]);
+  }, [minCategoryPrice, maxCategoryPrice, queryFiltersObj.minPrice, queryFiltersObj.maxPrice]);
 
   const handleChangeInputs = (event) => {
     const {name, value} = event.target;

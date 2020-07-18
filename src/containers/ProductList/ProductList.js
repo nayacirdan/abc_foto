@@ -13,9 +13,11 @@ const ProductList = () => {
   const locationFilters = useSelector(state => state.filters.locationFilters);
   
   const queryFilters = useSelector(state => state.filters.queriesObj);
+  debugger;
   const queryFiltersString = querystring.stringify(queryFilters, {arrayFormat: 'comma'});
 
   useEffect(() => {
+    debugger;
     dispatch(filterProducts(queryFiltersString));
   /*  dispatch(filterProducts(locationFilters)); */
   }, [dispatch, locationFilters, queryFiltersString]);
