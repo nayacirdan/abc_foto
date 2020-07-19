@@ -64,7 +64,6 @@ export const getCategory = (categoryName) => (dispatch) => {
 };
 
 export const filterProducts = (filterParams) => (dispatch) => {
-
   axios.get(`/products/filter?${filterParams}`)
     .then(res => {
       dispatch({ type: Actions.FILTER_PRODUCTS, payload: res.data });
