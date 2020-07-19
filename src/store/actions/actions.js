@@ -80,7 +80,6 @@ export const setCurrentCategory = (category) => (dispatch) => {
 };
 
 export const setCurrentPage = (page) => (dispatch) => {
-  debugger;
   dispatch({ type: Actions.SET_CURRENT_PAGE, payload: page });
 };
 

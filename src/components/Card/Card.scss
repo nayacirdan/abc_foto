@@ -173,90 +173,106 @@
 
 
 @media (min-width: 319px) and (max-width: 679px) {
-  .products-list{
+  .products-list {
     flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: center;
   }
-
-  .card {
-
-  }
 }
 
 @media (min-width: 638px) and (max-width: 860px) {
-  .card {
-    &:not(:nth-child(2n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(2n)) {
+        margin-right: auto;
+      }
     }
   }
-}
-@media (min-width: 768px) and (max-width: 967px) {
-  .card {
-    width:250px;
-    & .card__media-container {
-      height: 250px;
-    }
-  }
+
 }
 
+@media (min-width: 768px) and (max-width: 967px) {
+  .products-list {
+    & .card {
+      width: 250px;
+
+      & .card__media-container {
+        height: 250px;
+      }
+    }
+  }
+}
 
 
 @media (min-width: 860px) and (max-width: 967px) {
-  .card {
-    &:not(:nth-child(3n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(3n)) {
+        margin-right: auto;
+      }
     }
   }
 }
 
 
 @media (min-width: 968px) and (max-width: 1200px) {
-  .card {
-    &:not(:nth-child(3n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(3n)) {
+        margin-right: auto;
+      }
     }
   }
 }
 
 @media (min-width: 1201px) and (max-width: 1400px) {
-  .card {
-   width:250px;
+  .products-list {
+    & .card {
+      width: 250px;
 
-    & .card__media-container {
-      height: 250px;
+      & .card__media-container {
+        height: 250px;
+      }
     }
   }
 }
 
 @media (min-width: 1201px) and (max-width: 1440px) {
-  .card {
-    &:not(:nth-child(3n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(3n)) {
+        margin-right: auto;
+      }
     }
   }
 }
 
 
 @media (min-width: 1441px) and (max-width: 1696px) {
-  .card {
-    &:not(:nth-child(3n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(3n)) {
+        margin-right: auto;
+      }
     }
   }
 }
 
 @media (min-width: 1697px) and (max-width: 1900px) {
-  .card {
-    &:not(:nth-child(4n)) {
-      margin-right: auto;
+  .products-list {
+    & .card {
+      &:not(:nth-child(4n)) {
+        margin-right: auto;
+      }
     }
   }
 }
 
 @media (min-width: 1991px) {
-  .card {
+  .products-list {
+    & .card {
       margin-right: auto;
     }
   }
+}

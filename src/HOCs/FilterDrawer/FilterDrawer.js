@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getAllProductsByCategory, toggleFilterDrawer} from '../../store/actions/actions';
+import {toggleFilterDrawer} from '../../store/actions/actions';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import {Button} from '@material-ui/core';

@@ -1,6 +1,5 @@
 import React from 'react';
 import './CategoryDescription.scss';
-import {ShowMoreDescription} from '../ExpansionPanel/ShowMoreDescription';
 import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
 import {useSelector} from 'react-redux';
 

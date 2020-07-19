@@ -1,8 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
-import {useLocation, useHistory} from 'react-router';
 import {useDispatch} from 'react-redux';
 import App from '../../App';
-import querystring from 'query-string';
 import {setIsDesktop} from '../../store/actions/actions';
 
 const AppContainer = () => {
