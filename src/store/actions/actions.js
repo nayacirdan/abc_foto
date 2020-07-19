@@ -9,6 +9,7 @@ export const getProducts = () => (dispatch) => {
       dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data });
     });
 };
+// export import { getProducts } from './products/getProducts';
 
 export const getProductsBySearch = (text) => (dispatch) => {
   if (text.query !== '') {
@@ -30,13 +31,13 @@ export const openModal = () => (dispatch) => {
   dispatch({ type: Actions.OPEN_MODAL });
 };
 
-export const closeModal = () => (dispatch) => {
-  dispatch({ type: Actions.CLOSE_MODAL });
-};
+// export const closeModal = () => (dispatch) => {
+//   dispatch({ type: Actions.CLOSE_MODAL });
+// };
 
-export const setModalType = (modalType) => (dispatch) => {
-  dispatch({ type: Actions.SET_MODAL_TYPE, payload: modalType });
-};
+// export const setModalType = (modalType) => (dispatch) => {
+//   dispatch({ type: Actions.SET_MODAL_TYPE, payload: modalType });
+// };
 
 export const getFilteredProducts = (text) => (dispatch) => {
   if (text.query !== '') {

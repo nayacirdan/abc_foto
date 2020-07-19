@@ -13,7 +13,7 @@ const LinksListCatalog = ({categories, perPage, sort}) => {
   }, [dispatch]);
 
   if (categories && categories.length) {
-    navlinks = categories.filter(el => el.parentId !== 'null').map((cat) => (<Link className='nav__menu-item' to={`/products/filter?categories=${cat.name}&sort=${sort}&perPage=${perPage}`}>{cat.title}</Link>));
+    navlinks = categories.filter(el => el.parentId !== 'null').map((cat, id) => (<Link key ={id} className='nav__menu-item' to={`/products/filter?categories=${cat.name}&sort=${sort}&perPage=${perPage}`}>{cat.title}</Link>));
   }
 
   return (

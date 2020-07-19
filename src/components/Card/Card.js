@@ -101,7 +101,7 @@ const CardItem = (props) => {
               )
             }
 
-            <IconButton color="#51AD33" aria-label="upload picture" component="span"
+            <IconButton aria-label="upload picture" component="span"
               className='card__cart-btn' disabled={!isAvailable} >
               <ShoppingCartOutlinedIcon className='card__cart-icon' />
             </IconButton>
@@ -116,7 +116,7 @@ const CardItem = (props) => {
           </Grid>
 
         </CardContent>
-        {isHit ? <Grid item className='card-hit' justify='center'>
+        {isHit ? <Grid container className='card-hit' justify='center'>
                     Хит продаж
         </Grid> : null}
         <Grid container className='card__description'>

@@ -10,15 +10,8 @@
   }
 }
 
-@media (min-width: 640px) and (max-width: 980px) {
+@media (max-width: 979px) {
   .navLinks-NAYA {
     display: none;
-    // display: flex;
-    // flex-direction: column;
-    // &>a {
-    //   background-color: #51AD33;
-    //   width: 35%;
-    //   font-size: 14px;
-    // }
   }
 }

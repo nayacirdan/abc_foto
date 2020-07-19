@@ -30,7 +30,6 @@ const Gallery = (props) => {
     direction: 'vertical',
     slidesPerView: 4,
     shouldSwiperUpdate: true
-
   };
   let slidesRight = [];
   let slidesLeft = [];

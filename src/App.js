@@ -3,7 +3,7 @@ import Header from './containers/Header/Header';
 import './App.scss';
 import Footer from './components/Footer/Footer';
 import {connect} from 'react-redux';
-import ValidationForm from './components/Modals/ValidationForm';
+import SignAndRegForm from './components/Modals/SignAndRegForm';
 import {Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
 import Cameras from './pages/Cameras/Cameras';
@@ -23,25 +23,11 @@ const App = (props) => {
     getProducts();
   }, [getProducts]);
 
-  const values = {
-    name: 'Pasha',
-    email: 'despablos@pablos-it.com',
-    phone: '+380931183945',
-    password: '123qweasd',
-    confirmPassword: '123qweasd'
-  };
-  const errors = 'noerr';
-  const touched = false;
-  const handleSubmit = () => {
-  };
-  const isValid = false;
-  const setFieldTouched = null;
-
   return (
     <div className="App">
       <Router>
-        <Header/>
-        {/* <SubMenu/> */}
+        <Route path="/" component={Header} />
+        {/* <Route exact path="/" component={SubMenu} /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/products/filter/:itemNo" component={ProductPage} />
@@ -52,13 +38,7 @@ const App = (props) => {
         </Switch>
         <Footer/>
       </Router>
-      {modalIsOpen && <ValidationForm values={values}
-        errors={errors}
-        touched={touched}
-        handleSubmit={handleSubmit}
-        isValid={isValid}
-        setFieldTouched={setFieldTouched}
-      />}
+      {modalIsOpen && <SignAndRegForm/>}
     </div>
   );
 };

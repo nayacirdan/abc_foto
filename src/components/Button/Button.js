@@ -25,7 +25,10 @@ export default function ContainedButtons (props) {
 };
 
 ContainedButtons.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   onClick: PropTypes.func,
   className: PropTypes.string.isRequired
 };
