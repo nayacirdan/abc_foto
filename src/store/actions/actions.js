@@ -80,6 +80,7 @@ export const setCurrentCategory = (category) => (dispatch) => {
 };
 
 export const setCurrentPage = (page) => (dispatch) => {
+  debugger;
   dispatch({ type: Actions.SET_CURRENT_PAGE, payload: page });
 };
 
@@ -143,4 +144,8 @@ export const setMinMaxPrices = (minPrice, maxPrice) => dispatch => {
 
 export const toggleFilterDrawer = (value) => dispatch => {
   dispatch({type: Actions.TOGGLE_FILTER_DRAWER, payload: value});
+};
+
+export const setIsDesktop = (value) => dispatch => {
+  dispatch({type: Actions.SET_IS_DESKTOP, payload: value});
 };

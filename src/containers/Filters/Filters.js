@@ -4,11 +4,6 @@ import './Filters.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import RegularFilterList from '../../components/RegularFilterList/RegularFilterList';
 import {getAllProductsByCategory, toggleFilterDrawer} from '../../store/actions/actions';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import {Button} from '@material-ui/core';
 
 const FilterContainer = () => {
   const dispatch = useDispatch();
@@ -21,23 +16,10 @@ const FilterContainer = () => {
   }, [currentCategory, dispatch]);
 
   return (
-    <Drawer
-      className='filters-container'
-      anchor='left'
-      open={filterBarIsOpened}
-      variant='temporary'
-      onClose={() => dispatch(toggleFilterDrawer(false))}
-    >
-      <Button type={'button'}
-        onClick={() => dispatch(toggleFilterDrawer(false))}
-        color="primary"
-        startIcon={<ChevronLeftIcon color={'primary'}/>}
-        className='btn-hide'>
-                Скрыть фильтры
-      </Button>
+    <>
       <RangeFilter/>
       <RegularFilterList/>
-    </Drawer>
+    </>
   );
 };
 

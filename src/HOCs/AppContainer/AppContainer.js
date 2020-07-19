@@ -1,26 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useLocation, useHistory} from 'react-router';
 import {useDispatch} from 'react-redux';
 import App from '../../App';
 import querystring from 'query-string';
+import {setIsDesktop} from '../../store/actions/actions';
 
 const AppContainer = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
-    
-  useEffect(() => {
-    console.log(location.pathname);
-    if (location.pathname === '/products/filter') {
-      const query = new URLSearchParams(location.search);
-      console.log('query', query.toString());
 
-      const querStr = querystring.parse(location.search, {arrayFormat: 'comma'});
-      console.log('querStr', querStr);
+  const handleWindowResize = useCallback(() => {
+    if (window.innerWidth <= 1200) {
+      dispatch(setIsDesktop(true));
+    } else {
+      dispatch(setIsDesktop(false));
     }
-  }, [location.pathname, location.search]);
-  console.log(location);
-    
+  }, [dispatch]);
+
+  useEffect(() => {
+    handleWindowResize();
+
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, [dispatch, handleWindowResize]);
+
   return (
     <App/>
   );

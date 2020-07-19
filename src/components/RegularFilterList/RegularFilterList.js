@@ -15,7 +15,7 @@ const RegularFilterList = () => {
   }
   
   return (
-    <div>
+    <div className='regular-filter-list'>
       {filters}
     </div>
   );
