@@ -16,7 +16,7 @@ const FilterContainer = () => {
 
   return (
     <div className='filters-container'>
-      <h2 className='category-title'>{categoryTitle}</h2>
+      {/*  <h2 className='category-title'>{categoryTitle}</h2> */}
       <RangeFilter/>
       <RegularFilterList/>
     </div>

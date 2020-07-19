@@ -10,7 +10,6 @@ const RegularFilterList = () => {
   let filters = 'no filters';
   if (productsByCategory.productsQuantity) {
     filters = allFilters.map(el => {
-      debugger;
       return (<RegularFilter name={el.filterParam} title={el.title} filterParam={el.filterParam} checkboxesTitles={findFilterOptions(productsByCategory.products, el.filterParam)}/>);
     });
   }

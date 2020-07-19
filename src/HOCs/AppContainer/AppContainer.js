@@ -11,7 +11,6 @@ const AppContainer = () => {
     
   useEffect(() => {
     console.log(location.pathname);
-    debugger;
     if (location.pathname === '/products/filter') {
       const query = new URLSearchParams(location.search);
       console.log('query', query.toString());

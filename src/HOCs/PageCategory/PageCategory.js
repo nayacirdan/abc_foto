@@ -13,6 +13,7 @@ import {
 import {useLocation } from 'react-router';
 import querystring from 'query-string';
 import {findPrices} from '../../utils/utils';
+import './PageCategory.scss';
 
 /* Пока все грузится делаем прелоадер.
 За это время загружаем:
@@ -29,6 +30,7 @@ const PageCategory = (props) => {
   const currentCategory = useSelector(state => state.categories.currentCategory.name);
   const productsByCategory = useSelector(state => state.products.productsByCategory);
   const productsByCategoryAll = useSelector(state => state.products.productsByCategoryAll);
+  const categoryTitle = useSelector((state) => state.categories.currentCategory.title);
 
   const currentQueries = querystring.parse(location.search, {arrayFormat: 'comma'});
 
@@ -69,9 +71,12 @@ const PageCategory = (props) => {
     <div className='category'>
       <div className='container'>
         <BreadcrumbsWrapper/>
-        {/*            <h1>{match.params.categoryName}</h1> */}
         <div className='category-main'>
-          <FilterContainer filters={null}/>
+          <div className='category-left'>
+            <h2 className='category-title'>{categoryTitle}</h2>
+
+            <FilterContainer/>
+          </div>
           <ProductList/>
         </div>
       </div>

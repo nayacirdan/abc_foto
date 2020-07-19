@@ -7,17 +7,17 @@ import CardItem from '../../components/Card/Card';
 import PaginationWrapper from '../../components/Pagination/Pagination';
 import './ProductList.scss';
 import querystring from 'query-string';
+import {Button} from '@material-ui/core';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 const ProductList = () => {
   const dispatch = useDispatch();
   /*  const locationFilters = useSelector(state => state.filters.locationFilters); */
   
   const queryFilters = useSelector(state => state.filters.queriesObj);
-  debugger;
   const queryFiltersString = querystring.stringify(queryFilters, {arrayFormat: 'comma'});
 
   useEffect(() => {
-    debugger;
     if (queryFiltersString.length) {
       dispatch(filterProducts(queryFiltersString));
     }
@@ -35,6 +35,13 @@ const ProductList = () => {
 
   return (
     <div className='products-list-container'>
+      <Button
+        className='filters-btn btn'
+        variant="contained" color="primary"
+        startIcon={<FilterListIcon color={'secondary'}/>}
+      >
+            Фильтры
+      </Button>
       <div className='product-list-actions'>
         <PaginationSelect/>
         <SortProductSelect/>
