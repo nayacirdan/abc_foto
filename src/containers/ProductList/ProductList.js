@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import PaginationSelect from '../../components/QuantityOnPage/QuantityOnPage';
 import SortProductSelect from '../../components/SortProductsSelect/SortProductsSelect';
-import {filterProducts} from '../../store/actions/actions';
+import {filterProducts, toggleFilterDrawer} from '../../store/actions/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import CardItem from '../../components/Card/Card';
 import PaginationWrapper from '../../components/Pagination/Pagination';
@@ -38,7 +38,9 @@ const ProductList = () => {
       <Button
         className='filters-btn btn'
         variant="contained" color="primary"
-        startIcon={<FilterListIcon color={'secondary'}/>}
+        startIcon={<FilterListIcon color={'secondary'}
+        />}
+        onClick={() => dispatch(toggleFilterDrawer(true))}
       >
             Фильтры
       </Button>

@@ -8,7 +8,8 @@ const initialState = {
   minCategoryPrice: 0,
   maxCategoryPrice: 0,
   minSelectedPrice: null,
-  maxSelectedPrice: null
+  maxSelectedPrice: null,
+  filterIsOpened: true
 };
 
 const matchCeils = (payload, productPerPage) => {
@@ -29,6 +30,8 @@ const categoryPage = (state = initialState, action) => {
       return { ...state, minCategoryPrice: action.minPrice, maxCategoryPrice: action.maxPrice };
     case Actions.SET_MIN_MAX_PRICES:
       return { ...state, minSelectedPrice: action.minPrice, maxSelectedPrice: action.maxPrice };
+    case Actions.TOGGLE_FILTER_DRAWER:
+      return {...state, filterIsOpened: action.payload};
     default: return state;
   }
 };

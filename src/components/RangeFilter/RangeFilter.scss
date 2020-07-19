@@ -50,5 +50,30 @@
     margin-top: 0;
     transform: translateY(-50%);
   }
-}
+
+  @media (max-width: 680px){
+  .range-filter{
+    & .price-input{
+      width:45px;
+
+      & input {
+        font-size: 10px;
+        padding: 10px 12px;
+      }
+    }
+
+    & .MuiSlider-root{
+      color:#51AD33;
+      margin-top: 10px;
+      width:100%;
+    }
+    & .MuiSlider-thumb{
+      width:27px;
+      height: 27px;
+      margin-top: 0;
+      transform: translateY(-50%);
+    }
+  }
+  }
+  }
 

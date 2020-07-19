@@ -140,3 +140,7 @@ export const setPrices = (minPrice, maxPrice) => dispatch => {
 export const setMinMaxPrices = (minPrice, maxPrice) => dispatch => {
   dispatch({type: Actions.SET_MIN_MAX_PRICES, minPrice: minPrice, maxPrice: maxPrice});
 };
+
+export const toggleFilterDrawer = (value) => dispatch => {
+  dispatch({type: Actions.TOGGLE_FILTER_DRAWER, payload: value});
+};
