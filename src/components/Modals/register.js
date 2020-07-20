@@ -43,7 +43,6 @@ const Registr = ({register, signIn, openModal, userRegister}) => {
   };
     
   const regSubmit = ({firstName, lastName, email, password, telephone }) => {
-    debugger;
     const login = firstName;
     register(firstName, lastName, login, email, password, telephone);
     if (userRegister.registred) {

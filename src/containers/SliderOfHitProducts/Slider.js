@@ -34,22 +34,22 @@ const Responsive = (props) => {
     lazyLoad: true,
     centerPadding: true,
     speed: 500,
-    slidesToShow: 4,
     slidesToScroll: 4,
-    initialSlide: 4,
+    slidesToShow: 4,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
+          initialSlide: 1,
           slidesToScroll: 3,
           infinite: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 979,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -57,7 +57,7 @@ const Responsive = (props) => {
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 639,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
