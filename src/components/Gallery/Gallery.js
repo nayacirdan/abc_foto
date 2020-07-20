@@ -55,7 +55,7 @@ const Gallery = (props) => {
   }, [gallerySwiper, thumbnailSwiper]);
 
   return (
-    <div className="swiper-container">
+    <div className="swiper-container gallery">
       <Swiper {...thumbnailSwiperParams} >
         {slidesRight}
       </Swiper>

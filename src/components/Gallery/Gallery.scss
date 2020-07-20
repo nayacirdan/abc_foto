@@ -136,8 +136,11 @@
     }
 }
 @media (max-width: 979px) {
+    .gallery {
+        display: none !important;
+    }
     .swiper-container.swiper-container-initialized.swiper-container-vertical.swiper-container-android {
-        display: none;
+        display: none !important;
     }
     .swiper-wrapper {
         width: 20% !important;
