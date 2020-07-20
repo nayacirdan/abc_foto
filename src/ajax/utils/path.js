@@ -5,7 +5,7 @@ const configRequests = {
   login: `${baseUrl}/customers/login`,
   getCustomer: `${baseUrl}/customers/customer`,
   updateCustomer: `${baseUrl}/customers`,
-  register: `${baseUrl}/customers/register`,
+  register: `${baseUrl}/customers`,
   password: `${baseUrl}/customers/password`
 };
 
