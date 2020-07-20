@@ -1,7 +1,7 @@
 import { signInRequest, getCustomerRequest, registerRequest } from '../../../ajax/users/requests';
 import constants from '../../constans/constans';
 import Cookie from 'js-cookie';
-import Axios from 'axios';
+// import Axios from 'axios';
 
 const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: constants.USER_SIGNIN_REQUEST, payload: { email, password } });
@@ -17,7 +17,6 @@ const signIn = (email, password) => async (dispatch) => {
 
 const register = (firstName, lastName, login, email, password, telephone) => async (dispatch) => {
   try {
-    debugger;
     const { data } = await registerRequest(firstName, lastName, login, email, password, telephone);
     dispatch({type: constants.USER_REGISRT_SUCCESS, payload: data.registrationSuccess});
   } catch (error) {

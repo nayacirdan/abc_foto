@@ -4,14 +4,8 @@ import {useSelector} from 'react-redux';
 import {findFilterOptions} from '../../utils/utils';
 
 const RegularFilterList = () => {
-  const productsByCategory = useSelector(state => state.products.productsByCategory);
+  const productsByCategory = useSelector(state => state.products.productsByCategoryAll);
   const allFilters = useSelector(state => state.filters.categoryFilters);
-  
-  /*  useEffect(() => {
-    if (allFilters.length && productsByCategory.productsQuantity) {
-      dispatch(addFiltersOptions(allFilters, productsByCategory));
-    }
-  }, [allFilters, dispatch, productsByCategory]); */
 
   let filters = 'no filters';
   if (productsByCategory.productsQuantity) {
@@ -21,7 +15,7 @@ const RegularFilterList = () => {
   }
   
   return (
-    <div>
+    <div className='regular-filter-list'>
       {filters}
     </div>
   );

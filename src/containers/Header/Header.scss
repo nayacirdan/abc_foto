@@ -4,7 +4,7 @@
     align-items: center;
 }
 @mixin fontStyle {
-    font-family: "Roboto";
+    font-family: "Roboto, sans-serif";
     font-style: normal;
     font-weight: 300;
     font-size: 13px;
@@ -33,12 +33,26 @@
     }
 }
 
+@media (min-width: 1200px) {
+    .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
 
-@media (min-width: 980px) {
+        &__tel-number {
+            text-decoration: none;
+            font-size: 15px;
+            color: black;
+
+            & span {
+                font-weight: 600;
+            }
+        }
+    }
     .navPanel {
         display: none;
     }
-    
+
     .Header {
         &__top {
             width: 100%;
@@ -75,7 +89,7 @@
             cursor: pointer;
         }
     }
-    
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
@@ -83,29 +97,15 @@
         display: flex;
         line-height: 20px;
     }
-    
+
     .account-menu {
         &__iconText {
             @include fontStyle;
+            font-size: 18px;
             margin-left: 1rem;
         }
     }
-    
-    .menu-item {
-        display: flex;
-        align-items: center;
-        @include fontStyle;
-    
-        &__tel-number {
-            text-decoration: none;
-            @include fontStyle;
-        
-            & span {
-                font-weight: 600;
-            }
-        }
-    }
-    
+
     .header {
         display: flex;
         align-items: center;
@@ -131,28 +131,129 @@
         border: none;
     }
 }
-@media (min-width: 640px) and (max-width: 980px) {
-    
+
+@media (min-width: 980px) and (max-width: 1200px) {
+    .navPanel {
+        display: none;
+    }
+
+    .Header {
+        &__top {
+            width: 100%;
+            padding: 15px 0;
+            background: #F7F5F6;
+        }
+        &__text {
+            font-size: 12px;
+            font-weight: 300;
+            color: black;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        &__text2 {
+            font-size: 12px;
+            font-weight: 300;
+            color: black;
+            text-align: center;     /*ПЕРЕДЕЛАТЬ*/
+            margin-left: 150px;
+            cursor: pointer;
+            strong {
+                font-weight: bold;
+            }
+        }
+        &__bottom {
+            background: #51AD33;
+            //padding: 20px 0;
+        }
+        &__text3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: white;
+            margin-right: 30px;
+            cursor: pointer;
+        }
+    }
+
+    .makeStyles-root-1.MuiPaper-rounded{
+        border-radius: 50px;
+    }
+    .phoneMenu {
+        display: flex;
+        line-height: 20px;
+    }
+
+    .account-menu {
+        &__iconText {
+            @include fontStyle;
+            margin-left: 1rem;
+        }
+    }
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        @include fontStyle;
+
+        &__tel-number {
+            text-decoration: none;
+            @include fontStyle;
+
+            & span {
+                font-weight: 600;
+            }
+        }
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 17px 0;
+    }
+    .search-form {
+        width: 40%;
+        position: relative;
+    }
+    .logo {
+        cursor: pointer;
+    }
+    .cart-nav {
+        text-decoration: none;
+    }
+    .hr {
+        width: 122px;
+        margin-top: -6px;
+        position: fixed;
+        height: 1px;
+        background-color: #E7E9EB;
+        border: none;
+    }
+}
+@media (min-width: 640px) and (max-width: 979px) {
+
     .Header {
         &__top {
             display: none;
         }
     }
-    
-    
+
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
     .for-lg-menu {
         display: none;
     }
-    
+
     .account-menu {
         &__iconText {
             display: none;
         }
     }
-    
+    .user {
+        display: none;
+    }
+
     .menu-item {
         display: none;
     }
@@ -162,7 +263,7 @@
     .logo-block {
         display: none;
     }
-    
+
     .header {
         display: flex;
         justify-content: space-evenly;
@@ -186,21 +287,24 @@
             display: none;
         }
     }
-    
-    
+
+
     .makeStyles-root-1.MuiPaper-rounded{
         border-radius: 50px;
     }
     .for-lg-menu {
         display: none;
     }
-    
+
     .account-menu {
         &__iconText {
             display: none;
         }
     }
-    
+    .user {
+        display: none;
+    }
+
     .menu-item {
         display: none;
     }
@@ -210,7 +314,7 @@
     .logo-block {
         display: none;
     }
-    
+
     .header {
         display: flex;
         justify-content: space-evenly;

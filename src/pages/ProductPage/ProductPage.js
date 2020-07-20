@@ -76,10 +76,12 @@ const ProductPage = (props) => {
             <div></div>
           </div>
           <ProductPageInfo />
-          <Tabs
-            description={<Description />}
-            characteristics={<Characteristics currentProduct={product} />}
-          />
+          <div className='tabs'>
+            <Tabs
+              description={<Description />}
+              characteristics={<Characteristics currentProduct={product} />}
+            />
+          </div>
         </div>
         {recentlyViewedProducts()}
       </div> : null

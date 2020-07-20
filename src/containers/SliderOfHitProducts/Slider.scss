@@ -41,3 +41,27 @@
 .slick-list {
     overflow-x: hidden;
 }
+@media (min-width: 980px) and (max-width: 1199px) {
+    .slider-card {
+        padding-top: 10%;
+    }
+}
+@media (min-width: 640px) and (max-width: 989px) {
+    .slider-card {
+        padding-top: 10%;
+    }
+    .slider {
+        &__header {
+            font-size: 22px;
+            margin: 6% 0 0 0;
+        }
+    }
+}
+@media (max-width: 639px) {
+    .slider {
+        &__header {
+            font-size: 18px;
+            margin: 6% 0 0 0;
+        }
+    }
+}

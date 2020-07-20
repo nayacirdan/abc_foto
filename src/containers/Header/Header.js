@@ -1,8 +1,8 @@
-import React, {useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { makeStyles, Grid, TextField } from '@material-ui/core';
 import { withRouter } from 'react-router';
 
-import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
 import accountIcon from '../../svg/accountIcon';
@@ -10,16 +10,14 @@ import cartIcon from '../../svg/cartIcon';
 import logo from '../../svg/logo';
 
 import './Header.scss';
-import Grid from '@material-ui/core/Grid';
 import Navigation from './Navigation/Navigation';
 
-import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
 import { loggedIn, getCustomer } from '../../store/actions/users/index';
+import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
 import { connect } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
 import NavPanel from './NavPanel/NavPanel';
 
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
@@ -109,7 +107,7 @@ const Header = (props) => {
   );
 
   const AccountMenu = (
-    <div className="account-menu" onClick={openModal}>
+    <div className="account-menu user" onClick={openModal}>
       <div className="account-menu__accountIcon">{accountIcon}</div>
       <div className="account-menu__iconText">Вход</div>
     </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
 import store from './store/store';
@@ -9,6 +8,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import 'swiper/css/swiper.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import AppContainer from './HOCs/AppContainer/AppContainer';
 
 const theme = createMuiTheme({
   palette: {
@@ -35,7 +35,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <App/>
+          <AppContainer/>
         </ThemeProvider>
       </BrowserRouter>
     </Provider>

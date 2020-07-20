@@ -13,8 +13,8 @@ const CheckboxList = (props) => {
   const location = useLocation();
   const history = useHistory();
 
-  const {titles, filterParam} = props;
-  const [checked, setChecked] = React.useState([]);
+  const {titles, filterParam, checkedFilterItems} = props;
+  const [checked, setChecked] = React.useState(checkedFilterItems || []);
 
   const queryFiltersObj = useSelector(state => state.filters.queriesObj);
 

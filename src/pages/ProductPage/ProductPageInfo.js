@@ -4,6 +4,8 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import SimpleExpansionPanel from '../../components/ExpansionPanel/ExpansionPanel';
 import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 import Gallery from '../../components/Gallery/Gallery';
+import Pagination from '../../components/Gallery/SliderPagination/SliderPagination';
+import Accordion from './Accordion/Accordion';
 
 import { connect } from 'react-redux';
 
@@ -51,7 +53,14 @@ const ProductPageInfo = (props) => {
   return (
     <>
       <div className="slider-info">
-        <Gallery product={product} />
+        <div>
+          <div>
+            <Gallery product={product} />
+          </div>
+          <div className='simple-slider'>
+            <Pagination product={product} />
+          </div>
+        </div>
         <div className='credit'>
           <div className='availability'>{getProductAvailability()}</div>
           <div>
@@ -79,7 +88,7 @@ const ProductPageInfo = (props) => {
             <div className='purchase_block'>
               <ContainedButtons className="grey-btn"
                 onClick={redirectHandler}
-                text={<div className="btn">
+                text={<div className="btn buy-credit">
                   <p>Купить в кредит</p>
                 </div>} />
 
@@ -94,6 +103,13 @@ const ProductPageInfo = (props) => {
             className='expansion-panel'
           />
         </div>
+        <div className='description-info'>
+          {product.description}
+        </div>
+        <div className='vertical-tabs'>
+          <Accordion />
+        </div>
+
       </div>
     </>
   );
