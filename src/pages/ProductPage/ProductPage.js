@@ -34,7 +34,7 @@ const ProductPage = (props) => {
   const recentlyViewedProducts = () => {
     const recentlyViewedProds = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
     console.log('WHERE ARE YOUE', recentlyViewedProds);
-    const sliderProducts = recentlyViewedProds.map(product => (
+    const sliderProducts = (recentlyViewedProds || []).map(product => (
       <div key={product.itemNo} className="slider-card">
         <Link
           activeClass='active'
@@ -48,7 +48,7 @@ const ProductPage = (props) => {
       </div>)
     );
 
-    if (sliderProducts.length > 3) {
+    if (sliderProducts.length > 0) {
       return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />);
     } else {
       return null;

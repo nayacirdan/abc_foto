@@ -49,7 +49,7 @@ function TemporaryDrawer ({history, categories}) {
 
     setState({ ...state, [anchor]: open });
   };
-  const array = ['Магазины', 'Кредит', 'Доставка и оплата', 'Гарантии', 'О компании', 'Контакты'];
+  const array = ['Кредит', 'Доставка и оплата', 'Гарантии', 'Контакты'];
   const navArray = array.map((item, key) => (
     <ListItem button key={key}>
       <ListItemText primary={item} />
@@ -61,7 +61,7 @@ function TemporaryDrawer ({history, categories}) {
       key={id} component={Link}
       to={`/products/filter?categories=${category.name}`}
       className={classes.nested}>
-      <ListItemText primary={category.name} />
+      <ListItemText primary={category.title} />
     </ListItem>
   ));
 

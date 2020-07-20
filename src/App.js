@@ -15,6 +15,7 @@ import { getProducts } from './store/actions/actions';
 import CategoryRoutes from './HOCs/CategoryRoutes/CategoryRoutes';
 import Cart from './pages/Cart/Cart';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+import InfoPage from './pages/InfoPage/InfoPage';
 
 const App = (props) => {
   const {modalIsOpen, getProducts} = props;
@@ -35,6 +36,7 @@ const App = (props) => {
           <Route exact path='/cart' component={Cart} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route path='/products/filter' component={CategoryRoutes} />
+          <Route path='/info' component={InfoPage} />
         </Switch>
         <Footer/>
       </Router>
