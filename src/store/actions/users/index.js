@@ -17,7 +17,6 @@ const signIn = (email, password) => async (dispatch) => {
 
 const register = (firstName, lastName, login, email, password, telephone) => async (dispatch) => {
   try {
-    debugger;
     const { data } = await registerRequest(firstName, lastName, login, email, password, telephone);
     dispatch({type: constants.USER_REGISRT_SUCCESS, payload: data.registrationSuccess});
   } catch (error) {
