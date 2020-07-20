@@ -43,3 +43,18 @@
 .form-sort .MuiInputLabel-shrink{
   transform: translate(0, 1.5px);
 }
+
+
+
+
+
+@media (max-width: 768px) {
+  .sort-products>.form-sort.MuiFormControl-root{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sort-products{
+    margin-top: 10px;
+  }
+}

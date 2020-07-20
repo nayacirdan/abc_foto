@@ -7,6 +7,7 @@
   justify-content: flex-start;
   padding-top:70px;
   padding-bottom:90px;
+  width: 100%;
   & h2{
     text-transform: uppercase;
     font-weight: 500;
@@ -45,5 +46,21 @@
     & .MuiIconButton-root{
       padding:0;
     }
+  }
+  & .MuiAccordionSummary-root {
+    padding: 0;
+    justify-content: flex-start;
+  }
+  & .MuiAccordionSummary-content{
+    flex-grow: 0;
+  }
+  & .MuiTypography-root.MuiTypography-body1 {
+    padding-top: 20px;
+  }
+  & .MuiAccordionDetails-root {
+    padding: 0;
+  }
+  & .MuiAccordionSummary-content.Mui-expanded {
+    margin:0;
   }
 }

@@ -4,6 +4,10 @@
   border:1px solid #E6E6E6;
   width:100px;
 }
+
+.products-quantity.MuiTablePagination-root {
+  overflow: hidden;
+}
 .product-list-actions>.MuiTablePagination-root{
   padding:0;
 }
@@ -14,7 +18,7 @@
 .products-quantity{
   display: flex;
   justify-content: space-between;
-  width:40%;
+  min-width: 265px;
 }
 
 
@@ -50,7 +54,7 @@
 /*Pokazivat'*/
 .MuiInputBase-root.MuiTablePagination-input.MuiTablePagination-selectRoot + .MuiTypography-root.MuiTablePagination-caption.MuiTypography-body2.MuiTypography-colorInherit {
   order:-1 !important;
-  margin-right: 25px;
+  margin-right: 45px;
 }
 
 .MuiInputBase-root.MuiTablePagination-input.MuiTablePagination-selectRoot{
@@ -61,7 +65,14 @@
 
   text-align: left;
   display: flex;
+  
 }
 .products-quantity .MuiToolbar-regular{
   min-height: 26px;
+}
+
+@media (max-width: 768px) {
+  .products-quantity .MuiToolbar-regular{
+    width: 100%;
+  }
 }

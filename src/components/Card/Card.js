@@ -4,11 +4,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Card.scss';
-// import { makeStyles } from '@material-ui/core/styles';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-// import cartIcon from '../../svg/cartIcon';
+
 import { withRouter } from 'react-router';
 
 import { setCurrentProduct } from '../../store/actions/actions';

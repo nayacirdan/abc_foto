@@ -1,0 +1,13 @@
+.regular-filter-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.regular-filter {
+  width:225px;
+  & .MuiExpansionPanelSummary-root {
+    padding: 0;
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import './QuantityOnPage.scss';
 import {connect, useDispatch, useSelector} from 'react-redux';
-import {setPerPage} from '../../store/actions/actions';
+import {setCurrentPage, setPerPage} from '../../store/actions/actions';
 import {useHistory, useLocation} from 'react-router';
 import {changeStandartQuery} from '../../utils/utils';
 import querystring from 'query-string';
@@ -20,17 +20,11 @@ const PaginationSelect = ({perPage, currentPage, productsQuantity}) => {
   const handleChangeRowsPerPage = (event) => {
     const perPageValue = parseInt(event.target.value, 10);
     dispatch(setPerPage(perPageValue));
+    dispatch(setCurrentPage(1));
     const newQueryObj = changeStandartQuery(queryFiltersObj, 'perPage', perPageValue);
-    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    const newQueryObj2 = changeStandartQuery(newQueryObj, 'startPage', 1);
+    const newQueryStr = querystring.stringify(newQueryObj2, {arrayFormat: 'comma'});
     history.push(`${location.pathname}?${newQueryStr}`);
-    /*  if (searchParams.has('perPage')) {
-            searchParams.delete('perPage');
-          }
-          searchParams.append('perPage', event.target.value);
-          
-          dispatch(setPerPage(event.target.value));
-          dispatch(setCurrentPage(1));
-          history.push(`/products/filter?${searchParams}`); */
   };
 
   return (

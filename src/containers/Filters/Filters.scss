@@ -1,9 +1,8 @@
 .filters-container {
-  width: 20%;
   display: flex;
   flex-direction: column;
   & .MuiPaper-root {
-    background-color: transparent;
+    background-color: #fff;
   }
   & .regular-filter{
     width:210px;
@@ -48,4 +47,111 @@
   line-height: 27px;
   color: #000000;
   margin-bottom: 20px;
+}
+
+.filters-btn.MuiButton-root {
+  border-radius: 0;
+  border-color: #E6E6E6;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 20px;
+  &.MuiButton-startIcon{
+    color: #FFFFFF;
+  }
+}
+
+
+
+@media (max-width: 1200px){
+  .filters-container {
+    & .MuiDrawer-paper{
+      width: 250px;
+      padding: 5px 10px 5px 25px;
+    }
+    & .MuiIconButton-label{
+      font-size: 10px;
+    }
+    & .btn-hide{
+      text-transform: none;
+      color: #C4C4C4;
+      font-weight: 300;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 25px;
+      align-self: flex-end;
+    }
+  }
+}
+
+@media (min-width: 1201px){
+  .MuiDrawer-root.MuiDrawer-modal.filters-container {
+    width:225px;
+  }
+  .filters-btn.MuiButton-root {
+  display: none;
+  }
+  .filters-container {
+    & .btn-hide{
+      display: none;
+    }
+    & .MuiPaper-root {
+      background-color: #fff;
+    }
+    & .MuiDrawer-paper{
+      top:300px;
+      height: auto;
+      width: 225px;
+      padding: 5px 15px;
+    }
+    &>.MuiPaper-elevation16{
+      box-shadow: none;
+    }
+    &>.MuiBackdrop-root{
+      display: none;
+    }
+    & .MuiDrawer-paperAnchorLeft{
+      left:5%;
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .filters-btn.MuiButton-root {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width: 680px){
+  .filters-container {
+    & .MuiDrawer-paper {
+      width: 50%;
+      padding: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 400px){
+  .filters-container {
+    & .MuiDrawer-paper{
+      width: 80%;
+      padding: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+@media (min-width: 401px) and (max-width: 480px){
+  .filters-container {
+    & .MuiDrawer-paper{
+      width: 70%;
+      padding: 3px;
+    }
+  }
 }
