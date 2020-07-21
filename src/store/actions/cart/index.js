@@ -17,9 +17,11 @@ const addToCart = (product) => async (dispatch, getState) => {
 };
 
 const syncCart = (logged) => async (dispatch, getState) => {
-  if (logged) {
+  const lScart = JSON.parse(localStorage.getItem('productCartLs'));
+
+  if (logged && lScart) {
     const {userSignin} = getState();
-    const lScart = JSON.parse(localStorage.getItem('productCartLs'));
+    
     const data = lScart.map((elem) => {
       return {
         product: elem._id
