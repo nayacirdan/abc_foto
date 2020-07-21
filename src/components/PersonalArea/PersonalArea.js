@@ -1,2 +1,1 @@
-import React from 'react'
-import "./PersonalArea.scss";
+import './PersonalArea.scss';
