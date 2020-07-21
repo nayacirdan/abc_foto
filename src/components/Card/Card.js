@@ -15,6 +15,7 @@ import { setCurrentProduct } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 
 import setToLocalStorage from '../../utils/localStorage';
+import {addToCart} from './../../store/actions/cart/index';
 
 /*
 const useStyles = makeStyles({
@@ -261,7 +262,7 @@ const CardItem = (props) => {
 */
 
 const CardItem = (props) => {
-  const { product, history, setCurrentProduct } = props;
+  const { product, history, setCurrentProduct, addToCart } = props;
 
   const {
     imageUrls,
@@ -274,6 +275,10 @@ const CardItem = (props) => {
     description,
     itemNo
   } = product;
+
+  const addToCardHandler = () => {
+    addToCart(product);
+  };
 
   const redirectToProductPage = (product) => {
     setCurrentProduct(product);
@@ -346,8 +351,8 @@ const CardItem = (props) => {
               )
             }
 
-            <IconButton color="#51AD33" aria-label="upload picture" component="span"
-              className='card__cart-btn' disabled={!isAvailable} >
+            <IconButton color="#51AD33" aria-label="upload picture"
+              className='card__cart-btn' disabled={!isAvailable} onClick={addToCardHandler}>
               <ShoppingCartOutlinedIcon className='card__cart-icon' />
             </IconButton>
           </Grid>
@@ -377,7 +382,8 @@ const CardItem = (props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentProduct: (product) => dispatch(setCurrentProduct(product))
+    setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
+    addToCart: (product) => dispatch(addToCart(product))
   };
 };
 

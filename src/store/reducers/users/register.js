@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const userRegister = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case constants.USER_REGISTER_SUCCESS:
       return { ...state, registered: action.payload };

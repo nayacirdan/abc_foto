@@ -5,7 +5,6 @@ import Cookie from 'js-cookie';
 const signIn = (email, password) => async (dispatch) => {
   dispatch({ type: constants.USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    debugger;
     const { data } = await signInRequest(email, password);
     dispatch({type: constants.USER_SIGNIN_SUCCESS, payload: data});
     dispatch({type: constants.USER_SIGNIN_LOGGED});
@@ -17,7 +16,6 @@ const signIn = (email, password) => async (dispatch) => {
 
 const register = (firstName, lastName, email, login, password, telephone) => async (dispatch) => {
   try {
-    debugger;
     await registerRequest(firstName, lastName, email, login, password, telephone);
     dispatch({type: constants.USER_REGISTER_SUCCESS, payload: true});
 

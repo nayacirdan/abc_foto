@@ -15,6 +15,7 @@ import Navigation from './Navigation/Navigation';
 
 import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
 import { loggedIn, getCustomer, signIn } from '../../store/actions/users/index';
+import { syncCart } from '../../store/actions/cart/index';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import NavPanel from './NavPanel/NavPanel';
@@ -55,7 +56,8 @@ const Header = (props) => {
     getCustomer,
     customerInfo,
     registered,
-    signIn
+    signIn,
+    syncCart
   } = props;
   console.log(props);
   const classes = useStyles();
@@ -68,9 +70,10 @@ const Header = (props) => {
     if (userInfo) {
       loggedIn();
       getCustomer();
+      syncCart(logged);
       history.push('/');
     }
-  }, [getCustomer, history, loggedIn, userInfo]);
+  }, [getCustomer, history, logged, loggedIn, syncCart, userInfo]);
 
   useEffect(() => {
     if (registered) {
@@ -217,8 +220,9 @@ const mapDispatchToProps = dispatch => {
     openModal: () => dispatch(openModal()),
     loggedIn: () => dispatch(loggedIn()),
     getCustomer: () => dispatch(getCustomer()),
-    signIn: (email, password) => dispatch(signIn(email, password))
+    signIn: (email, password) => dispatch(signIn(email, password)),
+    syncCart: (logged) => dispatch(syncCart(logged))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(withRouter(Header)));
