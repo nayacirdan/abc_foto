@@ -29,6 +29,7 @@
   & .carousel-wrapper {
     border-radius: 0;
     height: 400px;
+    width: 100%;
   }
 
   & .footer {
@@ -64,5 +65,30 @@
       img {
         height: 40px;
       }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 640px) {
+  .top-slider {
+    & .media-title {
+      font-size: 24px;
+    }
+
+    & .media-text {
+      left: 0;
+      top: 0;
+      // z-index: 99;
+      img {
+        height: 20px;
+      }
+    }
+
+    & .media-background img {
+      width: 100%;
+    }
+
+    & .arrow-right, .arrow-left {
+      display: none;
+    }
   }
 }
