@@ -13,13 +13,13 @@ const initialState = {
 const userSignin = (state = initialState, action) => {
   switch (action.type) {
     case constants.USER_SIGNIN_REQUEST:
-      return { loading: true };
+      return {...state, loading: true };
     case constants.USER_SIGNIN_SUCCESS:
       return {...state, loading: false};
     case constants.USER_SIGNIN_LOGGED:
       return {...state, logged: true };
     case constants.USER_SIGNIN_FAIL:
-      return { loading: false, error: action.payload };
+      return {...state, loading: false, error: action.payload };
 
     default: return state;
   }
