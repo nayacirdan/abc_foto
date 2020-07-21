@@ -41,8 +41,19 @@ const loadProdutcsToDb = (data, token) => {
   });
 };
 
+const loadCart = (token) => {
+  return Axios.get(configRequests.loadCart, {
+    headers:
+             {
+               'Content-type': 'application/json',
+               Authorization: token
+             }
+  });
+};
+
 export {
   addProductToDB,
   addProductToLs,
-  loadProdutcsToDb
+  loadProdutcsToDb,
+  loadCart
 };

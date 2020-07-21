@@ -5,16 +5,16 @@ import { withRouter } from 'react-router';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MenuListComposition from '../../components/Menu/MenuListComposition';
-import accountIcon from '../../svg/accountIcon';
 import cartIcon from '../../svg/cartIcon';
 import logo from '../../svg/logo';
+import Author from '../../containers/Header/Author/author';
 
 import './Header.scss';
 import Navigation from './Navigation/Navigation';
 
 import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
-import { loggedIn, getCustomer, signIn } from '../../store/actions/users/index';
-import { syncCart } from '../../store/actions/cart/index';
+import { getCustomer, signIn } from '../../store/actions/users/index';
+import { syncCart, getCart} from '../../store/actions/cart/index';
 import { connect } from 'react-redux';
 import NavPanel from './NavPanel/NavPanel';
 
@@ -59,14 +59,13 @@ const Header = (props) => {
     getProducts,
     products,
     openModal,
-    userInfo,
     logged,
-    loggedIn,
     getCustomer,
     customerInfo,
     registered,
     signIn,
-    syncCart
+    syncCart,
+    getCart
   } = props;
 
   const classes = useStyles();
@@ -76,13 +75,10 @@ const Header = (props) => {
   }, [searchChange]);
 
   useEffect(() => {
-    if (userInfo) {
-      loggedIn();
-      getCustomer();
-      syncCart(logged);
-      history.push('/');
-    }
-  }, [getCustomer, history, logged, loggedIn, syncCart, userInfo]);
+    getCustomer();
+    syncCart(logged);
+    getCart();
+  }, [getCart, getCustomer, logged, syncCart]);
 
   useEffect(() => {
     if (registered) {
@@ -91,7 +87,7 @@ const Header = (props) => {
       signIn(email, password);
       history.push('/');
     }
-  }, [getCustomer, history, registered, signIn]);
+  }, [history, registered, signIn]);
 
   const onChangeHandler = (e) => {
     searchChange(e.target.value);
@@ -128,20 +124,6 @@ const Header = (props) => {
       }
     >
     </MenuListComposition>
-  );
-
-  const AccountMenu = (
-    <div className="account-menu user" onClick={openModal}>
-      <div className="account-menu__accountIcon">{accountIcon}</div>
-      <div className="account-menu__iconText">Вход</div>
-    </div>
-  );
-
-  const UserMenu = (
-    <div className="account-menu">
-      <div className="account-menu__accountIcon">{accountIcon}</div>
-      <div className="account-menu__iconText">{customerInfo.login}</div>
-    </div>
   );
 
   return (
@@ -216,7 +198,9 @@ const Header = (props) => {
           {phoneNumber}
         </div>
 
-        <div>{logged ? UserMenu : AccountMenu}</div>
+        <div><Author logged={logged}
+          openModal={openModal}
+          customerInfo={customerInfo}/></div>
 
         <NavLink exact to="/cart" className="cart-nav">
           <div className="account-menu">
@@ -254,10 +238,10 @@ const mapDispatchToProps = dispatch => {
     getProductsBySearch: (text) => dispatch(getProductsBySearch(text)),
     setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
     openModal: () => dispatch(openModal()),
-    loggedIn: () => dispatch(loggedIn()),
     getCustomer: () => dispatch(getCustomer()),
     signIn: (email, password) => dispatch(signIn(email, password)),
-    syncCart: (logged) => dispatch(syncCart(logged))
+    syncCart: (logged) => dispatch(syncCart(logged)),
+    getCart: () => dispatch(getCart())
   };
 };
 
