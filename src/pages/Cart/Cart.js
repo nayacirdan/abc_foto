@@ -6,7 +6,7 @@ const Cart = () => {
   return (
     <>
       <CartSection/>
-      <CartSimilarSection/>
+      {/* <CartSimilarSection/> */}
     </>
   );
 };
