@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import CheckoutPage from './CheckoutPage';
 
 describe('test checkout page', () => {
-
   it('should render checkout page without props', () => {
     const wrapper = shallow(<CheckoutPage />);
     expect(wrapper).toMatchSnapshot();
