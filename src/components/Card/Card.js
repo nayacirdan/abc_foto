@@ -17,7 +17,7 @@ import setToLocalStorage from '../../utils/localStorage';
 import {addToCart} from './../../store/actions/cart/index';
 
 const CardItem = (props) => {
-  const { product, history, setCurrentProduct, addToCart } = props;
+  const { product, history, setCurrentProduct, addToCart} = props;
 
   const {
     imageUrls,

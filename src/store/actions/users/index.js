@@ -25,15 +25,17 @@ const register = (firstName, lastName, email, login, password, telephone) => asy
   }
 };
 
-const loggedIn = () => (dispatch) => {
-  dispatch({type: constants.USER_SIGNIN_LOGGED});
-};
-
 const getCustomer = () => async (dispatch, getState) => {
+  debugger;
   const {userSignin} = getState();
+  const token = Cookie.getJSON('UserInfo');
   try {
-    const {data} = await getCustomerRequest(userSignin.userInfo.token);
-    dispatch({type: constants.USER_GET_INFO, payload: data});
+    if (token) {
+      dispatch({type: constants.USER_SIGNIN_LOGGED});
+      dispatch({type: constants.USER_SIGNIN_SUCCESS, payload: token});
+      const {data} = await getCustomerRequest(userSignin.userInfo.token);
+      dispatch({type: constants.USER_GET_INFO, payload: data});
+    }
   } catch (error) {
     dispatch({type: constants.USER_GET_INFO_FAIL, payload: error.message});
   }
@@ -41,7 +43,6 @@ const getCustomer = () => async (dispatch, getState) => {
 
 export {
   signIn,
-  loggedIn,
   getCustomer,
   register
 };

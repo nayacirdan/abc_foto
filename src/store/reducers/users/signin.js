@@ -1,10 +1,7 @@
 import constants from '../../constans/constans';
-import Cookie from 'js-cookie';
-
-const userInfo = Cookie.getJSON('UserInfo') || null;
 
 const initialState = {
-  userInfo: userInfo,
+  userInfo: null,
   loading: false,
   logged: false,
   error: null
@@ -15,7 +12,7 @@ const userSignin = (state = initialState, action) => {
     case constants.USER_SIGNIN_REQUEST:
       return {...state, loading: true };
     case constants.USER_SIGNIN_SUCCESS:
-      return {...state, loading: false};
+      return {...state, loading: false, userInfo: action.payload};
     case constants.USER_SIGNIN_LOGGED:
       return {...state, logged: true };
     case constants.USER_SIGNIN_FAIL:
