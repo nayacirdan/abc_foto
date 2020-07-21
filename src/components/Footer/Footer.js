@@ -2,33 +2,60 @@ import React from 'react';
 import './footer.scss';
 import TextField from '@material-ui/core/TextField';
 import {footerLogo, footerInst, footerFacebook} from './svg/footerSvg';
-import {Link} from 'react-router-dom';
+import { NavHashLink as Link } from 'react-router-hash-link';
 
 const Footer = () => {
   return (
     <div className='Footer'>
       <div className='Footer__wrapper'>
-        <div className='Footer__container'>
-          <p className='Footer__logo'>{footerLogo}</p>
-          <p className='Footer__text'>Интернет Магазин</p>
-          <a href='tel:0800212150' className='Footer__text Footer__link'>0 800 21 21 50</a>
-          <a href='mailto:info@abcphoto.com.ua' className='Footer__text Footer__link'>info@abcphoto.com.ua</a>
+        <div className='Footer__container footer-mob'>
+          <div className='Footer__logo'>{footerLogo}</div>
+          <div>
+            <p className='Footer__text'>Интернет Магазин</p>
+            <div className='Footer__logo--links'>
+              <a href='tel:0800212150' className='Footer__text Footer__link'>0 800 21 21 50</a>
+              <a href='mailto:info@abcphoto.com.ua' className='Footer__text Footer__link'>info@abcphoto.com.ua</a>
+            </div>
+          </div>
         </div>
-        <div className='Footer__container'>
-          <p className='Footer__heading'>Информация</p>
-          <Link to='/about' className='Footer__link'>О компании</Link>
-          <Link to='/public' className='Footer__link'>Публичная оферта</Link>
-        </div>
-        <div className='Footer__container'>
+        <div className='Footer__container info-footer'>
           <p className='Footer__heading'>Покупателям</p>
-          <Link to='/credit' className='Footer__link'>Кредит</Link>
-          <Link to='/delivery' className='Footer__link'>Доставка и оплата</Link>
-          <Link to='/guarantee' className='Footer__link'>Сервис и гарантии</Link>
+          <Link
+            className='info-link'
+            to="/info#credit"
+            activeClassName="selected"
+            smooth={true}
+          >
+              Кредит
+          </Link>
+          <Link
+            className='info-link'
+            to="/info#shippingAndDelivery"
+            activeClassName="selected"
+            smooth={true}
+            style={{width: '12%'}}
+          >
+            Доставка&nbsp;и&nbsp;оплата
+          </Link>
+          <Link
+            className='info-link'
+            to="/info#guarantee"
+            activeClassName="selected"
+            smooth={true}
+          >
+              Гарантии
+          </Link>
         </div>
-        <div className='Footer__container'>
+        <div className='Footer__container info-footer'>
           <p className='Footer__heading'>Связаться с нами</p>
-          <Link to='/contacts' className='Footer__link'>Контакты</Link>
-          <Link to='/shops' className='Footer__link'>Магазины</Link>
+          <Link
+            className='info-link'
+            to="/info#contacts"
+            activeClassName="selected"
+            smooth={true}
+          >
+              Контакты
+          </Link>
         </div>
         <div className='Footer__container--right'>
           <p className='Footer__heading'>Подписаться на рассылку</p>

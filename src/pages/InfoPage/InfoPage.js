@@ -6,7 +6,7 @@ import Contacts from './Contacts/Contacts';
 
 const InfoPage = () => {
   return (
-    <div>
+    <div style={{margin: '5% 0'}}>
       <Credit />
       <ShippingAndDelivery />
       <Guarantee />
