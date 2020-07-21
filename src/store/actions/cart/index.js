@@ -36,7 +36,12 @@ const syncCart = (logged) => async (dispatch, getState) => {
   }
 };
 
+const clearCart = () => dispatch => {
+  dispatch({type: constants.CLEAR_CART});
+};
+
 export {
   addToCart,
-  syncCart
+  syncCart,
+  clearCart
 };

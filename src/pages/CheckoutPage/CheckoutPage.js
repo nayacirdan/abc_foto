@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Formik, Form} from 'formik';
+import {Formik, Form, Field} from 'formik';
 import FormInput from '../../components/FormInput/FormInput';
 import SelectInput from '../../components/SelectInput/SelectInput';
 import SimpleModal from '../../components/Modals/ConfirmOrderModal';
@@ -10,30 +10,12 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Box from '@material-ui/core/Box';
 import './CheckoutPage.scss';
-
-const mockCart = [
-  {
-    id: '5ef3312ff908ec14d96d8cbb',
-    name: 'Canon eos 800d body black',
-    price: 10999,
-    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831004/products/canon_1/image_1_kw8g3l.jpg',
-    article: 16875476
-  },
-  {
-    id: '5ef33291f908ec14d96d8cbc',
-    name: 'Nikon d780 body black',
-    price: 15999,
-    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831610/products/image_1_gppzkr.jpg',
-    article: 21098736
-  },
-  {
-    id: '5ef3331cf908ec14d96d8cbd',
-    name: 'Sony Alpha 9 Body',
-    price: 14399,
-    imageURL: 'https://res.cloudinary.com/miratsiupiak/image/upload/v1592831783/products/sony_1/image_1_rg3aj8.jpg',
-    article: 54637287
-  }
-];
+import {Button} from '@material-ui/core';
+import {toggleOrderModal} from '../../store/actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import PersonalInfo from './PersonalInfo/PersonalInfo';
+import DeliverMethods from './DeliverMethods/DeliverMethods';
+import PaymentMethods from './PaymentMethods/PaymentMethods';
 
 function CheckoutPage (props) {
   const [deliveryMethod, setDeliveryMethod] = React.useState('text7');
@@ -41,19 +23,31 @@ function CheckoutPage (props) {
   const [isActiveSelect, setIsActiveSelect] = useState(false);
   const [products, setProducts] = useState([]);
 
-  const getCartProducts = () => {
+  const dispatch = useDispatch();
+  const customer = useSelector(state => state.getCustomer.customerInfo);
+  let customerName;
+
+  if (customer.firstName || customer.lastName) {
+    customerName = `${customer.firstName} ${customer.lastName}`;
+  }
+
+  /* const getCartProducts = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => resolve(mockCart), 1000);
     });
-  };
+  }; */
 
-  useEffect(() => {
+  /* useEffect(() => {
     getCartProducts().then(result => {
       setProducts(result);
     });
-  }, []);
-
-  const handleChangeDeliveryMethod = (event) => {
+  }, []); */
+  
+  const handleSubmit = (values) => {
+    dispatch(toggleOrderModal(true));
+    console.log('values=', values);
+  };
+  /* const handleChangeDeliveryMethod = (event) => {
     const {value} = event.target;
     setDeliveryMethod(value);
     setIsActiveSelect(true);
@@ -65,7 +59,7 @@ function CheckoutPage (props) {
     setPaymentMethod(value);
     if (value === 'text1') setIsActiveSelect(false);
   };
-
+*/
   const validate = values => {
     const errors = {};
 
@@ -94,25 +88,34 @@ function CheckoutPage (props) {
     <div className="order-wrapper">
       <h2 className="head-title">Оформление заказа</h2>
       <Formik
-        initialValues={{name: '', email: '', phone: ''}}
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+        initialValues={{
+          name: customerName || '',
+          email: customer.email || '',
+          phone: customer.telephone || ''
+        }}
+        onSubmit = {(values) => handleSubmit(values)}
         validate={validate}
       >
-        {({values, errors, touched, handleSubmit}) => (
+        {({submitForm, values, errors, touched, handleSubmit}) => (
           <div className="checkout-group">
             <div className="order-container">
               <Form className="checkout-form" autoComplete="off">
-                <div className="block-title">
+                <PersonalInfo touched={touched} errors={errors} values={values}/>
+                {/* Personal Info */}
+                {/* <div className="block-title">
                   <h4 className="big-text">Контактные данные</h4>
                   <h6 className="small-text">* Поля, обязательные для заполнения</h6>
                 </div>
+                
                 <FormInput label="Имя получателя *" type="text" name="name" placeholder="Иван Петрович"/>
                 {errors.email && touched.email ? <div className="error-text">{errors.name}</div> : null}
                 <FormInput label="Телефон *" type="text" name="phone" placeholder="050 555 55 55"/>
                 {errors.email && touched.email ? <div className="error-text">{errors.phone}</div> : null}
                 <FormInput label="E-mail *" type="email" name="email" placeholder="Ivanov444@gmail.com"/>
-                {errors.email && touched.email ? <div className="error-text">{errors.email}</div> : null}
-                <div className="order-delivery">
+                {errors.email && touched.email ? <div className="error-text">{errors.email}</div> : null} */}
+
+                {/* Deliver methods */}
+                {/* <div className="order-delivery">
                   <h4 className="big-text">Способы доставки</h4>
                   <FormControl component="fieldset">
                     <RadioGroup aria-label="deliveryMethod" name="deliveryMethod" value={deliveryMethod}
@@ -123,8 +126,11 @@ function CheckoutPage (props) {
                       <FormControlLabel value="text9" control={<Radio/>} label="Курьерская доставка"/>
                     </RadioGroup>
                   </FormControl>
-                </div>
-                <div className="order-payment">
+                </div> */}
+                <DeliverMethods/>
+                <PaymentMethods/>
+                {/* Payment methods */}
+                {/* <div className="order-payment">
                   <h4 className="big-text">Способы оплаты</h4>
                   <FormControl component="fieldset" className="radio-group">
                     <RadioGroup aria-label="paymentMethod" name="paymentMethod" value={paymentMethod}
@@ -144,10 +150,12 @@ function CheckoutPage (props) {
                     </RadioGroup>
                   </FormControl>
                   <TextField className="comments" type="text" multiline rows={4} placeholder="Комментарий" variant="outlined"/>
-                </div>
+                </div> */}
               </Form>
             </div>
-            <div>
+
+            {/* Items In Cart */}
+            {/* <div>
               <div className="big-text checkout-title">Товары в корзине</div>
               <div className="checkout-container">
                 {products.map((product, i) => (
@@ -162,9 +170,12 @@ function CheckoutPage (props) {
                   </div>
                 ))}
                 <div className="order-sum">Сумма заказа: 41 397 грн </div>
-                <SimpleModal/>
+
+                Modal + Submit Button
+                <SimpleModal onClick={submitForm}/>
               </div>
-            </div>
+            </div> */}
+            <SimpleModal onClick={submitForm}/>
           </div>
         )}
       </Formik>

@@ -140,3 +140,7 @@ export const toggleFilterDrawer = (value) => dispatch => {
 export const setIsDesktop = (value) => dispatch => {
   dispatch({type: Actions.SET_IS_DESKTOP, payload: value});
 };
+
+export const toggleOrderModal = (value) => dispatch => {
+  dispatch({type: Actions.TOGGLE_MODAL_ORDER, payload: value});
+};

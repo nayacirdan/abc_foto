@@ -51,8 +51,8 @@ const Footer = () => {
             </div>
             <div className='Footer__icons-wrapper'>
               <span>Мы в социальных сетях</span>
-              <div><a href='https://www.facebook.com/'>{footerInst}</a></div>
-              <div><a href='https://www.instagram.com/'>{footerFacebook}</a></div>
+              <div><a href='https://www.instagram.com/abc_photo.online_shop/'>{footerInst}</a></div>
+              <div><a href='https://www.facebook.com/ABC-photo-106559144478893'>{footerFacebook}</a></div>
             </div>
           </div>
         </Grid>
