@@ -5,24 +5,19 @@ import {formFilterStringFragment} from '../../utils/utils';
 export const getProducts = () => (dispatch) => {
   dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: [] });
   axios.get('/products')
+  // axios.get('http://codeandcatchfire.kiev.ua:5010/products')
     .then(res => {
       dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data });
     });
 };
-// export import { getProducts } from './products/getProducts';
-
+ 
 export const getProductsBySearch = (text) => (dispatch) => {
   if (text.query !== '') {
     axios.post('/products/search', text)
+    // axios.post('http://codeandcatchfire.kiev.ua:5010/products/search', text)
       .then(res => {
-        // const filtered = res.data.filter(item => {
-        //     return res.data.name.toLowerCase().includes(text.toLowerCase())
-        // })
         dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: res.data });
       });
-    // .catch(error => {
-    //     dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
-    // })
   } else {
     dispatch({ type: Actions.FETCH_PRODUCTS_FOR_SEARCH_STRING, payload: [] });
   }
@@ -31,26 +26,13 @@ export const openModal = () => (dispatch) => {
   dispatch({ type: Actions.OPEN_MODAL });
 };
 
-// export const closeModal = () => (dispatch) => {
-//   dispatch({ type: Actions.CLOSE_MODAL });
-// };
-
-// export const setModalType = (modalType) => (dispatch) => {
-//   dispatch({ type: Actions.SET_MODAL_TYPE, payload: modalType });
-// };
-
 export const getFilteredProducts = (text) => (dispatch) => {
   if (text.query !== '') {
     axios.post('/products/search', text)
+    // axios.post('http://codeandcatchfire.kiev.ua:5010/products/search', text)
       .then(res => {
-        // const filtered = res.data.filter(item => {
-        //     return res.data.name.toLowerCase().includes(text.toLowerCase())
-        // })
         dispatch({ type: Actions.FETCH_PRODUCTS, payload: res.data });
       });
-    // .catch(error => {
-    //   dispatch({ type: Actions.FETCH_PRODUCTS_FAILED, error })
-    // })
   } else {
     dispatch(getProducts());
   }
@@ -58,6 +40,7 @@ export const getFilteredProducts = (text) => (dispatch) => {
 
 export const getCategory = (categoryName) => (dispatch) => {
   axios.get(`/catalog/${categoryName}`)
+  // axios.get(`http://codeandcatchfire.kiev.ua:5010/catalog/${categoryName}`)
     .then(res => {
       dispatch({ type: Actions.GET_CATEGORY, payload: res.data });
     });
@@ -65,6 +48,7 @@ export const getCategory = (categoryName) => (dispatch) => {
 
 export const filterProducts = (filterParams) => (dispatch) => {
   axios.get(`/products/filter?${filterParams}`)
+  // axios.get(`http://codeandcatchfire.kiev.ua:5010/products/filter?${filterParams}`)
     .then(res => {
       dispatch({ type: Actions.FILTER_PRODUCTS, payload: res.data });
       dispatch({ type: Actions.SET_PAGES, payload: res.data.productsQuantity });
@@ -93,6 +77,7 @@ export const setSortProducts = (value) => (dispatch) => {
 
 export const getAllCatalog = () => (dispatch) => {
   axios.get('/catalog')
+  // axios.get('http://codeandcatchfire.kiev.ua:5010/catalog')
     .then(res => {
       dispatch({ type: Actions.GET_ALL_CATALOG, payload: res.data });
     });
@@ -107,12 +92,9 @@ export const setCurrentProduct = (product) => (dispatch) => {
   dispatch({ type: Actions.SET_CURRENT_PRODUCT, payload: product });
 };
 
-// export const setRecentlyViewedProducts = (array) => (dispatch) => {
-//   dispatch({ type: Actions.SET_RECENTLY_VIEWED_PRODUCTS, payload: array });
-// };
-
 export const getFiltersByCategory = (category) => (dispatch) => {
   axios.get(`/filters/filter?categories=${category}`)
+  // axios.get(`http://codeandcatchfire.kiev.ua:5010/filters/filter?categories=${category}`)
     .then(res => {
       dispatch({type: Actions.SET_FILTERS_BY_CATEGORY, payload: res.data});
     });
@@ -120,6 +102,7 @@ export const getFiltersByCategory = (category) => (dispatch) => {
 
 export const getAllProductsByCategory = (category) => (dispatch) => {
   axios.get(`/products/filter?categories=${category}`)
+  // axios.get(`http://codeandcatchfire.kiev.ua:5010/products/filter?categories=${category}`)
     .then(res => {
       dispatch({type: Actions.GET_ALL_PRODUCT_BY_CATEGORY, payload: res.data});
     });

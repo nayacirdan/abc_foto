@@ -67,4 +67,4 @@ function CustomizedDialogs ({modalTitle, main, openDialog}) {
   );
 }
 
-export default CustomizedDialogs;
+export default React.memo(CustomizedDialogs);

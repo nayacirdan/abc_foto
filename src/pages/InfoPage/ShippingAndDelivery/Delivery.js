@@ -88,4 +88,4 @@ const Delivery = () => {
   );
 };
 
-export default Delivery;
+export default React.memo(Delivery);

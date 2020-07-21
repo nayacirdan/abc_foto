@@ -5,6 +5,11 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 const useStyles = makeStyles({
   table: {
     minWidth: 650
+  },
+  '@media (max-width: 979px)': {
+    table: {
+      display: 'none'
+    }
   }
 });
 
@@ -25,7 +30,7 @@ const rows = [
   createData('Стандарт на ювелирные изделия от Кредитмаркета', 'нет', 0.01, 2.5, '-', 'от 0')
 ];
 
-export default function DenseTable () {
+function DenseTable () {
   const classes = useStyles();
 
   return (
@@ -59,3 +64,5 @@ export default function DenseTable () {
     </TableContainer>
   );
 }
+
+export default React.memo(DenseTable);

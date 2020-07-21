@@ -1,4 +1,8 @@
-.credit-block {
+.adresses {
+    display: flex;
+    flex-direction: column;
+}
+.contacts {
     text-align: start;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -9,34 +13,30 @@
     p, div {
         margin: 1% 0;
     }
-    h1, h3 {
+    h1, h3, h4 {
         margin: 3% 0;
     }
 }
+.fd-row {
+    display: flex;
+    justify-content: space-between;
+}
+.fd-column {
+    display: flex;
+    flex-direction: column;
+}
 @media (min-width: 980px) and (max-width: 1199px) {
-    .credit-block {
+    .contacts {
         font-size: 12px;
-    }
-    .MuiTableCell-alignRight {
-        font-size: 11px !important;
-    }
-    .banks {
-        display: none;
     }
 }
 @media (min-width: 640px) and (max-width: 979px) {
-    .credit-block {
+    .contacts {
         font-size: 10px;
-    }
-    .banks {
-        display: none;
     }
 }
 @media (max-width: 639px) {
-    .credit-block {
+    .contacts {
         font-size: 9px;
-    }
-    .banks {
-        display: none;
     }
 }

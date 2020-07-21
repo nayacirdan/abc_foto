@@ -35,16 +35,16 @@ const Responsive = (props) => {
     centerPadding: true,
     speed: 500,
     slidesToScroll: 4,
-    // slidesToShow: 4,
-    slidesToShow: prods.length > 4 ? 4 : prods.length,
+    slidesToShow: 4,
+    // slidesToShow: prods.length > 4 ? 4 : prods.length,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
-          // slidesToShow: 3,
-          slidesToShow: prods.length > 3 ? 3 : prods.length,
+          slidesToShow: 3,
+          // slidesToShow: prods.length > 3 ? 3 : prods.length,
           initialSlide: 1,
           slidesToScroll: 3,
           infinite: true
@@ -53,8 +53,8 @@ const Responsive = (props) => {
       {
         breakpoint: 979,
         settings: {
-          // slidesToShow: 2,
-          slidesToShow: prods.length > 2 ? 2 : prods.length,
+          slidesToShow: 2,
+          // slidesToShow: prods.length > 2 ? 2 : prods.length,
           slidesToScroll: 2,
           initialSlide: 2
         }
@@ -62,8 +62,8 @@ const Responsive = (props) => {
       {
         breakpoint: 639,
         settings: {
-          // slidesToShow: 1,
-          slidesToShow: prods.length > 1 ? 1 : prods.length,
+          slidesToShow: 1,
+          // slidesToShow: prods.length > 1 ? 1 : prods.length,
           slidesToScroll: 1
         }
       }
@@ -84,4 +84,4 @@ Responsive.propTypes = {
   prods: PropTypes.array.isRequired
 };
 
-export default Responsive;
+export default React.memo(Responsive);

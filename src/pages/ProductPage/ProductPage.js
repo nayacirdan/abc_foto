@@ -22,6 +22,7 @@ const ProductPage = (props) => {
   const getItemByItemNo = useCallback(
     async () => {
       const result = await axios.get(`/products/${match.params.itemNo}`)
+      // const result = await axios.get(`http://codeandcatchfire.kiev.ua:5010/products/${match.params.itemNo}`)
         .then(res => res.data)
         .catch(err => {
           console.log(err.message);
@@ -33,7 +34,6 @@ const ProductPage = (props) => {
   
   const recentlyViewedProducts = () => {
     const recentlyViewedProds = JSON.parse(localStorage.getItem('recentlyViewedProducts'));
-    console.log('WHERE ARE YOUE', recentlyViewedProds);
     const sliderProducts = (recentlyViewedProds || []).map(product => (
       <div key={product.itemNo} className="slider-card">
         <Link
@@ -48,7 +48,7 @@ const ProductPage = (props) => {
       </div>)
     );
 
-    if (sliderProducts.length > 0) {
+    if (sliderProducts.length > 3) {
       return (<Slider sliderTitle="Недавно просмотренные" className="recentlyViewed" prods={sliderProducts} />);
     } else {
       return null;
@@ -100,4 +100,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductPage));
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductPage)));

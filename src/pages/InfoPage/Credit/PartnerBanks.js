@@ -5,9 +5,13 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 const useStyles = makeStyles({
   table: {
     minWidth: 650
+  },
+  '@media (max-width: 979px)': {
+    table: {
+      display: 'none'
+    }
   }
 });
-
 function createData (name, typeOfSale, creditAmount, lendingPeriod, borrowerAge, additionalTerms, listOfRequiredDocuments) {
   return { name, typeOfSale, creditAmount, lendingPeriod, borrowerAge, additionalTerms, listOfRequiredDocuments };
 }
@@ -23,7 +27,7 @@ const rows = [
   createData('https://res.cloudinary.com/miratsiupiak/image/upload/v1595230370/BanksPartners/570872_fre5xd.png', '"Покупка частями" Монобанк на товары продавца Rozetka', '500-100 000', 'До 24', 'от 16 лет и старше', 'Авансовый платеж в размере ежемесячного платежа. Ставка: 0,00001% годовых, дополнительных комиссий - нет. Комиссия за погашение в кредитные средства - нет.', 'Карта Монобанка')
 ];
 
-export default function DenseTable () {
+function DenseTable () {
   const classes = useStyles();
 
   return (
@@ -58,4 +62,6 @@ export default function DenseTable () {
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default React.memo(DenseTable);

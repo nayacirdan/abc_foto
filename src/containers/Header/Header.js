@@ -17,10 +17,10 @@ import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, open
 import { connect } from 'react-redux';
 import NavPanel from './NavPanel/NavPanel';
 
-// import Link from '@material-ui/core/Link';
-
 import SearchBar from './Autocomplete/Autocomplete';
 import setToLocalStorage from '../../utils/localStorage';
+
+import { NavHashLink as Link } from 'react-router-hash-link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +37,15 @@ const useStyles = makeStyles((theme) => ({
   },
   expandMore: {
     color: '#000'
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#000000',
+    fontFamily: 'Roboto, sans-serif',
+    fontWeight: 'lighter',
+    fontSize: '12px',
+    lineHeight: '14px',
+    paddingRight: '2%'
   }
 }));
 
@@ -124,13 +133,40 @@ const Header = (props) => {
     <div className="classes.root">
       <div className='Header__top'>
         <div className='container'>
-          <Grid container md={12} justify='flex-start' className='header-links-container'>
-            {/* <div className='Header__text'>Магазины</div> */}
-            <div className='Header__text'>Кредит</div>
-            <div className='Header__text'>Доставка и оплата</div>
-            <div className='Header__text'>Гарантии</div>
-            {/* <div className='Header__text'>О компании</div> */}
-            <div className='Header__text'>Контакты</div>
+          <Grid container justify='flex-start' className='header-links-container'>
+            <Link
+              className={classes.link}
+              to="/info#credit"
+              activeClassName="selected"
+              smooth={true}
+            >
+              Кредит
+            </Link>
+            <Link
+              className={classes.link}
+              to="/info#shippingAndDelivery"
+              activeClassName="selected"
+              smooth={true}
+              style={{width: '12%'}}
+            >
+              Доставка и оплата
+            </Link>
+            <Link
+              className={classes.link}
+              to="/info#guarantee"
+              activeClassName="selected"
+              smooth={true}
+            >
+              Гарантии
+            </Link>
+            <Link
+              className={classes.link}
+              to="/info#contacts"
+              activeClassName="selected"
+              smooth={true}
+            >
+              Контакты
+            </Link>
           </Grid>
         </div>
 
@@ -206,4 +242,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(withRouter(Header)));
