@@ -6,7 +6,8 @@ const configRequests = {
   getCustomer: `${baseUrl}/customers/customer`,
   updateCustomer: `${baseUrl}/customers`,
   register: `${baseUrl}/customers/register`,
-  password: `${baseUrl}/customers/password`
+  password: `${baseUrl}/customers/password`,
+  addProd: `${baseUrl}/cart/`
 };
 
 export default configRequests;
