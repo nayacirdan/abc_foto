@@ -22,7 +22,8 @@ const SortProductSelect = () => {
     dispatch(setSortProducts(ev.target.value));
     dispatch(setCurrentPage(1));
     const newQueryObj = changeStandartQuery(queryFiltersObj, ev.target.name, ev.target.value);
-    const newQueryStr = querystring.stringify(newQueryObj, {arrayFormat: 'comma'});
+    const newQueryObj2 = changeStandartQuery(newQueryObj, 'startPage', 1);
+    const newQueryStr = querystring.stringify(newQueryObj2, {arrayFormat: 'comma'});
     history.push(`${location.pathname}?${newQueryStr}`);
   };
   return (

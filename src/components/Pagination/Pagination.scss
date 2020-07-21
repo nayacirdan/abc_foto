@@ -19,3 +19,17 @@
     font-size:34px;
   }
 }
+
+@media (max-width: 768px) {
+  .products-pagination {
+    margin:50px 15px;
+
+  }
+  .products-pagination .MuiPaginationItem-root {
+    font-size: 20px;
+    padding: 0;
+  }
+  .products-pagination .MuiPaginationItem-icon {
+    font-size: 25px;
+  }
+}

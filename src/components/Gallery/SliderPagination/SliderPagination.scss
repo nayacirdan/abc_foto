@@ -1,0 +1,14 @@
+@media (min-width: 640px) and (max-width: 979px)  {
+    .lil-slider-img {
+        width: 400px;
+        height: 400px;
+        margin-bottom: 7%;
+    }
+}
+@media (max-width: 639px) {
+    .lil-slider-img {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 10%;
+    }
+}

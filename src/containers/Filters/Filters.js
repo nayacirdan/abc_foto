@@ -7,7 +7,6 @@ import {getAllProductsByCategory} from '../../store/actions/actions';
 
 const FilterContainer = () => {
   const dispatch = useDispatch();
-  const categoryTitle = useSelector((state) => state.categories.currentCategory.title);
   const currentCategory = useSelector(state => state.categories.currentCategory.name);
 
   useEffect(() => {
@@ -15,11 +14,10 @@ const FilterContainer = () => {
   }, [currentCategory, dispatch]);
 
   return (
-    <div className='filters-container'>
-      <h2 className='category-title'>{categoryTitle}</h2>
+    <>
       <RangeFilter/>
       <RegularFilterList/>
-    </div>
+    </>
   );
 };
 

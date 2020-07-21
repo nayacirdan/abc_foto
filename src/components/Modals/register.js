@@ -45,7 +45,6 @@ const Register = ({register, openModal}) => {
   const regSubmit = ({firstName, lastName, email, password, telephone }) => {
     const login = lastName + firstName.split('')[0].toUpperCase();
     register(firstName, lastName, email, login, password, telephone);
-    debugger;
     openModal();
   };
     
