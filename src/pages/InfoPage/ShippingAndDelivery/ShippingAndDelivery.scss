@@ -1,0 +1,58 @@
+.MuiDialog-paperWidthSm {
+    padding: 2%
+}
+.deliveryy {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+    color: #677283;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    & div {
+        margin: 0 auto;
+    }
+}
+.delivery-in {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    grid-gap: 3%;
+}
+
+.shippingAndDelivery {
+    text-align: center;
+
+    p, div {
+        margin: 1% 0;
+    }
+    h1, h3 {
+        margin: 3% 0;
+        text-align: start;
+    }
+}
+.delivery-img {
+        display: flex;
+        justify-content: center;
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+    .shippingAndDelivery  {
+        font-size: 12px;
+    }
+}
+@media (min-width: 640px) and (max-width: 989px) {
+    .shippingAndDelivery  {
+        font-size: 10px;
+    }
+}
+@media (max-width: 639px) {
+    .shippingAndDelivery  {
+        font-size: 9px;
+    }
+    .delivery-in {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

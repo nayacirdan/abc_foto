@@ -100,7 +100,7 @@ function CheckoutPage (props) {
           <div className="checkout-group">
             <div className="order-container">
               <Form className="checkout-form" autoComplete="off">
-                <div className="block-title">
+                <div className="block-title" data-test-id="checkout-page-title">
                   <h4 className="big-text">Контактные данные</h4>
                   <h6 className="small-text">* Поля, обязательные для заполнения</h6>
                 </div>
