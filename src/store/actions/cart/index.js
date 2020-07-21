@@ -1,12 +1,12 @@
 import constants from '../../constans/constans';
 import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart} from '../../../ajax/cart/requests';
-import products from './../../reducers/products/productsReducer';
 
 const addToCart = (product) => async (dispatch, getState) => {
   const {userSignin} = getState();
   if (userSignin.logged) {
     try {
       const {data} = await addProductToDB(product, userSignin.userInfo.token);
+      console.log(data);
       dispatch({type: constants.ADD_TO_CARD_DB, payload: data});
     } catch (error) {
       dispatch({type: constants.ADD_TO_CARD_DB_FAIL, payload: error});
@@ -17,12 +17,10 @@ const addToCart = (product) => async (dispatch, getState) => {
   }
 };
 
-const syncCart = (logged) => async (dispatch, getState) => {
+const syncCart = () => async (dispatch, getState) => {
   const lScart = JSON.parse(localStorage.getItem('productCartLs'));
-  debugger;
-  if (logged && lScart) {
-    const {userSignin} = getState();
-    
+  const {userSignin} = getState();
+  if (userSignin.logged && lScart) {
     const data = lScart.map((elem) => {
       return {
         product: elem._id
@@ -35,6 +33,7 @@ const syncCart = (logged) => async (dispatch, getState) => {
     
     try {
       const {cartData} = await loadProdutcsToDb(cart, userSignin.userInfo.token);
+      console.log(cartData);
       dispatch({type: constants.SYNCHROZATION_CART, payload: cartData});
       localStorage.removeItem('productCartLs');
     } catch (error) {
@@ -43,12 +42,21 @@ const syncCart = (logged) => async (dispatch, getState) => {
   }
 };
 
-const getCart = (logged) => async (dispatch, getState) => {
-  if (logged) {
-    const {userSignin} = getState();
+const getCart = () => async (dispatch, getState) => {
+  const {userSignin} = getState();
+  if (userSignin.logged) {
     const {data} = await loadCart(userSignin.userInfo.token);
-    dispatch({type: constants.SYNCHROZATION_CART, payload: data});
+    const cart = data ? await parseCart(data.products) : [];
+    console.log();
+    dispatch({type: constants.LOAD_CART, payload: cart});
   }
+};
+
+const parseCart = (data) => {
+  const newArray = data.map((item) => {
+    return item.product;
+  });
+  return newArray;
 };
 
 export {
