@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { userSignin } from './users/signin';
 import { getCustomer } from './users/getcustomer';
 import { userRegister } from './users/register';
+import cartReducer from '../reducers/cart/cartReducer';
 import modals from './modals/modalsReducer';
 import products from './products/productsReducer';
 import categories from './categories/categoriesReducer';
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   modals,
   userSignin,
   getCustomer,
-  userRegister
+  userRegister,
+  cartReducer
 });
 
 export default reducer;

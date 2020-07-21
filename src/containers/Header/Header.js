@@ -12,8 +12,9 @@ import logo from '../../svg/logo';
 import './Header.scss';
 import Navigation from './Navigation/Navigation';
 
-import { loggedIn, getCustomer } from '../../store/actions/users/index';
 import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
+import { loggedIn, getCustomer, signIn } from '../../store/actions/users/index';
+import { syncCart } from '../../store/actions/cart/index';
 import { connect } from 'react-redux';
 import NavPanel from './NavPanel/NavPanel';
 
@@ -53,7 +54,10 @@ const Header = (props) => {
     logged,
     loggedIn,
     getCustomer,
-    customerInfo
+    customerInfo,
+    registered,
+    signIn,
+    syncCart
   } = props;
 
   const classes = useStyles();
@@ -66,8 +70,19 @@ const Header = (props) => {
     if (userInfo) {
       loggedIn();
       getCustomer();
+      syncCart(logged);
+      history.push('/');
     }
-  }, [getCustomer, loggedIn, userInfo]);
+  }, [getCustomer, history, logged, loggedIn, syncCart, userInfo]);
+
+  useEffect(() => {
+    if (registered) {
+      const {email, password} = JSON.parse(localStorage.getItem('registerAuth'));
+      localStorage.removeItem('registerAuth');
+      signIn(email, password);
+      history.push('/');
+    }
+  }, [getCustomer, history, registered, signIn]);
 
   const onChangeHandler = (e) => {
     searchChange(e.target.value);
@@ -116,7 +131,7 @@ const Header = (props) => {
   const UserMenu = (
     <div className="account-menu">
       <div className="account-menu__accountIcon">{accountIcon}</div>
-      <div className="account-menu__iconText">Welcome, {customerInfo.login}</div>
+      <div className="account-menu__iconText">{customerInfo.login}</div>
     </div>
   );
 
@@ -185,12 +200,14 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = ({ products, userSignin, getCustomer }) => {
+const mapStateToProps = ({products, userSignin, getCustomer, userRegister, registeredData }) => {
   return {
     products: products.products,
     userInfo: userSignin.userInfo,
     logged: userSignin.logged,
-    customerInfo: getCustomer.customerInfo
+    customerInfo: getCustomer.customerInfo,
+    registered: userRegister.registered,
+    registeredData: registeredData
   };
 };
 
@@ -202,8 +219,10 @@ const mapDispatchToProps = dispatch => {
     setCurrentProduct: (product) => dispatch(setCurrentProduct(product)),
     openModal: () => dispatch(openModal()),
     loggedIn: () => dispatch(loggedIn()),
-    getCustomer: () => dispatch(getCustomer())
+    getCustomer: () => dispatch(getCustomer()),
+    signIn: (email, password) => dispatch(signIn(email, password)),
+    syncCart: (logged) => dispatch(syncCart(logged))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(withRouter(Header)));

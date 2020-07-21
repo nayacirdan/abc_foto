@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import './PersonalArea.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import "./PersonalArea.scss";
 
-function TabPanel (props) {
+function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -30,13 +30,13 @@ function TabPanel (props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired
+  value: PropTypes.any.isRequired,
 };
 
-function a11yProps (index) {
+function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -44,15 +44,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    height: 224
+    display: "flex",
+    height: 224,
   },
   tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`
-  }
+    borderRight: `1px solid ${theme.palette.divider}`,
+  },
 }));
 
-export default function PersonalArea () {
+export default function PersonalArea() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

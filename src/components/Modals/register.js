@@ -9,7 +9,7 @@ import { openModal} from '../../store/actions/actions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const Registr = ({register, signIn, openModal, userRegister}) => {
+const Register = ({register, openModal}) => {
   const validationSchema = Yup.object({
     // firstName: Yup.string('Enter First Name')
     //   .required('First Name is required'),
@@ -43,14 +43,9 @@ const Registr = ({register, signIn, openModal, userRegister}) => {
   };
     
   const regSubmit = ({firstName, lastName, email, password, telephone }) => {
-    const login = firstName;
-    register(firstName, lastName, login, email, password, telephone);
-    if (userRegister.registred) {
-      signIn(email, password);
-      openModal();
-    } else {
-      console.log(userRegister.registerError);
-    }
+    const login = lastName + firstName.split('')[0].toUpperCase();
+    register(firstName, lastName, email, login, password, telephone);
+    openModal();
   };
     
   return (
@@ -168,4 +163,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default React.memo(connect(mapStateToProps, mapDispatchToProps)(Registr));
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(Register));
