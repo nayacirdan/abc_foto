@@ -121,4 +121,4 @@ const Characteristics = (props) => {
   );
 };
 
-export default Characteristics;
+export default React.memo(Characteristics);

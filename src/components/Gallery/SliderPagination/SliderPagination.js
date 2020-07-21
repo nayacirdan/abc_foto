@@ -32,4 +32,4 @@ const FlipEffect = (props) => {
     </Swiper>
   );
 };
-export default FlipEffect;
+export default React.memo(FlipEffect);
