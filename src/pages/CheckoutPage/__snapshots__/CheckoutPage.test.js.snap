@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test checkout page should render checkout page without props 1`] = `
+<div
+  className="order-wrapper"
+>
+  <h2
+    className="head-title"
+  >
+    Оформление заказа
+  </h2>
+  <Formik
+    initialValues={
+      Object {
+        "email": "",
+        "name": "",
+        "phone": "",
+      }
+    }
+    onSubmit={[Function]}
+    validate={[Function]}
+  >
+    <Component />
+  </Formik>
+</div>
+`;

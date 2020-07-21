@@ -121,4 +121,4 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, null)(ProductPageInfo);
+export default React.memo(connect(mapStateToProps, null)(ProductPageInfo));

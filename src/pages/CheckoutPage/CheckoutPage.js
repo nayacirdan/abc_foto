@@ -29,7 +29,7 @@ function CheckoutPage () {
       setProducts(result);
     });
   }, []); */
-  
+
   const handleSubmit = (values) => {
     dispatch(toggleOrderModal(true));
     console.log('values=', values);
@@ -48,13 +48,11 @@ function CheckoutPage () {
 
     if (!values.phone) {
       errors.phone = 'Required';
-    } else if (
-      !/^\d{10}$/i.test(values.phone)
-    ) {
+    } else if (!/^\d{10}$/i.test(values.phone) || values.phone.length !== 10) {
       errors.phone = 'Invalid phone number';
     }
 
-    if (!values.name) errors.name = 'Invalid name';
+    if (!values.name) errors.name = 'Required';
 
     return errors;
   };

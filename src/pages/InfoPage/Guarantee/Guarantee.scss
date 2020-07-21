@@ -1,0 +1,41 @@
+.guaratnee-block {
+    text-align: start !important;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+    color: #677283;
+
+    p, div {
+        margin: 1% 0;
+    }
+    h1, h3, h4 {
+        margin: 2% 0;
+    }
+    span {
+        font-weight: bold;
+    }
+    ul li:before {
+        content:  "—";
+        position: relative;
+        left:     -5px;
+    }
+    ul {
+        list-style: none;
+    }
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+    .guaratnee-block {
+        font-size: 12px;
+    }
+}
+@media (min-width: 640px) and (max-width: 879px) {
+    .guaratnee-block {
+        font-size: 10px;
+    }
+}
+@media (max-width: 639px) {
+    .guaratnee-block {
+        font-size: 9px;
+    }
+}
