@@ -17,7 +17,7 @@ import setToLocalStorage from '../../utils/localStorage';
 import {addToCart} from './../../store/actions/cart/index';
 
 const CardItem = (props) => {
-  const { product, history, setCurrentProduct, addToCart } = props;
+  const { product, history, setCurrentProduct, addToCart} = props;
 
   const {
     imageUrls,
@@ -108,6 +108,7 @@ const CardItem = (props) => {
 
             <IconButton aria-label="upload picture" component="span"
               className='card__cart-btn' disabled={!isAvailable} onClick={addToCardHandler}>
+              <ShoppingCartOutlinedIcon className='card__cart-icon' />
             </IconButton>
           </Grid>
           <Grid container
