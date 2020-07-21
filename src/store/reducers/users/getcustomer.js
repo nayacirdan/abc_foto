@@ -8,9 +8,9 @@ const initialState = {
 const getCustomer = (state = initialState, action) => {
   switch (action.type) {
     case constants.USER_GET_INFO:
-      return { customerInfo: action.payload };
+      return {...state, customerInfo: action.payload };
     case constants.USER_GET_INFO_FAIL:
-      return { customerInfoError: action.payload };
+      return {...state, customerInfoError: action.payload };
 
     default: return state;
   }
