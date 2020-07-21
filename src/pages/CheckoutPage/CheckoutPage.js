@@ -85,7 +85,7 @@ function CheckoutPage (props) {
       errors.phone = 'Invalid phone number';
     }
 
-    if (!values.name) errors.name = 'Invalid name';
+    if (!values.name) errors.name = 'Required';
 
     return errors;
   };
