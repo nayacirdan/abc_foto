@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Box from '@material-ui/core/Box';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import TextField from '@material-ui/core/TextField';
 import {Field} from 'formik';
-import DeliveryHelper from '../DeliverMethods/DeliveryHelper';
 import PaymentHelper from './PaymentHelper';
 
 const PaymentMethods = () => {
@@ -26,7 +19,6 @@ const PaymentMethods = () => {
         name="paymentMethod"
         component={PaymentHelper}
       />
-
 
     </div>
   );

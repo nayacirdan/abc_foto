@@ -2,7 +2,7 @@ import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Box from "@material-ui/core/Box";
+import Box from '@material-ui/core/Box';
 
 const PaymentHelper = ({
   field,
