@@ -108,6 +108,7 @@ const CardItem = (props) => {
 
             <IconButton aria-label="upload picture" component="span"
               className='card__cart-btn' disabled={!isAvailable} onClick={addToCardHandler}>
+              <ShoppingCartOutlinedIcon className='card__cart-icon' />
             </IconButton>
           </Grid>
           <Grid container
