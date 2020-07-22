@@ -50,12 +50,12 @@ const Author = (props) => {
           <ExpandMoreIcon className={classes.expandMore} fontSize="small" />
         </div>
       }
+      // secondItem={
+      //   <div className="menu-item">
+      //     <NavLink to='/user' className="menu-item__tel-number">Кабинет</NavLink>
+      //   </div>
+      // }
       secondItem={
-        <div className="menu-item">
-          <NavLink to='/user' className="menu-item__tel-number">Кабинет</NavLink>
-        </div>
-      }
-      thirdItem={
         <div className="menu-item">
           <div className="menu-item__tel-number" onClick={logOutHandler}>Выход</div>
         </div>
