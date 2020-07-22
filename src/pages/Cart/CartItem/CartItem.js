@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {deleteItem} from '../../../store/actions/cart/index';
 
 const CartItem = (props) => {
-  const { item, deleteItem } = props;
+  const { item, deleteItem, withButtons } = props;
 
   const deleteItemHandler = () => {
     deleteItem(item);
@@ -24,27 +24,36 @@ const CartItem = (props) => {
         {`${item.currentPrice} ₴`}
       </div>
       <div className='CartItem__quantity'>
-        <button >+</button>
+        {
+          withButtons &&
+        (<button >+</button>)
+        }
         <span>{item.quantity}</span>
-        <button >– </button>
-        <button onClick={deleteItemHandler}>X</button>
+        
+        {
+          withButtons &&
+              (<button >-</button>)
+        }
+        
       </div>
+
       <div className='CartItem__total'>
         {`${item.currentPrice * item.quantity} ₴`}
       </div>
+      <button className={'btn-delete'} onClick={deleteItemHandler}>X</button>
     </div>
   );
 };
 // const mapStateToProps = ({cartReducer}) => {
 //   return {
-    
+
 //   };
 // };
-  
+
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteItem: (product) => dispatch(deleteItem(product))
   };
 };
-  
+
 export default React.memo(connect(null, mapDispatchToProps)(CartItem));

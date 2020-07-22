@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import CartItem from '../CartItem/CartItem';
 import '../CartSection/CartSection.scss';
 
-const CartItems = ({cartInfo}) => {
+const CartItems = ({cartInfo, withButtons}) => {
   const [amount, setAmount] = useState(0);
 
   const renderItems = cartInfo.map((item, index) => (
-    <CartItem key={index} item={item}/>
-
+    <CartItem key={index} item={item} withButtons={withButtons}/>
   ));
 
   useEffect(() => {
