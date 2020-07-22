@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import SelectInput from '../../../components/SelectInput/SelectInput';
+import React from 'react';
 import {Field} from 'formik';
 import DeliveryHelper from './DeliveryHelper';
 
-const DeliverMethods = ({values}) => {
-  const [deliveryMethod, setDeliveryMethod] = React.useState('text7');
+const DeliverMethods = () => {
+/*  const [deliveryMethod, setDeliveryMethod] = React.useState('text7');
   const [isActiveSelect, setIsActiveSelect] = useState(false);
 
   const handleChangeDeliveryMethod = (event) => {
@@ -16,7 +11,7 @@ const DeliverMethods = ({values}) => {
     setDeliveryMethod(value);
     setIsActiveSelect(true);
     if (value === 'text7') setIsActiveSelect(false);
-  };
+  }; */
 
   return (
     <div className="order-delivery">

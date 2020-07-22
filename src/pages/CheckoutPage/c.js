@@ -73,13 +73,14 @@ export const productsNotJson = [{
 }
 ];
 
-const values = {
+/* const values = {
   email: 'ksusha.cirdan@gmail.com',
   phone: '0937699607',
   comment: 'апвапвап',
   deliveryMethod: 'self',
   paymentMethod: 'cash'
-};
+}; */
+/*
 const sendData = (values) => {
 
 };
@@ -106,3 +107,4 @@ const AC_data = {
   canceled: false,
   products: []
 };
+*/
