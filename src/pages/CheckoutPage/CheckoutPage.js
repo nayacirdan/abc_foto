@@ -11,6 +11,7 @@ import PaymentMethods from './PaymentMethods/PaymentMethods';
 import {Button} from '@material-ui/core';
 import axios from 'axios';
 import {productsNotJson} from './c';
+import ItemsInCart from './ItemsInCart/ItemsInCart';
 
 function CheckoutPage () {
   const dispatch = useDispatch();
@@ -146,9 +147,10 @@ function CheckoutPage () {
             </div>
 
             {/* Items In Cart */}
-            <SimpleModal onClick={submitForm}/>
-            <Button type='button' onClick={sendOrderNAC}>Не авторизированный</Button>
-            <Button type='button' onClick={sendOrderAC}>Авторизированный</Button>
+            <ItemsInCart submitBtnFunc={submitForm}/>
+            {/*      <SimpleModal onClick={submitForm}/> */}
+            {/*         <Button type='button' onClick={sendOrderNAC}>Не авторизированный</Button>
+            <Button type='button' onClick={sendOrderAC}>Авторизированный</Button> */}
           </div>
         )}
       </Formik>

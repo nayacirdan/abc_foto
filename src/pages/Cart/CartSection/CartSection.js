@@ -22,7 +22,7 @@ const CartSection = ({cartInfo}) => {
               <span>Кол.</span>
               <span>Всего</span>
             </div>
-            <CartItems/>
+            <CartItems withButtons/>
           </div>
           <div className='CartSection__checkout'>
             <div className='CartSection__btn-cont'>

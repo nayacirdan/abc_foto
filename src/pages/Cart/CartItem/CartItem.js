@@ -2,7 +2,7 @@ import React from 'react';
 import './CartItem.scss';
 
 const CartItem = (props) => {
-  const { item } = props;
+  const { item, withButtons } = props;
   return (
     <div className='CartItem'>
       <div className='CartItem__img-descr-wrap'>
@@ -18,10 +18,17 @@ const CartItem = (props) => {
         {`${item.currentPrice} ₴`}
       </div>
       <div className='CartItem__quantity'>
-        <button >+</button>
+        {
+          withButtons &&
+        (<button >+</button>)
+        }
         <span>{item.quantity}</span>
-        <button >– </button>
+        {
+          withButtons &&
+              (<button >-</button>)
+        }
       </div>
+      
       <div className='CartItem__total'>
         {`${item.currentPrice * item.quantity} ₴`}
       </div>
