@@ -146,7 +146,6 @@ const Header = (props) => {
               to="/info#shippingAndDelivery"
               activeClassName="selected"
               smooth={true}
-              style={{width: '12%'}}
             >
               Доставка и оплата
             </Link>
@@ -186,7 +185,6 @@ const Header = (props) => {
             options={products}
             getOptionLabel={(option) => option.name}
             onChangeAutocomplete={filterProductsHandler}
-
             style={{ width: '99%' }}
             renderInput={(params) => <TextField
               {...params}
@@ -195,11 +193,9 @@ const Header = (props) => {
             />}
           />
         </div>
-
         <div className="menu-item">
           {phoneNumber}
         </div>
-
         <div><Author logged={logged}
           openModal={openModal}
           customerInfo={customerInfo}
