@@ -1,0 +1,42 @@
+.credit-block {
+    text-align: start;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    line-height: 160%;
+    letter-spacing: -0.03em;
+    color: #677283;
+     
+    p, div {
+        margin: 1% 0;
+    }
+    h1, h3 {
+        margin: 3% 0;
+    }
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+    .credit-block {
+        font-size: 12px;
+    }
+    .MuiTableCell-alignRight {
+        font-size: 11px !important;
+    }
+    .banks {
+        display: none;
+    }
+}
+@media (min-width: 640px) and (max-width: 979px) {
+    .credit-block {
+        font-size: 10px;
+    }
+    .banks {
+        display: none;
+    }
+}
+@media (max-width: 639px) {
+    .credit-block {
+        font-size: 9px;
+    }
+    .banks {
+        display: none;
+    }
+}

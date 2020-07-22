@@ -55,7 +55,7 @@ const Gallery = (props) => {
   }, [gallerySwiper, thumbnailSwiper]);
 
   return (
-    <div className="swiper-container">
+    <div className="swiper-container gallery">
       <Swiper {...thumbnailSwiperParams} >
         {slidesRight}
       </Swiper>
@@ -66,4 +66,4 @@ const Gallery = (props) => {
   );
 };
 
-export default Gallery;
+export default React.memo(Gallery);

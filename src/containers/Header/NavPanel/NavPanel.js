@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 
 import logo from '../../../svg/logo';
 import { withRouter } from 'react-router';
-// import SimpleExpansionPanel from '../../../components/ExpansionPanel/ExpansionPanel';
+import { NavHashLink } from 'react-router-hash-link';
+import Navigation from '../Navigation/Navigation';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -32,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#51AD33'
     }
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#000000',
+    fontSize: '14px'
   }
 }));
 
@@ -49,10 +55,19 @@ function TemporaryDrawer ({history, categories}) {
 
     setState({ ...state, [anchor]: open });
   };
-  const array = ['Магазины', 'Кредит', 'Доставка и оплата', 'Гарантии', 'О компании', 'Контакты'];
+  const array = [{name: 'Кредит', adress: '/info#credit'}, {name: 'Доставка и оплата', adress: 'info#shippingAndDelivery'}, {name: 'Гарантии', adress: '/info#guarantee'}, {name: 'Контакты', adress: '/info#contacts'}];
   const navArray = array.map((item, key) => (
     <ListItem button key={key}>
-      <ListItemText primary={item} />
+      <ListItemText>
+        <NavHashLink
+          className={classes.link}
+          to={item.adress}
+          activeClassName="selected"
+          smooth={true}
+        >
+          {item.name}
+        </NavHashLink>
+      </ListItemText>
     </ListItem>
   ));
 
@@ -61,7 +76,7 @@ function TemporaryDrawer ({history, categories}) {
       key={id} component={Link}
       to={`/products/filter?categories=${category.name}`}
       className={classes.nested}>
-      <ListItemText primary={category.name} />
+      <ListItemText primary={category.title} />
     </ListItem>
   ));
 
@@ -80,29 +95,6 @@ function TemporaryDrawer ({history, categories}) {
         </ListItem>
       </List>
       <Divider />
-      {/* <List>
-
-        <SimpleExpansionPanel
-          title={
-            <MenuList>
-              <MenuItem>
-                <ListItemIcon><StoreIcon /></ListItemIcon>
-                <ListItemText primary={'Каталог товаров'} className={classes.catTitle} />
-              </MenuItem>
-            </MenuList>
-          }
-          main={<List >
-            {categories.map((category, id) => (
-              <ListItem button
-                key={id} component={Link}
-                to={`/products/filter?categories=${category.name}`}
-                className={classes.nested}>
-                <ListItemText primary={category.name} />
-              </ListItem>
-            ))}
-          </List>}
-        />
-      </List> */}
 
       <List>
         <ListItem button onClick={(e) => {
@@ -114,7 +106,7 @@ function TemporaryDrawer ({history, categories}) {
         </ListItem>
       </List>
       <List>
-        {toggled && cats}
+        {toggled && <Navigation />}
       </List>
       <Divider />
       <List>
@@ -150,4 +142,4 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, null)(withRouter(TemporaryDrawer));
+export default React.memo(connect(mapStateToProps, null)(withRouter(TemporaryDrawer)));

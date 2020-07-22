@@ -11,8 +11,12 @@ const cartReducer = (state = initialState, action) => {
       return {...state, cartInfo: action.payload};
     case constants.ADD_TO_CARD_DB:
       return {...state, cartInfo: action.payload };
+    case constants.LOAD_CART:
+      return {...state, cartInfo: action.payload };
     case constants.ADD_TO_CARD_DB_FAIL:
       return {...state, cartErrors: action.payload };
+    case constants.CLEAR_CART:
+      return {...state, cartInfo: [], cartErrors: ''};
     default:
       return state;
   }

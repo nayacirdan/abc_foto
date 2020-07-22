@@ -31,15 +31,14 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <AppContainer/>
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <AppContainer/>
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -14,4 +14,18 @@
   .navLinks-NAYA {
     display: none;
   }
+  .MuiList-root .navLinks-NAYA {
+    display: flex;
+    flex-direction: column;
+    background-color: #51AD33;
+    align-items: flex-start;
+    width: 100%;
+
+  }
+  .MuiList-root .navLinks-NAYA > a{
+    width: 100%;
+    padding:15px 20px;
+    word-break: break-word;
+    box-sizing: border-box;
+  }
 }
