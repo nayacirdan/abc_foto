@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './CartSection.scss';
-import CartItem from '../CartItem/CartItem';
-import Button from '@material-ui/core/Button';
 
-const CartSection = () => {
-  const [totalPrice, setTotalPrice] = useState(0);
-  const renderItems = (
-    <CartItem totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
-  );
+import Button from '@material-ui/core/Button';
+import CartItems from '../CartItems/CartItems';
+const CartSection = ({cartInfo}) => {
+  debugger;
+    
   return (
     <>
       <div className='CartSection'>
@@ -20,27 +19,16 @@ const CartSection = () => {
             <div className='CartSection__title'>
               <span>Товар</span>
               <span>Цена</span>
-              <span>Количество</span>
+              <span>Кол.</span>
               <span>Всего</span>
             </div>
-            <div className='CartSection__cart-item'>
-              {renderItems}
-              {renderItems}
-              {renderItems}
-            </div>
+            <CartItems/>
           </div>
           <div className='CartSection__checkout'>
             <div className='CartSection__btn-cont'>
-              <Button variant='outlined'>Продолжить покупки</Button>
+              <Button variant='outlined'>Продолжить</Button>
             </div>
-            <div className='CartSection__total'>
-              <span className='CartSection__total--text'>
-                                Итого 3 товара на общую сумму
-              </span>
-              <span className='CartSection__total--price'>
-                {totalPrice} грн.
-              </span>
-            </div>
+
             <div className='CartSection__btn-checkout'>
               <Link to='/checkout'>
                 <Button variant='outlined'>Оформить</Button>
@@ -52,5 +40,16 @@ const CartSection = () => {
     </>
   );
 };
+const mapStateToProps = ({cartReducer}) => {
+  return {
+    cartInfo: cartReducer.cartInfo
+  };
+};
 
-export default CartSection;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      
+  };
+};
+
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(CartSection));

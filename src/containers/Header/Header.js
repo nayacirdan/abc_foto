@@ -13,7 +13,7 @@ import './Header.scss';
 import Navigation from './Navigation/Navigation';
 
 import { searchChange, getProductsBySearch, getProducts, setCurrentProduct, openModal } from '../../store/actions/actions';
-import { getCustomer, signIn } from '../../store/actions/users/index';
+import { getCustomer, signIn, logOut } from '../../store/actions/users/index';
 import { syncCart, getCart} from '../../store/actions/cart/index';
 import { connect } from 'react-redux';
 import NavPanel from './NavPanel/NavPanel';
@@ -65,7 +65,9 @@ const Header = (props) => {
     registered,
     signIn,
     syncCart,
-    getCart
+    getCart,
+    cartInfo,
+    logOut
   } = props;
 
   const classes = useStyles();
@@ -76,7 +78,7 @@ const Header = (props) => {
 
   useEffect(() => {
     getCustomer();
-    syncCart(logged);
+    syncCart();
     getCart();
   }, [getCart, getCustomer, logged, syncCart]);
 
@@ -200,12 +202,16 @@ const Header = (props) => {
 
         <div><Author logged={logged}
           openModal={openModal}
-          customerInfo={customerInfo}/></div>
+          customerInfo={customerInfo}
+          logOut={logOut}/></div>
 
         <NavLink exact to="/cart" className="cart-nav">
           <div className="account-menu">
-            <div className="account-menu__accountIcon">{cartIcon}</div>
+            <div className="account-menu__accountIcon">{cartIcon}
+              <span className='amount-cart-items'>{cartInfo.length}</span>
+            </div>
             <div className="account-menu__iconText">Корзина</div>
+            
           </div>
         </NavLink>
       </div>
@@ -220,14 +226,15 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = ({products, userSignin, getCustomer, userRegister, registeredData }) => {
+const mapStateToProps = ({products, userSignin, getCustomer, userRegister, registeredData, cartReducer }) => {
   return {
     products: products.products,
     userInfo: userSignin.userInfo,
     logged: userSignin.logged,
     customerInfo: getCustomer.customerInfo,
     registered: userRegister.registered,
-    registeredData: registeredData
+    registeredData: registeredData,
+    cartInfo: cartReducer.cartInfo
   };
 };
 
@@ -241,7 +248,8 @@ const mapDispatchToProps = dispatch => {
     getCustomer: () => dispatch(getCustomer()),
     signIn: (email, password) => dispatch(signIn(email, password)),
     syncCart: (logged) => dispatch(syncCart(logged)),
-    getCart: () => dispatch(getCart())
+    getCart: () => dispatch(getCart()),
+    logOut: () => dispatch(logOut())
   };
 };
 

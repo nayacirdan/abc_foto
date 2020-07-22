@@ -1,6 +1,5 @@
 import constants from '../../constans/constans';
-import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart} from '../../../ajax/cart/requests';
-// import products from './../../reducers/products/productsReducer';
+import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart, clearCartFromDb} from '../../../ajax/cart/requests';
 
 const addToCart = (product) => async (dispatch, getState) => {
   const {userSignin} = getState();
@@ -17,11 +16,10 @@ const addToCart = (product) => async (dispatch, getState) => {
   }
 };
 
-const syncCart = (logged) => async (dispatch, getState) => {
+const syncCart = () => async (dispatch, getState) => {
   const lScart = JSON.parse(localStorage.getItem('productCartLs'));
-
-  if (logged && lScart) {
-    const {userSignin} = getState();
+  const {userSignin} = getState();
+  if (userSignin.logged && lScart) {
     const data = lScart.map((elem) => {
       return {
         product: elem._id
@@ -42,16 +40,30 @@ const syncCart = (logged) => async (dispatch, getState) => {
   }
 };
 
-const getCart = (logged) => async (dispatch, getState) => {
-  if (logged) {
-    const {userSignin} = getState();
+const getCart = () => async (dispatch, getState) => {
+  const {userSignin} = getState();
+  if (userSignin.logged) {
     const {data} = await loadCart(userSignin.userInfo.token);
-    dispatch({type: constants.SYNCHROZATION_CART, payload: data});
+    const cart = data ? await parseCart(data.products) : [];
+    dispatch({type: constants.LOAD_CART, payload: cart});
   }
 };
 
-const clearCart = () => dispatch => {
-  dispatch({type: constants.CLEAR_CART});
+const parseCart = (data) => {
+  const newArray = data.map((item) => {
+    return item.product;
+  });
+  return newArray;
+};
+
+const clearCart = () => async (dispatch, getState) => {
+  try {
+    const {userSignin} = getState();
+    await clearCartFromDb(userSignin.userInfo.token);
+    dispatch({type: constants.CLEAR_CART});
+  } catch (error) {
+    dispatch({type: constants.ADD_TO_CARD_DB_FAIL, payload: error});
+  }
 };
 
 export {
