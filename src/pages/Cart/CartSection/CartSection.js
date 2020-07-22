@@ -13,7 +13,7 @@ const CartSection = ({cartInfo}) => {
           <div className='CartSection__heading'>
                         Моя Корзина
           </div>
-          <div className="CartSection__products">
+          {cartInfo.length > 0 ? <div className="CartSection__products">
             <div className='CartSection__title'>
               <span>Товар</span>
               <span>Цена</span>
@@ -21,7 +21,7 @@ const CartSection = ({cartInfo}) => {
               <span>Всего</span>
             </div>
             <CartItems/>
-          </div>
+          </div> : <div className='noproducts'>В корзине нет товаров</div>}
           <div className='CartSection__checkout'>
             <div className='CartSection__btn-cont'>
               <Button variant='outlined'>Продолжить</Button>
