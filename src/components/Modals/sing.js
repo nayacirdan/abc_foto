@@ -29,7 +29,6 @@ const Sing = ({signIn, userSignin, openModal}) => {
     if (userSignin.error) {
       console.log(userSignin.error);
     } else {
-      console.log('Fuck good');
       openModal();
     }
   };

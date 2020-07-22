@@ -18,7 +18,7 @@ const Footer = () => {
     ev.preventDefault();
     const emailToSubscribe = ev.target.email.value;
     
-    axios.post('/subscribers', {
+    axios.post('http://codeandcatchfire.kiev.ua:5010/subscribers', {
       enabled: 'true',
       email: emailToSubscribe,
       letterSubject: 'You are subscribed',

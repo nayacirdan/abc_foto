@@ -11,7 +11,6 @@ const CartItems = ({cartInfo, withButtons}) => {
   ));
 
   useEffect(() => {
-    console.log('object');
     setAmount(() => {
       const totalAmount = cartInfo.map(item => {
         return item.currentPrice * item.quantity;

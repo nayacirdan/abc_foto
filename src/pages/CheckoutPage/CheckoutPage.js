@@ -17,8 +17,7 @@ function CheckoutPage () {
   const dispatch = useDispatch();
   const customer = useSelector(state => state.getCustomer.customerInfo);
   const productsInCart = useSelector(state => state.cartReducer.cartInfo);
-  console.log(productsInCart);
-  console.log(customer._id);
+
   let customerName;
 
   if (customer.firstName || customer.lastName) {
@@ -56,11 +55,8 @@ function CheckoutPage () {
     products: []
   };
 
-  console.log(JSON.stringify(NAC_data));
-  console.log(JSON.stringify(AC_data));
-
   const sendOrderNAC = () => {
-    axios.post('/orders', NAC_data)
+    axios.post('http://codeandcatchfire.kiev.ua:5010/orders', NAC_data)
       .then(newOrder => {
         console.log('NAC', newOrder.data);
         /* Do something with newOrder */
@@ -71,21 +67,40 @@ function CheckoutPage () {
       });
   };
 
-  const sendOrderAC = () => {
+  /*  const sendOrderAC = () => {
     axios.post('/orders', AC_data)
       .then(newOrder => {
         console.log('AC', newOrder.data);
-        /* Do something with newOrder */
+        /!* Do something with newOrder *!/
       })
       .catch(err => {
         console.log('AC', err, err.message);
-        /* Do something with error, e.g. show error to user */
+        /!* Do something with error, e.g. show error to user *!/
       });
-  };
+  }; */
 
   const handleSubmit = (values) => {
     dispatch(toggleOrderModal(true));
-    console.log('values=', values);
+    const sendOrderAC = (values) => {
+      axios.post('http://codeandcatchfire.kiev.ua:5010/orders', {
+        customerId: customer._id,
+        email: values.email,
+        mobile: values.phone,
+        letterSubject: 'Thank you for order! You are welcome!',
+        letterHtml: '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+        canceled: false,
+        products: []
+      })
+        .then(newOrder => {
+          console.log('AC', newOrder.data);
+          /* Do something with newOrder */
+        })
+        .catch(err => {
+          console.log('AC', err, err.message);
+          /* Do something with error, e.g. show error to user */
+        });
+    };
+    sendOrderAC(values);
   };
 
   const validate = values => {

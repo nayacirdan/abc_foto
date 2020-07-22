@@ -1,5 +1,5 @@
 // todo после хостинга поменять на домен!!!
-export const baseUrl = 'http://localhost:3000';
+export const baseUrl = 'http://codeandcatchfire.kiev.ua:5010';
 
 const configRequests = {
   login: `${baseUrl}/customers/login`,

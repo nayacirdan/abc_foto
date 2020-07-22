@@ -50,7 +50,7 @@
     "start:dev": "npm-run-all -p watch-sass-js start-js",
     "start:prod": "npm run build && react-scripts start",
     "start-js": "npm run eslint && react-scripts start",
-    "build": "npm run eslint-fix && npm run stylelint-fix && react-scripts build",
+    "build": "npm run eslint-fix && react-scripts build",
     "test": "react-scripts test",
     "test:watch": "react-scripts test --watch",
     "eslint": "eslint \"src/**/*.js\"",
@@ -100,7 +100,7 @@
     "eslint-plugin-react": "^7.20.3",
     "standard": "^14.3.4"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://codeandcatchfire.kiev.ua:5010",
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

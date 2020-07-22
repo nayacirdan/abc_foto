@@ -21,7 +21,7 @@ const ProductPage = (props) => {
 
   const getItemByItemNo = useCallback(
     async () => {
-      const result = await axios.get(`/products/${match.params.itemNo}`)
+      const result = await axios.get(`http://codeandcatchfire.kiev.ua:5010/products/${match.params.itemNo}`)
       // const result = await axios.get(`http://codeandcatchfire.kiev.ua:5010/products/${match.params.itemNo}`)
         .then(res => res.data)
         .catch(err => {

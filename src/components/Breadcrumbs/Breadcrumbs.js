@@ -10,7 +10,7 @@ const BreadcrumbsWrapper = () => {
   const category = useSelector((state) => state.categories.currentCategory.title);
 
   const handleClick = () => {
-    console.log('bradcrumb clicked');
+
   };
 
   return (

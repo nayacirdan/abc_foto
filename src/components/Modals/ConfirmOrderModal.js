@@ -46,7 +46,9 @@ export default function SimpleModal ({onClick}) {
   const handleClose = () => {
     dispatch(clearCart());
     dispatch(toggleOrderModal(false));
+    dispatch(clearCart());
     history.push('/');
+
     /*    setOpen(false); */
   };
 
