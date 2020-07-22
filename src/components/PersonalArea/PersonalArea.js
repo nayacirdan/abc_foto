@@ -1,14 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import "./PersonalArea.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {makeStyles} from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import './PersonalArea.scss';
+import {ChangeUserData} from './ChangeUserData';
+import {ChangeUserPassword} from './ChangeUserPassword';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+function TabPanel (props) {
+  const {children, value, index, ...other} = props;
 
   return (
     <div
@@ -27,16 +29,10 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
+function a11yProps (index) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`
   };
 }
 
@@ -44,15 +40,27 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    height: 224,
+    display: 'flex',
+    height: 234,
+    '@media (min-width:320px) and (max-width: 780px)': {
+      height: 'unset',
+      flexDirection: 'column'
+    }
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    width: '20%',
+    '@media (min-width:320px) and (max-width: 780px)': {
+      width: '100%',
+      flexDirection: 'column'
+    }
   },
+  custom: {
+    width: '80%'
+  }
 }));
 
-export default function PersonalArea() {
+export default function PersonalArea () {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -62,7 +70,7 @@ export default function PersonalArea() {
 
   return (
     <>
-      <div className="container">
+      <div className="container mb300">
         <h1 className="heading-text">ЛИЧНЫЙ КАБИНЕТ</h1>
         <div className={classes.root}>
           <Tabs
@@ -78,19 +86,11 @@ export default function PersonalArea() {
             <Tab label="Мои заказы" {...a11yProps(2)} />
             <Tab label="Выйти из кабинета" {...a11yProps(3)} />
           </Tabs>
-          <TabPanel value={value} index={0}>
-            <div className="user-profile">
-              <h3>Профиль пользователя</h3>
-              <form action="/">
-                <label>
-                  Имя
-                  <input type="text" />
-                </label>
-              </form>
-            </div>
+          <TabPanel value={value} index={0} className={classes.custom}>
+            <ChangeUserData/>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            <ChangeUserPassword/>
           </TabPanel>
           <TabPanel value={value} index={2}>
             Item Three
@@ -103,3 +103,9 @@ export default function PersonalArea() {
     </>
   );
 }
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
+};

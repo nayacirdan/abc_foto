@@ -7,6 +7,125 @@ span.MuiTab-wrapper {
   place-items: flex-start;
 }
 
-.user-profile {
+.mb300 {
+  margin-bottom: 300px;
+}
+
+.formik-form {
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+}
+
+.change-password {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-heading-text {
+  text-align: start;
   padding-left: 160px;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.personal-grid-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 160px;
+}
+
+.personal-grid-item {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+
+.personal-form-btn {
+  background-color: #51ad33;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  place-content: center;
+}
+
+.personal-field-input {
+  padding: 15px;
+  border-radius: 2px;
+  border: 1px solid #5E5C5C;
+
+  &:focus {
+    outline-color: #51AD33;
+  }
+}
+
+.personal-field-label {
+  text-align: start;
+  margin: 10px 0 10px 0;
+  font-size: 14px;
+}
+
+.invalid-feedback {
+  font-size: 11px;
+  color: #ff0000;
+  text-align: start;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.d-none {
+  display: block;
+}
+
+.d-block {
+  display: none;
+}
+
+@media (min-width: 320px) and (max-width: 780px) {
+  .personal-heading-text {
+    margin-top: 40px;
+    padding-left: 0;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  .d-block {
+    display: block;
+  }
+
+  .personal-grid-container {
+    padding-left: 20px;
+    width: 90%;
+  }
+
+  .personal-form-btn {
+    width: unset;
+  }
+
+  .mb300 {
+    margin-bottom: 150px;
+  }
+
+  .formik-form {
+    flex-direction: column;
+    display: block;
+  }
+
+  .personal-grid-item {
+    width: 100%;
+  }
+
+  .change-password {
+    width: unset;
+  }
 }
