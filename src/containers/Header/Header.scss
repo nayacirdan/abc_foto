@@ -3,6 +3,14 @@
     margin: 0 auto;
     align-items: center;
 }
+.amount-cart-items{
+    position: absolute;
+    top:-12px;
+    left: 33px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(235, 12, 12, .8);;
+}
 @mixin fontStyle {
     font-family: "Roboto, sans-serif";
     font-style: normal;
@@ -23,6 +31,7 @@
     cursor: pointer;
 
     &__accountIcon {
+        position: relative;
         background-color: #C2C8D0;
         width: 41px;
         height: 41px;

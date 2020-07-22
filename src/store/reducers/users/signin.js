@@ -15,6 +15,8 @@ const userSignin = (state = initialState, action) => {
       return {...state, loading: false, userInfo: action.payload};
     case constants.USER_SIGNIN_LOGGED:
       return {...state, logged: true };
+    case constants.USER_LOGOUT:
+      return {...state, logged: false, userInfo: null };
     case constants.USER_SIGNIN_FAIL:
       return {...state, loading: false, error: action.payload };
 
