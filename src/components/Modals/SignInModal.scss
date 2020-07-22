@@ -25,7 +25,7 @@
   right: 0;
   left: 0;
   z-index: 1500;
-  width: 33%;
+  width: 470px;
   background: #f9f9fb;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   margin: 50px auto;
@@ -149,4 +149,22 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media (min-width: 320px) and (max-width: 640px) {
+  .modal-signin {
+    width: 320px;
+  }
+
+  .close-modal {
+    right: 0;
+  }
+
+  .Mui-container {
+    & .MuiTab-root {
+      font-size: 15px;
+      padding: 0;
+      min-width: 100px;
+    }
+  }
 }

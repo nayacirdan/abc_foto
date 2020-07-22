@@ -5,13 +5,9 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import './ConfirmOrderModal.scss';
 
-function rand () {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle () {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: '50%',
@@ -24,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 400,
+    minWidth: 320,
     height: 300,
     backgroundColor: '#F9F9FB',
     padding: theme.spacing(2, 4, 3),
