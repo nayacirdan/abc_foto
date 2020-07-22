@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Field} from 'formik';
 import PaymentHelper from './PaymentHelper';
 
 const PaymentMethods = () => {
-  const [paymentMethod, setPaymentMethod] = React.useState('text1');
+/*  const [paymentMethod, setPaymentMethod] = React.useState('text1');
   const [isActiveSelect, setIsActiveSelect] = useState(false);
 
   const handleChangePaymentMethod = (event) => {
     const {value} = event.target;
     setPaymentMethod(value);
     if (value === 'text1') setIsActiveSelect(false);
-  };
+  }; */
 
   return (
     <div className="order-payment">

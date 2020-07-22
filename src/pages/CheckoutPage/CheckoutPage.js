@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Formik, Form, Field} from 'formik';
 import SimpleModal from '../../components/Modals/ConfirmOrderModal';
 import TextField from '@material-ui/core/TextField';

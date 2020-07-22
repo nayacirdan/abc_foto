@@ -29,7 +29,7 @@ const ProductList = () => {
   let productsList = (<div className='empty-product-list'>No items are available</div>);
   if (products && products.length) {
     productsList = products.map((product) => {
-      return (<CardItem product={product}/>);
+      return (<CardItem product={product} key={product.article}/>);
     });
   }
 
