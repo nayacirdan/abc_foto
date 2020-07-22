@@ -19,7 +19,7 @@ const addToCart = (product) => async (dispatch, getState) => {
 
 const syncCart = (logged) => async (dispatch, getState) => {
   const lScart = JSON.parse(localStorage.getItem('productCartLs'));
-  debugger;
+
   if (logged && lScart) {
     const {userSignin} = getState();
     const data = lScart.map((elem) => {
@@ -50,8 +50,13 @@ const getCart = (logged) => async (dispatch, getState) => {
   }
 };
 
+const clearCart = () => dispatch => {
+  dispatch({type: constants.CLEAR_CART});
+};
+
 export {
   addToCart,
   syncCart,
-  getCart
+  getCart,
+  clearCart
 };
