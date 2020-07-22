@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import logo from '../../../svg/logo';
 import { withRouter } from 'react-router';
 import { NavHashLink } from 'react-router-hash-link';
+import Navigation from '../Navigation/Navigation';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -105,7 +106,7 @@ function TemporaryDrawer ({history, categories}) {
         </ListItem>
       </List>
       <List>
-        {toggled && cats}
+        {toggled && <Navigation />}
       </List>
       <Divider />
       <List>

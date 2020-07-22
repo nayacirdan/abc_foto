@@ -6,6 +6,15 @@
 .Footer {
   padding: 50px 140px;
   background: #000;
+  & .subscribe_grid{
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  & .btn-subscribe{
+    font-size: 10px;
+    margin-top: 20px;
+    }
 
   &__container {
     display: flex;

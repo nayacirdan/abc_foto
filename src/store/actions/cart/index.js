@@ -6,7 +6,6 @@ const addToCart = (product) => async (dispatch, getState) => {
   if (userSignin.logged) {
     try {
       const {data} = await addProductToDB(product, userSignin.userInfo.token);
-      console.log(data);
       dispatch({type: constants.ADD_TO_CARD_DB, payload: data});
     } catch (error) {
       dispatch({type: constants.ADD_TO_CARD_DB_FAIL, payload: error});
@@ -30,10 +29,9 @@ const syncCart = () => async (dispatch, getState) => {
     const cart = {
       products: data
     };
-    
+
     try {
       const {cartData} = await loadProdutcsToDb(cart, userSignin.userInfo.token);
-      console.log(cartData);
       dispatch({type: constants.SYNCHROZATION_CART, payload: cartData});
       localStorage.removeItem('productCartLs');
     } catch (error) {
@@ -47,7 +45,6 @@ const getCart = () => async (dispatch, getState) => {
   if (userSignin.logged) {
     const {data} = await loadCart(userSignin.userInfo.token);
     const cart = data ? await parseCart(data.products) : [];
-    console.log();
     dispatch({type: constants.LOAD_CART, payload: cart});
   }
 };
@@ -59,8 +56,13 @@ const parseCart = (data) => {
   return newArray;
 };
 
+const clearCart = () => dispatch => {
+  dispatch({type: constants.CLEAR_CART});
+};
+
 export {
   addToCart,
   syncCart,
-  getCart
+  getCart,
+  clearCart
 };
