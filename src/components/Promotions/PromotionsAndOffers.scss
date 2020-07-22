@@ -1,8 +1,10 @@
 .promotions-main-text {
+  font-weight: bold;
   font-size: 26px;
   color: #677283;
-  font-weight: bold;
-  text-align-last: start;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
 }
 
 .prom-container {
@@ -222,7 +224,6 @@
 }
 
 .swiper-container {
-  // height: 20rem;
   width: 100%;
 }
 
@@ -231,7 +232,6 @@
 }
 
 .swiper-slide {
-  // max-height: 20rem;
   display: flex;
   align-items: center;
   color: #fff;
@@ -264,26 +264,16 @@
 }
 
 .swiper-button-next {
-  background-color: #51ad33;
   width: 5%;
   height: 15%;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
 }
 
 .swiper-button-prev {
-  background-color: #51ad33;
   width: 5%;
   height: 15%;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 780px) {
   .promotions__bottom-section {
     display: none;
   }
@@ -303,7 +293,6 @@
 
   .promotions__img {
     width: 60%;
-    // height: 30%;
     object-fit: contain;
   }
 
@@ -378,5 +367,37 @@
 
   .promotions__section-1 {
     height: 100%;
+  }
+}
+
+@media (min-width: 780px) and (max-width: 1024px) {
+  .promotions__bottom-section {
+    display: none;
+  }
+
+  .promotions__section-1__about-photo-logo-bold {
+    font-size: 20px;
+  }
+
+  .promotions__section-1__about-photo-logo {
+    font-size: 20px;
+    margin-right: 25px;
+  }
+
+  .promotions__section-1__about-photo-logo_text-past {
+    font-size: 23px;
+  }
+
+  .promotions__section-1__about-photo-logo_text-now {
+    font-size: 30px;
+  }
+
+  .medium-text-uah {
+    font-size: 15px;
+  }
+
+  .promotions__img {
+    width: 80%;
+    object-fit: contain;
   }
 }

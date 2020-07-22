@@ -6,23 +6,28 @@ import { NavHashLink as Link } from 'react-router-hash-link';
 import {Button} from '@material-ui/core';
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
+import {toggleSubscribeFailedModal, toggleSubscribeOKModal} from '../../store/actions/actions';
+import {useDispatch} from 'react-redux';
+import SubscribeFailedModal from '../Modals/SubscribeFailedModal';
+import SubscribeOKModal from '../Modals/SubscribeOKModal';
+import {subscribeLetter} from './subsctibe-letter';
 
 const Footer = () => {
+  const dispatch = useDispatch();
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    console.log(ev.target.email.value);
-    console.log(ev.target.value);
     const emailToSubscribe = ev.target.email.value;
     
     axios.post('/subscribers', {
       enabled: 'true',
       email: emailToSubscribe,
-      letterSubject: 'Test letter (final project)',
-      letterHtml: '<!DOCTYPE html><html lang=\'en\'> <head> <meta charset=\'UTF-8\' /> <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\' /> <meta http-equiv=\'X-UA-Compatible\' content=\'ie=edge\' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>'
+      letterSubject: 'You are subscribed',
+      letterHtml: subscribeLetter
     }).then(res => {
-      console.log(res);
+      dispatch(toggleSubscribeOKModal(true));
     }).catch(err => {
       console.log(err.message);
+      dispatch(toggleSubscribeFailedModal(true));
     });
   };
 
@@ -104,6 +109,10 @@ const Footer = () => {
       </div>
       <hr className='Footer__hr'/>
       <span className='Footer__bottom-text'>©abcphoto 2020 - Все права защищены.</span>
+      <div>
+        <SubscribeFailedModal/>
+        <SubscribeOKModal/>
+      </div>
     </div>
   );
 };

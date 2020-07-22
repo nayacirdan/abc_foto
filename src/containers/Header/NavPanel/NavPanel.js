@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, Drawer, Button, List, Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import StoreIcon from '@material-ui/icons/Store';
@@ -71,14 +70,14 @@ function TemporaryDrawer ({history, categories}) {
     </ListItem>
   ));
 
-  const cats = categories.map((category, id) => (
+  /*  const cats = categories.map((category, id) => (
     <ListItem button
       key={id} component={Link}
       to={`/products/filter?categories=${category.name}`}
       className={classes.nested}>
       <ListItemText primary={category.title} />
     </ListItem>
-  ));
+  )); */
 
   const list = (anchor) => (
     <div
