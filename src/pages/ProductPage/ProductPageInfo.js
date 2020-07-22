@@ -6,11 +6,15 @@ import { DeliveryInfo } from '../../components/ExpansionPanel/DeliveryInfo';
 import Gallery from '../../components/Gallery/Gallery';
 import Pagination from '../../components/Gallery/SliderPagination/SliderPagination';
 import Accordion from './Accordion/Accordion';
-
+import {addToCart} from './../../store/actions/cart/index';
 import { connect } from 'react-redux';
 
 const ProductPageInfo = (props) => {
-  const { product } = props;
+  const { product, addToCart } = props;
+
+  const addToCartHandler = () => {
+    addToCart(product);
+  };
 
   const getProductAvailability = () => {
     if (product.isAvailable) {
@@ -69,7 +73,7 @@ const ProductPageInfo = (props) => {
           <div className='purchase'>
             <div className='purchase_block'>
               <ContainedButtons className="green-btn"
-                text={<div className="btn btn-buy">
+                text={<div className="btn btn-buy" onClick={addToCartHandler}>
                   <p>Купить</p>
                   <ShoppingCartOutlinedIcon className='buy-icon lightColorIcon' />
                 </div>} />
@@ -121,4 +125,10 @@ const mapStateToProps = store => {
   };
 };
 
-export default React.memo(connect(mapStateToProps, null)(ProductPageInfo));
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: (product) => dispatch(addToCart(product))
+  };
+};
+
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(ProductPageInfo));
