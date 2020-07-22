@@ -149,7 +149,7 @@ function CheckoutPage () {
             {/* Items In Cart */}
             <ItemsInCart submitBtnFunc={submitForm}/>
             {/*      <SimpleModal onClick={submitForm}/> */}
-            {/*         <Button type='button' onClick={sendOrderNAC}>Не авторизированный</Button>
+            {/*     <Button type='button' onClick={sendOrderNAC}>Не авторизированный</Button>
             <Button type='button' onClick={sendOrderAC}>Авторизированный</Button> */}
           </div>
         )}
