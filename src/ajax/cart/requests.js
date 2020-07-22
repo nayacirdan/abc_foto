@@ -2,7 +2,6 @@ import Axios from 'axios';
 import configRequests from '../utils/path';
 
 const addProductToLs = (product) => {
-  debugger;
   let productCart = [];
   const existLocalCart = JSON.parse(localStorage.getItem('productCartLs'));
 
