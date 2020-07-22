@@ -10,7 +10,7 @@ import DeliverMethods from './DeliverMethods/DeliverMethods';
 import PaymentMethods from './PaymentMethods/PaymentMethods';
 import {Button} from '@material-ui/core';
 import axios from 'axios';
-import {productsNotJson} from "./c";
+import {productsNotJson} from './c';
 
 function CheckoutPage () {
   const dispatch = useDispatch();
