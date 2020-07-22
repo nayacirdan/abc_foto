@@ -9,13 +9,9 @@ import {clearCart} from '../../store/actions/cart';
 import {toggleOrderModal} from '../../store/actions/actions';
 import {useHistory} from 'react-router';
 
-function rand () {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle () {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: '50%',
@@ -28,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 400,
+    minWidth: 320,
     height: 300,
     backgroundColor: '#F9F9FB',
     padding: theme.spacing(2, 4, 3),
