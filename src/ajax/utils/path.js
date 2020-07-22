@@ -8,7 +8,8 @@ const configRequests = {
   register: `${baseUrl}/customers/register`,
   password: `${baseUrl}/customers/password`,
   addProd: `${baseUrl}/cart/`,
-  loadCart: `${baseUrl}/cart`
+  loadCart: `${baseUrl}/cart`,
+  deleteCartItem: `${baseUrl}/cart/`
 };
 
 export default configRequests;

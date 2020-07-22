@@ -6,8 +6,6 @@ import './CartSection.scss';
 import Button from '@material-ui/core/Button';
 import CartItems from '../CartItems/CartItems';
 const CartSection = ({cartInfo}) => {
-  debugger;
-    
   return (
     <>
       <div className='CartSection'>
