@@ -6,7 +6,7 @@ const setToLocalStorage = (product) => {
       return;
     } else {
       localArray.push(product);
-      if (localArray.length === 5) {
+      if (localArray.length === 11) {
         localArray.shift();
       }
     };

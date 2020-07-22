@@ -1,6 +1,6 @@
 import constants from '../../constans/constans';
 import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart} from '../../../ajax/cart/requests';
-import products from './../../reducers/products/productsReducer';
+// import products from './../../reducers/products/productsReducer';
 
 const addToCart = (product) => async (dispatch, getState) => {
   const {userSignin} = getState();
