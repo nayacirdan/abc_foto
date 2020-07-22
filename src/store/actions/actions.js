@@ -135,3 +135,11 @@ export const setIsDesktop = (value) => dispatch => {
 export const toggleOrderModal = (value) => dispatch => {
   dispatch({type: Actions.TOGGLE_MODAL_ORDER, payload: value});
 };
+
+export const toggleSubscribeOKModal = (value) => dispatch => {
+  dispatch({type: Actions.TOGGLE_SUBSCRIBE_OK_MODAL, payload: value});
+};
+
+export const toggleSubscribeFailedModal = (value) => dispatch => {
+  dispatch({type: Actions.TOGGLE_SUBSCRIBE_FAILED_MODAL, payload: value});
+};
