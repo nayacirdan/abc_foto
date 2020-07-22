@@ -51,9 +51,20 @@ const loadCart = (token) => {
   });
 };
 
+const clearCartFromDb = (token) => {
+  return Axios.delete(configRequests.loadCart, {
+    headers:
+             {
+               'Content-type': 'application/json',
+               Authorization: token
+             }
+  });
+};
+
 export {
   addProductToDB,
   addProductToLs,
   loadProdutcsToDb,
-  loadCart
+  loadCart,
+  clearCartFromDb
 };

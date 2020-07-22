@@ -11,23 +11,23 @@ import Button from '@material-ui/core/Button';
 
 const Register = ({register, openModal}) => {
   const validationSchema = Yup.object({
-    // firstName: Yup.string('Enter First Name')
-    //   .required('First Name is required'),
-    // lastName: Yup.string('Enter Last Name')
-    //   .required('Last Name is required'),
-    // email: Yup.string('Enter an email')
-    //   .email('Email is invalid')
-    //   .required('Name is required'),
-    // phone: Yup.string('Enter your phone number')
-    //   .min(10, 'Phone must contain at least 10 characters'),
-    // password: Yup.string('Enter your password')
-    //   .min(7, 'Password must contain at least 7 characters')
-    //   .required('Enter your password'),
-    // confirmPassword: Yup.string('Enter your password')
-    //   .min(7, 'Password must contain at least 7 characters')
-    //   .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    //   .required('Confirm Password is required'),
-    // registered: Yup.boolean()
+    firstName: Yup.string('Enter First Name')
+      .required('First Name is required'),
+    lastName: Yup.string('Enter Last Name')
+      .required('Last Name is required'),
+    email: Yup.string('Enter an email')
+      .email('Email is invalid')
+      .required('Name is required'),
+    phone: Yup.string('Enter your phone number')
+      .min(10, 'Phone must contain at least 10 characters'),
+    password: Yup.string('Enter your password')
+      .min(7, 'Password must contain at least 7 characters')
+      .required('Enter your password'),
+    confirmPassword: Yup.string('Enter your password')
+      .min(7, 'Password must contain at least 7 characters')
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .required('Confirm Password is required'),
+    registered: Yup.boolean()
       
   });
     
@@ -35,7 +35,7 @@ const Register = ({register, openModal}) => {
     firstName: '',
     lastName: '',
     email: '',
-    telephone: '',
+    telephone: '+38',
     password: '',
     confirmPassword: '',
     registered: true
