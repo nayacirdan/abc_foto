@@ -6,7 +6,7 @@ import CartItem from '../CartItem/CartItem';
 import Button from '@material-ui/core/Button';
 
 const CartSection = ({cartInfo}) => {
-  console.log(cartInfo);
+  debugger;
   const renderItems = cartInfo.map((item) => (
     <CartItem item={item}/>
   ));
@@ -26,7 +26,7 @@ const CartSection = ({cartInfo}) => {
               <span>Всего</span>
             </div>
             <div className='CartSection__cart-item'>
-              {renderItems && <div>Корзина пустая</div>}
+              {renderItems}
             </div>
           </div>
           <div className='CartSection__checkout'>
