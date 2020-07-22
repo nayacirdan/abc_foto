@@ -19,6 +19,7 @@ const SimpleSwiperWithParams = () => {
   return (
     <>
       <div className="container">
+        <p className="promotions-main-text">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</p>
         <Swiper {...params}>
           <div>
             <div className="promotions__section-1 prom-container">
