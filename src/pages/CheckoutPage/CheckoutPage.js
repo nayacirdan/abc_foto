@@ -8,10 +8,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import PersonalInfo from './PersonalInfo/PersonalInfo';
 import DeliverMethods from './DeliverMethods/DeliverMethods';
 import PaymentMethods from './PaymentMethods/PaymentMethods';
+import {Button} from '@material-ui/core';
+import axios from 'axios';
+import {productsNotJson} from "./c";
 
 function CheckoutPage () {
   const dispatch = useDispatch();
   const customer = useSelector(state => state.getCustomer.customerInfo);
+  const productsInCart = useSelector(state => state.cartReducer.cartInfo);
+  console.log(productsInCart);
+  console.log(customer._id);
   let customerName;
 
   if (customer.firstName || customer.lastName) {
@@ -19,16 +25,62 @@ function CheckoutPage () {
   }
 
   /* const getCartProducts = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(mockCart), 1000);
-    });
-  }; */
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(mockCart), 1000);
+      });
+    }; */
 
   /* useEffect(() => {
-    getCartProducts().then(result => {
-      setProducts(result);
-    });
-  }, []); */
+      getCartProducts().then(result => {
+        setProducts(result);
+      });
+    }, []); */
+
+  const NAC_data = {
+    email: 'ksusha.cirdan@gmail.com',
+    mobile: '0937699607',
+    letterSubject: 'Thank you for order! You are welcome!',
+    letterHtml: '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+    canceled: false,
+    products: JSON.stringify(productsNotJson)
+  };
+
+  const AC_data = {
+    customerId: customer._id || '5f1318029ba9f42208815d10',
+    email: 'ksusha.cirdan@gmail.com',
+    mobile: '0937699607',
+    letterSubject: 'Thank you for order! You are welcome!',
+    letterHtml: '<h1>Your order is placed. OrderNo is 023689452.</h1><p>{Other details about order in your HTML}</p>',
+    canceled: false,
+    products: []
+  };
+
+  console.log(JSON.stringify(NAC_data));
+  console.log(JSON.stringify(AC_data));
+
+  const sendOrderNAC = () => {
+    axios.post('/orders', NAC_data)
+      .then(newOrder => {
+        console.log('NAC', newOrder.data);
+        /* Do something with newOrder */
+      })
+      .catch(err => {
+        console.log('NAC', err, err.message);
+        /* Do something with error, e.g. show error to user */
+      });
+  };
+
+  const sendOrderAC = () => {
+    axios.post('/orders', AC_data)
+      .then(newOrder => {
+        console.log('AC', newOrder.data);
+        /* Do something with newOrder */
+      })
+      .catch(err => {
+        console.log('AC', err, err.message);
+        /* Do something with error, e.g. show error to user */
+      });
+  };
 
   const handleSubmit = (values) => {
     dispatch(toggleOrderModal(true));
@@ -68,7 +120,7 @@ function CheckoutPage () {
           deliveryMethod: 'self',
           paymentMethod: 'cash'
         }}
-        onSubmit = {(values) => handleSubmit(values)}
+        onSubmit={(values) => handleSubmit(values)}
         validate={validate}
       >
         {({submitForm, values, errors, touched, handleSubmit}) => (
@@ -81,10 +133,11 @@ function CheckoutPage () {
 
                 {/* NOT WORKING, DONT RECEIVE VALUE */}
                 <Field
-                  component={TextField}
+                  as={TextField}
                   className="comments"
                   type="text"
-                  multiline rows={4}
+                  multiple
+                  rows={4}
                   placeholder="Комментарий"
                   variant="outlined"
                   name="comment"
@@ -94,6 +147,8 @@ function CheckoutPage () {
 
             {/* Items In Cart */}
             <SimpleModal onClick={submitForm}/>
+            <Button type='button' onClick={sendOrderNAC}>Не авторизированный</Button>
+            <Button type='button' onClick={sendOrderAC}>Авторизированный</Button>
           </div>
         )}
       </Formik>
