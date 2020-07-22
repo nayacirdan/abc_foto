@@ -35,7 +35,6 @@ const register = (firstName, lastName, email, login, password, telephone) => asy
 };
 
 const getCustomer = () => async (dispatch, getState) => {
-
   const {userSignin} = getState();
   const token = Cookie.getJSON('UserInfo');
   try {
