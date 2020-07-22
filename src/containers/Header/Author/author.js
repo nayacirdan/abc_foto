@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Author = (props) => {
-  const {logged, openModal, customerInfo} = props;
+  const {logged, openModal, customerInfo, logOut} = props;
 
   const classes = useStyles();
 
   const logOutHandler = () => {
-    // todo прописать логику для логаута
+    logOut();
   };
 
   const AccountMenu = (

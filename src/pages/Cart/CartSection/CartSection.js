@@ -2,14 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './CartSection.scss';
-import CartItem from '../CartItem/CartItem';
-import Button from '@material-ui/core/Button';
 
+import Button from '@material-ui/core/Button';
+import CartItems from '../CartItems/CartItems';
 const CartSection = ({cartInfo}) => {
   debugger;
-  const renderItems = cartInfo.map((item) => (
-    <CartItem item={item}/>
-  ));
     
   return (
     <>
@@ -22,25 +19,16 @@ const CartSection = ({cartInfo}) => {
             <div className='CartSection__title'>
               <span>Товар</span>
               <span>Цена</span>
-              <span>Количество</span>
+              <span>Кол.</span>
               <span>Всего</span>
             </div>
-            <div className='CartSection__cart-item'>
-              {renderItems}
-            </div>
+            <CartItems/>
           </div>
           <div className='CartSection__checkout'>
             <div className='CartSection__btn-cont'>
-              <Button variant='outlined'>Продолжить покупки</Button>
+              <Button variant='outlined'>Продолжить</Button>
             </div>
-            <div className='CartSection__total'>
-              <span className='CartSection__total--text'>
-                                Итого {renderItems.length} товара на общую сумму
-              </span>
-              <span className='CartSection__total--price'>
- грн.
-              </span>
-            </div>
+
             <div className='CartSection__btn-checkout'>
               <Link to='/checkout'>
                 <Button variant='outlined'>Оформить</Button>

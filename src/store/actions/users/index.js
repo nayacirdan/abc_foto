@@ -14,6 +14,15 @@ const signIn = (email, password) => async (dispatch) => {
   }
 };
 
+const logOut = () => (dispatch) => {
+  const token = Cookie.getJSON('UserInfo');
+  if (token) {
+    Cookie.remove('UserInfo');
+    dispatch({type: constants.USER_LOGOUT});
+    dispatch({type: constants.LOAD_CART, payload: []});
+  }
+};
+
 const register = (firstName, lastName, email, login, password, telephone) => async (dispatch) => {
   try {
     await registerRequest(firstName, lastName, email, login, password, telephone);
@@ -44,5 +53,6 @@ const getCustomer = () => async (dispatch, getState) => {
 export {
   signIn,
   getCustomer,
-  register
+  register,
+  logOut
 };

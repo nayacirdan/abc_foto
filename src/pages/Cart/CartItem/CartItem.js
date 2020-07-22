@@ -10,12 +10,12 @@ const CartItem = (props) => {
           <img src={item.imageUrls[0]} alt=""/>
         </div>
         <div className='CartItem__descrip'>
-          <span>{item.brand}</span>
-          <span>{item.itemNo}</span>
+          <span className='CartItem-brand'>{item.brand}</span>
+          <span className='CartItem-itemNo'>№:{item.itemNo}</span>
         </div>
       </div>
       <div className='CartItem__price'>
-        {`${item.currentPrice} грн`}
+        {`${item.currentPrice} ₴`}
       </div>
       <div className='CartItem__quantity'>
         <button >+</button>
@@ -23,7 +23,7 @@ const CartItem = (props) => {
         <button >– </button>
       </div>
       <div className='CartItem__total'>
-        {`${item.currentPrice * item.quantity} грн`}
+        {`${item.currentPrice * item.quantity} ₴`}
       </div>
     </div>
   );
