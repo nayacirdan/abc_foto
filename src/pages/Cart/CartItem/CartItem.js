@@ -1,8 +1,14 @@
 import React from 'react';
 import './CartItem.scss';
+import {connect} from 'react-redux';
+import {deleteItem} from '../../../store/actions/cart/index';
 
 const CartItem = (props) => {
-  const { item } = props;
+  const { item, deleteItem } = props;
+
+  const deleteItemHandler = () => {
+    deleteItem(item);
+  };
   return (
     <div className='CartItem'>
       <div className='CartItem__img-descr-wrap'>
@@ -21,6 +27,7 @@ const CartItem = (props) => {
         <button >+</button>
         <span>{item.quantity}</span>
         <button >– </button>
+        <button onClick={deleteItemHandler}>X</button>
       </div>
       <div className='CartItem__total'>
         {`${item.currentPrice * item.quantity} ₴`}
@@ -28,5 +35,16 @@ const CartItem = (props) => {
     </div>
   );
 };
-
-export default CartItem;
+// const mapStateToProps = ({cartReducer}) => {
+//   return {
+    
+//   };
+// };
+  
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteItem: (product) => dispatch(deleteItem(product))
+  };
+};
+  
+export default React.memo(connect(null, mapDispatchToProps)(CartItem));

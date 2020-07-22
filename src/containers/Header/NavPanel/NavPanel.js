@@ -6,7 +6,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import StoreIcon from '@material-ui/icons/Store';
 import { connect } from 'react-redux';
-
+import {openModal } from '../../../store/actions/actions';
+import { logOut } from '../../../store/actions/users/index';
 import logo from '../../../svg/logo';
 import { withRouter } from 'react-router';
 import { NavHashLink } from 'react-router-hash-link';
@@ -38,10 +39,15 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: '#000000',
     fontSize: '14px'
+  },
+  greetengs: {
+    marginLeft: 40,
+    fontSize: 16,
+    fontWeight: 400
   }
 }));
 
-function TemporaryDrawer ({history, categories}) {
+function TemporaryDrawer ({history, categories, openModal, logged, customerInfo, logOut}) {
   const classes = useStyles();
   const [toggled, toggle] = React.useState(false);
   const [state, setState] = React.useState({
@@ -70,6 +76,26 @@ function TemporaryDrawer ({history, categories}) {
       </ListItemText>
     </ListItem>
   ));
+  const greetengs = (
+    <>
+      <List>
+        <span className={classes.greetengs}>Привет,  {customerInfo.login}</span>
+      </List>
+      <Divider />
+    </>);
+  const unLogged = (
+    <ListItem button onClick={openModal}>
+      <ListItemIcon><AccountCircleIcon/></ListItemIcon>
+      <ListItemText primary={'Вход'} />
+    </ListItem>
+  );
+
+  const inLogged = (
+    <ListItem button onClick={logOut}>
+      <ListItemIcon><AccountCircleIcon/></ListItemIcon>
+      <ListItemText primary={'Выход'} />
+    </ListItem>
+  );
 
   const cats = categories.map((category, id) => (
     <ListItem button
@@ -95,7 +121,7 @@ function TemporaryDrawer ({history, categories}) {
         </ListItem>
       </List>
       <Divider />
-
+      {logged ? greetengs : null}
       <List>
         <ListItem button onClick={(e) => {
           toggle(toggled => !toggled);
@@ -110,10 +136,7 @@ function TemporaryDrawer ({history, categories}) {
       </List>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon><AccountCircleIcon/></ListItemIcon>
-          <ListItemText primary={'Личный кабинет'} />
-        </ListItem>
+        {logged ? inLogged : unLogged}
       </List>
       <Divider />
       <List>
@@ -138,8 +161,17 @@ function TemporaryDrawer ({history, categories}) {
 
 const mapStateToProps = store => {
   return {
-    categories: store.categories.allCategories
+    categories: store.categories.allCategories,
+    customerInfo: store.getCustomer.customerInfo,
+    logged: store.userSignin.logged
   };
 };
 
-export default React.memo(connect(mapStateToProps, null)(withRouter(TemporaryDrawer)));
+const mapDispatchToProps = dispatch => {
+  return {
+    openModal: () => dispatch(openModal()),
+    logOut: () => dispatch(logOut())
+  };
+};
+
+export default React.memo(connect(mapStateToProps, mapDispatchToProps)(withRouter(TemporaryDrawer)));

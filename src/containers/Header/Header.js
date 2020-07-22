@@ -78,7 +78,9 @@ const Header = (props) => {
 
   useEffect(() => {
     getCustomer();
-    syncCart();
+    if (!logged) {
+      syncCart();
+    }
     getCart();
   }, [getCart, getCustomer, logged, syncCart]);
 

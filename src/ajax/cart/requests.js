@@ -2,7 +2,7 @@ import Axios from 'axios';
 import configRequests from '../utils/path';
 
 const addProductToLs = (product) => {
-  debugger;
+
   let productCart = [];
   const existLocalCart = JSON.parse(localStorage.getItem('productCartLs'));
 
@@ -61,10 +61,21 @@ const clearCartFromDb = (token) => {
   });
 };
 
+const deleteCartItem = (product, token) => {
+  return Axios.delete(configRequests.deleteCartItem + product._id, {
+    headers:
+             {
+               'Content-type': 'application/json',
+               Authorization: token
+             }
+  });
+};
+
 export {
   addProductToDB,
   addProductToLs,
   loadProdutcsToDb,
   loadCart,
-  clearCartFromDb
+  clearCartFromDb,
+  deleteCartItem
 };
