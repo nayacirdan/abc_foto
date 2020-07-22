@@ -3,8 +3,29 @@ import './footer.scss';
 import TextField from '@material-ui/core/TextField';
 import {footerLogo, footerInst, footerFacebook} from './svg/footerSvg';
 import { NavHashLink as Link } from 'react-router-hash-link';
+import {Button} from '@material-ui/core';
+import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
 
 const Footer = () => {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    console.log(ev.target.email.value);
+    console.log(ev.target.value);
+    const emailToSubscribe = ev.target.email.value;
+    
+    axios.post('/subscribers', {
+      enabled: 'true',
+      email: emailToSubscribe,
+      letterSubject: 'Test letter (final project)',
+      letterHtml: '<!DOCTYPE html><html lang=\'en\'> <head> <meta charset=\'UTF-8\' /> <meta name=\'viewport\' content=\'width=device-width, initial-scale=1.0\' /> <meta http-equiv=\'X-UA-Compatible\' content=\'ie=edge\' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>'
+    }).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err.message);
+    });
+  };
+
   return (
     <div className='Footer'>
       <div className='Footer__wrapper'>
@@ -60,10 +81,19 @@ const Footer = () => {
         <div className='Footer__container--right'>
           <p className='Footer__heading'>Подписаться на рассылку</p>
           <div className='Footer__input'>
-            <TextField
-              name='mail'
-              label="Email"
-              variant="outlined"/>
+            <form autoComplete="off" className='subscribe-form' onSubmit={(ev) => handleSubmit(ev)}>
+              <Grid container className='subscribe_grid'>
+                <TextField
+                  name='email'
+                  label="Email"
+                  variant="outlined"
+                  type='email'
+                  required/>
+                <Button type='submit' variant='outlined' color='primary' className='btn btn-subscribe'>Подписаться </Button>
+              </Grid>
+
+            </form>
+
           </div>
           <div className='Footer__icons-wrapper'>
             <span>Мы в социальных сетях</span>
