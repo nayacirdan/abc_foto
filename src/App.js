@@ -17,6 +17,7 @@ import Cart from './pages/Cart/Cart';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import InfoPage from './pages/InfoPage/InfoPage';
 import BackToTop from './components/BackToTop/BackToTop';
+import PersonalArea from './components/PersonalArea/PersonalArea';
 
 const App = (props) => {
   const {modalIsOpen, getProducts} = props;
@@ -39,6 +40,7 @@ const App = (props) => {
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route path='/products/filter' component={CategoryRoutes} />
           <Route exact path='/info' component={InfoPage} />
+          <Route exact path='/personal' component={PersonalArea} />
         </Switch>
         <Footer/>
       </Router>
