@@ -1,45 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './CartItem.scss';
-// import image from 'public/images/gallery_items/canon_1/image_1.jpg'
-// import {image2} from 'public/images/gallery_items/canon_1/image_2.jpg'
-// import {image3} from 'public/images/gallery_items/canon_1/image_3.jpg'
 
-const CartItem = ({setTotalPrice, totalPrice}) => {
-  const [quantity, setQuantity] = useState(1);
-  const [price] = useState(9132);
-
-  useEffect(() => {
-    setTotalPrice((prevState) => prevState + price);
-  }, [setTotalPrice, price]);
-
+const CartItem = (props) => {
+  const { item } = props;
   return (
     <div className='CartItem'>
       <div className='CartItem__img-descr-wrap'>
         <div className='CartItem__img'>
-          <img src={process.env.PUBLIC_URL + '/images/gallery_items/canon_1/image_2.jpg'} alt=""/>
+          <img src={item.imageUrls[0]} alt=""/>
         </div>
         <div className='CartItem__descrip'>
-          <span>Canon EOS 6D</span>
-          <span>wi-fi body</span>
-          <span>Код товара: 123423</span>
+          <span className='CartItem-brand'>{item.brand}</span>
+          <span className='CartItem-itemNo'>№:{item.itemNo}</span>
         </div>
       </div>
       <div className='CartItem__price'>
-        {price} грн
+        {`${item.currentPrice} ₴`}
       </div>
       <div className='CartItem__quantity'>
-        <button onClick={() => {
-          setQuantity(quantity + 1);
-          setTotalPrice((prevState) => prevState + price);
-        }}>+</button>
-        {quantity}
-        <button onClick={() => {
-          quantity > 1 && setQuantity(quantity - 1);
-          quantity > 1 && setTotalPrice((prevState) => prevState - price);
-        }}>–</button>
+        <button >+</button>
+        <span>{item.quantity}</span>
+        <button >– </button>
       </div>
       <div className='CartItem__total'>
-        {price * quantity} грн
+        {`${item.currentPrice * item.quantity} ₴`}
       </div>
     </div>
   );
