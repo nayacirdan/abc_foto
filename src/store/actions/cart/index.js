@@ -1,5 +1,5 @@
 import constants from '../../constans/constans';
-import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart} from '../../../ajax/cart/requests';
+import {addProductToDB, addProductToLs, loadProdutcsToDb, loadCart, clearCartFromDb} from '../../../ajax/cart/requests';
 
 const addToCart = (product) => async (dispatch, getState) => {
   const {userSignin} = getState();
@@ -56,8 +56,14 @@ const parseCart = (data) => {
   return newArray;
 };
 
-const clearCart = () => dispatch => {
-  dispatch({type: constants.CLEAR_CART});
+const clearCart = () => async (dispatch, getState) => {
+  try {
+    const {userSignin} = getState();
+    await clearCartFromDb(userSignin.userInfo.token);
+    dispatch({type: constants.CLEAR_CART});
+  } catch (error) {
+    dispatch({type: constants.ADD_TO_CARD_DB_FAIL, payload: error});
+  }
 };
 
 export {
