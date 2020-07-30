@@ -9,7 +9,7 @@ Download project: (https://github.com/nayacirdan/abc_foto).
 2. Oksana Kirdan
    Components: navigation, card, filters, pagination, page-category
 3. Myroslava Tsiupiak
-   Components: 
+   Components: product-page, header, info-page, search-bar, sliders 'Hit Products' and 'Recently Viewed', footer
 4. Viktor Yalinich
    Components: authorisation, cart, modals
 5. Pavel Yakovenko
