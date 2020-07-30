@@ -24,12 +24,14 @@ const logOut = () => (dispatch) => {
 };
 
 const register = (firstName, lastName, email, login, password, telephone) => async (dispatch) => {
+  debugger;
   try {
     await registerRequest(firstName, lastName, email, login, password, telephone);
     dispatch({type: constants.USER_REGISTER_SUCCESS, payload: true});
-
+    debugger;
     localStorage.setItem('registerAuth', JSON.stringify({email, password}));
   } catch (error) {
+    debugger;
     dispatch({type: constants.USER_REGISTER_FAIL, payload: error.message});
   }
 };

@@ -63,6 +63,7 @@ const Header = (props) => {
     getCustomer,
     customerInfo,
     registered,
+    registeredData,
     signIn,
     syncCart,
     getCart,
@@ -85,13 +86,13 @@ const Header = (props) => {
   }, [getCart, getCustomer, logged, syncCart]);
 
   useEffect(() => {
-    if (registered) {
+    if (registeredData) {
       const {email, password} = JSON.parse(localStorage.getItem('registerAuth'));
       localStorage.removeItem('registerAuth');
       signIn(email, password);
       history.push('/');
     }
-  }, [history, registered, signIn]);
+  }, [history, registeredData, signIn]);
 
   const onChangeHandler = (e) => {
     searchChange(e.target.value);

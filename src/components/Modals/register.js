@@ -9,17 +9,27 @@ import { openModal} from '../../store/actions/actions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+const phone_regex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
+const email_regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+const no_spacing_regex = /^[a-zA-Z0-9]*$/;
+const only_letters_regex = /^[a-zA-Z]+$/;
+
 const Register = ({register, openModal}) => {
   const validationSchema = Yup.object({
     firstName: Yup.string('Enter First Name')
-      .required('First Name is required'),
+      .matches(only_letters_regex, 'Name can contain only letters')
+      .matches(no_spacing_regex, 'Enter your name without spacing')
+      .required('This field is required'),
     lastName: Yup.string('Enter Last Name')
-      .required('Last Name is required'),
+      .matches(only_letters_regex, 'Name can contain only letters')
+      .matches(no_spacing_regex, 'Enter your name without spacing')
+      .required('This field is required'),
     email: Yup.string('Enter an email')
-      .email('Email is invalid')
-      .required('Name is required'),
-    phone: Yup.string('Enter your phone number')
-      .min(10, 'Phone must contain at least 10 characters'),
+      .matches(email_regex, 'Enter correctly Email')
+      .required('This field is required'),
+    telephone: Yup.string('Enter your phone number')
+      .matches(phone_regex, 'Your phone number should look like +380938107132')
+      .required('Phone number is required'),
     password: Yup.string('Enter your password')
       .min(7, 'Password must contain at least 7 characters')
       .required('Enter your password'),
@@ -35,7 +45,7 @@ const Register = ({register, openModal}) => {
     firstName: '',
     lastName: '',
     email: '',
-    telephone: '+38',
+    telephone: '',
     password: '',
     confirmPassword: '',
     registered: true

@@ -12,10 +12,10 @@ import { openModal} from '../../store/actions/actions';
 const Sing = ({signIn, userSignin, openModal}) => {
   const validationSchema = Yup.object({
     email: Yup.string('Enter an email')
-      .required('Name is required'),
+      .required('You should enter email to sign in'),
     password: Yup.string('Enter your password')
-      .min(7, 'Password must contain at least 7 characters')
-      .required('Enter your password')
+      .min(7, 'Your password cannot be shorter than 7 characters')
+      .required('You should enter password to sign in')
   });
 
   const initialValues = {
